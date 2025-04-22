@@ -574,6 +574,19 @@
     "subpart_first_id": 65,
     "subpart_id_separator": 0
   },
-  "sheets": [],
+  "sheets": [
+    [
+      "0c7d793a-f813-491b-a2c0-269f6010bf49",
+      "Root"
+    ],
+    [
+      "bc21c2a6-1795-40e9-96c7-3191072a0301",
+      "keyboard_pad_left"
+    ],
+    [
+      "abc06d10-398c-4366-9536-a726df5cfb31",
+      "keyboard_pad_right"
+    ]
+  ],
   "text_variables": {}
 }
