@@ -69758,6 +69758,22 @@
 			(justify left bottom)
 		)
 	)
+	(segment
+		(start 50 50)
+		(end 50.00005 50.00005)
+		(width 0.25)
+		(layer "F.Cu")
+		(net 0)
+		(uuid "05a7a2ef-a637-4c7a-a5da-8d8c469923e1")
+	)
+	(segment
+		(start 50 50)
+		(end 50.00005 50.00005)
+		(width 0.25)
+		(layer "F.Cu")
+		(net 0)
+		(uuid "a623ed4b-2f73-4aad-be27-c1163b9067c3")
+	)
 	(group ""
 		(uuid "f7ef4d97-ebcd-4200-a5ea-8f9cb5f7fa80")
 		(locked yes)
