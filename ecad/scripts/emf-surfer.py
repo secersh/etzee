@@ -6,10 +6,10 @@ board = pcbnew.GetBoard()
 # Parameters
 number_of_slots = 5
 number_of_tracks = 17
-outer_radius = 59
-inner_radius = 35
+outer_radius = 63 / 2
+inner_radius = 39 / 2
 track_width = 0.15
-origin = (450, 0)
+origin = (402.375, 47.875)
 
 def rotate_point(x, y, cx, cy, angle_degrees):
     theta = math.radians(angle_degrees)
