@@ -1,1 +1,45 @@
+name: 🖨 generate-3D-models
 
+on:
+  workflow_dispatch:
+    
+jobs:
+  export-3D-models:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install yq
+        run: |
+          sudo apt-get update && sudo apt-get install -y yq
+
+      - name: Export STL files to manufacturing/3d-printing
+        env:
+          ACCESS_KEY: ${{ secrets.ONSHAPE_ACCESS_KEY }}
+          SECRET_KEY: ${{ secrets.ONSHAPE_SECRET_KEY }}
+        run: |
+          AUTH=$(echo -n "${ACCESS_KEY}:${SECRET_KEY}" | base64)
+
+          yq -c '.parts[]' parts-list.yaml | while read part; do
+            DID=$(echo "$part" | yq -r '.document')
+            WID=$(echo "$part" | yq -r '.workspace')
+            EID=$(echo "$part" | yq -r '.element')
+            PARTID=$(echo "$part" | yq -r '.part')
+            NAME=$(echo "$part" | yq -r '.name')
+
+            URL="https://cad.onshape.com/api/v6/parts/d/${DID}/w/${WID}/e/${EID}/partid/${PARTID}/stl?mode=text&grouping=true&scale=1&units=mm"
+            echo "Downloading $NAME..."
+            curl -sSL -X GET "$URL" \
+              -H "Authorization: Basic ${AUTH}" \
+              -H "accept: application/octet-stream" \
+              -o "manufacturing/3d-printing/${NAME}.stl"
+          done
+
+      - name: Commit STL files
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add manufacturing/3d-printing/*.stl
+          git commit -m "Exported STL files from Onshape"
+          git push

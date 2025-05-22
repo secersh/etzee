@@ -1,0 +1,3 @@
+[submodule "firmware/halfs/zmk"]
+	path = firmware/halfs/zmk
+	url = https://github.com/zmkfirmware/zmk.git
