@@ -29,7 +29,7 @@ jobs:
             echo "$doc" | yq -c '.elements[]' | while read elem; do
               EID=$(echo "$elem" | yq -r '.id')
 
-              PARTS_JSON=$(curl -sSL -X GET "https://cad.onshape.com/api/v6/parts/d/${DID}/w/${WID}/e/${EID}" \
+              PARTS_JSON=$(curl -sSL -X GET "https://cad.onshape.com/api/v10/parts/d/${DID}/w/${WID}/e/${EID}?withThumbnails=false&includePropertyDefaults=false&includeFlatParts=true" \
                 -H "Authorization: Basic ${AUTH}" \
                 -H "Accept: application/json")
 
@@ -46,7 +46,7 @@ jobs:
                 SAFE_NAME=$(echo "$PART_NAME" | tr ' /' '__')
                 FILENAME="${SAFE_NAME}__${PARTID}.stl"
 
-                URL="https://cad.onshape.com/api/v6/parts/d/${DID}/w/${WID}/e/${EID}/partid/${PARTID}/stl?mode=text&grouping=true&scale=1&units=inch"
+                URL="https://cad.onshape.com/api/v10/parts/d/${DID}/w/${WID}/e/${EID}/partid/${PARTID}/stl?mode=text&grouping=true&scale=1&units=inch"
 
                 curl -sSL -X GET "$URL" \
                   -H "Authorization: Basic ${AUTH}" \
