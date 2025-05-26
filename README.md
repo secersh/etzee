@@ -1,2 +1,2 @@
 # le-board
-is split orthogonal modular wireless keyboard
+is a split orholinear modular wireless keyboard
