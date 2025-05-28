@@ -15,11 +15,10 @@ jobs:
           sudo apt-get update && sudo apt-get install -y yq
 
       - name: Get parts list
-        working-directory: manufacturing/3d-printing
         run: |
           AUTH=$(echo -n "${{ secrets.ONSHAPE_API_ACCESS_KEY }}:${{ secrets.ONSHAPE_API_SECRET_KEY }}" | base64)
 
-          echo "$AUTH 🔍 Fetching parts list from Onshape..."
+          echo $AUTH "🔍 Fetching parts list from Onshape..."
 
           curl -X 'GET' \
           'https://cad.onshape.com/api/v10/parts/d/${{ vars.did }}/w/${{ vars.wvmid }}/e/${{ vars.eid }}?includeFlatParts=true' \
