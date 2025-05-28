@@ -19,6 +19,8 @@ jobs:
         run: |
           AUTH=$(echo -n "${{ secrets.ONSHAPE_API_ACCESS_KEY }}:${{ secrets.ONSHAPE_API_SECRET_KEY }}" | base64)
 
+          echo "$AUTH 🔍 Fetching parts list from Onshape..."
+
           curl -X 'GET' \
           'https://cad.onshape.com/api/v10/parts/d/${{ vars.did }}/w/${{ vars.wvmid }}/e/${{ vars.eid }}?includeFlatParts=true' \
           -H 'Accept: application/json' \
