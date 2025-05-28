@@ -19,7 +19,7 @@ jobs:
         run: |
           AUTH=$(echo -n "${{ secrets.ONSHAPE_ACCESS_KEY }}:${{ secrets.ONSHAPE_SECRET_KEY }}" | base64)
 
-          yq -c '.documents[]' parts-list.yaml | while read doc; do
+          yq -c '.documents[]' part-numbers.yaml | while read doc; do
             DID=$(echo "$doc" | yq -r '.id')
             WID=$(echo "$doc" | yq -r '.workspace')
 
@@ -29,7 +29,7 @@ jobs:
               echo "$elem" | yq -c '.parts[]' | while read partNameRaw; do
                 PART_NAME=$(echo "$partNameRaw" | sed 's/^"\(.*\)"$/\1/')
 
-                echo "Exporting $PART_NAME from document $DID, workspace $WID, element $EID"
+                echo "$AUTH, Exporting $PART_NAME from document $DID, workspace $WID, element $EID"
 
               done
             done
