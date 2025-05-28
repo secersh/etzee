@@ -44,7 +44,7 @@ jobs:
           &configuration=$ENCODED_CONFIG" \
           -H "accept: application/json" \
           -H "Authorization: Basic $AUTH" \
-          | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber}]'
+          | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber, revision}]'
 
       - name: Commit STL files
         run: |
