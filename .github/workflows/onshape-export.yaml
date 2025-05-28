@@ -34,7 +34,7 @@ jobs:
           ENCODED_CONFIG=$(jq -rn \
           --arg profile "${{ inputs.profile }}" \
           --arg columns "${{ inputs.columns }}" \
-          '$ARGS.named | "List_kw1ECqDsNAkjBg=\($profile),List_kw1ECqDsNAkjBg=\($columns)" | @uri')
+          '$ARGS.named | "List_xrEfmODFsfiBE6=\($profile),List_kw1ECqDsNAkjBg=\($columns)" | @uri')
 
           echo "🔍 Fetching parts list with assigned part numbers from Onshape..."
 
