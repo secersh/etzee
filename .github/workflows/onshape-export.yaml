@@ -7,18 +7,18 @@ on:
         type: choice
         required: true
         description: "Keyboard switches profile"
-        default: "Normal"
+        default: "Default"
         options:
-          - Normal
-          - Low
+          - "Default"
+          - "Low_profile"
       columns:
         type: choice
         required: true
         description: "Number of keyboard columns"
-        default: "6"
+        default: "Default"
         options:
-          - "5"
-          - "6"
+          - "Default"
+          - "_6"
     
 jobs:
   export-3D-models:
