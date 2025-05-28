@@ -2,6 +2,23 @@ name: 🤖 Export 3D Models from Onshape
 
 on:
   workflow_dispatch:
+    inputs:
+      profile:
+        type: choice
+        required: true
+        description: "Keyboard switches profile"
+        default: "Normal"
+        options:
+          - Normal
+          - Low
+      columns:
+        type: choice
+        required: true
+        description: "Number of keyboard columns"
+        default: "6"
+        options:
+          - "5"
+          - "6"
     
 jobs:
   export-3D-models:
@@ -10,20 +27,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      #- name: Install yq
-        #run: |
-        #  sudo apt-get update && sudo apt-get install -y yq
-
       - name: Get parts list
         run: |
           AUTH=$(printf "%s:%s" "${{ secrets.ONSHAPE_API_ACCESS_KEY }}" "${{ secrets.ONSHAPE_API_SECRET_KEY }}" | base64 | tr -d '\n')
 
-          echo "🔍 Fetching parts list from Onshape..."
+          echo "🔍 Fetching parts list with assigned part numbers from Onshape..."
 
           curl -X 'GET' \
-          "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}?includeFlatParts=true" \
+          "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }} \
+          ?includeFlatParts=true \
+          &configuration=${{ inputs.profile }},${{ inputs.columns }}" \
           -H "accept: application/json" \
-          -H "Authorization: Basic $AUTH"
+          -H "Authorization: Basic $AUTH" \
+          | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber}]'
 
       - name: Commit STL files
         run: |
