@@ -31,12 +31,17 @@ jobs:
         run: |
           AUTH=$(printf "%s:%s" "${{ secrets.ONSHAPE_API_ACCESS_KEY }}" "${{ secrets.ONSHAPE_API_SECRET_KEY }}" | base64 | tr -d '\n')
 
+          ENCODED_CONFIG=$(jq -rn \
+          --arg profile "${{ inputs.profile }}" \
+          --arg columns "${{ inputs.columns }}" \
+          '$ARGS.named | "Profile=\($profile),Columns=\($columns)" | @uri')
+
           echo "🔍 Fetching parts list with assigned part numbers from Onshape..."
 
           curl -X 'GET' \
           "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}"\
           ?includeFlatParts=true"\
-          &configuration=Profile%3D${{ inputs.profile }},Columns%3D${{ inputs.columns }}" \
+          &configuration=$ENCODED_CONFIG" \
           -H "accept: application/json" \
           -H "Authorization: Basic $AUTH" \
           | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber}]'
