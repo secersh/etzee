@@ -22,7 +22,7 @@ jobs:
 
           curl -X 'GET' \
           "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}?includeFlatParts=true" \
-          -H "Accept: application/json" \
+          -H "accept: application/json" \
           -H "Authorization: Basic $AUTH"
 
       - name: Commit STL files
