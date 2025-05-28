@@ -16,7 +16,7 @@ jobs:
 
       - name: Get parts list
         run: |
-          AUTH=$(echo -n "${{ secrets.ONSHAPE_API_ACCESS_KEY }}:${{ secrets.ONSHAPE_API_SECRET_KEY }}" | base64)
+          AUTH=$(printf "%s:%s" "${{ secrets.ONSHAPE_API_ACCESS_KEY }}" "${{ secrets.ONSHAPE_API_SECRET_KEY }}" | base64 | tr -d '\n')
 
           echo "🔍 Fetching parts list from Onshape..."
 
