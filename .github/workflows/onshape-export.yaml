@@ -27,16 +27,22 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Get parts list
+      - name: Generate and export AUTH
         run: |
           AUTH=$(printf "%s:%s" "${{ secrets.ONSHAPE_API_ACCESS_KEY }}" "${{ secrets.ONSHAPE_API_SECRET_KEY }}" | base64 | tr -d '\n')
+          echo "AUTH=$AUTH" >> $GITHUB_ENV
 
+      - name: Generate and export ENCODED_CONFIG
+        run: |
           ENCODED_CONFIG=$(jq -rn \
           --arg profile "${{ inputs.profile }}" \
           --arg columns "${{ inputs.columns }}" \
           '$ARGS.named | "List_xrEfmODFsfiBE6=\($profile),List_kw1ECqDsNAkjBg=\($columns)" | @uri')
+          echo "ENCODED_CONFIG=$ENCODED_CONFIG" >> $GITHUB_ENV
 
-          echo "🔍 Fetching parts list with assigned part numbers from Onshape..."
+      - name: Get parts list
+        run: |
+          echo "::notice 🔍 Fetching parts list with assigned part numbers from Onshape..."
 
           curl -X 'GET' \
           "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}"\
