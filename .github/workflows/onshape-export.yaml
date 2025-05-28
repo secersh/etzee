@@ -41,7 +41,7 @@ jobs:
           curl -X 'GET' \
           "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}"\
           ?includeFlatParts=true"\
-          &configuration=List_kw1ECqDsNAkjBg%3D6%3BList_xrEfmODFsfiBE6%3DNormal" \
+          &configuration=$ENCODED_CONFIG" \
           -H "accept: application/json" \
           -H "Authorization: Basic $AUTH" \
           | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber}]'
