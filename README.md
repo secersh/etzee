@@ -47,7 +47,7 @@ XXX-SX-PX-WX
 (S) -> [L]eft, [R]ight, U
 ```
 
-###### 3D printing
+###### 3D printing [Export](https://github.com/secersh/le-board/actions/workflows/onshape-export.yaml)
 
 | Part No. | Version | Material | Status     | Notes |
 | -------- | ------- | -------- | ---------- | ----- |
