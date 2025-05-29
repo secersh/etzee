@@ -101,6 +101,13 @@ jobs:
 
             STATUS=$(echo "$STATUS_RES" | jq -r '.status')
 
+            echo "::notice Current status: $STATUS"
+
+            if [ -z "$STATUS" ]; then
+              echo "::error 🚨 Failed to retrieve STL export status."
+              exit 1
+            fi
+
             if [ "$STATUS" == "DONE" ]; then
               echo "::notice ✅ STL files are ready."
               break
