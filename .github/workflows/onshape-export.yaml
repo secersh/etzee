@@ -66,6 +66,8 @@ jobs:
           
           PART_IDS=$(echo "$PARTS_LIST" | jq -c '[.[].partId]')
 
+          echo "$PART_IDS"
+
           curl -X 'POST' \
           "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
           -H "Accept: application/json" \
