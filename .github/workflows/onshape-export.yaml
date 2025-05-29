@@ -52,6 +52,8 @@ jobs:
           -H "Authorization: Basic $AUTH" \
           | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber, revision}]')
 
+          echo "PARTS_LIST=$PARTS_LIST" >> $GITHUB_ENV
+
       - name: Export STL files
         run: |
           echo "::notice 📦 Exporting STL files from Onshape..."
