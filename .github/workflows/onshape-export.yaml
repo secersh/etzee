@@ -64,9 +64,7 @@ jobs:
         run: |
           echo "::notice 📦 Exporting STL files from Onshape..."
           
-          PART_IDS=$(echo "$PARTS_LIST" | jq -c '[.[].partId]')
-
-          echo "$PART_IDS"
+          PART_IDS=$(echo "$PARTS_LIST" | jq -r '.[].partId' | paste -sd, -)
 
           curl -X 'POST' \
           "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
