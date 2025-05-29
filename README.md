@@ -26,7 +26,28 @@ Transparent by design. Track the current bill of materials, component prices, an
 
 ### 🏭 Manufacturing 
 
-###### 3D printing
+Each component of etzee 101 is identified with a structured part number. This system keeps the design, manufacturing, and documentation process clear and consistent.
+
+Part numbers encode relevant details such as the type of part, half side (if applicable), switch profile (if applicable), and number of key swith columns (also if applicable).
+Some parts may omit certain fields when they're not relevant by using value `U`.
+
+Part No. format:
+
+```text
+XXX-SX-PX-WX
+^-^ ^^ ^^ ^^
+|   |  |   |
+|   |  |   +--- (W) Number of key switch column
+|   |  +------- (P) Keyboard key switch profile
+|   +---------- (S) Keyboard half side designator
++-------------- Unique part identifier code
+
+(W) -> 5, 6, U
+(P) -> [N]ormal, [L]ow, U
+(S) -> [L]eft, [R]ight, U
+```
+
+###### 3D printing [Export](https://github.com/secersh/le-board/actions/workflows/onshape-export.yaml)
 
 | Part No. | Version | Material | Status     | Notes |
 | -------- | ------- | -------- | ---------- | ----- |
