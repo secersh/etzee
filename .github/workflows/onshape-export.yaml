@@ -42,10 +42,11 @@ jobs:
           echo "ENCODED_CONFIG=$ENCODED_CONFIG" >> $GITHUB_ENV
 
       - name: Get parts list
+        id: get_parts_list
         run: |
           echo "::notice 🔍 Fetching parts list with assigned part numbers from Onshape..."
 
-          PARTS_LIST=$(curl -X 'GET' \
+          RESULT=$(curl -X 'GET' \
           "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}"\
           "?includeFlatParts=true"\
           "&configuration=$ENCODED_CONFIG" \
@@ -53,9 +54,11 @@ jobs:
           -H "Authorization: Basic $AUTH" \
           | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber, revision}]')
 
-          echo "PARTS_LIST=$PARTS_LIST" >> $GITHUB_ENV
+          echo "RESULT=$RESULT" >> $GITHUB_OUTPUT
 
       - name: Export STL files
+        env:
+          PARTS_LIST: ${{ steps.get_parts_list.outputs.RESULT }}
         run: |
           echo "::notice 📦 Exporting STL files from Onshape..."
           
