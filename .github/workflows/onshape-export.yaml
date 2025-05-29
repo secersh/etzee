@@ -80,7 +80,6 @@ jobs:
             "chordTolerance": 0.001,
             "triangulationTolerance": 0.001,
             "resolution": "Fine",
-            "configuration": "$ENCODED_CONFIG",
             "destinationName": "stl-bundle"
           }
           EOF
