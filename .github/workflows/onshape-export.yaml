@@ -55,25 +55,27 @@ jobs:
       - name: Export STL files
         run: |
           echo "::notice 📦 Exporting STL files from Onshape..."
+          
+          PART_IDS=$(echo "$PARTS_LIST" | jq -c '[.[].partId]')
 
           curl -X 'POST' \
           "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
           -H "Accept: application/json" \
           -H "Authorization: Basic $AUTH" \
-          -H 'Content-Type: application/json' \
-          -d "{
-                "formatName": "STL",
-                "partIds": [
-                  $(echo "$PARTS_LIST" | jq -r '.[].partId')
-                ],
-                "storeInDocument": false,
-                "angleTolerance": 0.1,
-                "chordTolerance": 0.001,
-                "triangulationTolerance": 0.001
-                "resolution": "Fine",
-                "configuration": "$ENCODED_CONFIG",
-                "destinationName": "stl-bundle"
-              }"
+          -H "Content-Type: application/json" \
+          -d @- <<EOF
+          {
+            "formatName": "STL",
+            "partIds": $PART_IDS,
+            "storeInDocument": false,
+            "angleTolerance": 0.1,
+            "chordTolerance": 0.001,
+            "triangulationTolerance": 0.001,
+            "resolution": "Fine",
+            "configuration": "$ENCODED_CONFIG",
+            "destinationName": "stl-bundle"
+          }
+          EOF
 
       - name: Commit STL files
         run: |
