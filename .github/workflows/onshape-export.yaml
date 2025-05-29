@@ -66,7 +66,7 @@ jobs:
           
           PART_IDS=$(echo "$PARTS_LIST" | jq -r '.[].partId' | paste -sd, -)
 
-          curl -X 'POST' \
+          SUBMIT_RES=$(curl -X 'POST' \
           "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
           -H "Accept: application/json" \
           -H "Authorization: Basic $AUTH" \
@@ -82,7 +82,36 @@ jobs:
             "resolution": "Fine",
             "destinationName": "stl-bundle"
           }
-          EOF
+          EOF)
+
+          HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
+
+          if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
+            echo "::error 🚨 Failed to submit STL export request."
+            exit 1
+          fi
+
+          echo "::notice 📥 Waiting for STL files to be ready..."
+
+          while true; do
+            STATUS_RES=$(curl -X 'GET' \
+            "$HREF" \
+            -H "Accept: application/json" \
+            -H "Authorization: Basic $AUTH")
+
+            STATUS=$(echo "$STATUS_RES" | jq -r '.status')
+
+            if [ "$STATUS" == "DONE" ]; then
+              echo "::notice ✅ STL files are ready."
+              break
+            elif [ "$STATUS" == "FAILED" ]; then
+              echo "::error 🚨 STL export failed."
+              exit 1
+            else
+              echo "::notice ⏳ STL files are still being processed..."
+              sleep 5
+            fi
+          done
 
       - name: Commit STL files
         run: |
