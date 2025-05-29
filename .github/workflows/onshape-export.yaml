@@ -54,7 +54,9 @@ jobs:
           -H "Authorization: Basic $AUTH" \
           | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber, revision}]')
 
-          echo "RESULT=$RESULT" >> $GITHUB_OUTPUT
+          echo "result<<EOF" >> $GITHUB_OUTPUT
+          echo "$RESULT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Export STL files
         env:
