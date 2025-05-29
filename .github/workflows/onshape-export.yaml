@@ -44,13 +44,36 @@ jobs:
         run: |
           echo "::notice 🔍 Fetching parts list with assigned part numbers from Onshape..."
 
-          curl -X 'GET' \
+          PARTS_LIST=$(curl -X 'GET' \
           "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}"\
           ?includeFlatParts=true"\
           &configuration=$ENCODED_CONFIG" \
-          -H "accept: application/json" \
+          -H "Accept: application/json" \
           -H "Authorization: Basic $AUTH" \
-          | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber, revision}]'
+          | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber, revision}]')
+
+      - name: Export STL files
+        run: |
+          echo "::notice 📦 Exporting STL files from Onshape..."
+
+          curl -X 'POST' \
+          "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
+          -H "Accept: application/json" \
+          -H "Authorization: Basic $AUTH" \
+          -H 'Content-Type: application/json' \
+          -d "{
+                "formatName": "STL",
+                "partIds": [
+                  $(echo "$PARTS_LIST" | jq -r '.[].partId')
+                ],
+                "storeInDocument": false,
+                "angleTolerance": 0.1,
+                "chordTolerance": 0.001,
+                "triangulationTolerance": 0.001
+                "resolution": "Fine",
+                "configuration": "$ENCODED_CONFIG",
+                "destinationName": "stl-bundle"
+              }"
 
       - name: Commit STL files
         run: |
