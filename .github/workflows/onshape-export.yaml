@@ -44,7 +44,7 @@ jobs:
       - name: Get parts list
         id: get_parts_list
         run: |
-          echo "::notice 🔍 Fetching parts list with assigned part numbers from Onshape..."
+          echo "::notice:: 🔍 Fetching parts list with assigned part numbers from Onshape..."
 
           RESULT=$(curl -X 'GET' \
           "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}"\
@@ -62,7 +62,7 @@ jobs:
         env:
           PARTS_LIST: ${{ steps.get_parts_list.outputs.RESULT }}
         run: |
-          echo "::notice 📦 Exporting STL files from Onshape..."
+          echo "::notice:: 📦 Exporting STL files from Onshape..."
           
           PART_IDS=$(echo "$PARTS_LIST" | jq -r '.[].partId' | paste -sd, -)
 
@@ -83,8 +83,9 @@ jobs:
             "resolution": "custom",
             "specifyUnits": true,
             "unit": "millimeter",
-            "angularTolerance": 0.01,
-            "maximumChordLength": 0.005,
+            "angularTolerance": 0.044,
+            "maximumChordLength": 0.06,
+            "minimumFacetWidth": 0.0254,
             "ignoreExportRulesForContents": false,
             "destinationName": "stl-bundle"
           }
@@ -93,11 +94,11 @@ jobs:
           HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
 
           if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
-            echo "::error 🚨 Failed to submit STL export request."
+            echo "::error:: 🚨 Failed to submit STL export request."
             exit 1
           fi
 
-          echo "::notice 📥 Waiting for STL files to be ready..."
+          echo "::notice:: 📥 Waiting for STL files to be ready..."
 
           while true; do
             STATUS_RES=$(curl -X 'GET' \
@@ -107,29 +108,29 @@ jobs:
 
             STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
 
-            echo "::notice Current status: $STATUS"
+            echo "::notice:: Current status: $STATUS"
 
             if [ -z "$STATUS" ]; then
-              echo "::error 🚨 Failed to retrieve STL export status."
+              echo "::error:: 🚨 Failed to retrieve STL export status."
               exit 1
             fi
 
             if [ "$STATUS" == "DONE" ]; then
-              echo "::notice ✅ STL files are ready."
+              echo "::notice:: ✅ STL files are ready."
               FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[]')
               break
             elif [ "$STATUS" == "FAILED" ]; then
-              echo "::error 🚨 STL export failed."
+              echo "::error:: 🚨 STL export failed."
               exit 1
             else
-              echo "::notice ⏳ STL files are still being processed..."
+              echo "::notice:: ⏳ STL files are still being processed..."
               sleep 5
             fi
           done
 
           INDEX=0
           for FID in $FIDS; do
-            echo "::notice 📥 Downloading STL file with ID: $FID"
+            echo "::notice:: 📥 Downloading STL file with ID: $FID"
             curl -X 'GET' \
             "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
             -H "Accept: application/octet-stream" \
@@ -137,7 +138,7 @@ jobs:
             -o "manufacturing/3d-printing/stl-export.zip"
 
             if [ $? -ne 0 ]; then
-              echo "::error 🚨 Failed to download STL file with ID: $FID"
+              echo "::error:: 🚨 Failed to download STL file with ID: $FID"
               exit 1
             fi
 
