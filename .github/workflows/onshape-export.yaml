@@ -80,7 +80,7 @@ jobs:
             "createComposite": false,
             "flatten": false,
             "grouping": false,
-            "resolution": "custom",
+            "resolution": "FINE",
             "specifyUnits": true,
             "unit": "MILLIMETER",
             "scale": 1.0,
