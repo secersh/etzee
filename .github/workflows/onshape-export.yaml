@@ -100,7 +100,6 @@ jobs:
             -H "Authorization: Basic $AUTH")
 
             STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
-            FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[]')
 
             echo "::notice Current status: $STATUS"
 
@@ -111,6 +110,7 @@ jobs:
 
             if [ "$STATUS" == "DONE" ]; then
               echo "::notice ✅ STL files are ready."
+              FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[]')
               break
             elif [ "$STATUS" == "FAILED" ]; then
               echo "::error 🚨 STL export failed."
