@@ -100,6 +100,7 @@ jobs:
             -H "Authorization: Basic $AUTH")
 
             STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
+            FID=$(echo "$STATUS_RES" | jq -r '.resultDocumentId')
 
             echo "::notice Current status: $STATUS"
 
@@ -119,6 +120,11 @@ jobs:
               sleep 5
             fi
           done
+
+          curl -X 'GET' \
+          "https://cad.onshape.com/api/v10/documents/d/db9090ada9e21ffd19b9e42b/externaldata/$FID" \
+          -H "Accept: application/json" \
+          -H "Authorization: Basic $AUTH" \
 
       - name: Commit STL files
         run: |
