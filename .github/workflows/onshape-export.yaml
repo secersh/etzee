@@ -100,7 +100,7 @@ jobs:
             -H "Authorization: Basic $AUTH")
 
             STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
-            FID=$(echo "$STATUS_RES" | jq -r '.resultDocumentId')
+            FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds')
 
             echo "::notice Current status: $STATUS"
 
@@ -121,10 +121,22 @@ jobs:
             fi
           done
 
-          curl -X 'GET' \
-          "https://cad.onshape.com/api/v10/documents/d/db9090ada9e21ffd19b9e42b/externaldata/$FID" \
-          -H "Accept: application/json" \
-          -H "Authorization: Basic $AUTH" \
+          INDEX=0
+          for FID in $FIDS; do
+            echo "::notice 📥 Downloading STL file with ID: $FID"
+            curl -X 'GET' \
+            "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
+            -H "Accept: application/octet-stream" \
+            -H "Authorization: Basic $AUTH" \
+            -o "manufacturing/3d-printing/part_${INDEX}.stl"
+
+            if [ $? -ne 0 ]; then
+              echo "::error 🚨 Failed to download STL file with ID: $FID"
+              exit 1
+            fi
+
+            INDEX=$((INDEX + 1))
+          done
 
       - name: Commit STL files
         run: |
