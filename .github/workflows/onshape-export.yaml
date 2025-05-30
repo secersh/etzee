@@ -100,7 +100,7 @@ jobs:
             -H "Authorization: Basic $AUTH")
 
             STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
-            FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds')
+            FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[]')
 
             echo "::notice Current status: $STATUS"
 
