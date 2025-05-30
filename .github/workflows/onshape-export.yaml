@@ -80,14 +80,8 @@ jobs:
             "createComposite": false,
             "flatten": false,
             "grouping": false,
-            "resolution": "FINE",
-            "specifyUnits": true,
-            "unit": "MILLIMETER",
-            "scale": 1.0,
-            "angularTolerance": 2.5,
-            "maximumChordLength": 0.06,
-            "minimumFacetWidth": 0.0254,
-            "ignoreExportRulesForContents": false,
+            "getyAxisIsUp": true,
+            "unit": "Millimeters",
             "destinationName": "stl-bundle"
           }
           EOF)
