@@ -76,10 +76,12 @@ jobs:
             "formatName": "STL",
             "partIds": "$PART_IDS",
             "storeInDocument": false,
-            "angleTolerance": 0.1,
-            "chordTolerance": 0.001,
-            "triangulationTolerance": 0.001,
-            "resolution": "Fine",
+            "createComposite": false,
+            "flatten": false,
+            "grouping": false,
+            "maximumChordLength": 0.005,
+            "angularTolerance": 0.1,
+            "resolution": "fine",
             "destinationName": "stl-bundle"
           }
           EOF)
