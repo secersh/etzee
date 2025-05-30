@@ -73,7 +73,7 @@ jobs:
           -H "Content-Type: application/json" \
           -d @- <<EOF
           {
-            "formatName": "stl",
+            "formatName": "STL",
             "stlMode": "binary",
             "partIds": "$PART_IDS",
             "storeInDocument": false,
