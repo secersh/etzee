@@ -77,12 +77,14 @@ jobs:
             "stlMode": "BINARY",
             "partIds": "$PART_IDS",
             "storeInDocument": false,
-            "createComposite": false,
+            "createComposite": true,
             "flatten": false,
             "grouping": false,
             "resolution": "fine",
             "specifyUnits": true,
             "unit": "millimeter",
+            "angularTolerance": 0.1,
+            "maximumChordLength": 0.01,
             "destinationName": "stl-bundle"
           }
           EOF)
