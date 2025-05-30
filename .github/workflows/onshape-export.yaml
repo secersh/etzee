@@ -73,25 +73,18 @@ jobs:
           -H "Content-Type: application/json" \
           -d @- <<EOF
           {
-            "format":"STL",
-            "microversion":"c2241ef8afb865579bb3c7fb",
-            "destinationName":"Keyboard parts",
-            "mode":"binary",
-            "scale":"1.0",
-            "resolution":"fine",
-            "units":"millimeter",
-            "grouping":"true",
-            "useYAxisAsUp":"false",
-            "angleTolerance":"0.04363323129985824",
-            "chordTolerance":"0.06",
-            "minFacetWidth":"0.0254",
-            "triggerAutoDownload":"true",
-            "storeInDocument":"false",
-            "linkDocumentId":"db9090ada9e21ffd19b9e42b",
-            "linkDocumentWorkspaceId":"22e2676ea3869ccabe72ea72",
-            "configuration":"List_kw1ECqDsNAkjBg=_6;List_xrEfmODFsfiBE6=Default",
-            "partIds":"RKFD,RcFD",
-            "excludeHiddenEntities":"true"
+            "formatName": "STL",
+            "mode": "BINARY",
+            "partIds": "$PART_IDS",
+            "storeInDocument": false,
+            "createComposite": false,
+            "flatten": false,
+            "grouping": false,
+            "getyAxisIsUp": true,
+            "unit": "millimeter",
+            "scale": 1.0,
+            "destinationName": "stl-bundle",
+            "configuration": "List_kw1ECqDsNAkjBg=_6;List_xrEfmODFsfiBE6=Default"
           }
           EOF)
 
