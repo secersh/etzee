@@ -81,7 +81,7 @@ jobs:
             "flatten": false,
             "grouping": false,
             "getyAxisIsUp": true,
-            "units": "millimeter",
+            "units": "millimeters",
             "scale": 1.0,
             "destinationName": "stl-bundle"
           }
