@@ -80,11 +80,11 @@ jobs:
             "createComposite": true,
             "flatten": false,
             "grouping": false,
-            "resolution": "fine",
+            "resolution": "custom",
             "specifyUnits": true,
             "unit": "millimeter",
-            "angularTolerance": 0.1,
-            "maximumChordLength": 0.01,
+            "angularTolerance": 0.01,
+            "maximumChordLength": 0.005,
             "destinationName": "stl-bundle"
           }
           EOF)
