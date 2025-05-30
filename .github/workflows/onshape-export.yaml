@@ -138,10 +138,16 @@ jobs:
             INDEX=$((INDEX + 1))
           done
 
-      - name: Commit STL files
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add manufacturing/3d-printing/*.stl
-          git commit -m "Exported STL files from Onshape"
-          git push
+      - name: Upload as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stl-files
+          path: manufacturing/3d-printing/*.stl
+
+      # - name: Commit STL files
+      #   run: |
+      #     git config user.name "GitHub Actions"
+      #     git config user.email "actions@github.com"
+      #     git add manufacturing/3d-printing/*.stl
+      #     git commit -m "Exported STL files from Onshape"
+      #     git push
