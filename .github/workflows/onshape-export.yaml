@@ -82,6 +82,8 @@ jobs:
             "maximumChordLength": 0.005,
             "angularTolerance": 0.1,
             "resolution": "fine",
+            "unit": "millimeter",
+            "specifyUnits": true,
             "destinationName": "stl-bundle"
           }
           EOF)
@@ -130,7 +132,7 @@ jobs:
             "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
             -H "Accept: application/octet-stream" \
             -H "Authorization: Basic $AUTH" \
-            -o "manufacturing/3d-printing/part_${INDEX}.stl"
+            -o "manufacturing/3d-printing/stl-export.zip"
 
             if [ $? -ne 0 ]; then
               echo "::error 🚨 Failed to download STL file with ID: $FID"
@@ -144,7 +146,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: stl-files
-          path: manufacturing/3d-printing/*.stl
+          path: manufacturing/3d-printing/*.zip
 
       # - name: Commit STL files
       #   run: |
