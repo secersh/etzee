@@ -82,7 +82,7 @@ jobs:
             "grouping": false,
             "resolution": "custom",
             "specifyUnits": true,
-            "units": "millimeter",
+            "unit": "MILLIMETER",
             "scale": 1.0,
             "angularTolerance": 2.5,
             "maximumChordLength": 0.06,
