@@ -74,14 +74,15 @@ jobs:
           -d @- <<EOF
           {
             "formatName": "STL",
-            "stlMode": "BINARY",
+            "mode": "BINARY",
             "partIds": "$PART_IDS",
             "storeInDocument": false,
             "createComposite": false,
             "flatten": false,
             "grouping": false,
             "getyAxisIsUp": true,
-            "unit": "millimeter",
+            "units": "millimeter",
+            "scale": 1.0,
             "destinationName": "stl-bundle"
           }
           EOF)
