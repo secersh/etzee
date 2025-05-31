@@ -1,0 +1,128 @@
+name: 🥼Materialize
+
+on:
+  create:
+    tags:
+      - 'v*'
+
+
+jobs:
+  mechanical-output:
+    name: 🔧 Mechanical Output
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        profile:
+          - Low
+          - Normal
+        columns:
+          - 5
+          - 6
+    steps:
+      - name: start-info
+        run: |
+          echo "::notice:: 🔧 Mechanical output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
+
+  electronics-output:
+    name: 🧪 Electronics Output
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        profile:
+          - Low
+          - Normal
+        columns:
+          - 5
+          - 6
+    steps:
+      - name: start-info
+        run: |
+          echo "::notice:: 🧪 Electronics output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
+
+  firmware-output:
+    name: 🖥️ Firmware Output
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        profile:
+          - Low
+          - Normal
+        columns:
+          - 5
+          - 6
+    steps:
+      - name: start-info
+        run: |
+          echo "::notice:: 🖥️ Firmware output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
+
+  manufacturing-assembly-output:
+    name: 🏭 Manufacturing Assembly Output
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        profile:
+          - Low
+          - Normal
+        columns:
+          - 5
+          - 6
+    steps:
+      - name: start-info
+        run: |
+          echo "::notice:: 🏭 Manufacturing assembly output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
+
+  visual-and-branding-output:
+    name: 🎨 Visual and Branding Output
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        profile:
+          - Low
+          - Normal
+        columns:
+          - 5
+          - 6
+    steps:
+      - name: start-info
+        run: |
+          echo "::notice:: 🎨 Visual and branding output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
+
+  documentation-output:
+    name: 📚 Documentation Output
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        profile:
+          - Low
+          - Normal
+        columns:
+          - 5
+          - 6
+    steps:
+      - name: start-info
+        run: |
+          echo "::notice:: 📚 Documentation output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
+
+  administrative-output:
+    name: 🗂️ Administrative Output
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        profile:
+          - Low
+          - Normal
+        columns:
+          - 5
+          - 6
+    steps:
+      - name: start-info
+        run: |
+          echo "::notice:: 🗂️ Administrative output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
+
+  materialize-output:
+    name: 📦 Materialize Output
+    runs-on: ubuntu-latest
+    steps:
+      - name: start-info
+        run: |
+          echo "::notice:: 📦 Materialize output job started for version ${{ github.ref }}."
