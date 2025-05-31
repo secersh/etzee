@@ -16,6 +16,16 @@ More than a tool, it's a signal, a functional artifact shaped by story, precisio
 
 ---
 
+### 🐌 Areas TBD
+
+- 🔧 1. Mechanical
+- 🔌 2. Electrical
+- 🧠 3. Firmware / Software
+- 🛠️ 4. Manufacturing & Assembly
+- 🖌️ 5. Visual & Branding
+- 📚 6. Documentation
+- 🧾 7. Administrative
+
 ### 💶 Cost tracking
 
 Transparent by design. Track the current bill of materials, component prices, and vendor sources here:
