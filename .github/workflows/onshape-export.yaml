@@ -73,11 +73,11 @@ jobs:
           -H "Content-Type: application/json" \
           -d @- <<EOF
           {
-            "resolution": "medium",
+            "resolution": "FINE",
             "storeInDocument": false,
             "partIds": "$PART_IDS",
             "formatName": "STL",
-            "grouping": true,
+            "grouping": false,
             "specifyUnits": true,
             "unit": "MILLIMETER",
             "scale": "1.0"
