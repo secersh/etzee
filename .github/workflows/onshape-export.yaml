@@ -76,7 +76,7 @@ jobs:
             "resolution": "FINE",
             "storeInDocument": false,
             "partIds": "$PART_IDS",
-            "formatName": "STEP",
+            "formatName": "OBJ",
             "grouping": false,
             "specifyUnits": true,
             "unit": "MILLIMETER",
