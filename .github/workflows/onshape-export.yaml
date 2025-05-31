@@ -77,7 +77,7 @@ jobs:
             "storeInDocument": false,
             "partIds": "$PART_IDS",
             "formatName": "STL",
-            "grouping": false,
+            "grouping": true,
             "specifyUnits": true,
             "unit": "MILLIMETER",
             "scale": "1.0"
