@@ -1,4 +1,4 @@
-name: 🥼Materialize
+name: 🍉 Materialize
 
 on:
   create:
@@ -38,6 +38,12 @@ jobs:
         run: |
           echo "::notice:: 🧪 Electronics output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
 
+      - name: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: electronics-output
+          path: "blah"
+
   firmware-output:
     name: 🖥️ Firmware Output
     runs-on: ubuntu-latest
@@ -53,6 +59,12 @@ jobs:
       - name: start-info
         run: |
           echo "::notice:: 🖥️ Firmware output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
+
+      - name: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware-output
+          path: "blah"
 
   manufacturing-assembly-output:
     name: 🏭 Manufacturing Assembly Output
@@ -70,6 +82,12 @@ jobs:
         run: |
           echo "::notice:: 🏭 Manufacturing assembly output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
 
+      - name: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: manufacturing-assembly-output
+          path: "blah"
+
   visual-and-branding-output:
     name: 🎨 Visual and Branding Output
     runs-on: ubuntu-latest
@@ -85,6 +103,12 @@ jobs:
       - name: start-info
         run: |
           echo "::notice:: 🎨 Visual and branding output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
+
+      - name: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-branding-output
+          path: "blah"
 
   documentation-output:
     name: 📚 Documentation Output
@@ -102,6 +126,12 @@ jobs:
         run: |
           echo "::notice:: 📚 Documentation output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
 
+      - name: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-output
+          path: "blah"
+
   administrative-output:
     name: 🗂️ Administrative Output
     runs-on: ubuntu-latest
@@ -118,13 +148,19 @@ jobs:
         run: |
           echo "::notice:: 🗂️ Administrative output job started for ${{ matrix.profile }} and ${{ matrix.columns }}."
 
+      - name: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: administrative-output
+          path: "blah"
+
   materialize-output:
     needs:
       - mechanical-output
       - electronics-output
       - firmware-output
       - manufacturing-assembly-output
-      - visual-and-branding-output
+      - visual-branding-output
       - documentation-output
       - administrative-output
     name: 📦 Materialize Output
@@ -133,3 +169,24 @@ jobs:
       - name: start-info
         run: |
           echo "::notice:: 📦 Materialize output job started for version ${{ github.ref }}."
+
+      - name: download-artifacts
+        uses: actions/download-artifact@v4
+          
+      - name: crate-release
+        run: |
+          gh release create ${{ github.ref }} \
+          --title "Release ${{ github.ref }}" \
+          --notes "Release notes for version ${{ github.ref }}"
+
+      - name: add-release-assets
+        run: |
+          gh release upload ${{ github.ref }} \
+          "path/to/mechanical_output.zip" \
+          "path/to/electronics_output.zip" \
+          "path/to/firmware_output.zip" \
+          "path/to/manufacturing_assembly_output.zip" \
+          "path/to/visual_and_branding_output.zip" \
+          "path/to/documentation_output.zip" \
+          "path/to/administrative_output.zip"
+

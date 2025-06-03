@@ -76,11 +76,14 @@ jobs:
             "resolution": "FINE",
             "storeInDocument": false,
             "partIds": "$PART_IDS",
-            "formatName": "STEP",
+            "formatName": "STL",
             "grouping": false,
             "specifyUnits": true,
             "unit": "MILLIMETER",
             "scale": "1.0"
+            "maximumChordLength": 10,
+            "angularTolerance": 0.1090830782496456,
+            "distanceTolerance": 0.00012
           }
           EOF)
 
