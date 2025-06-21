@@ -26,7 +26,7 @@ The first keyboard from the **etzee** project, where code meets craft.
 | --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
 | SHF |     |     |     |     |     |     | PDN |     |     |     |     | SHF |
 | --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
-            | CTR | OPT | CMD | SPC |     | SPC | RET | FN1 | FN2 |
+            | CTR | OPT | CMD |^SPC^|     | SPC | RET | FN1 | FN2 |
             | --- | --- | --- | --- |     | --- | --- | --- | --- |
 ```
 ```
@@ -37,7 +37,7 @@ The first keyboard from the **etzee** project, where code meets craft.
 | --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
 | MAC | PC  |     |     |     |     |     |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
-            | CTR | OPT | CMD | SPC |     | SPC | RET | FN1 | FN2 |
+            | CTR | OPT | CMD | SPC |     |^SPC^| RET | FN1 | FN2 |
             | --- | --- | --- | --- |     | --- | --- | --- | --- |
 ```
 
