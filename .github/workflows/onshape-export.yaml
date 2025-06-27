@@ -1,0 +1,153 @@
+name: 🤖 Export 3D Models from Onshape
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile:
+        type: choice
+        required: true
+        description: "Keyboard switches profile"
+        default: "Default"
+        options:
+          - "Default"
+          - "Low_profile"
+      columns:
+        type: choice
+        required: true
+        description: "Number of keyboard columns"
+        default: "Default"
+        options:
+          - "Default"
+          - "_6"
+    
+jobs:
+  export-3D-models:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Generate and export AUTH
+        run: |
+          AUTH=$(printf "%s:%s" "${{ secrets.ONSHAPE_API_ACCESS_KEY }}" "${{ secrets.ONSHAPE_API_SECRET_KEY }}" | base64 | tr -d '\n')
+          echo "AUTH=$AUTH" >> $GITHUB_ENV
+
+      - name: Generate and export ENCODED_CONFIG
+        run: |
+          ENCODED_CONFIG=$(jq -rn \
+          --arg profile "${{ inputs.profile }}" \
+          --arg columns "${{ inputs.columns }}" \
+          '$ARGS.named | "List_xrEfmODFsfiBE6=\($profile),List_kw1ECqDsNAkjBg=\($columns)" | @uri')
+
+          echo "ENCODED_CONFIG=$ENCODED_CONFIG" >> $GITHUB_ENV
+
+      - name: Get parts list
+        id: get_parts_list
+        run: |
+          echo "::notice:: 🔍 Fetching parts list with assigned part numbers from Onshape..."
+
+          RESULT=$(curl -X 'GET' \
+          "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}"\
+          "?includeFlatParts=true"\
+          "&configuration=$ENCODED_CONFIG" \
+          -H "Accept: application/json" \
+          -H "Authorization: Basic $AUTH" \
+          | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber, revision}]')
+
+          echo "result<<EOF" >> $GITHUB_OUTPUT
+          echo "$RESULT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Export STL files
+        env:
+          PARTS_LIST: ${{ steps.get_parts_list.outputs.RESULT }}
+        run: |
+          echo "::notice:: 📦 Exporting STL files from Onshape..."
+          
+          PART_IDS=$(echo "$PARTS_LIST" | jq -r '.[].partId' | paste -sd, -)
+
+          SUBMIT_RES=$(curl -X 'POST' \
+          "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
+          -H "Accept: application/json" \
+          -H "Authorization: Basic $AUTH" \
+          -H "Content-Type: application/json" \
+          -d @- <<EOF
+          {
+            "resolution": "FINE",
+            "storeInDocument": false,
+            "partIds": "$PART_IDS",
+            "formatName": "STEP",
+            "grouping": false,
+            "specifyUnits": true,
+            "unit": "MILLIMETER",
+            "scale": "1.0"
+          }
+          EOF)
+
+          HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
+
+          if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
+            echo "::error:: 🚨 Failed to submit STL export request."
+            exit 1
+          fi
+
+          echo "::notice:: 📥 Waiting for STL files to be ready..."
+
+          while true; do
+            STATUS_RES=$(curl -X 'GET' \
+            "$HREF" \
+            -H "Accept: application/json" \
+            -H "Authorization: Basic $AUTH")
+
+            STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
+
+            echo "::notice:: Current status: $STATUS"
+
+            if [ -z "$STATUS" ]; then
+              echo "::error:: 🚨 Failed to retrieve STL export status."
+              exit 1
+            fi
+
+            if [ "$STATUS" == "DONE" ]; then
+              echo "::notice:: ✅ STL files are ready."
+              FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[]')
+              break
+            elif [ "$STATUS" == "FAILED" ]; then
+              echo "::error:: 🚨 STL export failed."
+              exit 1
+            else
+              echo "::notice:: ⏳ STL files are still being processed..."
+              sleep 5
+            fi
+          done
+
+          INDEX=0
+          for FID in $FIDS; do
+            echo "::notice:: 📥 Downloading STL file with ID: $FID"
+            curl -X 'GET' \
+            "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
+            -H "Accept: application/octet-stream" \
+            -H "Authorization: Basic $AUTH" \
+            -o "manufacturing/3d-printing/stl-export.zip"
+
+            if [ $? -ne 0 ]; then
+              echo "::error:: 🚨 Failed to download STL file with ID: $FID"
+              exit 1
+            fi
+
+            INDEX=$((INDEX + 1))
+          done
+
+      - name: Upload as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stl-files
+          path: manufacturing/3d-printing/*.zip
+
+      # - name: Commit STL files
+      #   run: |
+      #     git config user.name "GitHub Actions"
+      #     git config user.email "actions@github.com"
+      #     git add manufacturing/3d-printing/*.stl
+      #     git commit -m "Exported STL files from Onshape"
+      #     git push
