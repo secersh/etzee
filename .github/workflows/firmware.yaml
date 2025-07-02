@@ -1,0 +1,28 @@
+name: Firmware builder
+
+on:
+  push:
+    paths: 
+      - '.github/workflows/firmware.yaml'
+      - 'firmware/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: docker.io/zmkfirmware/zmk-build-arm:3.5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build firmware
+        run: |
+          echo "::notice:: Building firmware for ${{ github.event_name }}."
+          west build -p auto -b zmk_keyboard -- -DSHIELD=keyboard
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware-output
