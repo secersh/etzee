@@ -1,4 +1,4 @@
-name: Firmware builder
+name: 🐏 Firmware builder
 
 on:
   push:
@@ -14,6 +14,12 @@ jobs:
       image: docker.io/zmkfirmware/zmk-build-arm:3.5
 
     steps:
+      - name: Initialize workspace (west init)
+        run: west init -l app
+
+      - name: Update modules (west update)
+        run: west update
+
       - name: Checkout
         uses: actions/checkout@v4
 
