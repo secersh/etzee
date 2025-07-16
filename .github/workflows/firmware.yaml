@@ -14,16 +14,25 @@ jobs:
       image: docker.io/zmkfirmware/zmk-build-arm:3.5
 
     steps:
+      - name: Checkout ZMK repo
+        uses: actions/checkout@v4
+        with:
+          repository: zmkfirmware/zmk
+          path: firmware
+
       - name: Initialize workspace (west init)
+        working-directory: firmware
         run: west init -l app
 
       - name: Update modules (west update)
+        working-directory: firmware
         run: west update
 
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Build firmware
+        working-directory: firmware/app
         run: |
           echo "::notice:: Building firmware for ${{ github.event_name }}."
           west build -p auto -b zmk_keyboard -- -DSHIELD=keyboard
