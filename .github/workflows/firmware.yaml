@@ -19,7 +19,7 @@ jobs:
 
       - name: Initialize workspace (west init)
         working-directory: firmware
-        run: west init -l app
+        run: west init -l .
 
       - name: Update modules (west update)
         working-directory: firmware
