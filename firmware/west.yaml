@@ -1,0 +1,8 @@
+manifest:
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: main
+      path: zmk
+  self:
+    path: app

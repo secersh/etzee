@@ -14,12 +14,6 @@ jobs:
       image: docker.io/zmkfirmware/zmk-build-arm:3.5
 
     steps:
-      - name: Checkout ZMK repo
-        uses: actions/checkout@v4
-        with:
-          repository: zmkfirmware/zmk
-          path: firmware
-
       - name: Initialize workspace (west init)
         working-directory: firmware
         run: west init -l app
