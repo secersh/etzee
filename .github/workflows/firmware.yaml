@@ -18,15 +18,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Initialize workspace (west init)
-        working-directory: firmware
+        working-directory: firmware/ws-1/kbs
         run: west init -l .
 
       - name: Update modules (west update)
-        working-directory: firmware
+        working-directory: firmware/ws-1
         run: west update
 
       - name: Build firmware
-        working-directory: firmware/app
+        working-directory: firmware/ws-1/app
         run: |
           echo "::notice:: Building firmware for ${{ github.event_name }}."
           west build -p auto -b zmk_keyboard -- -DSHIELD=keyboard
