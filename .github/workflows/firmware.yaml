@@ -38,7 +38,10 @@ jobs:
         working-directory: firmware/ws-1/zmk/app
         run: |
           echo "::notice:: Building firmware for ${{ github.event_name }}."
-          west build -p auto -b zmk_keyboard -- -DSHIELD=keyboard
+
+          west build -b etzee_101 --
+          -DEXTRA_CONF_FILE=boards/arm/etzee_101/left.conf \
+          -DEXTRA_DTC_OVERLAY_FILE=boards/arm/etzee_101/left.overlay
 
       - name: Upload firmware
         uses: actions/upload-artifact@v4
