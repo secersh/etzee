@@ -34,13 +34,13 @@ jobs:
         working-directory: firmware/ws-1/zmk
         run: west zephyr-export
 
-      - name: Build firmware
+      - name: Build firmware (west build)
         working-directory: firmware/ws-1/zmk/app
         run: |
           echo "::notice:: Building firmware for ${{ github.event_name }}."
 
           west build -b etzee_101 --
-          -DEXTRA_CONF_FILE=boards/arm/etzee_101/left.conf \
+          -DEXTRA_CONF_FILE=boards/arm/etzee_101/left.conf
           -DEXTRA_DTC_OVERLAY_FILE=boards/arm/etzee_101/left.overlay
 
       - name: Upload firmware
