@@ -31,7 +31,7 @@ jobs:
           cp -r firmware/ws-1/app firmware/ws-1/zmk
 
       - name: Build firmware
-        working-directory: firmware/ws-1/app
+        working-directory: firmware/ws-1/zmk/app
         run: |
           echo "::notice:: Building firmware for ${{ github.event_name }}."
           west build -p auto -b zmk_keyboard -- -DSHIELD=keyboard
