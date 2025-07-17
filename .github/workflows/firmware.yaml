@@ -26,7 +26,9 @@ jobs:
         run: west update
 
       - name: Clone ZMK
-        run: git clone https://github.com/zmkfirmware/zmk.git firmware/ws-1
+        run: | 
+          git clone https://github.com/zmkfirmware/zmk.git firmware/ws-1/zmk
+          cp -r firmware/ws-1/app firmware/ws-1/zmk
 
       - name: Build firmware
         working-directory: firmware/ws-1/app
