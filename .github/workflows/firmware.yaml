@@ -17,22 +17,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Initialize workspace (west init)
-        working-directory: firmware/ws-1
-        run: west init .
-
-      - name: Update modules (west update)
-        working-directory: firmware/ws-1
-        run: west update
-
-      - name: Export Zephyr CMake package (west zephyr-export)
-        working-directory: firmware/ws-1
-        run: west zephyr-export
-
       - name: Clone ZMK
         run: | 
           git clone https://github.com/zmkfirmware/zmk.git firmware/ws-1/zmk
           cp -r firmware/ws-1/app firmware/ws-1/zmk
+
+      - name: Initialize workspace (west init)
+        working-directory: firmware/ws-1/zmk
+        run: west init -l app
+
+      - name: Update modules (west update)
+        working-directory: firmware/ws-1/zmk
+        run: west update
+
+      - name: Export Zephyr CMake package (west zephyr-export)
+        working-directory: firmware/ws-1/zmk
+        run: west zephyr-export
 
       - name: Build firmware
         working-directory: firmware/ws-1/zmk/app
