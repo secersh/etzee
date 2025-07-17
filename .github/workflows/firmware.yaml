@@ -25,6 +25,9 @@ jobs:
         working-directory: firmware/ws-1
         run: west update
 
+      - name: Export Zephyr CMake package (west zephyr-export)
+        run: west zephyr-export
+
       - name: Clone ZMK
         run: | 
           git clone https://github.com/zmkfirmware/zmk.git firmware/ws-1/zmk
