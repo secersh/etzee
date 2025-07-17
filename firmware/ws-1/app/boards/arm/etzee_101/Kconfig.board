@@ -1,0 +1,3 @@
+config BOARD_ETZEE_101
+    bool "etzee 101 split keyboard"
+    depends on SOC_NRF52840_QIAA
