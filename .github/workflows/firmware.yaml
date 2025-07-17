@@ -39,8 +39,8 @@ jobs:
         run: |
           echo "::notice:: Building firmware for ${{ github.event_name }}."
 
-          west build -b etzee_101 --
-          -DEXTRA_CONF_FILE=boards/arm/etzee_101/left.conf
+          west build -b etzee_101 -- \
+          -DEXTRA_CONF_FILE=boards/arm/etzee_101/left.conf \
           -DEXTRA_DTC_OVERLAY_FILE=boards/arm/etzee_101/left.overlay
 
       - name: Upload firmware
