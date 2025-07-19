@@ -4,7 +4,6 @@
         status = "okay";
         role = "terminal";
         uart = <&uart0>;
-        label = "HTOYTO_0";
         node-id = "etzee-101-right";
     };
 };

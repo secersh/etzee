@@ -5,7 +5,6 @@
         role = "origin";
         uart = <&uart0>;
         dr-gpios = <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
-        label = "HTOYTO_0";
         node-id = "etzee-101-left";
     };
 };

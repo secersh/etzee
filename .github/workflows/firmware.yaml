@@ -22,6 +22,9 @@ jobs:
           git clone https://github.com/zmkfirmware/zmk.git firmware/ws-1/zmk
           cp -r firmware/ws-1/app firmware/ws-1/zmk
 
+      - name: Add vendor prefix
+        run: echo "etzee  etzee" >> firmware/ws-1/zmk/app/dts/bindings/vendor-prefixes.yaml
+
       - name: Initialize workspace (west init)
         working-directory: firmware/ws-1/zmk
         run: west init -l app

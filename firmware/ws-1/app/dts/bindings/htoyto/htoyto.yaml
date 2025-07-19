@@ -35,11 +35,6 @@ properties:
         - bridge: forwards from left to right (middle node)
         - terminal: receives commands (right-facing connection)
 
-  label:
-    type: string
-    required: false
-    description: Logical label for identifying this htoyto device
-
   node-id:
     type: string
     required: true
