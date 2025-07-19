@@ -10,9 +10,10 @@ properties:
 
   dr-gpios:
     type: phandle-array
-    required: true
+    required: false
     description: >
       GPIO pin used for rising edge interrupt (dR line).
+      Required only for origin and bridge roles.
       Although only one pin is used, Zephyr requires 'gpios' to be plural
       because the property value is a structured array of controller, pin, and flags.
 
@@ -20,16 +21,23 @@ properties:
     type: string
     required: true
     enum:
-      - coordinator
-      - peripheral
-    description: Role of the htoyto node
+      - origin
+      - bridge
+      - terminal
+    description: >
+      Role of the htoyto node:
+        - origin: initiates communication (left-facing connection)
+        - bridge: forwards from left to right (middle node)
+        - terminal: receives commands (right-facing connection)
 
   label:
     type: string
     required: false
     description: Logical label for identifying this htoyto device
 
-  peripheral-id:
+  node-id:
     type: string
-    required: false
-    description: Optional static peripheral identifier
+    required: true
+    description: >
+      A unique identifier for the node in the htoyto network.
+      Used to route or trigger logic based on physical orientation or connection topology.
