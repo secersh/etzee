@@ -1,0 +1,35 @@
+compatible: "etzee,htoyto-zmk"
+
+include: base.yaml
+
+properties:
+  uart:
+    type: phandle
+    required: true
+    description: UART device used for htoyto communication
+
+  dr-gpios:
+    type: phandle-array
+    required: true
+    description: >
+      GPIO pin used for rising edge interrupt (dR line).
+      Although only one pin is used, Zephyr requires 'gpios' to be plural
+      because the property value is a structured array of controller, pin, and flags.
+
+  role:
+    type: string
+    required: true
+    enum:
+      - coordinator
+      - peripheral
+    description: Role of the htoyto node
+
+  label:
+    type: string
+    required: false
+    description: Logical label for identifying this htoyto device
+
+  peripheral-id:
+    type: string
+    required: false
+    description: Optional static peripheral identifier
