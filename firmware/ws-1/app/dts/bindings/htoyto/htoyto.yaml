@@ -1,3 +1,8 @@
+description: >
+  etzee htoyto-zmk is a UART-based inter-module communication protocol
+  designed for daisy-chained split keyboards. It uses rising edge interrupt
+  to initiate a handshake between connected modules.
+
 compatible: "etzee,htoyto-zmk"
 
 include: base.yaml
