@@ -1,5 +1,5 @@
 / {
-    htoyto0: htoyto@0 {
+    htoyto0: htoyto {
         compatible = "etzee,htoyto-zmk";
         status = "okay";
         role = "origin";
