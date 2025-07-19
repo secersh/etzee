@@ -1,5 +1,5 @@
-config IS_CENTRAL
-    bool "Is this the central side of a split keyboard?"
+config IS_ORIGIN
+    bool "Is this the origin side of a split keyboard?"
 
-config IS_PERIPHERAL
-    bool "Is this the peripheral side of a split keyboard?"
+config IS_TERMINAL
+    bool "Is this the terminal side of a split keyboard?"

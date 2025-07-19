@@ -3,7 +3,7 @@ if BOARD_ETZEE_101
 config ZMK_SPLIT
     default y
 
-if IS_CENTRAL
+if IS_ORIGIN
 
     config ZMK_KEYBOARD_NAME
         default "etzee 101"
@@ -11,12 +11,12 @@ if IS_CENTRAL
     config ZMK_SPLIT_ROLE_CENTRAL
         default y
 
-endif # IS_CENTRAL
+endif # IS_ORIGIN
 
-if IS_PERIPHERAL
+if IS_TERMINAL
 
 # empty for now
 
-endif # IS_PERIPHERAL
+endif # IS_TERMINAL
 
 endif # BOARD_ETZEE_101

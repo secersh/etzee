@@ -1,3 +1,14 @@
+/ {
+    htoyto0: htoyto@0 {
+        compatible = "etzee,htoyto-zmk";
+        status = "okay";
+        role = "terminal";
+        uart = <&uart0>;
+        label = "HTOYTO_0";
+        node-id = "etzee-101-right";
+    };
+};
+
 &pinctrl {
     uart0_default: uart0_default {
         group1 {
@@ -17,4 +28,3 @@
         };
     };
 };
-

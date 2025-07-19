@@ -1,3 +1,15 @@
+/ {
+    htoyto0: htoyto@0 {
+        compatible = "etzee,htoyto-zmk";
+        status = "okay";
+        role = "origin";
+        uart = <&uart0>;
+        dr-gpios = <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+        label = "HTOYTO_0";
+        node-id = "etzee-101-left";
+    };
+};
+
 &pinctrl {
     uart0_default: uart0_default {
         group1 {
@@ -17,4 +29,3 @@
         };
     };
 };
-

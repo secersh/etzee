@@ -1,0 +1,29 @@
+# htoyto UART protocol - configuration options
+
+menuconfig HTOYTO_ENABLED
+    bool "Enable htoyto protocol"
+    default y
+    help
+      Enables the etzee htoyto protocol for UART-based inter-module communication.
+
+if HTOYTO_ENABLED
+
+config HTOYTO_UART_RX_TIMEOUT_MS
+    int "UART RX timeout in milliseconds"
+    default 100
+    help
+      Timeout to wait for a complete UART packet before dropping.
+
+config HTOYTO_HANDSHAKE_TIMEOUT_MS
+    int "Handshake timeout in milliseconds"
+    default 200
+    help
+      Timeout between HLO, IAM, and EST frames before considering handshake failed.
+
+config HTOYTO_MAX_NODE_ID_LENGTH
+    int "Maximum length of node ID string"
+    default 16
+    help
+      Maximum number of characters used to identify each htoyto node.
+
+endif # HTOYTO_ENABLED
