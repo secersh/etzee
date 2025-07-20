@@ -64,4 +64,3 @@ int htoyto_init(const struct device *dev) {
 }
 
 SYS_INIT(htoyto_init, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
-
