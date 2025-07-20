@@ -44,9 +44,13 @@ jobs:
 
           west build -b etzee_101 -- \
           -DEXTRA_CONF_FILE=boards/arm/etzee_101/left.conf \
-          -DEXTRA_DTC_OVERLAY_FILE=boards/arm/etzee_101/left.overlay
+          -DEXTRA_DTC_OVERLAY_FILE=boards/arm/etzee_101/left.overlay \
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
       - name: Upload firmware
         uses: actions/upload-artifact@v4
         with:
           name: firmware-output
+          path: firmware/ws-1/zmk/app/build/zephyr/*.uf2, 
+                firmware/ws-1/zmk/app/build/compile_commands.json
+
