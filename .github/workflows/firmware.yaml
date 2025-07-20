@@ -51,6 +51,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: firmware-output
-          path: firmware/ws-1/zmk/app/build/zephyr/*.uf2, 
-                firmware/ws-1/zmk/app/build/compile_commands.json
-
+          path: |
+            firmware/ws-1/zmk/app/build/zephyr/*.uf2 \
+            firmware/ws-1/zmk/app/build/compile_commands.json
