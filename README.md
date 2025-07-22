@@ -41,6 +41,10 @@ The first keyboard from the **etzee** project, where code meets craft.
             | --- | --- | --- | --- |     | --- | --- | --- | --- |
 ```
 
+### 💻 Custom software implementataion
+
+[htoyto](HOTOYTO.md) is a custom protocol for chaining devices together
+
 ### 👋 About
 
 **etzee 101** is a split, ortholinear ergonomic keyboard designed for developers, tinkerers, and digital creators.  
