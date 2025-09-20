@@ -7,7 +7,6 @@ The first keyboard from the **etzee** project, where code meets craft.
 ---
 
 ### Layout (DRAFT)
-
 ```
 | --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
 | ESC |  Q  |  W  |  E  |  R  |  T  |     |  Y  |  U  |  I  |  O  |  P  | DEL |
