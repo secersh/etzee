@@ -5,7 +5,6 @@
 The first keyboard from the **etzee** project, where code meets craft.
 
 ---
-
 ### Layout (DRAFT)
 ```
 | --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
