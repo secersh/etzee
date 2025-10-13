@@ -4,6 +4,9 @@
 
 The first keyboard from the **etzee** project, where code meets craft.
 
+<img width="1920" height="1080" alt="etzee-101-blender" src="https://github.com/user-attachments/assets/cdb41498-8385-4d31-bc19-690691e91c5b" />
+<img width="1920" height="613" alt="Screenshot 2025-10-13 at 21 18 49" src="https://github.com/user-attachments/assets/0a74d380-4528-458b-8f4b-866a6d9344f8" />
+
 ---
 ### Layout (DRAFT)
 ```
