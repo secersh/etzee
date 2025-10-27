@@ -1,5 +1,0 @@
-config IS_ORIGIN
-    bool "Is this the origin side of a split keyboard?"
-
-config IS_TERMINAL
-    bool "Is this the terminal side of a split keyboard?"
