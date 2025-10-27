@@ -10,7 +10,11 @@ The entire ecosystem is named etzee, inspired by the dot-dash pattern of Morse c
 
 In the top view of any device, the right side always acts as the sender, and the left side always acts as the receiver, allowing modules to form a node chain that communicates like a bus. When a new module joins the bus, the system automatically triggers node enumeration, effectively performing dynamic node discovery and registration. The same process applies when a node is removed from the chain.
 
-Contribute: etzee is an open project for everyone who believe input devices can be more expressive. Join the experiment, build, modify, and extend the ecosystem in your own way.
+## Contribute
+
+etzee is an open project for everyone who believe input devices can be more expressive. Join the experiment, build, modify, and extend the ecosystem in your own way.
+
+Join the dicscusson on [Discord](https://discord.gg/etzee)
 
 ## etzee b11
 
