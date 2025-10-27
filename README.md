@@ -16,6 +16,7 @@ etzee is an open project for everyone who believe input devices can be more expr
 
 Join the dicscusson on [Discord](https://discord.gg/uvSp9QrE)
 
+
 ## etzee b11
 
 Traits:
