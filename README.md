@@ -26,7 +26,7 @@ If you want to:
 
 Join the etzee Discord:
 
-👉 [https://discord.gg/uvSp9QrE](https://discord.gg/uvSp9QrE)
+👉 [https://discord.gg/y3pcSCghcg](https://discord.gg/y3pcSCghcg)
 
 The server is implementation-focused and minimal.
 Come to build.
