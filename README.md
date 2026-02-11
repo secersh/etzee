@@ -14,8 +14,22 @@ In the top view of any device, the right side always acts as the sender, and the
 
 etzee is an open project for everyone who believe input devices can be more expressive. Join the experiment, build, modify, and extend the ecosystem in your own way.
 
-Join the dicscusson on [Discord](https://discord.gg/uvSp9QrE)
+### 💬 Join the Etzee Discord
 
+etzee is built in public.
+
+If you want to:
+- discuss implementation decisions
+- contribute to mechanical / PCB / firmware design
+- follow milestone progress
+- give technical feedback
+
+Join the etzee Discord:
+
+👉 [https://discord.gg/uvSp9QrE](https://discord.gg/uvSp9QrE)
+
+The server is implementation-focused and minimal.
+Come to build.
 
 ## etzee b11
 
