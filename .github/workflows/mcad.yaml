@@ -1,0 +1,259 @@
+name: 🔧 MCAD Manufacturing
+
+on:
+  push:
+    paths:
+      - 'hardware/**/mcad/**'
+      - '.github/workflows/mcad.yaml'
+  workflow_dispatch:
+
+jobs:
+  export-mcad:
+    name: 🏭 MCAD (${{ matrix.profile }} profile, ${{ matrix.columns }} col)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        profile:
+          - Normal
+          - Low
+        columns:
+          - 5
+          - 6
+        include:
+          - profile: Normal
+            onshape_profile: Default
+          - profile: Low
+            onshape_profile: Low_profile
+          - columns: 5
+            onshape_columns: Default
+          - columns: 6
+            onshape_columns: _6
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate AUTH
+        run: |
+          AUTH=$(printf "%s:%s" "${{ secrets.ONSHAPE_API_ACCESS_KEY }}" "${{ secrets.ONSHAPE_API_SECRET_KEY }}" | base64 | tr -d '\n')
+          echo "::add-mask::$AUTH"
+          echo "AUTH=$AUTH" >> $GITHUB_ENV
+
+      - name: Generate ENCODED_CONFIG
+        run: |
+          ENCODED_CONFIG=$(jq -rn \
+          --arg profile "${{ matrix.onshape_profile }}" \
+          --arg columns "${{ matrix.onshape_columns }}" \
+          '$ARGS.named | "List_xrEfmODFsfiBE6=\($profile),List_kw1ECqDsNAkjBg=\($columns)" | @uri')
+
+          echo "ENCODED_CONFIG=$ENCODED_CONFIG" >> $GITHUB_ENV
+
+      - name: Get parts list
+        id: get_parts_list
+        run: |
+          echo "::notice:: 🔍 Fetching parts list from Onshape for ${{ matrix.profile }} profile, ${{ matrix.columns }} columns..."
+
+          RESULT=$(curl -s -X 'GET' \
+          "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}?includeFlatParts=true&configuration=$ENCODED_CONFIG" \
+          -H "Accept: application/json" \
+          -H "Authorization: Basic $AUTH" \
+          | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber, revision}]')
+
+          echo "result<<EOF" >> $GITHUB_OUTPUT
+          echo "$RESULT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Export STEP files
+        env:
+          PARTS_LIST: ${{ steps.get_parts_list.outputs.result }}
+        run: |
+          echo "::notice:: 📐 Exporting STEP files from Onshape for ${{ matrix.profile }} profile, ${{ matrix.columns }} columns..."
+
+          PART_IDS=$(echo "$PARTS_LIST" | jq -r '.[].partId' | paste -sd, -)
+
+          mkdir -p manufacturing/step
+
+          SUBMIT_RES=$(curl -s -X 'POST' \
+          "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
+          -H "Accept: application/json" \
+          -H "Authorization: Basic $AUTH" \
+          -H "Content-Type: application/json" \
+          -d @- <<EOF
+          {
+            "resolution": "FINE",
+            "storeInDocument": false,
+            "partIds": "$PART_IDS",
+            "formatName": "STEP",
+            "grouping": false,
+            "specifyUnits": true,
+            "unit": "MILLIMETER",
+            "scale": "1.0"
+          }
+          EOF)
+
+          HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
+
+          if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
+            echo "::error:: 🚨 Failed to submit STEP export request."
+            exit 1
+          fi
+
+          echo "::notice:: 📥 Waiting for STEP files to be ready..."
+
+          ATTEMPTS=0
+          MAX_ATTEMPTS=60
+          while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
+            STATUS_RES=$(curl -s -X 'GET' "$HREF" \
+            -H "Accept: application/json" \
+            -H "Authorization: Basic $AUTH")
+
+            STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
+
+            echo "::notice:: Current status: $STATUS"
+
+            if [ -z "$STATUS" ]; then
+              echo "::error:: 🚨 Failed to retrieve STEP export status."
+              exit 1
+            fi
+
+            if [ "$STATUS" == "DONE" ]; then
+              echo "::notice:: ✅ STEP files are ready."
+              FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[]')
+              break
+            elif [ "$STATUS" == "FAILED" ]; then
+              echo "::error:: 🚨 STEP export failed."
+              exit 1
+            else
+              echo "::notice:: ⏳ STEP files are still being processed..."
+              sleep 5
+            fi
+
+            ATTEMPTS=$((ATTEMPTS + 1))
+          done
+
+          if [ $ATTEMPTS -ge $MAX_ATTEMPTS ]; then
+            echo "::error:: 🚨 STEP export timed out after $((MAX_ATTEMPTS * 5)) seconds."
+            exit 1
+          fi
+
+          INDEX=0
+          for FID in $FIDS; do
+            echo "::notice:: 📥 Downloading STEP file with ID: $FID"
+            curl -s -X 'GET' \
+            "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
+            -H "Accept: application/octet-stream" \
+            -H "Authorization: Basic $AUTH" \
+            -o "manufacturing/step/step-${{ matrix.profile }}-${{ matrix.columns }}col-${INDEX}.zip"
+
+            if [ $? -ne 0 ]; then
+              echo "::error:: 🚨 Failed to download STEP file with ID: $FID"
+              exit 1
+            fi
+
+            INDEX=$((INDEX + 1))
+          done
+
+      - name: Export STL files
+        env:
+          PARTS_LIST: ${{ steps.get_parts_list.outputs.result }}
+        run: |
+          echo "::notice:: 🖨️ Exporting STL files from Onshape for ${{ matrix.profile }} profile, ${{ matrix.columns }} columns..."
+
+          PART_IDS=$(echo "$PARTS_LIST" | jq -r '.[].partId' | paste -sd, -)
+
+          mkdir -p manufacturing/stl
+
+          SUBMIT_RES=$(curl -s -X 'POST' \
+          "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
+          -H "Accept: application/json" \
+          -H "Authorization: Basic $AUTH" \
+          -H "Content-Type: application/json" \
+          -d @- <<EOF
+          {
+            "resolution": "FINE",
+            "storeInDocument": false,
+            "partIds": "$PART_IDS",
+            "formatName": "STL",
+            "grouping": false,
+            "specifyUnits": true,
+            "unit": "MILLIMETER",
+            "scale": "1.0"
+          }
+          EOF)
+
+          HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
+
+          if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
+            echo "::error:: 🚨 Failed to submit STL export request."
+            exit 1
+          fi
+
+          echo "::notice:: 📥 Waiting for STL files to be ready..."
+
+          ATTEMPTS=0
+          MAX_ATTEMPTS=60
+          while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
+            STATUS_RES=$(curl -s -X 'GET' "$HREF" \
+            -H "Accept: application/json" \
+            -H "Authorization: Basic $AUTH")
+
+            STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
+
+            echo "::notice:: Current status: $STATUS"
+
+            if [ -z "$STATUS" ]; then
+              echo "::error:: 🚨 Failed to retrieve STL export status."
+              exit 1
+            fi
+
+            if [ "$STATUS" == "DONE" ]; then
+              echo "::notice:: ✅ STL files are ready."
+              FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[]')
+              break
+            elif [ "$STATUS" == "FAILED" ]; then
+              echo "::error:: 🚨 STL export failed."
+              exit 1
+            else
+              echo "::notice:: ⏳ STL files are still being processed..."
+              sleep 5
+            fi
+
+            ATTEMPTS=$((ATTEMPTS + 1))
+          done
+
+          if [ $ATTEMPTS -ge $MAX_ATTEMPTS ]; then
+            echo "::error:: 🚨 STL export timed out after $((MAX_ATTEMPTS * 5)) seconds."
+            exit 1
+          fi
+
+          INDEX=0
+          for FID in $FIDS; do
+            echo "::notice:: 📥 Downloading STL file with ID: $FID"
+            curl -s -X 'GET' \
+            "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
+            -H "Accept: application/octet-stream" \
+            -H "Authorization: Basic $AUTH" \
+            -o "manufacturing/stl/stl-${{ matrix.profile }}-${{ matrix.columns }}col-${INDEX}.zip"
+
+            if [ $? -ne 0 ]; then
+              echo "::error:: 🚨 Failed to download STL file with ID: $FID"
+              exit 1
+            fi
+
+            INDEX=$((INDEX + 1))
+          done
+
+      - name: Upload STEP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcad-step-${{ matrix.profile }}-${{ matrix.columns }}col
+          path: manufacturing/step/*.zip
+
+      - name: Upload STL artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcad-stl-${{ matrix.profile }}-${{ matrix.columns }}col
+          path: manufacturing/stl/*.zip
