@@ -1,10 +1,6 @@
 name: 🔧 MCAD Manufacturing
 
 on:
-  push:
-    paths:
-      - 'hardware/**/mcad/**'
-      - '.github/workflows/mcad.yaml'
   workflow_dispatch:
 
 jobs:
@@ -51,28 +47,31 @@ jobs:
 
           echo "ENCODED_CONFIG=$ENCODED_CONFIG" >> $GITHUB_ENV
 
-      - name: Get parts list
-        id: get_parts_list
+      - name: Read parts mapping
+        id: read_parts
         run: |
-          echo "::notice:: 🔍 Fetching parts list from Onshape for ${{ matrix.profile }} profile, ${{ matrix.columns }} columns..."
+          echo "::notice:: 📋 Reading parts mapping from hardware/b11/mcad/parts.yaml..."
 
-          RESULT=$(curl -s -X 'GET' \
-          "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}?includeFlatParts=true&configuration=$ENCODED_CONFIG" \
-          -H "Accept: application/json" \
-          -H "Authorization: Basic $AUTH" \
-          | jq '[.[] | select(.partNumber != null and .partNumber != "") | {partId, partNumber, revision}]')
+          PART_IDS=$(python3 -c "
+          import yaml
+          with open('hardware/b11/mcad/parts.yaml') as f:
+              data = yaml.safe_load(f)
+          ids = [p['onshape_part_id'] for p in data['parts'] if p.get('onshape_part_id', '').strip()]
+          print(','.join(ids))
+          ")
 
-          echo "result<<EOF" >> $GITHUB_OUTPUT
-          echo "$RESULT" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          if [ -z "$PART_IDS" ]; then
+            echo "::error:: 🚨 No OnShape part IDs found in hardware/b11/mcad/parts.yaml. Please fill in the onshape_part_id fields."
+            exit 1
+          fi
+
+          echo "part_ids=$PART_IDS" >> $GITHUB_OUTPUT
 
       - name: Export STEP files
         env:
-          PARTS_LIST: ${{ steps.get_parts_list.outputs.result }}
+          PART_IDS: ${{ steps.read_parts.outputs.part_ids }}
         run: |
           echo "::notice:: 📐 Exporting STEP files from Onshape for ${{ matrix.profile }} profile, ${{ matrix.columns }} columns..."
-
-          PART_IDS=$(echo "$PARTS_LIST" | jq -r '.[].partId' | paste -sd, -)
 
           mkdir -p manufacturing/step
 
@@ -88,6 +87,7 @@ jobs:
             "partIds": "$PART_IDS",
             "formatName": "STEP",
             "grouping": false,
+            "configuration": "$ENCODED_CONFIG",
             "specifyUnits": true,
             "unit": "MILLIMETER",
             "scale": "1.0"
@@ -158,11 +158,9 @@ jobs:
 
       - name: Export STL files
         env:
-          PARTS_LIST: ${{ steps.get_parts_list.outputs.result }}
+          PART_IDS: ${{ steps.read_parts.outputs.part_ids }}
         run: |
           echo "::notice:: 🖨️ Exporting STL files from Onshape for ${{ matrix.profile }} profile, ${{ matrix.columns }} columns..."
-
-          PART_IDS=$(echo "$PARTS_LIST" | jq -r '.[].partId' | paste -sd, -)
 
           mkdir -p manufacturing/stl
 
@@ -178,6 +176,7 @@ jobs:
             "partIds": "$PART_IDS",
             "formatName": "STL",
             "grouping": false,
+            "configuration": "$ENCODED_CONFIG",
             "specifyUnits": true,
             "unit": "MILLIMETER",
             "scale": "1.0"

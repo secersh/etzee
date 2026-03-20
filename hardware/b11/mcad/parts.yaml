@@ -1,0 +1,16 @@
+# Maps etzee part numbers to OnShape part IDs.
+# Only parts listed here will be exported by the MCAD manufacturing workflow.
+# To find a part ID: open the part in OnShape, right-click → Properties,
+# or read it from the URL when a part is selected in the Part Studio.
+
+parts:
+  - part_number: ETZ-B11-LB       # Left base (common)
+    onshape_part_id: ""
+  - part_number: ETZ-B11-TC       # Top cap (common)
+    onshape_part_id: ""
+  - part_number: ETZ-B11-SWL-5    # Switch layout, left half, 5 columns
+    onshape_part_id: ""
+  - part_number: ETZ-B11-TPL-5    # Top plate, left half, 5 columns
+    onshape_part_id: ""
+  - part_number: ETZ-B11-BL-N5    # Bottom case, left half, normal profile, 5 columns
+    onshape_part_id: ""
