@@ -43,21 +43,46 @@ jobs:
           ENCODED_CONFIG=$(jq -rn --arg config "${{ inputs.onshape_configuration }}" '$config | @uri')
           echo "ENCODED_CONFIG=$ENCODED_CONFIG" >> $GITHUB_ENV
 
-      - name: Read parts mapping
+      - name: Resolve part IDs from OnShape
         id: read_parts
         run: |
-          echo "::notice:: 📋 Reading parts mapping from ${{ inputs.parts_file }}..."
+          echo "::notice:: 📋 Reading part numbers from ${{ inputs.parts_file }}..."
 
-          PART_IDS=$(python3 -c "
+          PART_NUMBERS=$(python3 -c "
           import yaml
           with open('${{ inputs.parts_file }}') as f:
               data = yaml.safe_load(f)
-          ids = [p['onshape_part_id'] for p in data['parts'] if p.get('onshape_part_id', '').strip()]
-          print(','.join(ids))
+          nums = [p['part_number'] for p in data['parts'] if p.get('part_number', '').strip()]
+          print('\n'.join(nums))
           ")
 
-          if [ -z "$PART_IDS" ]; then
-            echo "::error:: 🚨 No OnShape part IDs found in ${{ inputs.parts_file }}. Please fill in the onshape_part_id fields."
+          if [ -z "$PART_NUMBERS" ]; then
+            echo "::error:: 🚨 No part numbers found in ${{ inputs.parts_file }}."
+            exit 1
+          fi
+
+          echo "::notice:: 🔍 Fetching parts list from OnShape..."
+
+          ONSHAPE_PARTS=$(curl -s -X 'GET' \
+          "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}?includeFlatParts=true&configuration=$ENCODED_CONFIG" \
+          -H "Accept: application/json" \
+          -H "Authorization: Basic $AUTH")
+
+          PART_IDS=$(python3 -c "
+          import json, sys
+          parts = json.loads('''$ONSHAPE_PARTS''')
+          part_numbers = '''$PART_NUMBERS'''.strip().splitlines()
+          id_map = {p['partNumber']: p['partId'] for p in parts if p.get('partNumber')}
+          missing = [n for n in part_numbers if n not in id_map]
+          if missing:
+              for n in missing:
+                  print(f'Part number not found in OnShape: {n}', file=sys.stderr)
+              sys.exit(1)
+          print(','.join(id_map[n] for n in part_numbers))
+          ")
+
+          if [ $? -ne 0 ]; then
+            echo "::error:: 🚨 Some part numbers from ${{ inputs.parts_file }} were not found in OnShape. Check that part numbers match the partNumber property set in OnShape (right-click → Properties)."
             exit 1
           fi
 
