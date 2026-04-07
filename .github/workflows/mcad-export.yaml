@@ -7,12 +7,8 @@ on:
         description: "Path to parts.yaml relative to repo root"
         type: string
         required: true
-      onshape_profile:
-        description: "OnShape configuration profile value (e.g. Default, Low_profile)"
-        type: string
-        required: true
-      onshape_columns:
-        description: "OnShape configuration columns value (e.g. Default, _6)"
+      onshape_configuration:
+        description: "OnShape configuration string as comma-separated key=value pairs (e.g. Param1=Value1,Param2=Value2)"
         type: string
         required: true
       artifact_suffix:
@@ -44,13 +40,7 @@ jobs:
 
       - name: Generate ENCODED_CONFIG
         run: |
-          # List_xrEfmODFsfiBE6: OnShape configuration parameter ID for the switch profile
-          # List_kw1ECqDsNAkjBg: OnShape configuration parameter ID for the number of columns
-          ENCODED_CONFIG=$(jq -rn \
-          --arg profile "${{ inputs.onshape_profile }}" \
-          --arg columns "${{ inputs.onshape_columns }}" \
-          '$ARGS.named | "List_xrEfmODFsfiBE6=\($profile),List_kw1ECqDsNAkjBg=\($columns)" | @uri')
-
+          ENCODED_CONFIG=$(jq -rn --arg config "${{ inputs.onshape_configuration }}" '$config | @uri')
           echo "ENCODED_CONFIG=$ENCODED_CONFIG" >> $GITHUB_ENV
 
       - name: Read parts mapping
