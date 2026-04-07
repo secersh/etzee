@@ -68,10 +68,10 @@ jobs:
           -H "Accept: application/json" \
           -H "Authorization: Basic $AUTH")
 
-          PART_IDS=$(python3 -c "
-          import json, sys
-          parts = json.loads('''$ONSHAPE_PARTS''')
-          part_numbers = '''$PART_NUMBERS'''.strip().splitlines()
+          PART_IDS=$(ONSHAPE_PARTS_JSON="$ONSHAPE_PARTS" PART_NUMBERS_LIST="$PART_NUMBERS" python3 -c "
+          import json, sys, os
+          parts = json.loads(os.environ['ONSHAPE_PARTS_JSON'])
+          part_numbers = os.environ['PART_NUMBERS_LIST'].strip().splitlines()
           id_map = {p['partNumber']: p['partId'] for p in parts if p.get('partNumber')}
           missing = [n for n in part_numbers if n not in id_map]
           if missing:
