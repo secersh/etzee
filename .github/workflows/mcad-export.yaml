@@ -96,24 +96,17 @@ jobs:
 
           mkdir -p manufacturing/step
 
+          JSON_BODY=$(jq -n \
+            --arg partIds "$PART_IDS" \
+            --arg config "$ENCODED_CONFIG" \
+            '{resolution:"FINE",storeInDocument:false,partIds:$partIds,formatName:"STEP",grouping:false,configuration:$config,specifyUnits:true,unit:"MILLIMETER",scale:"1.0"}')
+
           SUBMIT_RES=$(curl -s -X 'POST' \
           "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
           -H "Accept: application/json" \
           -H "Authorization: Basic $AUTH" \
           -H "Content-Type: application/json" \
-          -d @- <<EOF
-          {
-            "resolution": "FINE",
-            "storeInDocument": false,
-            "partIds": "$PART_IDS",
-            "formatName": "STEP",
-            "grouping": false,
-            "configuration": "$ENCODED_CONFIG",
-            "specifyUnits": true,
-            "unit": "MILLIMETER",
-            "scale": "1.0"
-          }
-          EOF)
+          -d "$JSON_BODY")
 
           HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
 
@@ -185,24 +178,17 @@ jobs:
 
           mkdir -p manufacturing/stl
 
+          JSON_BODY=$(jq -n \
+            --arg partIds "$PART_IDS" \
+            --arg config "$ENCODED_CONFIG" \
+            '{resolution:"FINE",storeInDocument:false,partIds:$partIds,formatName:"STL",grouping:false,configuration:$config,specifyUnits:true,unit:"MILLIMETER",scale:"1.0"}')
+
           SUBMIT_RES=$(curl -s -X 'POST' \
           "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
           -H "Accept: application/json" \
           -H "Authorization: Basic $AUTH" \
           -H "Content-Type: application/json" \
-          -d @- <<EOF
-          {
-            "resolution": "FINE",
-            "storeInDocument": false,
-            "partIds": "$PART_IDS",
-            "formatName": "STL",
-            "grouping": false,
-            "configuration": "$ENCODED_CONFIG",
-            "specifyUnits": true,
-            "unit": "MILLIMETER",
-            "scale": "1.0"
-          }
-          EOF)
+          -d "$JSON_BODY")
 
           HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
 
