@@ -1,0 +1,35 @@
+name: 🔧 MCAD B11 Manufacturing
+
+on:
+  workflow_dispatch:
+
+jobs:
+  export-mcad:
+    name: 🏭 B11 (${{ matrix.profile }} profile, ${{ matrix.columns }} col)
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        profile:
+          - Normal
+          - Low
+        columns:
+          - 5
+          - 6
+        include:
+          - profile: Normal
+            onshape_profile: Default
+          - profile: Low
+            onshape_profile: Low_profile
+          - columns: 5
+            onshape_columns: Default
+          - columns: 6
+            onshape_columns: _6
+    uses: ./.github/workflows/mcad-export.yaml
+    with:
+      parts_file: hardware/b11/mcad/parts.yaml
+      onshape_profile: ${{ matrix.onshape_profile }}
+      onshape_columns: ${{ matrix.onshape_columns }}
+      artifact_suffix: b11-${{ matrix.profile }}-${{ matrix.columns }}col
+    secrets: inherit

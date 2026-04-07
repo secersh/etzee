@@ -1,32 +1,36 @@
-name: 🔧 MCAD Manufacturing
+name: 🔧 MCAD Export
 
 on:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      parts_file:
+        description: "Path to parts.yaml relative to repo root"
+        type: string
+        required: true
+      onshape_profile:
+        description: "OnShape configuration profile value (e.g. Default, Low_profile)"
+        type: string
+        required: true
+      onshape_columns:
+        description: "OnShape configuration columns value (e.g. Default, _6)"
+        type: string
+        required: true
+      artifact_suffix:
+        description: "Suffix for artifact names (e.g. b11-Normal-5col)"
+        type: string
+        required: true
+    secrets:
+      ONSHAPE_API_ACCESS_KEY:
+        required: true
+      ONSHAPE_API_SECRET_KEY:
+        required: true
 
 jobs:
-  export-mcad:
-    name: 🏭 MCAD (${{ matrix.profile }} profile, ${{ matrix.columns }} col)
+  export:
+    name: 🏭 Export (${{ inputs.artifact_suffix }})
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    strategy:
-      fail-fast: false
-      matrix:
-        profile:
-          - Normal
-          - Low
-        columns:
-          - 5
-          - 6
-        include:
-          - profile: Normal
-            onshape_profile: Default
-          - profile: Low
-            onshape_profile: Low_profile
-          - columns: 5
-            onshape_columns: Default
-          - columns: 6
-            onshape_columns: _6
 
     steps:
       - name: Checkout
@@ -40,9 +44,11 @@ jobs:
 
       - name: Generate ENCODED_CONFIG
         run: |
+          # List_xrEfmODFsfiBE6: OnShape configuration parameter ID for the switch profile
+          # List_kw1ECqDsNAkjBg: OnShape configuration parameter ID for the number of columns
           ENCODED_CONFIG=$(jq -rn \
-          --arg profile "${{ matrix.onshape_profile }}" \
-          --arg columns "${{ matrix.onshape_columns }}" \
+          --arg profile "${{ inputs.onshape_profile }}" \
+          --arg columns "${{ inputs.onshape_columns }}" \
           '$ARGS.named | "List_xrEfmODFsfiBE6=\($profile),List_kw1ECqDsNAkjBg=\($columns)" | @uri')
 
           echo "ENCODED_CONFIG=$ENCODED_CONFIG" >> $GITHUB_ENV
@@ -50,18 +56,18 @@ jobs:
       - name: Read parts mapping
         id: read_parts
         run: |
-          echo "::notice:: 📋 Reading parts mapping from hardware/b11/mcad/parts.yaml..."
+          echo "::notice:: 📋 Reading parts mapping from ${{ inputs.parts_file }}..."
 
           PART_IDS=$(python3 -c "
           import yaml
-          with open('hardware/b11/mcad/parts.yaml') as f:
+          with open('${{ inputs.parts_file }}') as f:
               data = yaml.safe_load(f)
           ids = [p['onshape_part_id'] for p in data['parts'] if p.get('onshape_part_id', '').strip()]
           print(','.join(ids))
           ")
 
           if [ -z "$PART_IDS" ]; then
-            echo "::error:: 🚨 No OnShape part IDs found in hardware/b11/mcad/parts.yaml. Please fill in the onshape_part_id fields."
+            echo "::error:: 🚨 No OnShape part IDs found in ${{ inputs.parts_file }}. Please fill in the onshape_part_id fields."
             exit 1
           fi
 
@@ -71,7 +77,7 @@ jobs:
         env:
           PART_IDS: ${{ steps.read_parts.outputs.part_ids }}
         run: |
-          echo "::notice:: 📐 Exporting STEP files from Onshape for ${{ matrix.profile }} profile, ${{ matrix.columns }} columns..."
+          echo "::notice:: 📐 Exporting STEP files from OnShape (${{ inputs.artifact_suffix }})..."
 
           mkdir -p manufacturing/step
 
@@ -146,7 +152,7 @@ jobs:
             "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
             -H "Accept: application/octet-stream" \
             -H "Authorization: Basic $AUTH" \
-            -o "manufacturing/step/step-${{ matrix.profile }}-${{ matrix.columns }}col-${INDEX}.zip"
+            -o "manufacturing/step/step-${{ inputs.artifact_suffix }}-${INDEX}.zip"
 
             if [ $? -ne 0 ]; then
               echo "::error:: 🚨 Failed to download STEP file with ID: $FID"
@@ -160,7 +166,7 @@ jobs:
         env:
           PART_IDS: ${{ steps.read_parts.outputs.part_ids }}
         run: |
-          echo "::notice:: 🖨️ Exporting STL files from Onshape for ${{ matrix.profile }} profile, ${{ matrix.columns }} columns..."
+          echo "::notice:: 🖨️ Exporting STL files from OnShape (${{ inputs.artifact_suffix }})..."
 
           mkdir -p manufacturing/stl
 
@@ -235,7 +241,7 @@ jobs:
             "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
             -H "Accept: application/octet-stream" \
             -H "Authorization: Basic $AUTH" \
-            -o "manufacturing/stl/stl-${{ matrix.profile }}-${{ matrix.columns }}col-${INDEX}.zip"
+            -o "manufacturing/stl/stl-${{ inputs.artifact_suffix }}-${INDEX}.zip"
 
             if [ $? -ne 0 ]; then
               echo "::error:: 🚨 Failed to download STL file with ID: $FID"
@@ -248,11 +254,11 @@ jobs:
       - name: Upload STEP artifact
         uses: actions/upload-artifact@v4
         with:
-          name: mcad-step-${{ matrix.profile }}-${{ matrix.columns }}col
+          name: mcad-step-${{ inputs.artifact_suffix }}
           path: manufacturing/step/*.zip
 
       - name: Upload STL artifact
         uses: actions/upload-artifact@v4
         with:
-          name: mcad-stl-${{ matrix.profile }}-${{ matrix.columns }}col
+          name: mcad-stl-${{ inputs.artifact_suffix }}
           path: manufacturing/stl/*.zip
