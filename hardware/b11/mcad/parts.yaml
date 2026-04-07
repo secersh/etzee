@@ -6,6 +6,6 @@
 parts:
   - part_number: ETZ-B11-LB       # Left base (common)
   - part_number: ETZ-B11-TC       # Top cap (common)
-  - part_number: ETZ-B11-SWL-5    # Switch layout, left half, 5 columns
-  - part_number: ETZ-B11-TPL-5    # Top plate, left half, 5 columns
-  - part_number: ETZ-B11-BL-N5    # Bottom case, left half, normal profile, 5 columns
+  # - part_number: ETZ-B11-SWL-5    # Switch layout, left half, 5 columns
+  # - part_number: ETZ-B11-TPL-5    # Top plate, left half, 5 columns
+  # - part_number: ETZ-B11-BL-N5    # Bottom case, left half, normal profile, 5 columns
