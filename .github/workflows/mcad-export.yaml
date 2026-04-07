@@ -1,0 +1,279 @@
+name: 🔧 MCAD Export
+
+on:
+  workflow_call:
+    inputs:
+      parts_file:
+        description: "Path to parts.yaml relative to repo root"
+        type: string
+        required: true
+      onshape_configuration:
+        description: "OnShape configuration string as comma-separated key=value pairs (e.g. Param1=Value1,Param2=Value2)"
+        type: string
+        required: true
+      artifact_suffix:
+        description: "Suffix for artifact names (e.g. b11-Normal-5col)"
+        type: string
+        required: true
+    secrets:
+      ONSHAPE_API_ACCESS_KEY:
+        required: true
+      ONSHAPE_API_SECRET_KEY:
+        required: true
+
+jobs:
+  export:
+    name: 🏭 Export (${{ inputs.artifact_suffix }})
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate AUTH
+        run: |
+          AUTH=$(printf "%s:%s" "${{ secrets.ONSHAPE_API_ACCESS_KEY }}" "${{ secrets.ONSHAPE_API_SECRET_KEY }}" | base64 | tr -d '\n')
+          echo "::add-mask::$AUTH"
+          echo "AUTH=$AUTH" >> $GITHUB_ENV
+
+      - name: Generate ENCODED_CONFIG
+        run: |
+          ENCODED_CONFIG=$(jq -rn --arg config "${{ inputs.onshape_configuration }}" '$config | @uri')
+          echo "ENCODED_CONFIG=$ENCODED_CONFIG" >> $GITHUB_ENV
+
+      - name: Resolve part IDs from OnShape
+        id: read_parts
+        run: |
+          echo "::notice:: 📋 Reading part numbers from ${{ inputs.parts_file }}..."
+
+          PART_NUMBERS=$(python3 -c "
+          import yaml
+          with open('${{ inputs.parts_file }}') as f:
+              data = yaml.safe_load(f)
+          nums = [p['part_number'] for p in data['parts'] if p.get('part_number', '').strip()]
+          print('\n'.join(nums))
+          ")
+
+          if [ -z "$PART_NUMBERS" ]; then
+            echo "::error:: 🚨 No part numbers found in ${{ inputs.parts_file }}."
+            exit 1
+          fi
+
+          echo "::notice:: 🔍 Fetching parts list from OnShape..."
+
+          ONSHAPE_PARTS=$(curl -s -X 'GET' \
+          "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}?includeFlatParts=true&configuration=$ENCODED_CONFIG" \
+          -H "Accept: application/json" \
+          -H "Authorization: Basic $AUTH")
+
+          PART_IDS=$(python3 -c "
+          import json, sys
+          parts = json.loads('''$ONSHAPE_PARTS''')
+          part_numbers = '''$PART_NUMBERS'''.strip().splitlines()
+          id_map = {p['partNumber']: p['partId'] for p in parts if p.get('partNumber')}
+          missing = [n for n in part_numbers if n not in id_map]
+          if missing:
+              for n in missing:
+                  print(f'Part number not found in OnShape: {n}', file=sys.stderr)
+              sys.exit(1)
+          print(','.join(id_map[n] for n in part_numbers))
+          ")
+
+          if [ $? -ne 0 ]; then
+            echo "::error:: 🚨 Some part numbers from ${{ inputs.parts_file }} were not found in OnShape. Check that part numbers match the partNumber property set in OnShape (right-click → Properties)."
+            exit 1
+          fi
+
+          echo "part_ids=$PART_IDS" >> $GITHUB_OUTPUT
+
+      - name: Export STEP files
+        env:
+          PART_IDS: ${{ steps.read_parts.outputs.part_ids }}
+        run: |
+          echo "::notice:: 📐 Exporting STEP files from OnShape (${{ inputs.artifact_suffix }})..."
+
+          mkdir -p manufacturing/step
+
+          SUBMIT_RES=$(curl -s -X 'POST' \
+          "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
+          -H "Accept: application/json" \
+          -H "Authorization: Basic $AUTH" \
+          -H "Content-Type: application/json" \
+          -d @- <<EOF
+          {
+            "resolution": "FINE",
+            "storeInDocument": false,
+            "partIds": "$PART_IDS",
+            "formatName": "STEP",
+            "grouping": false,
+            "configuration": "$ENCODED_CONFIG",
+            "specifyUnits": true,
+            "unit": "MILLIMETER",
+            "scale": "1.0"
+          }
+          EOF)
+
+          HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
+
+          if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
+            echo "::error:: 🚨 Failed to submit STEP export request."
+            exit 1
+          fi
+
+          echo "::notice:: 📥 Waiting for STEP files to be ready..."
+
+          ATTEMPTS=0
+          MAX_ATTEMPTS=60
+          while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
+            STATUS_RES=$(curl -s -X 'GET' "$HREF" \
+            -H "Accept: application/json" \
+            -H "Authorization: Basic $AUTH")
+
+            STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
+
+            echo "::notice:: Current status: $STATUS"
+
+            if [ -z "$STATUS" ]; then
+              echo "::error:: 🚨 Failed to retrieve STEP export status."
+              exit 1
+            fi
+
+            if [ "$STATUS" == "DONE" ]; then
+              echo "::notice:: ✅ STEP files are ready."
+              FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[]')
+              break
+            elif [ "$STATUS" == "FAILED" ]; then
+              echo "::error:: 🚨 STEP export failed."
+              exit 1
+            else
+              echo "::notice:: ⏳ STEP files are still being processed..."
+              sleep 5
+            fi
+
+            ATTEMPTS=$((ATTEMPTS + 1))
+          done
+
+          if [ $ATTEMPTS -ge $MAX_ATTEMPTS ]; then
+            echo "::error:: 🚨 STEP export timed out after $((MAX_ATTEMPTS * 5)) seconds."
+            exit 1
+          fi
+
+          INDEX=0
+          for FID in $FIDS; do
+            echo "::notice:: 📥 Downloading STEP file with ID: $FID"
+            curl -s -X 'GET' \
+            "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
+            -H "Accept: application/octet-stream" \
+            -H "Authorization: Basic $AUTH" \
+            -o "manufacturing/step/step-${{ inputs.artifact_suffix }}-${INDEX}.zip"
+
+            if [ $? -ne 0 ]; then
+              echo "::error:: 🚨 Failed to download STEP file with ID: $FID"
+              exit 1
+            fi
+
+            INDEX=$((INDEX + 1))
+          done
+
+      - name: Export STL files
+        env:
+          PART_IDS: ${{ steps.read_parts.outputs.part_ids }}
+        run: |
+          echo "::notice:: 🖨️ Exporting STL files from OnShape (${{ inputs.artifact_suffix }})..."
+
+          mkdir -p manufacturing/stl
+
+          SUBMIT_RES=$(curl -s -X 'POST' \
+          "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
+          -H "Accept: application/json" \
+          -H "Authorization: Basic $AUTH" \
+          -H "Content-Type: application/json" \
+          -d @- <<EOF
+          {
+            "resolution": "FINE",
+            "storeInDocument": false,
+            "partIds": "$PART_IDS",
+            "formatName": "STL",
+            "grouping": false,
+            "configuration": "$ENCODED_CONFIG",
+            "specifyUnits": true,
+            "unit": "MILLIMETER",
+            "scale": "1.0"
+          }
+          EOF)
+
+          HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
+
+          if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
+            echo "::error:: 🚨 Failed to submit STL export request."
+            exit 1
+          fi
+
+          echo "::notice:: 📥 Waiting for STL files to be ready..."
+
+          ATTEMPTS=0
+          MAX_ATTEMPTS=60
+          while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
+            STATUS_RES=$(curl -s -X 'GET' "$HREF" \
+            -H "Accept: application/json" \
+            -H "Authorization: Basic $AUTH")
+
+            STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
+
+            echo "::notice:: Current status: $STATUS"
+
+            if [ -z "$STATUS" ]; then
+              echo "::error:: 🚨 Failed to retrieve STL export status."
+              exit 1
+            fi
+
+            if [ "$STATUS" == "DONE" ]; then
+              echo "::notice:: ✅ STL files are ready."
+              FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[]')
+              break
+            elif [ "$STATUS" == "FAILED" ]; then
+              echo "::error:: 🚨 STL export failed."
+              exit 1
+            else
+              echo "::notice:: ⏳ STL files are still being processed..."
+              sleep 5
+            fi
+
+            ATTEMPTS=$((ATTEMPTS + 1))
+          done
+
+          if [ $ATTEMPTS -ge $MAX_ATTEMPTS ]; then
+            echo "::error:: 🚨 STL export timed out after $((MAX_ATTEMPTS * 5)) seconds."
+            exit 1
+          fi
+
+          INDEX=0
+          for FID in $FIDS; do
+            echo "::notice:: 📥 Downloading STL file with ID: $FID"
+            curl -s -X 'GET' \
+            "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
+            -H "Accept: application/octet-stream" \
+            -H "Authorization: Basic $AUTH" \
+            -o "manufacturing/stl/stl-${{ inputs.artifact_suffix }}-${INDEX}.zip"
+
+            if [ $? -ne 0 ]; then
+              echo "::error:: 🚨 Failed to download STL file with ID: $FID"
+              exit 1
+            fi
+
+            INDEX=$((INDEX + 1))
+          done
+
+      - name: Upload STEP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcad-step-${{ inputs.artifact_suffix }}
+          path: manufacturing/step/*.zip
+
+      - name: Upload STL artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcad-stl-${{ inputs.artifact_suffix }}
+          path: manufacturing/stl/*.zip

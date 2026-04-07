@@ -1,0 +1,34 @@
+name: 🔧 MCAD B11 Manufacturing
+
+on:
+  workflow_dispatch:
+
+jobs:
+  export-mcad:
+    name: 🏭 B11 (${{ matrix.profile }} profile, ${{ matrix.columns }} col)
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # List_xrEfmODFsfiBE6: switch profile parameter ID in the B11 OnShape part studio
+          # List_kw1ECqDsNAkjBg: number of columns parameter ID in the B11 OnShape part studio
+          - profile: Normal
+            columns: 5
+            onshape_configuration: "List_xrEfmODFsfiBE6=Default,List_kw1ECqDsNAkjBg=Default"
+          - profile: Normal
+            columns: 6
+            onshape_configuration: "List_xrEfmODFsfiBE6=Default,List_kw1ECqDsNAkjBg=_6"
+          - profile: Low
+            columns: 5
+            onshape_configuration: "List_xrEfmODFsfiBE6=Low_profile,List_kw1ECqDsNAkjBg=Default"
+          - profile: Low
+            columns: 6
+            onshape_configuration: "List_xrEfmODFsfiBE6=Low_profile,List_kw1ECqDsNAkjBg=_6"
+    uses: ./.github/workflows/mcad-export.yaml
+    with:
+      parts_file: hardware/b11/mcad/parts.yaml
+      onshape_configuration: ${{ matrix.onshape_configuration }}
+      artifact_suffix: b11-${{ matrix.profile }}-${{ matrix.columns }}col
+    secrets: inherit
