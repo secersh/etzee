@@ -98,11 +98,10 @@ jobs:
 
           JSON_BODY=$(jq -n \
             --arg partIds "$PART_IDS" \
-            --arg config "$ENCODED_CONFIG" \
-            '{resolution:"FINE",storeInDocument:false,partIds:$partIds,formatName:"STEP",grouping:false,configuration:$config,specifyUnits:true,unit:"MILLIMETER",scale:"1.0"}')
+            '{resolution:"FINE",storeInDocument:false,partIds:$partIds,formatName:"STEP",grouping:false,specifyUnits:true,unit:"MILLIMETER",scale:"1.0"}')
 
           SUBMIT_RES=$(curl -s -X 'POST' \
-          "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
+          "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations?configuration=$ENCODED_CONFIG" \
           -H "Accept: application/json" \
           -H "Authorization: Basic $AUTH" \
           -H "Content-Type: application/json" \
@@ -180,11 +179,10 @@ jobs:
 
           JSON_BODY=$(jq -n \
             --arg partIds "$PART_IDS" \
-            --arg config "$ENCODED_CONFIG" \
-            '{resolution:"FINE",storeInDocument:false,partIds:$partIds,formatName:"STL",grouping:false,configuration:$config,specifyUnits:true,unit:"MILLIMETER",scale:"1.0"}')
+            '{resolution:"FINE",storeInDocument:false,partIds:$partIds,formatName:"STL",grouping:false,specifyUnits:true,unit:"MILLIMETER",scale:"1.0"}')
 
           SUBMIT_RES=$(curl -s -X 'POST' \
-          "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
+          "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations?configuration=$ENCODED_CONFIG" \
           -H "Accept: application/json" \
           -H "Authorization: Basic $AUTH" \
           -H "Content-Type: application/json" \
