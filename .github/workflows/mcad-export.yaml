@@ -183,7 +183,6 @@ jobs:
             fi
             mv "$STEP_FILE" "manufacturing/step/${NAME}.step"
             rm -rf "$TMPDIR" "manufacturing/step/${NAME}.zip"
-            cd manufacturing/step && zip "${NAME}.zip" "${NAME}.step" && rm "${NAME}.step" && cd -
 
             INDEX=$((INDEX + 1))
           done
@@ -278,7 +277,6 @@ jobs:
             fi
             mv "$STL_FILE" "manufacturing/stl/${NAME}.stl"
             rm -rf "$TMPDIR" "manufacturing/stl/${NAME}.zip"
-            cd manufacturing/stl && zip "${NAME}.zip" "${NAME}.stl" && rm "${NAME}.stl" && cd -
 
             INDEX=$((INDEX + 1))
           done
@@ -287,10 +285,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mcad-step-${{ inputs.artifact_suffix }}
-          path: manufacturing/step/*.zip
+          path: manufacturing/step/*.step
 
       - name: Upload STL artifact
         uses: actions/upload-artifact@v4
         with:
           name: mcad-stl-${{ inputs.artifact_suffix }}
-          path: manufacturing/stl/*.zip
+          path: manufacturing/stl/*.stl
