@@ -47,6 +47,14 @@ jobs:
           path: release-assets
           merge-multiple: false
 
+      - name: Rename assets to include artifact prefix
+        run: |
+          for f in release-assets/**/*.zip; do
+            dir=$(basename "$(dirname "$f")")
+            name=$(basename "$f")
+            mv "$f" "$(dirname "$f")/${dir}-${name}"
+          done
+
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
