@@ -174,6 +174,19 @@ jobs:
               exit 1
             fi
 
+            TMPDIR="manufacturing/step/${NAME}_tmp"
+            unzip -o "manufacturing/step/${NAME}.zip" -d "$TMPDIR"
+            mapfile -t STEP_FILES < <(find "$TMPDIR" -maxdepth 1 -iname "*.step")
+            if [ ${#STEP_FILES[@]} -eq 0 ]; then
+              echo "::error:: 🚨 No STEP file found inside zip for part: $NAME"
+              exit 1
+            elif [ ${#STEP_FILES[@]} -gt 1 ]; then
+              echo "::error:: 🚨 Multiple STEP files found inside zip for part: $NAME"
+              exit 1
+            fi
+            mv "${STEP_FILES[0]}" "manufacturing/step/${NAME}.step"
+            rm -rf "$TMPDIR" "manufacturing/step/${NAME}.zip"
+
             INDEX=$((INDEX + 1))
           done
 
@@ -258,6 +271,19 @@ jobs:
               exit 1
             fi
 
+            TMPDIR="manufacturing/stl/${NAME}_tmp"
+            unzip -o "manufacturing/stl/${NAME}.zip" -d "$TMPDIR"
+            mapfile -t STL_FILES < <(find "$TMPDIR" -maxdepth 1 -iname "*.stl")
+            if [ ${#STL_FILES[@]} -eq 0 ]; then
+              echo "::error:: 🚨 No STL file found inside zip for part: $NAME"
+              exit 1
+            elif [ ${#STL_FILES[@]} -gt 1 ]; then
+              echo "::error:: 🚨 Multiple STL files found inside zip for part: $NAME"
+              exit 1
+            fi
+            mv "${STL_FILES[0]}" "manufacturing/stl/${NAME}.stl"
+            rm -rf "$TMPDIR" "manufacturing/stl/${NAME}.zip"
+
             INDEX=$((INDEX + 1))
           done
 
@@ -265,10 +291,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mcad-step-${{ inputs.artifact_suffix }}
-          path: manufacturing/step/*.zip
+          path: manufacturing/step/*.step
 
       - name: Upload STL artifact
         uses: actions/upload-artifact@v4
         with:
           name: mcad-stl-${{ inputs.artifact_suffix }}
-          path: manufacturing/stl/*.zip
+          path: manufacturing/stl/*.stl
