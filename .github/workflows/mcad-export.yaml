@@ -176,12 +176,18 @@ jobs:
 
             TMPDIR="manufacturing/step/${NAME}_tmp"
             unzip -o "manufacturing/step/${NAME}.zip" -d "$TMPDIR"
-            STEP_FILE=$(find "$TMPDIR" -maxdepth 1 -iname "*.step" | head -1)
-            if [ -z "$STEP_FILE" ]; then
+            mapfile -t STEP_FILES < <(find "$TMPDIR" -maxdepth 1 -iname "*.step" | sort)
+            if [ ${#STEP_FILES[@]} -eq 0 ]; then
               echo "::error:: 🚨 No STEP file found inside zip for part: $NAME"
               exit 1
+            elif [ ${#STEP_FILES[@]} -eq 1 ]; then
+              mv "${STEP_FILES[0]}" "manufacturing/step/${NAME}.step"
+            else
+              echo "::notice:: ℹ️ Multiple STEP files found for part: $NAME (${#STEP_FILES[@]} files). Saving with numeric suffix."
+              for i in "${!STEP_FILES[@]}"; do
+                mv "${STEP_FILES[$i]}" "manufacturing/step/${NAME}-$((i+1)).step"
+              done
             fi
-            mv "$STEP_FILE" "manufacturing/step/${NAME}.step"
             rm -rf "$TMPDIR" "manufacturing/step/${NAME}.zip"
 
             INDEX=$((INDEX + 1))
@@ -270,12 +276,18 @@ jobs:
 
             TMPDIR="manufacturing/stl/${NAME}_tmp"
             unzip -o "manufacturing/stl/${NAME}.zip" -d "$TMPDIR"
-            STL_FILE=$(find "$TMPDIR" -maxdepth 1 -iname "*.stl" | head -1)
-            if [ -z "$STL_FILE" ]; then
+            mapfile -t STL_FILES < <(find "$TMPDIR" -maxdepth 1 -iname "*.stl" | sort)
+            if [ ${#STL_FILES[@]} -eq 0 ]; then
               echo "::error:: 🚨 No STL file found inside zip for part: $NAME"
               exit 1
+            elif [ ${#STL_FILES[@]} -eq 1 ]; then
+              mv "${STL_FILES[0]}" "manufacturing/stl/${NAME}.stl"
+            else
+              echo "::notice:: ℹ️ Multiple STL files found for part: $NAME (${#STL_FILES[@]} files). Saving with numeric suffix."
+              for i in "${!STL_FILES[@]}"; do
+                mv "${STL_FILES[$i]}" "manufacturing/stl/${NAME}-$((i+1)).stl"
+              done
             fi
-            mv "$STL_FILE" "manufacturing/stl/${NAME}.stl"
             rm -rf "$TMPDIR" "manufacturing/stl/${NAME}.zip"
 
             INDEX=$((INDEX + 1))
