@@ -7,7 +7,7 @@ parts:
 
   # common parts
   - part_number: ETZ-B11-TC       # Top cap
-  - part_number: ETZ-B11-LB       # Logic board PCB
+  - part_number: ETZ-B11-LGB      # Logic board PCB
 
   # side specific parts
   - part_number: ETZ-B11-LB       # Left base
