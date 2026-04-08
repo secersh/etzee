@@ -4,8 +4,15 @@
 # Only parts listed here will be exported.
 
 parts:
-  - part_number: ETZ-B11-LB       # Left base (common)
-  - part_number: ETZ-B11-TC       # Top cap (common)
-  # - part_number: ETZ-B11-SWL-5    # Switch layout, left half, 5 columns
-  # - part_number: ETZ-B11-TPL-5    # Top plate, left half, 5 columns
-  # - part_number: ETZ-B11-BL-N5    # Bottom case, left half, normal profile, 5 columns
+
+  # common parts
+  - part_number: ETZ-B11-TC       # Top cap
+  - part_number: ETZ-B11-LB       # Logic board PCB
+
+  # side specific parts
+  - part_number: ETZ-B11-LB       # Left base
+  - part_number: ETZ-B11-RB       # Right base
+  - part_number: ETZ-B11-LSP      # Left switch plate PCB
+  - part_number: ETZ-B11-RSP      # Right switch plate PCB
+  - part_number: ETZ-B11-LSC      # Left switch carrier PCB
+  - part_number: ETZ-B11-RSC      # Right switch carrier PCB
