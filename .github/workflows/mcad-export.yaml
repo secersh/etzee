@@ -102,66 +102,71 @@ jobs:
 
           mkdir -p manufacturing/step
 
-          JSON_BODY=$(jq -n \
-            --arg partIds "$PART_IDS" \
-            '{resolution:"FINE",storeInDocument:false,partIds:$partIds,formatName:"STEP",grouping:false,specifyUnits:true,unit:"MILLIMETER",scale:"1.0"}')
-
-          SUBMIT_RES=$(curl -s -X 'POST' \
-          "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations?configuration=$ENCODED_CONFIG" \
-          -H "Accept: application/json" \
-          -H "Authorization: Basic $AUTH" \
-          -H "Content-Type: application/json" \
-          -d "$JSON_BODY")
-
-          HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
-
-          if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
-            echo "::error:: 🚨 Failed to submit STEP export request."
-            exit 1
-          fi
-
-          echo "::notice:: 📥 Waiting for STEP files to be ready..."
-
-          ATTEMPTS=0
-          MAX_ATTEMPTS=60
-          while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
-            STATUS_RES=$(curl -s -X 'GET' "$HREF" \
-            -H "Accept: application/json" \
-            -H "Authorization: Basic $AUTH")
-
-            STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
-
-            echo "::notice:: Current status: $STATUS"
-
-            if [ -z "$STATUS" ]; then
-              echo "::error:: 🚨 Failed to retrieve STEP export status."
-              exit 1
-            fi
-
-            if [ "$STATUS" == "DONE" ]; then
-              echo "::notice:: ✅ STEP files are ready."
-              FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[]')
-              break
-            elif [ "$STATUS" == "FAILED" ]; then
-              echo "::error:: 🚨 STEP export failed."
-              exit 1
-            else
-              echo "::notice:: ⏳ STEP files are still being processed..."
-              sleep 5
-            fi
-
-            ATTEMPTS=$((ATTEMPTS + 1))
-          done
-
-          if [ $ATTEMPTS -ge $MAX_ATTEMPTS ]; then
-            echo "::error:: 🚨 STEP export timed out after $((MAX_ATTEMPTS * 5)) seconds."
-            exit 1
-          fi
-
           IFS=',' read -ra NAMES <<< "$PART_NAMES"
-          INDEX=0
-          for FID in $FIDS; do
-            NAME="${NAMES[$INDEX]}"
+          IFS=',' read -ra IDS <<< "$PART_IDS"
+
+          for i in "${!NAMES[@]}"; do
+            NAME="${NAMES[$i]}"
+            PID="${IDS[$i]}"
+
+            echo "::notice:: 📤 Submitting STEP export for part: $NAME (id: $PID)..."
+
+            JSON_BODY=$(jq -n \
+              --arg partIds "$PID" \
+              '{resolution:"FINE",storeInDocument:false,partIds:$partIds,formatName:"STEP",grouping:false,specifyUnits:true,unit:"MILLIMETER",scale:"1.0"}')
+
+            SUBMIT_RES=$(curl -s -X 'POST' \
+            "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations?configuration=$ENCODED_CONFIG" \
+            -H "Accept: application/json" \
+            -H "Authorization: Basic $AUTH" \
+            -H "Content-Type: application/json" \
+            -d "$JSON_BODY")
+
+            HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
+
+            if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
+              echo "::error:: 🚨 Failed to submit STEP export request for part: $NAME"
+              exit 1
+            fi
+
+            echo "::notice:: 📥 Waiting for STEP file to be ready for part: $NAME..."
+
+            ATTEMPTS=0
+            MAX_ATTEMPTS=60
+            while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
+              STATUS_RES=$(curl -s -X 'GET' "$HREF" \
+              -H "Accept: application/json" \
+              -H "Authorization: Basic $AUTH")
+
+              STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
+
+              echo "::notice:: Current status: $STATUS"
+
+              if [ -z "$STATUS" ]; then
+                echo "::error:: 🚨 Failed to retrieve STEP export status for part: $NAME"
+                exit 1
+              fi
+
+              if [ "$STATUS" == "DONE" ]; then
+                echo "::notice:: ✅ STEP file ready for part: $NAME"
+                FID=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[0]')
+                break
+              elif [ "$STATUS" == "FAILED" ]; then
+                echo "::error:: 🚨 STEP export failed for part: $NAME"
+                exit 1
+              else
+                echo "::notice:: ⏳ STEP file still being processed..."
+                sleep 5
+              fi
+
+              ATTEMPTS=$((ATTEMPTS + 1))
+            done
+
+            if [ $ATTEMPTS -ge $MAX_ATTEMPTS ]; then
+              echo "::error:: 🚨 STEP export timed out for part: $NAME"
+              exit 1
+            fi
+
             echo "::notice:: 📥 Downloading STEP file with ID: $FID (part: $NAME)"
             curl -s -X 'GET' \
             "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
@@ -170,24 +175,19 @@ jobs:
             -o "manufacturing/step/${NAME}.zip"
 
             if [ $? -ne 0 ]; then
-              echo "::error:: 🚨 Failed to download STEP file with ID: $FID"
+              echo "::error:: 🚨 Failed to download STEP file for part: $NAME"
               exit 1
             fi
 
             TMPDIR="manufacturing/step/${NAME}_tmp"
             unzip -o "manufacturing/step/${NAME}.zip" -d "$TMPDIR"
-            mapfile -t STEP_FILES < <(find "$TMPDIR" -maxdepth 1 -iname "*.step")
-            if [ ${#STEP_FILES[@]} -eq 0 ]; then
+            STEP_FILE=$(find "$TMPDIR" -maxdepth 1 -iname "*.step" | head -1)
+            if [ -z "$STEP_FILE" ]; then
               echo "::error:: 🚨 No STEP file found inside zip for part: $NAME"
               exit 1
-            elif [ ${#STEP_FILES[@]} -gt 1 ]; then
-              echo "::error:: 🚨 Multiple STEP files found inside zip for part: $NAME"
-              exit 1
             fi
-            mv "${STEP_FILES[0]}" "manufacturing/step/${NAME}.step"
+            mv "$STEP_FILE" "manufacturing/step/${NAME}.step"
             rm -rf "$TMPDIR" "manufacturing/step/${NAME}.zip"
-
-            INDEX=$((INDEX + 1))
           done
 
       - name: Export STL files
@@ -199,66 +199,71 @@ jobs:
 
           mkdir -p manufacturing/stl
 
-          JSON_BODY=$(jq -n \
-            --arg partIds "$PART_IDS" \
-            '{storeInDocument:false,partIds:$partIds,formatName:"STL",grouping:false,specifyUnits:true,unit:"MILLIMETER",scale:"1.0",angularTolerance:0.05,chordTolerance:0.01}')
-
-          SUBMIT_RES=$(curl -s -X 'POST' \
-          "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations?configuration=$ENCODED_CONFIG" \
-          -H "Accept: application/json" \
-          -H "Authorization: Basic $AUTH" \
-          -H "Content-Type: application/json" \
-          -d "$JSON_BODY")
-
-          HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
-
-          if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
-            echo "::error:: 🚨 Failed to submit STL export request."
-            exit 1
-          fi
-
-          echo "::notice:: 📥 Waiting for STL files to be ready..."
-
-          ATTEMPTS=0
-          MAX_ATTEMPTS=60
-          while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
-            STATUS_RES=$(curl -s -X 'GET' "$HREF" \
-            -H "Accept: application/json" \
-            -H "Authorization: Basic $AUTH")
-
-            STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
-
-            echo "::notice:: Current status: $STATUS"
-
-            if [ -z "$STATUS" ]; then
-              echo "::error:: 🚨 Failed to retrieve STL export status."
-              exit 1
-            fi
-
-            if [ "$STATUS" == "DONE" ]; then
-              echo "::notice:: ✅ STL files are ready."
-              FIDS=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[]')
-              break
-            elif [ "$STATUS" == "FAILED" ]; then
-              echo "::error:: 🚨 STL export failed."
-              exit 1
-            else
-              echo "::notice:: ⏳ STL files are still being processed..."
-              sleep 5
-            fi
-
-            ATTEMPTS=$((ATTEMPTS + 1))
-          done
-
-          if [ $ATTEMPTS -ge $MAX_ATTEMPTS ]; then
-            echo "::error:: 🚨 STL export timed out after $((MAX_ATTEMPTS * 5)) seconds."
-            exit 1
-          fi
-
           IFS=',' read -ra NAMES <<< "$PART_NAMES"
-          INDEX=0
-          for FID in $FIDS; do
-            NAME="${NAMES[$INDEX]}"
+          IFS=',' read -ra IDS <<< "$PART_IDS"
+
+          for i in "${!NAMES[@]}"; do
+            NAME="${NAMES[$i]}"
+            PID="${IDS[$i]}"
+
+            echo "::notice:: 📤 Submitting STL export for part: $NAME (id: $PID)..."
+
+            JSON_BODY=$(jq -n \
+              --arg partIds "$PID" \
+              '{storeInDocument:false,partIds:$partIds,formatName:"STL",grouping:false,specifyUnits:true,unit:"MILLIMETER",scale:"1.0",angularTolerance:0.05,chordTolerance:0.01}')
+
+            SUBMIT_RES=$(curl -s -X 'POST' \
+            "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations?configuration=$ENCODED_CONFIG" \
+            -H "Accept: application/json" \
+            -H "Authorization: Basic $AUTH" \
+            -H "Content-Type: application/json" \
+            -d "$JSON_BODY")
+
+            HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
+
+            if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
+              echo "::error:: 🚨 Failed to submit STL export request for part: $NAME"
+              exit 1
+            fi
+
+            echo "::notice:: 📥 Waiting for STL file to be ready for part: $NAME..."
+
+            ATTEMPTS=0
+            MAX_ATTEMPTS=60
+            while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
+              STATUS_RES=$(curl -s -X 'GET' "$HREF" \
+              -H "Accept: application/json" \
+              -H "Authorization: Basic $AUTH")
+
+              STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
+
+              echo "::notice:: Current status: $STATUS"
+
+              if [ -z "$STATUS" ]; then
+                echo "::error:: 🚨 Failed to retrieve STL export status for part: $NAME"
+                exit 1
+              fi
+
+              if [ "$STATUS" == "DONE" ]; then
+                echo "::notice:: ✅ STL file ready for part: $NAME"
+                FID=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[0]')
+                break
+              elif [ "$STATUS" == "FAILED" ]; then
+                echo "::error:: 🚨 STL export failed for part: $NAME"
+                exit 1
+              else
+                echo "::notice:: ⏳ STL file still being processed..."
+                sleep 5
+              fi
+
+              ATTEMPTS=$((ATTEMPTS + 1))
+            done
+
+            if [ $ATTEMPTS -ge $MAX_ATTEMPTS ]; then
+              echo "::error:: 🚨 STL export timed out for part: $NAME"
+              exit 1
+            fi
+
             echo "::notice:: 📥 Downloading STL file with ID: $FID (part: $NAME)"
             curl -s -X 'GET' \
             "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
@@ -267,24 +272,19 @@ jobs:
             -o "manufacturing/stl/${NAME}.zip"
 
             if [ $? -ne 0 ]; then
-              echo "::error:: 🚨 Failed to download STL file with ID: $FID"
+              echo "::error:: 🚨 Failed to download STL file for part: $NAME"
               exit 1
             fi
 
             TMPDIR="manufacturing/stl/${NAME}_tmp"
             unzip -o "manufacturing/stl/${NAME}.zip" -d "$TMPDIR"
-            mapfile -t STL_FILES < <(find "$TMPDIR" -maxdepth 1 -iname "*.stl")
-            if [ ${#STL_FILES[@]} -eq 0 ]; then
+            STL_FILE=$(find "$TMPDIR" -maxdepth 1 -iname "*.stl" | head -1)
+            if [ -z "$STL_FILE" ]; then
               echo "::error:: 🚨 No STL file found inside zip for part: $NAME"
               exit 1
-            elif [ ${#STL_FILES[@]} -gt 1 ]; then
-              echo "::error:: 🚨 Multiple STL files found inside zip for part: $NAME"
-              exit 1
             fi
-            mv "${STL_FILES[0]}" "manufacturing/stl/${NAME}.stl"
+            mv "$STL_FILE" "manufacturing/stl/${NAME}.stl"
             rm -rf "$TMPDIR" "manufacturing/stl/${NAME}.zip"
-
-            INDEX=$((INDEX + 1))
           done
 
       - name: Upload STEP artifact

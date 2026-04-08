@@ -14,16 +14,16 @@ jobs:
         include:
           # List_xrEfmODFsfiBE6: switch profile parameter ID in the B11 OnShape part studio
           # List_kw1ECqDsNAkjBg: number of columns parameter ID in the B11 OnShape part studio
-          - profile: normal
+          - profile: Normal
             columns: 5
             onshape_configuration: "List_xrEfmODFsfiBE6=Default,List_kw1ECqDsNAkjBg=Default"
-          - profile: normal
+          - profile: Normal
             columns: 6
             onshape_configuration: "List_xrEfmODFsfiBE6=Default,List_kw1ECqDsNAkjBg=_6"
-          - profile: low
+          - profile: Low
             columns: 5
             onshape_configuration: "List_xrEfmODFsfiBE6=Low_profile,List_kw1ECqDsNAkjBg=Default"
-          - profile: low
+          - profile: Low
             columns: 6
             onshape_configuration: "List_xrEfmODFsfiBE6=Low_profile,List_kw1ECqDsNAkjBg=_6"
     uses: ./.github/workflows/mcad-export.yaml
