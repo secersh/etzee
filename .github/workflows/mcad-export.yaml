@@ -179,7 +179,7 @@ jobs:
 
           JSON_BODY=$(jq -n \
             --arg partIds "$PART_IDS" \
-            '{resolution:"FINE",storeInDocument:false,partIds:$partIds,formatName:"STL",grouping:false,specifyUnits:true,unit:"MILLIMETER",scale:"1.0"}')
+            '{storeInDocument:false,partIds:$partIds,formatName:"STL",grouping:false,specifyUnits:true,unit:"MILLIMETER",scale:"1.0",angularTolerance:0.1,chordTolerance:0.05}')
 
           SUBMIT_RES=$(curl -s -X 'POST' \
           "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations?configuration=$ENCODED_CONFIG" \
