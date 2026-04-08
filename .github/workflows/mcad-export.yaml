@@ -68,7 +68,7 @@ jobs:
           -H "Accept: application/json" \
           -H "Authorization: Basic $AUTH")
 
-          PART_IDS=$(ONSHAPE_PARTS_JSON="$ONSHAPE_PARTS" PART_NUMBERS_LIST="$PART_NUMBERS" python3 -c "
+          PART_RESOLUTION=$(ONSHAPE_PARTS_JSON="$ONSHAPE_PARTS" PART_NUMBERS_LIST="$PART_NUMBERS" python3 -c "
           import json, sys, os
           parts = json.loads(os.environ['ONSHAPE_PARTS_JSON'])
           part_numbers = os.environ['PART_NUMBERS_LIST'].strip().splitlines()
@@ -79,6 +79,7 @@ jobs:
                   print(f'Part number not found in OnShape: {n}', file=sys.stderr)
               sys.exit(1)
           print(','.join(id_map[n] for n in part_numbers))
+          print(','.join(part_numbers))
           ")
 
           if [ $? -ne 0 ]; then
@@ -86,11 +87,16 @@ jobs:
             exit 1
           fi
 
+          PART_IDS=$(echo "$PART_RESOLUTION" | sed -n '1p')
+          PART_NAMES=$(echo "$PART_RESOLUTION" | sed -n '2p')
+
           echo "part_ids=$PART_IDS" >> $GITHUB_OUTPUT
+          echo "part_names=$PART_NAMES" >> $GITHUB_OUTPUT
 
       - name: Export STEP files
         env:
           PART_IDS: ${{ steps.read_parts.outputs.part_ids }}
+          PART_NAMES: ${{ steps.read_parts.outputs.part_names }}
         run: |
           echo "::notice:: 📐 Exporting STEP files from OnShape (${{ inputs.artifact_suffix }})..."
 
@@ -152,14 +158,16 @@ jobs:
             exit 1
           fi
 
+          IFS=',' read -ra NAMES <<< "$PART_NAMES"
           INDEX=0
           for FID in $FIDS; do
-            echo "::notice:: 📥 Downloading STEP file with ID: $FID"
+            NAME="${NAMES[$INDEX]}"
+            echo "::notice:: 📥 Downloading STEP file with ID: $FID (part: $NAME)"
             curl -s -X 'GET' \
             "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
             -H "Accept: application/octet-stream" \
             -H "Authorization: Basic $AUTH" \
-            -o "manufacturing/step/step-${{ inputs.artifact_suffix }}-${INDEX}.zip"
+            -o "manufacturing/step/${NAME}.zip"
 
             if [ $? -ne 0 ]; then
               echo "::error:: 🚨 Failed to download STEP file with ID: $FID"
@@ -172,6 +180,7 @@ jobs:
       - name: Export STL files
         env:
           PART_IDS: ${{ steps.read_parts.outputs.part_ids }}
+          PART_NAMES: ${{ steps.read_parts.outputs.part_names }}
         run: |
           echo "::notice:: 🖨️ Exporting STL files from OnShape (${{ inputs.artifact_suffix }})..."
 
@@ -179,7 +188,7 @@ jobs:
 
           JSON_BODY=$(jq -n \
             --arg partIds "$PART_IDS" \
-            '{storeInDocument:false,partIds:$partIds,formatName:"STL",grouping:false,specifyUnits:true,unit:"MILLIMETER",scale:"1.0",angularTolerance:0.1,chordTolerance:0.05}')
+            '{storeInDocument:false,partIds:$partIds,formatName:"STL",grouping:false,specifyUnits:true,unit:"MILLIMETER",scale:"1.0",angularTolerance:0.05,chordTolerance:0.01}')
 
           SUBMIT_RES=$(curl -s -X 'POST' \
           "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations?configuration=$ENCODED_CONFIG" \
@@ -233,14 +242,16 @@ jobs:
             exit 1
           fi
 
+          IFS=',' read -ra NAMES <<< "$PART_NAMES"
           INDEX=0
           for FID in $FIDS; do
-            echo "::notice:: 📥 Downloading STL file with ID: $FID"
+            NAME="${NAMES[$INDEX]}"
+            echo "::notice:: 📥 Downloading STL file with ID: $FID (part: $NAME)"
             curl -s -X 'GET' \
             "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
             -H "Accept: application/octet-stream" \
             -H "Authorization: Basic $AUTH" \
-            -o "manufacturing/stl/stl-${{ inputs.artifact_suffix }}-${INDEX}.zip"
+            -o "manufacturing/stl/${NAME}.zip"
 
             if [ $? -ne 0 ]; then
               echo "::error:: 🚨 Failed to download STL file with ID: $FID"
