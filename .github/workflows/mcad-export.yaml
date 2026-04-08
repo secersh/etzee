@@ -176,15 +176,12 @@ jobs:
 
             TMPDIR="manufacturing/step/${NAME}_tmp"
             unzip -o "manufacturing/step/${NAME}.zip" -d "$TMPDIR"
-            mapfile -t STEP_FILES < <(find "$TMPDIR" -maxdepth 1 -iname "*.step")
-            if [ ${#STEP_FILES[@]} -eq 0 ]; then
+            STEP_FILE=$(find "$TMPDIR" -maxdepth 1 -iname "*.step" | head -1)
+            if [ -z "$STEP_FILE" ]; then
               echo "::error:: 🚨 No STEP file found inside zip for part: $NAME"
               exit 1
-            elif [ ${#STEP_FILES[@]} -gt 1 ]; then
-              echo "::error:: 🚨 Multiple STEP files found inside zip for part: $NAME"
-              exit 1
             fi
-            mv "${STEP_FILES[0]}" "manufacturing/step/${NAME}.step"
+            mv "$STEP_FILE" "manufacturing/step/${NAME}.step"
             rm -rf "$TMPDIR" "manufacturing/step/${NAME}.zip"
 
             INDEX=$((INDEX + 1))
@@ -273,15 +270,12 @@ jobs:
 
             TMPDIR="manufacturing/stl/${NAME}_tmp"
             unzip -o "manufacturing/stl/${NAME}.zip" -d "$TMPDIR"
-            mapfile -t STL_FILES < <(find "$TMPDIR" -maxdepth 1 -iname "*.stl")
-            if [ ${#STL_FILES[@]} -eq 0 ]; then
+            STL_FILE=$(find "$TMPDIR" -maxdepth 1 -iname "*.stl" | head -1)
+            if [ -z "$STL_FILE" ]; then
               echo "::error:: 🚨 No STL file found inside zip for part: $NAME"
               exit 1
-            elif [ ${#STL_FILES[@]} -gt 1 ]; then
-              echo "::error:: 🚨 Multiple STL files found inside zip for part: $NAME"
-              exit 1
             fi
-            mv "${STL_FILES[0]}" "manufacturing/stl/${NAME}.stl"
+            mv "$STL_FILE" "manufacturing/stl/${NAME}.stl"
             rm -rf "$TMPDIR" "manufacturing/stl/${NAME}.zip"
 
             INDEX=$((INDEX + 1))
