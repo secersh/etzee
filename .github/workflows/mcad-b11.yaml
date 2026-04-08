@@ -47,12 +47,11 @@ jobs:
           path: release-assets
           merge-multiple: false
 
-      - name: Rename assets to include artifact prefix
+      - name: Package artifacts into collection zips
         run: |
-          for f in release-assets/**/*.zip; do
-            dir=$(basename "$(dirname "$f")")
-            name=$(basename "$f")
-            mv "$f" "$(dirname "$f")/${dir}-${name}"
+          for dir in release-assets/mcad-*/; do
+            name=$(basename "$dir")
+            (cd "$dir" && zip -r "../${name}.zip" .)
           done
 
       - name: Create GitHub Release
@@ -64,4 +63,4 @@ jobs:
           gh release create "$TAG" \
             --title "MCAD B11 Export – run #${{ github.run_number }}" \
             --notes "Automated MCAD export of B11 STEP and STL files (run #${{ github.run_number }}, commit \`${{ github.sha }}\`)." \
-            release-assets/**/*.zip
+            release-assets/*.zip
