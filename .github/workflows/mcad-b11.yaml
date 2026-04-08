@@ -32,3 +32,28 @@ jobs:
       onshape_configuration: ${{ matrix.onshape_configuration }}
       artifact_suffix: b11-${{ matrix.profile }}-${{ matrix.columns }}col
     secrets: inherit
+
+  release:
+    name: 🚀 Create Release
+    needs: export-mcad
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download all MCAD artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: mcad-*
+          path: release-assets
+          merge-multiple: false
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          TAG="mcad-b11-$(date -u +'%Y%m%d%H%M%S')-${{ github.run_number }}"
+          gh release create "$TAG" \
+            --title "MCAD B11 Export – run #${{ github.run_number }}" \
+            --notes "Automated MCAD export of B11 STEP and STL files (run #${{ github.run_number }}, commit \`${{ github.sha }}\`)." \
+            release-assets/**/*.zip
