@@ -1,0 +1,5 @@
+board:
+  name: etzee_b11
+  vendor: etzee
+  socs:
+    - name: nrf52840
