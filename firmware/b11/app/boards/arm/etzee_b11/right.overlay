@@ -4,7 +4,7 @@
         status = "okay";
         role = "terminal";
         uart = <&uart0>;
-        node-id = "etzee-101-right";
+        node-id = "etzee-b11-right";
     };
 };
 
