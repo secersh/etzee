@@ -56,11 +56,11 @@ jobs:
       - name: Upload left firmware
         uses: actions/upload-artifact@v4
         with:
-          name: etzee_b11-left
+          name: etzee_b11_left
           path: firmware/b11/zmk/app/build/left/zephyr/zmk.uf2
 
       - name: Upload right firmware
         uses: actions/upload-artifact@v4
         with:
-          name: etzee_b11-right
+          name: etzee_b11_right
           path: firmware/b11/zmk/app/build/right/zephyr/zmk.uf2

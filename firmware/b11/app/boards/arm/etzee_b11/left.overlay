@@ -5,7 +5,7 @@
         role = "origin";
         uart = <&uart0>;
         dr-gpios = <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
-        node-id = "etzee-101-left";
+        node-id = "etzee-b11-left";
     };
 };
 
