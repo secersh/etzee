@@ -19,7 +19,7 @@ jobs:
 
       - name: Clone ZMK
         run: | 
-          git clone https://github.com/zmkfirmware/zmk.git firmware/b11/zmk
+          git clone --branch v0.3-branch --depth 1 https://github.com/zmkfirmware/zmk.git firmware/b11/zmk
           cp -r firmware/b11/app firmware/b11/zmk
 
       - name: Add vendor prefix
@@ -37,20 +37,30 @@ jobs:
         working-directory: firmware/b11/zmk
         run: west zephyr-export
 
-      - name: Build firmware (west build)
+      - name: Build left side
         working-directory: firmware/b11/zmk/app
         run: |
-          echo "::notice:: Building firmware for ${{ github.event_name }}."
-
-          west build -b etzee_b11 -- \
+          west build -d build/left -b etzee_b11 -- \
           -DEXTRA_CONF_FILE=boards/arm/etzee_b11/left.conf \
           -DEXTRA_DTC_OVERLAY_FILE=boards/arm/etzee_b11/left.overlay \
           -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
-      - name: Upload firmware
+      - name: Build right side
+        working-directory: firmware/b11/zmk/app
+        run: |
+          west build -d build/right -b etzee_b11 -- \
+          -DEXTRA_CONF_FILE=boards/arm/etzee_b11/right.conf \
+          -DEXTRA_DTC_OVERLAY_FILE=boards/arm/etzee_b11/right.overlay \
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+      - name: Upload left firmware
         uses: actions/upload-artifact@v4
         with:
-          name: firmware-output
-          path: |
-            firmware/b11/zmk/app/build/zephyr/*.uf2 \
-            firmware/b11/zmk/app/build/compile_commands.json
+          name: etzee_b11-left
+          path: firmware/b11/zmk/app/build/left/zephyr/zmk.uf2
+
+      - name: Upload right firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: etzee_b11-right
+          path: firmware/b11/zmk/app/build/right/zephyr/zmk.uf2
