@@ -19,32 +19,32 @@ jobs:
 
       - name: Clone ZMK
         run: | 
-          git clone https://github.com/zmkfirmware/zmk.git firmware/ws-1/zmk
-          cp -r firmware/ws-1/app firmware/ws-1/zmk
+          git clone https://github.com/zmkfirmware/zmk.git firmware/b11/zmk
+          cp -r firmware/b11/app firmware/b11/zmk
 
       - name: Add vendor prefix
-        run: echo "etzee  etzee" >> firmware/ws-1/zmk/app/dts/bindings/vendor-prefixes.yaml
+        run: echo "etzee  etzee" >> firmware/b11/zmk/app/dts/bindings/vendor-prefixes.yaml
 
       - name: Initialize workspace (west init)
-        working-directory: firmware/ws-1/zmk
+        working-directory: firmware/b11/zmk
         run: west init -l app
 
       - name: Update modules (west update)
-        working-directory: firmware/ws-1/zmk
+        working-directory: firmware/b11/zmk
         run: west update
 
       - name: Export Zephyr CMake package (west zephyr-export)
-        working-directory: firmware/ws-1/zmk
+        working-directory: firmware/b11/zmk
         run: west zephyr-export
 
       - name: Build firmware (west build)
-        working-directory: firmware/ws-1/zmk/app
+        working-directory: firmware/b11/zmk/app
         run: |
           echo "::notice:: Building firmware for ${{ github.event_name }}."
 
-          west build -b etzee_101 -- \
-          -DEXTRA_CONF_FILE=boards/arm/etzee_101/left.conf \
-          -DEXTRA_DTC_OVERLAY_FILE=boards/arm/etzee_101/left.overlay \
+          west build -b etzee_b11 -- \
+          -DEXTRA_CONF_FILE=boards/arm/etzee_b11/left.conf \
+          -DEXTRA_DTC_OVERLAY_FILE=boards/arm/etzee_b11/left.overlay \
           -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
       - name: Upload firmware
@@ -52,5 +52,5 @@ jobs:
         with:
           name: firmware-output
           path: |
-            firmware/ws-1/zmk/app/build/zephyr/*.uf2 \
-            firmware/ws-1/zmk/app/build/compile_commands.json
+            firmware/b11/zmk/app/build/zephyr/*.uf2 \
+            firmware/b11/zmk/app/build/compile_commands.json
