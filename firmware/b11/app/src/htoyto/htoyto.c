@@ -33,25 +33,14 @@ htoyto_status_t htoyto_send_tlk(const char *target_node, const char *payload) {
     return HTOYTO_STATUS_ERROR;
 }
 
-static void htoyto_emit_event(enum htoyto_event_type type, const char *source, const char *target, const char *payload) {
-    struct htoyto_event event = {
-        .type = type,
-        .source_node = source,
-        .target_node = target,
-        .payload = payload,
-    };
-    raise_htoyto_event(event);
-}
-
 static void dr_line_callback(const struct device *dev, struct gpio_callback *cb, uint32_t pins) {
     if (!node_connected) {
         LOG_INF("dR line rising edge detected, starting handshake");
         uart_poll_out(uart_dev, 'H'); // TODO: replace with HLO frame
-        // begin handshake timer
     } else {
         LOG_INF("dR line falling edge detected, node disconnected");
         node_connected = false;
-        htoyto_emit_event(HTOYTO_EVENT_NODE_REMOVED, "self", NULL, NULL);
+        htoyto_emit_node_removed(DT_PROP(HTY_NODE, node_id));
     }
 }
 

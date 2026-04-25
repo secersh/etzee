@@ -19,3 +19,10 @@ struct htoyto_event {
 };
 
 ZMK_EVENT_DECLARE(htoyto_event);
+
+void htoyto_emit_node_added(const char *source);
+void htoyto_emit_node_rejected(const char *source, const char *reason);
+void htoyto_emit_node_removed(const char *source);
+void htoyto_emit_tlk_received(const char *source, const char *target, const char *payload);
+void htoyto_emit_ack_received(const char *source);
+void htoyto_emit_ack_timed_out(const char *target);
