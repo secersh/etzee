@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdio.h>
 #include <string.h>
 
 #include <zephyr/kernel.h>
@@ -14,23 +15,133 @@ LOG_MODULE_REGISTER(htoyto, CONFIG_ZMK_LOG_LEVEL);
 
 #define HTY_NODE     DT_NODELABEL(htoyto0)
 #define HTY_ROLE_IDX DT_ENUM_IDX(HTY_NODE, role)
+#define HTY_BUF_SIZE (CONFIG_HTOYTO_MAX_NODE_ID_LENGTH * 3 + 16)
 
 typedef enum {
     HTOYTO_STATE_IDLE,
-    HTOYTO_STATE_HLO_SENT,      // origin: waiting for IAM
+    HTOYTO_STATE_HLO_SENT,      // origin: sent HLO, waiting for IAM
     HTOYTO_STATE_IAM_RECEIVED,  // origin: received IAM, sent EST, waiting for EST echo
     HTOYTO_STATE_EST_SENT,      // terminal: sent IAM, waiting for EST from origin
     HTOYTO_STATE_CONNECTED,
 } htoyto_state_t;
 
-static const struct device *uart_dev;
+static const struct device    *uart_dev;
 static struct k_work_delayable handshake_timeout_work;
-static htoyto_state_t state    = HTOYTO_STATE_IDLE;
-static bool node_connected     = false;
+static struct k_work           rx_process_work;
+static htoyto_state_t          state         = HTOYTO_STATE_IDLE;
+static bool                    node_connected = false;
+
+// RX accumulation (ISR context) → frame_buf (workqueue context)
+// TODO: replace frame_buf with a ring buffer to handle back-to-back frames
+static char rx_buf[HTY_BUF_SIZE];
+static int  rx_pos = 0;
+static char frame_buf[HTY_BUF_SIZE];
 
 static void uart_send(const char *str) {
     while (*str) {
         uart_poll_out(uart_dev, *str++);
+    }
+}
+
+static void process_frame(const char *line) {
+    if (strncmp(line, "HLO ", 4) == 0) {
+        if (state != HTOYTO_STATE_IDLE) {
+            LOG_WRN("HLO unexpected in state %d", state);
+            return;
+        }
+        LOG_INF("HLO from %s, sending IAM", line + 4);
+        uart_send("IAM " DT_PROP(HTY_NODE, node_id) "\n");
+        state = HTOYTO_STATE_EST_SENT;
+        k_work_reschedule(&handshake_timeout_work,
+                          K_MSEC(CONFIG_HTOYTO_HANDSHAKE_TIMEOUT_MS));
+
+    } else if (strncmp(line, "IAM ", 4) == 0) {
+        if (state != HTOYTO_STATE_HLO_SENT) {
+            LOG_WRN("IAM unexpected in state %d", state);
+            return;
+        }
+        LOG_INF("IAM from %s, sending EST", line + 4);
+        uart_send("EST " DT_PROP(HTY_NODE, node_id) "\n");
+        state = HTOYTO_STATE_IAM_RECEIVED;
+        k_work_reschedule(&handshake_timeout_work,
+                          K_MSEC(CONFIG_HTOYTO_HANDSHAKE_TIMEOUT_MS));
+
+    } else if (strncmp(line, "EST ", 4) == 0) {
+        if (state == HTOYTO_STATE_IAM_RECEIVED) {
+            LOG_INF("EST from %s — connected (origin)", line + 4);
+            k_work_cancel_delayable(&handshake_timeout_work);
+            node_connected = true;
+            state = HTOYTO_STATE_CONNECTED;
+            htoyto_emit_node_added(DT_PROP(HTY_NODE, node_id));
+        } else if (state == HTOYTO_STATE_EST_SENT) {
+            LOG_INF("EST from %s — echoing EST, connected (terminal)", line + 4);
+            uart_send("EST " DT_PROP(HTY_NODE, node_id) "\n");
+            k_work_cancel_delayable(&handshake_timeout_work);
+            node_connected = true;
+            state = HTOYTO_STATE_CONNECTED;
+            htoyto_emit_node_added(DT_PROP(HTY_NODE, node_id));
+        } else {
+            LOG_WRN("EST unexpected in state %d", state);
+        }
+
+    } else if (strncmp(line, "DKW ", 4) == 0) {
+        LOG_WRN("DKW (rejected): %s", line + 4);
+        k_work_cancel_delayable(&handshake_timeout_work);
+        state = HTOYTO_STATE_IDLE;
+        htoyto_emit_node_rejected(DT_PROP(HTY_NODE, node_id), line + 4);
+
+    } else if (strncmp(line, "TLK ", 4) == 0) {
+        if (state != HTOYTO_STATE_CONNECTED) {
+            LOG_WRN("TLK while not connected");
+            return;
+        }
+        // format: TLK <source>,<target>,<payload>
+        char *src = (char *)(line + 4);
+        char *tgt = strchr(src, ',');
+        char *pay = tgt ? strchr(tgt + 1, ',') : NULL;
+        if (!tgt || !pay) {
+            LOG_WRN("malformed TLK: %s", line);
+            return;
+        }
+        *tgt++ = '\0';
+        *pay++ = '\0';
+        htoyto_emit_tlk_received(src, tgt, pay);
+
+    } else if (strncmp(line, "ACK ", 4) == 0) {
+        if (state == HTOYTO_STATE_CONNECTED) {
+            LOG_DBG("ACK: %s", line + 4);
+            htoyto_emit_ack_received(DT_PROP(HTY_NODE, node_id));
+        }
+
+    } else {
+        LOG_WRN("unknown frame: %s", line);
+    }
+}
+
+static void rx_process_handler(struct k_work *work) {
+    process_frame(frame_buf);
+}
+
+static void uart_rx_handler(const struct device *dev, void *user_data) {
+    if (!uart_irq_update(dev)) return;
+    if (!uart_irq_rx_ready(dev)) return;
+
+    uint8_t c;
+    while (uart_fifo_read(dev, &c, 1) == 1) {
+        if (c == '\n' || c == '\r') {
+            if (rx_pos > 0) {
+                rx_buf[rx_pos] = '\0';
+                strncpy(frame_buf, rx_buf, HTY_BUF_SIZE - 1);
+                frame_buf[HTY_BUF_SIZE - 1] = '\0';
+                rx_pos = 0;
+                k_work_submit(&rx_process_work);
+            }
+        } else if (rx_pos < HTY_BUF_SIZE - 1) {
+            rx_buf[rx_pos++] = c;
+        } else {
+            LOG_WRN("RX overflow, dropping frame");
+            rx_pos = 0;
+        }
     }
 }
 
@@ -45,8 +156,8 @@ static void handshake_timeout_handler(struct k_work *work) {
 BUILD_ASSERT(DT_NODE_HAS_PROP(HTY_NODE, dr_gpios),
     "htoyto: origin and bridge nodes must define dr-gpios");
 
-static const struct device *dr_gpio_dev;
-static struct gpio_callback   dr_cb_data;
+static const struct device    *dr_gpio_dev;
+static struct gpio_callback    dr_cb_data;
 static struct k_work_delayable dr_debounce_work;
 
 static void dr_debounce_handler(struct k_work *work) {
@@ -54,7 +165,6 @@ static void dr_debounce_handler(struct k_work *work) {
 
     if (val > 0 && !node_connected) {
         LOG_INF("dR rising — sending HLO");
-        // TODO: build framed HLO packet
         uart_send("HLO " DT_PROP(HTY_NODE, node_id) "\n");
         state = HTOYTO_STATE_HLO_SENT;
         k_work_reschedule(&handshake_timeout_work,
@@ -75,11 +185,6 @@ static void dr_line_callback(const struct device *dev, struct gpio_callback *cb,
 
 #endif /* origin or bridge */
 
-static void uart_rx_handler(const struct device *dev, void *user_data) {
-    // TODO: read incoming bytes into a line buffer, parse frame type (IAM/EST/DKW/TLK/ACK)
-    // and advance the state machine or dispatch to htoyto_emit_* accordingly
-}
-
 // Public API
 
 htoyto_role_t htoyto_get_role(void) {
@@ -96,8 +201,17 @@ htoyto_status_t htoyto_send_tlk(const char *target_node, const char *payload) {
     if (!node_connected) {
         return HTOYTO_STATUS_ERROR;
     }
-    // TODO: frame TLK packet, write to UART, arm ACK timeout, return result
-    return HTOYTO_STATUS_ERROR;
+    char frame[HTY_BUF_SIZE];
+    int n = snprintf(frame, sizeof(frame), "TLK %s,%s,%s\n",
+                     DT_PROP(HTY_NODE, node_id),
+                     target_node ? target_node : "*",
+                     payload);
+    if (n >= (int)sizeof(frame)) {
+        return HTOYTO_STATUS_ERROR;
+    }
+    uart_send(frame);
+    // TODO: arm ACK timeout work, block or return TIMEOUT if no ACK received
+    return HTOYTO_STATUS_OK;
 }
 
 // Init
@@ -109,9 +223,11 @@ int htoyto_init(void) {
         return -ENODEV;
     }
 
+    k_work_init(&rx_process_work, rx_process_handler);
     k_work_init_delayable(&handshake_timeout_work, handshake_timeout_handler);
 
-    // TODO: register uart_rx_handler via uart_irq_callback_set + uart_irq_rx_enable
+    uart_irq_callback_set(uart_dev, uart_rx_handler);
+    uart_irq_rx_enable(uart_dev);
 
 #if HTY_ROLE_IDX == 0 || HTY_ROLE_IDX == 1 /* origin or bridge */
     k_work_init_delayable(&dr_debounce_work, dr_debounce_handler);
