@@ -23,9 +23,6 @@ typedef enum {
 } htoyto_state_t;
 
 static const struct device *uart_dev;
-static const struct device *dr_gpio_dev;
-static struct gpio_callback   dr_cb_data;
-static struct k_work_delayable dr_debounce_work;
 static struct k_work_delayable handshake_timeout_work;
 static htoyto_state_t state    = HTOYTO_STATE_IDLE;
 static bool node_connected     = false;
@@ -41,6 +38,12 @@ static void handshake_timeout_handler(struct k_work *work) {
     state = HTOYTO_STATE_IDLE;
     htoyto_emit_node_rejected(DT_PROP(HTY_NODE, node_id), "timeout");
 }
+
+#if DT_NODE_HAS_PROP(HTY_NODE, dr_gpios)
+
+static const struct device *dr_gpio_dev;
+static struct gpio_callback   dr_cb_data;
+static struct k_work_delayable dr_debounce_work;
 
 static void dr_debounce_handler(struct k_work *work) {
     int val = gpio_pin_get(dr_gpio_dev, DT_GPIO_PIN(HTY_NODE, dr_gpios));
@@ -65,6 +68,8 @@ static void dr_line_callback(const struct device *dev, struct gpio_callback *cb,
                               uint32_t pins) {
     k_work_reschedule(&dr_debounce_work, K_MSEC(CONFIG_HTOYTO_DEBOUNCE_MS));
 }
+
+#endif /* DT_NODE_HAS_PROP(HTY_NODE, dr_gpios) */
 
 static void uart_rx_handler(const struct device *dev, void *user_data) {
     // TODO: read incoming bytes into a line buffer, parse frame type (IAM/EST/DKW/TLK/ACK)
@@ -100,12 +105,12 @@ int htoyto_init(void) {
         return -ENODEV;
     }
 
-    k_work_init_delayable(&dr_debounce_work, dr_debounce_handler);
     k_work_init_delayable(&handshake_timeout_work, handshake_timeout_handler);
 
     // TODO: register uart_rx_handler via uart_irq_callback_set + uart_irq_rx_enable
 
 #if DT_NODE_HAS_PROP(HTY_NODE, dr_gpios)
+    k_work_init_delayable(&dr_debounce_work, dr_debounce_handler);
     dr_gpio_dev = DEVICE_DT_GET(DT_GPIO_CTLR(HTY_NODE, dr_gpios));
     gpio_pin_configure(dr_gpio_dev, DT_GPIO_PIN(HTY_NODE, dr_gpios),
                        GPIO_INPUT | DT_GPIO_FLAGS(HTY_NODE, dr_gpios));
