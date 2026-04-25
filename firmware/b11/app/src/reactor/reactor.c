@@ -19,8 +19,8 @@ static int handle_htoyto_event(const zmk_event_t *eh) {
         LOG_INF("node removed: %s", ev->source_node);
         break;
 
-    case HTOYTO_EVENT_NODE_ADD_FAILED:
-        LOG_WRN("node add failed: %s (%s)", ev->source_node, ev->payload);
+    case HTOYTO_EVENT_NODE_REJECTED:
+        LOG_WRN("node rejected: %s (%s)", ev->source_node, ev->payload);
         break;
 
     case HTOYTO_EVENT_TLK_RECEIVED:
@@ -34,8 +34,8 @@ static int handle_htoyto_event(const zmk_event_t *eh) {
         LOG_DBG("ACK from %s", ev->source_node);
         break;
 
-    case HTOYTO_EVENT_ACK_TIMEOUT:
-        LOG_WRN("ACK timeout from %s", ev->target_node);
+    case HTOYTO_EVENT_ACK_TIMED_OUT:
+        LOG_WRN("ACK timed out from %s", ev->target_node);
         break;
 
     default:
