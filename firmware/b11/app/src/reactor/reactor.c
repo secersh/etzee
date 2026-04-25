@@ -7,41 +7,39 @@
 
 LOG_MODULE_REGISTER(reactor, CONFIG_ZMK_LOG_LEVEL);
 
-static int handle_htoyto_event(const struct htoyto_event *ev) {
+static int handle_htoyto_event(const zmk_event_t *eh) {
+    const struct htoyto_event *ev = as_htoyto_event(eh);
+
     switch (ev->type) {
     case HTOYTO_EVENT_NODE_ADDED:
-        LOG_INF("🟢 Node added: %s", ev->source_node);
-        // TODO: react to node connection, e.g., trigger storyboard
+        LOG_INF("node added: %s", ev->source_node);
         break;
 
     case HTOYTO_EVENT_NODE_REMOVED:
-        LOG_INF("🔴 Node removed: %s", ev->source_node);
-        // TODO: stop animation or play disconnect effect
+        LOG_INF("node removed: %s", ev->source_node);
         break;
 
-    case HTOYTO_EVENT_NODE_ADDED_FAILED:
-        LOG_WRN("⚠️ Node add failed: %s (%s)", ev->source_node, ev->payload);
-        // TODO: indicate error on display or buzzer
+    case HTOYTO_EVENT_NODE_ADD_FAILED:
+        LOG_WRN("node add failed: %s (%s)", ev->source_node, ev->payload);
         break;
 
     case HTOYTO_EVENT_TLK_RECEIVED:
-        LOG_INF("💬 TLK %s ➝ %s: %s",
+        LOG_INF("TLK %s -> %s: %s",
                 ev->source_node,
                 ev->target_node ? ev->target_node : "ALL",
                 ev->payload);
-        // TODO: dispatch command or text to display, audio, etc.
         break;
 
     case HTOYTO_EVENT_ACK_RECEIVED:
-        LOG_DBG("✅ ACK received from %s", ev->source_node);
+        LOG_DBG("ACK from %s", ev->source_node);
         break;
 
     case HTOYTO_EVENT_ACK_TIMEOUT:
-        LOG_WRN("⏱️ ACK timeout from %s", ev->target_node);
+        LOG_WRN("ACK timeout from %s", ev->target_node);
         break;
 
     default:
-        LOG_WRN("❓ Unknown htoyto event type: %d", ev->type);
+        LOG_WRN("unknown event type: %d", ev->type);
         break;
     }
 
