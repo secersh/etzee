@@ -12,7 +12,8 @@
 
 LOG_MODULE_REGISTER(htoyto, CONFIG_ZMK_LOG_LEVEL);
 
-#define HTY_NODE DT_NODELABEL(htoyto0)
+#define HTY_NODE     DT_NODELABEL(htoyto0)
+#define HTY_ROLE_IDX DT_ENUM_IDX(HTY_NODE, role)
 
 typedef enum {
     HTOYTO_STATE_IDLE,
@@ -39,7 +40,10 @@ static void handshake_timeout_handler(struct k_work *work) {
     htoyto_emit_node_rejected(DT_PROP(HTY_NODE, node_id), "timeout");
 }
 
-#if DT_NODE_HAS_PROP(HTY_NODE, dr_gpios)
+#if HTY_ROLE_IDX == 0 || HTY_ROLE_IDX == 1 /* origin or bridge */
+
+BUILD_ASSERT(DT_NODE_HAS_PROP(HTY_NODE, dr_gpios),
+    "htoyto: origin and bridge nodes must define dr-gpios");
 
 static const struct device *dr_gpio_dev;
 static struct gpio_callback   dr_cb_data;
@@ -69,7 +73,7 @@ static void dr_line_callback(const struct device *dev, struct gpio_callback *cb,
     k_work_reschedule(&dr_debounce_work, K_MSEC(CONFIG_HTOYTO_DEBOUNCE_MS));
 }
 
-#endif /* DT_NODE_HAS_PROP(HTY_NODE, dr_gpios) */
+#endif /* origin or bridge */
 
 static void uart_rx_handler(const struct device *dev, void *user_data) {
     // TODO: read incoming bytes into a line buffer, parse frame type (IAM/EST/DKW/TLK/ACK)
@@ -109,7 +113,7 @@ int htoyto_init(void) {
 
     // TODO: register uart_rx_handler via uart_irq_callback_set + uart_irq_rx_enable
 
-#if DT_NODE_HAS_PROP(HTY_NODE, dr_gpios)
+#if HTY_ROLE_IDX == 0 || HTY_ROLE_IDX == 1 /* origin or bridge */
     k_work_init_delayable(&dr_debounce_work, dr_debounce_handler);
     dr_gpio_dev = DEVICE_DT_GET(DT_GPIO_CTLR(HTY_NODE, dr_gpios));
     gpio_pin_configure(dr_gpio_dev, DT_GPIO_PIN(HTY_NODE, dr_gpios),
@@ -121,7 +125,7 @@ int htoyto_init(void) {
                        BIT(DT_GPIO_PIN(HTY_NODE, dr_gpios)));
     gpio_add_callback(dr_gpio_dev, &dr_cb_data);
     LOG_INF("dR line interrupt configured");
-#endif
+#endif /* origin or bridge */
 
     LOG_INF("htoyto initialized, role=%s node-id=%s",
             DT_PROP(HTY_NODE, role), DT_PROP(HTY_NODE, node_id));
