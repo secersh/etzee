@@ -19,7 +19,7 @@ jobs:
 
       - name: Clone ZMK
         run: | 
-          git clone --branch v0.3-branch --depth 1 https://github.com/zmkfirmware/zmk.git firmware/b11/zmk
+          git clone --branch main --depth 1 https://github.com/zmkfirmware/zmk.git firmware/b11/zmk
           cp -r firmware/b11/app firmware/b11/zmk
 
       - name: Add vendor prefix
