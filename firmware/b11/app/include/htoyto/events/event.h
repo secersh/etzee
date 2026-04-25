@@ -1,7 +1,6 @@
 #pragma once
 
 #include <zmk/event_manager.h>
-#include <zmk/events/base_event.h>
 
 enum htoyto_event_type {
     HTOYTO_EVENT_NODE_ADDED,               // Node added to the network
