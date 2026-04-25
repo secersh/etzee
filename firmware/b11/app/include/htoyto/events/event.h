@@ -12,7 +12,7 @@ enum htoyto_event_type {
 };
 
 struct htoyto_event {
-    struct zmk_event_header header;
+    zmk_event_t header;
     enum htoyto_event_type type;
     const char *source_node;
     const char *target_node;
