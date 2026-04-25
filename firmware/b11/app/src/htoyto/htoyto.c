@@ -21,7 +21,7 @@ static void htoyto_emit_event(enum htoyto_event_type type, const char *source, c
         .target_node = target,
         .payload = payload,
     };
-    ZMK_EVENT_RAISE(new_htoyto_event(&event));
+    raise_htoyto_event(event);
 }
 
 static void dr_line_callback(const struct device *dev, struct gpio_callback *cb, uint32_t pins) {
