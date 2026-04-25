@@ -3,126 +3,65 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/uart.h>
 #include <zephyr/logging/log.h>
-#include "../../include/htoyto/htoyto.h"
 
-#define RX_BUF_SIZE 64
-#define HTY_NODE DT_NODELABEL(htoyto0)
+#include <htoyto/htoyto.h>
+#include <htoyto/events/event.h>
 
 LOG_MODULE_REGISTER(htoyto, CONFIG_ZMK_LOG_LEVEL);
 
-static const char *hty_node_id;
-static htoyto_role_t hty_role;
+static const struct device *uart_dev;
+static const struct device *dr_gpio_dev;
+static struct gpio_callback dr_cb_data;
+static bool node_connected = false;
 
-void log_thread(void) {
-    while (1) {
-        LOG_INF("htoyto heartbeat node-id: %s role: %d", hty_node_id, hty_role);
-        k_sleep(K_SECONDS(1));
-    }
+static void htoyto_emit_event(enum htoyto_event_type type, const char *source, const char *target, const char *payload) {
+    struct htoyto_event event = {
+        .type = type,
+        .source_node = source,
+        .target_node = target,
+        .payload = payload,
+    };
+    ZMK_EVENT_RAISE(new_htoyto_event(&event));
 }
 
-K_THREAD_DEFINE(htoyto_log_thread, 1024, log_thread, NULL, NULL, NULL, 7, 0, 0);
-
-static uint8_t rx_buf[RX_BUF_SIZE];
-
-static const struct device *hty_uart_dev;
-static const struct device *hty_dr_gpio_dev;
-static gpio_pin_t hty_dr_pin;
-
-static struct gpio_callback dr_gpio_cb;
-
-static void htoyto_process_message(const char *msg);
-
-static void hty_uart_cb(const struct device *dev, struct uart_event *evt, void *user_data) {
-    switch (evt->type) {
-    case UART_RX_RDY:
-        rx_buf[evt->data.rx.len] = '\0'; // Ensure null-terminated
-        htoyto_process_message((const char *)(evt->data.rx.buf + evt->data.rx.offset));
-        break;
-
-    case UART_RX_DISABLED:
-        LOG_WRN("UART RX disabled; re-enabling");
-        uart_rx_enable(dev, rx_buf, sizeof(rx_buf), 100);
-        break;
-
-    case UART_RX_BUF_REQUEST:
-        uart_rx_buf_rsp(dev, rx_buf, sizeof(rx_buf));
-        break;
-
-    default:
-        break;
-    }
-}
-
-static void htoyto_process_message(const char *msg) {
-    LOG_INF("Received: %s", msg);
-
-    if (strcmp(msg, "hlo") == 0 && hty_role == HTOYTO_ROLE_TERMINAL) {
-        uart_tx(hty_uart_dev, (const uint8_t *)"iam", 3, SYS_FOREVER_MS);
-    } else if (strcmp(msg, "iam") == 0 && hty_role == HTOYTO_ROLE_ORIGIN) {
-        uart_tx(hty_uart_dev, (const uint8_t *)"est", 3, SYS_FOREVER_MS);
-    } else if (strcmp(msg, "est") == 0 && hty_role == HTOYTO_ROLE_TERMINAL) {
-        uart_tx(hty_uart_dev, (const uint8_t *)"est", 3, SYS_FOREVER_MS);
+static void dr_line_callback(const struct device *dev, struct gpio_callback *cb, uint32_t pins) {
+    if (!node_connected) {
+        LOG_INF("dR line rising edge detected, starting handshake");
+        uart_poll_out(uart_dev, 'H'); // TODO: replace with HLO frame
+        // begin handshake timer
     } else {
-        LOG_WRN("Unexpected or unhandled message: %s", msg);
+        LOG_INF("dR line falling edge detected, node disconnected");
+        node_connected = false;
+        htoyto_emit_event(HTOYTO_EVENT_NODE_REMOVED, "self", NULL, NULL);
     }
 }
 
-static void dr_interrupt_cb(const struct device *dev, struct gpio_callback *cb, uint32_t pins) {
-    int val = gpio_pin_get(dev, hty_dr_pin);
-
-    LOG_INF("dR line changed: %s edge", val ? "rising" : "falling");
-
-    if (val) {
-        uart_tx(hty_uart_dev, (const uint8_t *)"hlo", 3, SYS_FOREVER_MS);
-    }
-}
-
-int htoyto_init(const struct device *dev) {
-    ARG_UNUSED(dev);
-
-    hty_node_id = DT_PROP(HTY_NODE, node_id);
-    hty_role = (htoyto_role_t)DT_ENUM_IDX(HTY_NODE, role);
-
-    hty_uart_dev = DEVICE_DT_GET(DT_PHANDLE(HTY_NODE, uart));
-
-    if (!device_is_ready(hty_uart_dev)) {
+static int htoyto_init(void) {
+    uart_dev = DEVICE_DT_GET(DT_PHANDLE(DT_DRV_INST(0), uart));
+    if (!device_is_ready(uart_dev)) {
         LOG_ERR("UART device not ready");
         return -ENODEV;
     }
 
-    if (hty_role == HTOYTO_ROLE_ORIGIN) {
-        hty_dr_gpio_dev = DEVICE_DT_GET(DT_GPIO_CTLR(HTY_NODE, dr_gpios));
-        hty_dr_pin = DT_GPIO_PIN(HTY_NODE, dr_gpios);
-        // hty_dr_flags = DT_GPIO_FLAGS(HTY_NODE, dr_gpios);
-        //
-        //        if (!device_is_ready(hty_dr_gpio_dev)) {
-        //            LOG_ERR("dR GPIO device not ready");
-        //            return -ENODEV;
-        //        }
-        //
-        int ret = gpio_pin_configure(hty_dr_gpio_dev, hty_dr_pin,
-                                     GPIO_INPUT | GPIO_PULL_DOWN | GPIO_INT_EDGE_BOTH);
-        //
-        //        if (ret != 0) {
-        //            LOG_ERR("Failed to configure dR pin: %d", ret);
-        //            return ret;
-        //        }
-        //
+#if DT_NODE_HAS_PROP(DT_DRV_INST(0), dr_gpios)
+    dr_gpio_dev = DEVICE_DT_GET(DT_GPIO_CTLR(DT_DRV_INST(0), dr_gpios));
+    gpio_pin_configure(dr_gpio_dev, DT_GPIO_PIN(DT_DRV_INST(0), dr_gpios),
+                       GPIO_INPUT | DT_GPIO_FLAGS(DT_DRV_INST(0), dr_gpios));
 
-        gpio_init_callback(&dr_gpio_cb, dr_interrupt_cb, BIT(hty_dr_pin));
-        gpio_add_callback(hty_dr_gpio_dev, &dr_gpio_cb);
-        gpio_pin_interrupt_configure(hty_dr_gpio_dev, hty_dr_pin, GPIO_INT_EDGE_BOTH);
-    }
+    gpio_pin_interrupt_configure(dr_gpio_dev,
+                                 DT_GPIO_PIN(DT_DRV_INST(0), dr_gpios),
+                                 GPIO_INT_EDGE_BOTH);
 
+    gpio_init_callback(&dr_cb_data, dr_line_callback,
+                       BIT(DT_GPIO_PIN(DT_DRV_INST(0), dr_gpios)));
+
+    gpio_add_callback(dr_gpio_dev, &dr_cb_data);
+    LOG_INF("dR line interrupt configured");
+#endif
+
+    LOG_INF("htoyto initialized, role=%s node-id=%s",
+            DT_INST_PROP(0, role), DT_INST_PROP(0, node_id));
     return 0;
 }
 
-/* Bind the htoyto device node from DTS */
-DEVICE_DT_DEFINE(HTY_NODE,                           /* node label from overlay */
-                 htoyto_init,                        /* init function */
-                 NULL,                               /* PM device control (not used) */
-                 NULL,                               /* data (instance-specific state struct) */
-                 NULL,                               /* config (constant config struct) */
-                 POST_KERNEL,                        /* init level */
-                 CONFIG_KERNEL_INIT_PRIORITY_DEVICE, /* init priority */
-                 NULL);                              /* API (not exposing driver API yet) */
+SYS_INIT(htoyto_init, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
