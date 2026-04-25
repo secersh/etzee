@@ -25,6 +25,10 @@ jobs:
       - name: Add vendor prefix
         run: echo "etzee  etzee" >> firmware/b11/zmk/app/dts/bindings/vendor-prefixes.yaml
 
+      - name: Hook htoyto into ZMK CMakeLists
+        run: |
+          echo 'add_subdirectory_ifdef(CONFIG_HTOYTO_ENABLED src/htoyto)' >> firmware/b11/zmk/app/CMakeLists.txt
+
       - name: Initialize workspace (west init)
         working-directory: firmware/b11/zmk
         run: west init -l app
