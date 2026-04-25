@@ -39,7 +39,7 @@ static void dr_line_callback(const struct device *dev, struct gpio_callback *cb,
 }
 
 int htoyto_init(void) {
-    uart_dev = DEVICE_DT_GET(DT_PHANDLE(HTY_NODE, uart));
+    uart_dev = DEVICE_DT_GET(DT_NODELABEL(uart0));
     if (!device_is_ready(uart_dev)) {
         LOG_ERR("UART device not ready");
         return -ENODEV;
