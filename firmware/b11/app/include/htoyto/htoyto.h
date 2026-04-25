@@ -21,7 +21,7 @@ typedef enum {
  * @param dev UART device used for communication.
  * @return 0 on success or negative errno on failure.
  */
-int htoyto_init(const struct device *dev);
+int htoyto_init(void);
 
 /**
  * Process UART data received from the device.
