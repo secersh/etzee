@@ -1,6 +1,6 @@
 #pragma once
 
-#include <device.h>
+#include <zephyr/device.h>
 
 typedef enum {
     HTOYTO_ROLE_ORIGIN,

@@ -36,8 +36,8 @@ static void dr_line_callback(const struct device *dev, struct gpio_callback *cb,
     }
 }
 
-int htoyto_init(const struct device *dev) {
-    uart_dev = DEVICE_DT_GET(DT_PROP(dev, uart));
+static int htoyto_init(void) {
+    uart_dev = DEVICE_DT_GET(DT_PHANDLE(DT_DRV_INST(0), uart));
     if (!device_is_ready(uart_dev)) {
         LOG_ERR("UART device not ready");
         return -ENODEV;
@@ -59,7 +59,8 @@ int htoyto_init(const struct device *dev) {
     LOG_INF("dR line interrupt configured");
 #endif
 
-    LOG_INF("htoyto initialized on %s", dev->name);
+    LOG_INF("htoyto initialized, role=%s node-id=%s",
+            DT_INST_PROP(0, role), DT_INST_PROP(0, node_id));
     return 0;
 }
 
