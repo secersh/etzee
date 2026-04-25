@@ -8,6 +8,13 @@ menuconfig HTOYTO_ENABLED
 
 if HTOYTO_ENABLED
 
+config HTOYTO_DEBOUNCE_MS
+    int "dR line debounce delay in milliseconds"
+    default 20
+    help
+      How long to wait after a dR GPIO edge before sampling the pin state.
+      Filters mechanical bounce on the pogo pin connection.
+
 config HTOYTO_UART_RX_TIMEOUT_MS
     int "UART RX timeout in milliseconds"
     default 100
