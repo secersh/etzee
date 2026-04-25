@@ -9,6 +9,8 @@
 
 LOG_MODULE_REGISTER(htoyto, CONFIG_ZMK_LOG_LEVEL);
 
+#define HTY_NODE DT_NODELABEL(htoyto0)
+
 static const struct device *uart_dev;
 static const struct device *dr_gpio_dev;
 static struct gpio_callback dr_cb_data;
@@ -37,30 +39,30 @@ static void dr_line_callback(const struct device *dev, struct gpio_callback *cb,
 }
 
 int htoyto_init(void) {
-    uart_dev = DEVICE_DT_GET(DT_PHANDLE(DT_DRV_INST(0), uart));
+    uart_dev = DEVICE_DT_GET(DT_PHANDLE(HTY_NODE, uart));
     if (!device_is_ready(uart_dev)) {
         LOG_ERR("UART device not ready");
         return -ENODEV;
     }
 
-#if DT_NODE_HAS_PROP(DT_DRV_INST(0), dr_gpios)
-    dr_gpio_dev = DEVICE_DT_GET(DT_GPIO_CTLR(DT_DRV_INST(0), dr_gpios));
-    gpio_pin_configure(dr_gpio_dev, DT_GPIO_PIN(DT_DRV_INST(0), dr_gpios),
-                       GPIO_INPUT | DT_GPIO_FLAGS(DT_DRV_INST(0), dr_gpios));
+#if DT_NODE_HAS_PROP(HTY_NODE, dr_gpios)
+    dr_gpio_dev = DEVICE_DT_GET(DT_GPIO_CTLR(HTY_NODE, dr_gpios));
+    gpio_pin_configure(dr_gpio_dev, DT_GPIO_PIN(HTY_NODE, dr_gpios),
+                       GPIO_INPUT | DT_GPIO_FLAGS(HTY_NODE, dr_gpios));
 
     gpio_pin_interrupt_configure(dr_gpio_dev,
-                                 DT_GPIO_PIN(DT_DRV_INST(0), dr_gpios),
+                                 DT_GPIO_PIN(HTY_NODE, dr_gpios),
                                  GPIO_INT_EDGE_BOTH);
 
     gpio_init_callback(&dr_cb_data, dr_line_callback,
-                       BIT(DT_GPIO_PIN(DT_DRV_INST(0), dr_gpios)));
+                       BIT(DT_GPIO_PIN(HTY_NODE, dr_gpios)));
 
     gpio_add_callback(dr_gpio_dev, &dr_cb_data);
     LOG_INF("dR line interrupt configured");
 #endif
 
     LOG_INF("htoyto initialized, role=%s node-id=%s",
-            DT_INST_PROP(0, role), DT_INST_PROP(0, node_id));
+            DT_PROP(HTY_NODE, role), DT_PROP(HTY_NODE, node_id));
     return 0;
 }
 
