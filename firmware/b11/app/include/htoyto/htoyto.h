@@ -1,6 +1,6 @@
 #pragma once
 
-#include <zephyr/device.h>
+#include <stdbool.h>
 
 typedef enum {
     HTOYTO_ROLE_ORIGIN,
@@ -15,27 +15,12 @@ typedef enum {
     HTOYTO_STATUS_UNSUPPORTED,
 } htoyto_status_t;
 
-/**
- * Initialize htoyto protocol instance.
- *
- * @param dev UART device used for communication.
- * @return 0 on success or negative errno on failure.
- */
-int htoyto_init(void);
+/* Returns the role of this node as configured in the device tree. */
+htoyto_role_t htoyto_get_role(void);
 
-/**
- * Process UART data received from the device.
- * Intended to be called from UART callback or polling loop.
- *
- * @param dev UART device that triggered the read.
- */
-void htoyto_on_uart_data(const struct device *dev);
+/* Returns true if a remote node is currently established (post-EST). */
+bool htoyto_is_connected(void);
 
-/**
- * Send a TLK (Talk) frame over UART to a given node or broadcast.
- *
- * @param target_node Target node-id string (NULL for broadcast).
- * @param payload Null-terminated message payload.
- * @return htoyto_status_t value indicating result.
- */
+/* Send a TLK frame. target_node NULL broadcasts to all. Returns UNSUPPORTED if
+   the remote replies with DKW, TIMEOUT if ACK not received within the timeout. */
 htoyto_status_t htoyto_send_tlk(const char *target_node, const char *payload);

@@ -3,6 +3,7 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/uart.h>
 #include <zephyr/logging/log.h>
+#include <string.h>
 
 #include <htoyto/htoyto.h>
 #include <htoyto/events/event.h>
@@ -15,6 +16,22 @@ static const struct device *uart_dev;
 static const struct device *dr_gpio_dev;
 static struct gpio_callback dr_cb_data;
 static bool node_connected = false;
+
+htoyto_role_t htoyto_get_role(void) {
+    static const char *role_str = DT_PROP(HTY_NODE, role);
+    if (strcmp(role_str, "origin") == 0)   return HTOYTO_ROLE_ORIGIN;
+    if (strcmp(role_str, "bridge") == 0)   return HTOYTO_ROLE_BRIDGE;
+    return HTOYTO_ROLE_TERMINAL;
+}
+
+bool htoyto_is_connected(void) {
+    return node_connected;
+}
+
+htoyto_status_t htoyto_send_tlk(const char *target_node, const char *payload) {
+    // TODO: frame TLK, write to UART, wait for ACK if required
+    return HTOYTO_STATUS_ERROR;
+}
 
 static void htoyto_emit_event(enum htoyto_event_type type, const char *source, const char *target, const char *payload) {
     struct htoyto_event event = {
