@@ -31,16 +31,26 @@ static struct k_work           rx_process_work;
 static htoyto_state_t          state         = HTOYTO_STATE_IDLE;
 static bool                    node_connected = false;
 
-// RX accumulation (ISR context) → frame_buf (workqueue context)
+// TX — filled by uart_send(), drained byte-by-byte from the IRQ handler
+static uint8_t tx_buf[HTY_BUF_SIZE];
+static int     tx_pos;
+static int     tx_len;
+
+// RX accumulation (ISR) → frame_buf (workqueue)
 // TODO: replace frame_buf with a ring buffer to handle back-to-back frames
 static char rx_buf[HTY_BUF_SIZE];
-static int  rx_pos = 0;
+static int  rx_pos;
 static char frame_buf[HTY_BUF_SIZE];
 
 static void uart_send(const char *str) {
-    while (*str) {
-        uart_poll_out(uart_dev, *str++);
+    tx_len = strlen(str);
+    if (tx_len >= HTY_BUF_SIZE) {
+        LOG_WRN("TX frame too long, dropping");
+        return;
     }
+    memcpy(tx_buf, str, tx_len);
+    tx_pos = 0;
+    uart_irq_tx_enable(uart_dev);
 }
 
 static void process_frame(const char *line) {
@@ -122,25 +132,36 @@ static void rx_process_handler(struct k_work *work) {
     process_frame(frame_buf);
 }
 
-static void uart_rx_handler(const struct device *dev, void *user_data) {
+static void uart_irq_handler(const struct device *dev, void *user_data) {
     if (!uart_irq_update(dev)) return;
-    if (!uart_irq_rx_ready(dev)) return;
 
-    uint8_t c;
-    while (uart_fifo_read(dev, &c, 1) == 1) {
-        if (c == '\n' || c == '\r') {
-            if (rx_pos > 0) {
-                rx_buf[rx_pos] = '\0';
-                strncpy(frame_buf, rx_buf, HTY_BUF_SIZE - 1);
-                frame_buf[HTY_BUF_SIZE - 1] = '\0';
+    if (uart_irq_tx_ready(dev)) {
+        if (tx_pos < tx_len) {
+            int sent = uart_fifo_fill(dev, tx_buf + tx_pos, tx_len - tx_pos);
+            tx_pos += sent;
+        }
+        if (tx_pos >= tx_len) {
+            uart_irq_tx_disable(dev);
+        }
+    }
+
+    if (uart_irq_rx_ready(dev)) {
+        uint8_t c;
+        while (uart_fifo_read(dev, &c, 1) == 1) {
+            if (c == '\n' || c == '\r') {
+                if (rx_pos > 0) {
+                    rx_buf[rx_pos] = '\0';
+                    strncpy(frame_buf, rx_buf, HTY_BUF_SIZE - 1);
+                    frame_buf[HTY_BUF_SIZE - 1] = '\0';
+                    rx_pos = 0;
+                    k_work_submit(&rx_process_work);
+                }
+            } else if (rx_pos < HTY_BUF_SIZE - 1) {
+                rx_buf[rx_pos++] = c;
+            } else {
+                LOG_WRN("RX overflow, dropping frame");
                 rx_pos = 0;
-                k_work_submit(&rx_process_work);
             }
-        } else if (rx_pos < HTY_BUF_SIZE - 1) {
-            rx_buf[rx_pos++] = c;
-        } else {
-            LOG_WRN("RX overflow, dropping frame");
-            rx_pos = 0;
         }
     }
 }
@@ -210,7 +231,7 @@ htoyto_status_t htoyto_send_tlk(const char *target_node, const char *payload) {
         return HTOYTO_STATUS_ERROR;
     }
     uart_send(frame);
-    // TODO: arm ACK timeout work, block or return TIMEOUT if no ACK received
+    // TODO: arm ACK timeout, return TIMEOUT if no ACK received
     return HTOYTO_STATUS_OK;
 }
 
@@ -226,7 +247,7 @@ int htoyto_init(void) {
     k_work_init(&rx_process_work, rx_process_handler);
     k_work_init_delayable(&handshake_timeout_work, handshake_timeout_handler);
 
-    uart_irq_callback_set(uart_dev, uart_rx_handler);
+    uart_irq_callback_set(uart_dev, uart_irq_handler);
     uart_irq_rx_enable(uart_dev);
 
 #if HTY_ROLE_IDX == 0 || HTY_ROLE_IDX == 1 /* origin or bridge */
