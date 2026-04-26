@@ -160,19 +160,16 @@ open_serial() {
     echo "  Plug in either half (or both) and look for a tty device."
     hr
 
-    # Collect candidate tty devices
-    local ttys
+    # Wait up to 20 s for a usbmodem/usbserial tty to appear
+    local ttys elapsed=0 timeout=20
     ttys=$(ls /dev/tty.usbmodem* /dev/tty.usbserial* 2>/dev/null || true)
-
-    if [[ -z "$ttys" ]]; then
-        warn "No USB serial device found. Plug in a half and retry."
-        echo -ne "  ${BOLD}Retry? [Y/n]${RESET} "; read -r ans
-        [[ "${ans,,}" == "n" ]] && return
+    while [[ -z "$ttys" ]] && (( elapsed < timeout )); do
+        sleep 1; (( elapsed++ ))
         ttys=$(ls /dev/tty.usbmodem* /dev/tty.usbserial* 2>/dev/null || true)
-    fi
+    done
 
     if [[ -z "$ttys" ]]; then
-        warn "Still no device found — skipping serial terminal."
+        warn "No USB serial device found after ${timeout}s — skipping serial terminal."
         return
     fi
 
