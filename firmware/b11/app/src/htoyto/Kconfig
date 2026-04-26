@@ -4,7 +4,6 @@ menuconfig HTOYTO_ENABLED
     bool "Enable htoyto protocol"
     default y
     select UART_ASYNC_API
-    select UART_INTERRUPT_DRIVEN
     help
       Enables the etzee htoyto protocol for UART-based inter-module communication.
 
@@ -18,10 +17,13 @@ config HTOYTO_DEBOUNCE_MS
       Filters mechanical bounce on the pogo pin connection.
 
 config HTOYTO_UART_RX_TIMEOUT_MS
-    int "UART RX timeout in milliseconds"
-    default 100
+    int "UART RX idle timeout in milliseconds"
+    default 5
     help
-      Timeout to wait for a complete UART packet before dropping.
+      How long after the last received byte before flushing the async DMA
+      buffer. Must be short enough that multiple handshake round-trips fit
+      within HTOYTO_HANDSHAKE_TIMEOUT_MS. At 115200 baud a full frame takes
+      ~2 ms, so 5 ms gives ample margin without adding perceivable latency.
 
 config HTOYTO_HANDSHAKE_TIMEOUT_MS
     int "Handshake timeout in milliseconds"
