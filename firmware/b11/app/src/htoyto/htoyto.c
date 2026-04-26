@@ -129,6 +129,7 @@ static void process_frame(const char *line) {
 }
 
 static void rx_process_handler(struct k_work *work) {
+    LOG_INF("rx frame [%s] state=%d", frame_buf, state);
     process_frame(frame_buf);
 }
 
