@@ -3,7 +3,7 @@
 menuconfig HTOYTO_ENABLED
     bool "Enable htoyto protocol"
     default y
-    select UART_INTERRUPT_DRIVEN
+    select UART_ASYNC_API
     help
       Enables the etzee htoyto protocol for UART-based inter-module communication.
 
