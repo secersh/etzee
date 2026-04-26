@@ -13,10 +13,9 @@
 
 LOG_MODULE_REGISTER(htoyto, CONFIG_ZMK_LOG_LEVEL);
 
-#define HTY_NODE       DT_NODELABEL(htoyto0)
-#define HTY_ROLE_IDX   DT_ENUM_IDX(HTY_NODE, role)
-#define HTY_BUF_SIZE   (CONFIG_HTOYTO_MAX_NODE_ID_LENGTH * 3 + 16)
-#define HTY_RX_DMA_LEN 64
+#define HTY_NODE     DT_NODELABEL(htoyto0)
+#define HTY_ROLE_IDX DT_ENUM_IDX(HTY_NODE, role)
+#define HTY_BUF_SIZE (CONFIG_HTOYTO_MAX_NODE_ID_LENGTH * 3 + 16)
 
 typedef enum {
     HTOYTO_STATE_IDLE,
@@ -32,15 +31,15 @@ static struct k_work           rx_process_work;
 static htoyto_state_t          state         = HTOYTO_STATE_IDLE;
 static bool                    node_connected = false;
 
-// TX
 static uint8_t tx_buf[HTY_BUF_SIZE];
+static int     tx_pos;
+static int     tx_len;
 
-// RX: double-buffer DMA (ISR) → frame accumulation → workqueue
-static uint8_t  rx_dma_bufs[2][HTY_RX_DMA_LEN];
-static int      rx_dma_idx = 0;
-static char     rx_accum[HTY_BUF_SIZE];
-static int      rx_accum_pos = 0;
-static char     frame_buf[HTY_BUF_SIZE];
+// RX accumulation (ISR) → frame_buf (workqueue)
+// TODO: replace frame_buf with a ring buffer to handle back-to-back frames
+static char rx_buf[HTY_BUF_SIZE];
+static int  rx_pos;
+static char frame_buf[HTY_BUF_SIZE];
 
 static void uart_send(const char *str) {
     int len = strlen(str);
@@ -49,24 +48,9 @@ static void uart_send(const char *str) {
         return;
     }
     memcpy(tx_buf, str, len);
-    uart_tx(uart_dev, tx_buf, len, SYS_FOREVER_US);
-}
-
-static void rx_byte(uint8_t c) {
-    if (c == '\n' || c == '\r') {
-        if (rx_accum_pos > 0) {
-            rx_accum[rx_accum_pos] = '\0';
-            strncpy(frame_buf, rx_accum, HTY_BUF_SIZE - 1);
-            frame_buf[HTY_BUF_SIZE - 1] = '\0';
-            rx_accum_pos = 0;
-            k_work_submit(&rx_process_work);
-        }
-    } else if (rx_accum_pos < HTY_BUF_SIZE - 1) {
-        rx_accum[rx_accum_pos++] = c;
-    } else {
-        LOG_WRN("RX overflow, dropping frame");
-        rx_accum_pos = 0;
-    }
+    tx_pos = 0;
+    tx_len = len;
+    uart_irq_tx_enable(uart_dev);
 }
 
 static void process_frame(const char *line) {
@@ -147,40 +131,37 @@ static void rx_process_handler(struct k_work *work) {
     process_frame(frame_buf);
 }
 
-static void uart_async_callback(const struct device *dev,
-                                struct uart_event *evt, void *user_data) {
-    switch (evt->type) {
-    case UART_TX_DONE:
-        break;
+static void uart_irq_handler(const struct device *dev, void *user_data) {
+    if (!uart_irq_update(dev)) return;
 
-    case UART_TX_ABORTED:
-        LOG_WRN("TX aborted");
-        break;
-
-    case UART_RX_RDY:
-        for (int i = 0; i < evt->data.rx.len; i++) {
-            rx_byte(evt->data.rx.buf[evt->data.rx.offset + i]);
+    if (uart_irq_tx_ready(dev)) {
+        if (tx_pos < tx_len) {
+            int sent = uart_fifo_fill(dev, tx_buf + tx_pos, tx_len - tx_pos);
+            tx_pos += sent;
         }
-        break;
+        if (tx_pos >= tx_len) {
+            uart_irq_tx_disable(dev);
+        }
+    }
 
-    case UART_RX_BUF_REQUEST:
-        rx_dma_idx = (rx_dma_idx + 1) % 2;
-        uart_rx_buf_rsp(dev, rx_dma_bufs[rx_dma_idx], HTY_RX_DMA_LEN);
-        break;
-
-    case UART_RX_BUF_RELEASED:
-        break;
-
-    case UART_RX_DISABLED:
-        // Re-arm RX after overflow or error — use timeout so short frames fire promptly
-        rx_dma_idx = 0;
-        uart_rx_enable(dev, rx_dma_bufs[0], HTY_RX_DMA_LEN,
-                       (int64_t)CONFIG_HTOYTO_UART_RX_TIMEOUT_MS * USEC_PER_MSEC);
-        break;
-
-    case UART_RX_STOPPED:
-        LOG_WRN("RX stopped, reason=%d", evt->data.rx_stop.reason);
-        break;
+    if (uart_irq_rx_ready(dev)) {
+        uint8_t c;
+        while (uart_fifo_read(dev, &c, 1) == 1) {
+            if (c == '\n' || c == '\r') {
+                if (rx_pos > 0) {
+                    rx_buf[rx_pos] = '\0';
+                    strncpy(frame_buf, rx_buf, HTY_BUF_SIZE - 1);
+                    frame_buf[HTY_BUF_SIZE - 1] = '\0';
+                    rx_pos = 0;
+                    k_work_submit(&rx_process_work);
+                }
+            } else if (rx_pos < HTY_BUF_SIZE - 1) {
+                rx_buf[rx_pos++] = c;
+            } else {
+                LOG_WRN("RX overflow, dropping frame");
+                rx_pos = 0;
+            }
+        }
     }
 }
 
@@ -265,9 +246,8 @@ int htoyto_init(void) {
     k_work_init(&rx_process_work, rx_process_handler);
     k_work_init_delayable(&handshake_timeout_work, handshake_timeout_handler);
 
-    uart_callback_set(uart_dev, uart_async_callback, NULL);
-    uart_rx_enable(uart_dev, rx_dma_bufs[0], HTY_RX_DMA_LEN,
-                   (int64_t)CONFIG_HTOYTO_UART_RX_TIMEOUT_MS * USEC_PER_MSEC);
+    uart_irq_callback_set(uart_dev, uart_irq_handler);
+    uart_irq_rx_enable(uart_dev);
 
 #if HTY_ROLE_IDX == 0 || HTY_ROLE_IDX == 1 /* origin or bridge */
     k_work_init_delayable(&dr_debounce_work, dr_debounce_handler);
