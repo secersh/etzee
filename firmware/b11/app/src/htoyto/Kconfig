@@ -34,4 +34,13 @@ config HTOYTO_MAX_NODE_ID_LENGTH
     help
       Maximum number of characters used to identify each htoyto node.
 
+config HTOYTO_KEEPALIVE_MS
+    int "Keepalive (KAL) transmit interval in milliseconds (0 to disable)"
+    default 500
+    help
+      How often a connected origin/bridge sends a KAL heartbeat frame.
+      The terminal uses 3x this value as a watchdog timeout — if no frame
+      arrives within that window it treats the peer as disconnected.
+      Set to 0 to disable keepalive entirely.
+
 endif # HTOYTO_ENABLED

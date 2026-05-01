@@ -32,6 +32,14 @@ static htoyto_state_t          state         = HTOYTO_STATE_IDLE;
 static bool                    node_connected = false;
 static char                    peer_node_id[CONFIG_HTOYTO_MAX_NODE_ID_LENGTH + 1];
 
+#if CONFIG_HTOYTO_KEEPALIVE_MS > 0
+static struct k_work_delayable kal_watchdog_work;
+
+#if HTY_ROLE_IDX == 0 || HTY_ROLE_IDX == 1 /* origin or bridge */
+static struct k_work_delayable kal_tx_work;
+#endif
+#endif
+
 static uint8_t tx_buf[HTY_BUF_SIZE];
 static int     tx_pos;
 static int     tx_len;
@@ -85,6 +93,9 @@ static void process_frame(const char *line) {
             k_work_cancel_delayable(&handshake_timeout_work);
             node_connected = true;
             state = HTOYTO_STATE_CONNECTED;
+#if CONFIG_HTOYTO_KEEPALIVE_MS > 0 && (HTY_ROLE_IDX == 0 || HTY_ROLE_IDX == 1)
+            k_work_reschedule(&kal_tx_work, K_MSEC(CONFIG_HTOYTO_KEEPALIVE_MS));
+#endif
             htoyto_emit_node_added(peer_node_id);
         } else if (state == HTOYTO_STATE_EST_SENT) {
             LOG_INF("EST from %s — echoing EST, connected (terminal)", line + 4);
@@ -94,10 +105,33 @@ static void process_frame(const char *line) {
             k_work_cancel_delayable(&handshake_timeout_work);
             node_connected = true;
             state = HTOYTO_STATE_CONNECTED;
+#if CONFIG_HTOYTO_KEEPALIVE_MS > 0
+            k_work_reschedule(&kal_watchdog_work,
+                              K_MSEC(CONFIG_HTOYTO_KEEPALIVE_MS * 3));
+#endif
             htoyto_emit_node_added(peer_node_id);
         } else {
             LOG_WRN("EST unexpected in state %d", state);
         }
+
+    } else if (strncmp(line, "BYE ", 4) == 0) {
+        if (state == HTOYTO_STATE_CONNECTED) {
+            LOG_INF("BYE from %s — peer disconnected", line + 4);
+#if CONFIG_HTOYTO_KEEPALIVE_MS > 0
+            k_work_cancel_delayable(&kal_watchdog_work);
+#endif
+            node_connected = false;
+            state = HTOYTO_STATE_IDLE;
+            htoyto_emit_node_removed(peer_node_id);
+        }
+
+    } else if (strncmp(line, "KAL ", 4) == 0) {
+#if CONFIG_HTOYTO_KEEPALIVE_MS > 0
+        if (state == HTOYTO_STATE_CONNECTED) {
+            k_work_reschedule(&kal_watchdog_work,
+                              K_MSEC(CONFIG_HTOYTO_KEEPALIVE_MS * 3));
+        }
+#endif
 
     } else if (strncmp(line, "DKW ", 4) == 0) {
         LOG_WRN("DKW (rejected): %s", line + 4);
@@ -176,6 +210,24 @@ static void handshake_timeout_handler(struct k_work *work) {
     htoyto_emit_node_rejected(DT_PROP(HTY_NODE, node_id), "timeout");
 }
 
+#if CONFIG_HTOYTO_KEEPALIVE_MS > 0
+static void kal_watchdog_handler(struct k_work *work) {
+    if (state != HTOYTO_STATE_CONNECTED) return;
+    LOG_WRN("keepalive watchdog fired — peer lost");
+    node_connected = false;
+    state = HTOYTO_STATE_IDLE;
+    htoyto_emit_node_removed(peer_node_id);
+}
+
+#if HTY_ROLE_IDX == 0 || HTY_ROLE_IDX == 1 /* origin or bridge */
+static void kal_tx_handler(struct k_work *work) {
+    if (state != HTOYTO_STATE_CONNECTED) return;
+    uart_send("KAL " DT_PROP(HTY_NODE, node_id) "\n");
+    k_work_reschedule(&kal_tx_work, K_MSEC(CONFIG_HTOYTO_KEEPALIVE_MS));
+}
+#endif
+#endif
+
 #if HTY_ROLE_IDX == 0 || HTY_ROLE_IDX == 1 /* origin or bridge */
 
 BUILD_ASSERT(DT_NODE_HAS_PROP(HTY_NODE, dr_gpios),
@@ -195,7 +247,11 @@ static void dr_debounce_handler(struct k_work *work) {
         k_work_reschedule(&handshake_timeout_work,
                           K_MSEC(CONFIG_HTOYTO_HANDSHAKE_TIMEOUT_MS));
     } else if (val == 0 && node_connected) {
-        LOG_INF("dR falling — node disconnected");
+        LOG_INF("dR falling — node disconnected, sending BYE");
+        uart_send("BYE " DT_PROP(HTY_NODE, node_id) "\n");
+#if CONFIG_HTOYTO_KEEPALIVE_MS > 0
+        k_work_cancel_delayable(&kal_tx_work);
+#endif
         node_connected = false;
         state = HTOYTO_STATE_IDLE;
         k_work_cancel_delayable(&handshake_timeout_work);
@@ -250,6 +306,13 @@ int htoyto_init(void) {
 
     k_work_init(&rx_process_work, rx_process_handler);
     k_work_init_delayable(&handshake_timeout_work, handshake_timeout_handler);
+
+#if CONFIG_HTOYTO_KEEPALIVE_MS > 0
+    k_work_init_delayable(&kal_watchdog_work, kal_watchdog_handler);
+#if HTY_ROLE_IDX == 0 || HTY_ROLE_IDX == 1 /* origin or bridge */
+    k_work_init_delayable(&kal_tx_work, kal_tx_handler);
+#endif
+#endif
 
     uart_irq_callback_set(uart_dev, uart_irq_handler);
     uart_irq_rx_enable(uart_dev);
