@@ -30,6 +30,7 @@ static struct k_work_delayable handshake_timeout_work;
 static struct k_work           rx_process_work;
 static htoyto_state_t          state         = HTOYTO_STATE_IDLE;
 static bool                    node_connected = false;
+static char                    peer_node_id[CONFIG_HTOYTO_MAX_NODE_ID_LENGTH + 1];
 
 static uint8_t tx_buf[HTY_BUF_SIZE];
 static int     tx_pos;
@@ -79,17 +80,21 @@ static void process_frame(const char *line) {
     } else if (strncmp(line, "EST ", 4) == 0) {
         if (state == HTOYTO_STATE_IAM_RECEIVED) {
             LOG_INF("EST from %s — connected (origin)", line + 4);
+            strncpy(peer_node_id, line + 4, CONFIG_HTOYTO_MAX_NODE_ID_LENGTH);
+            peer_node_id[CONFIG_HTOYTO_MAX_NODE_ID_LENGTH] = '\0';
             k_work_cancel_delayable(&handshake_timeout_work);
             node_connected = true;
             state = HTOYTO_STATE_CONNECTED;
-            htoyto_emit_node_added(DT_PROP(HTY_NODE, node_id));
+            htoyto_emit_node_added(peer_node_id);
         } else if (state == HTOYTO_STATE_EST_SENT) {
             LOG_INF("EST from %s — echoing EST, connected (terminal)", line + 4);
+            strncpy(peer_node_id, line + 4, CONFIG_HTOYTO_MAX_NODE_ID_LENGTH);
+            peer_node_id[CONFIG_HTOYTO_MAX_NODE_ID_LENGTH] = '\0';
             uart_send("EST " DT_PROP(HTY_NODE, node_id) "\n");
             k_work_cancel_delayable(&handshake_timeout_work);
             node_connected = true;
             state = HTOYTO_STATE_CONNECTED;
-            htoyto_emit_node_added(DT_PROP(HTY_NODE, node_id));
+            htoyto_emit_node_added(peer_node_id);
         } else {
             LOG_WRN("EST unexpected in state %d", state);
         }
@@ -194,7 +199,7 @@ static void dr_debounce_handler(struct k_work *work) {
         node_connected = false;
         state = HTOYTO_STATE_IDLE;
         k_work_cancel_delayable(&handshake_timeout_work);
-        htoyto_emit_node_removed(DT_PROP(HTY_NODE, node_id));
+        htoyto_emit_node_removed(peer_node_id);
     }
 }
 
