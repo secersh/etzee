@@ -114,17 +114,6 @@ static void process_frame(const char *line) {
             LOG_WRN("EST unexpected in state %d", state);
         }
 
-    } else if (strncmp(line, "BYE ", 4) == 0) {
-        if (state == HTOYTO_STATE_CONNECTED) {
-            LOG_INF("BYE from %s — peer disconnected", line + 4);
-#if CONFIG_HTOYTO_KEEPALIVE_MS > 0
-            k_work_cancel_delayable(&kal_watchdog_work);
-#endif
-            node_connected = false;
-            state = HTOYTO_STATE_IDLE;
-            htoyto_emit_node_removed(peer_node_id);
-        }
-
     } else if (strncmp(line, "KAL ", 4) == 0) {
 #if CONFIG_HTOYTO_KEEPALIVE_MS > 0
         if (state == HTOYTO_STATE_CONNECTED) {
@@ -247,8 +236,7 @@ static void dr_debounce_handler(struct k_work *work) {
         k_work_reschedule(&handshake_timeout_work,
                           K_MSEC(CONFIG_HTOYTO_HANDSHAKE_TIMEOUT_MS));
     } else if (val == 0 && node_connected) {
-        LOG_INF("dR falling — node disconnected, sending BYE");
-        uart_send("BYE " DT_PROP(HTY_NODE, node_id) "\n");
+        LOG_INF("dR falling — node disconnected");
 #if CONFIG_HTOYTO_KEEPALIVE_MS > 0
         k_work_cancel_delayable(&kal_tx_work);
 #endif
