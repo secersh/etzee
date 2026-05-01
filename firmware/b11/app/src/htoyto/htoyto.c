@@ -39,8 +39,7 @@ static int     tx_len;
 // TODO: replace frame_buf with a ring buffer to handle back-to-back frames
 static char     rx_buf[HTY_BUF_SIZE];
 static int      rx_pos;
-static char     frame_buf[HTY_BUF_SIZE];
-static uint32_t rx_byte_count; // total bytes received, for diagnostics
+static char frame_buf[HTY_BUF_SIZE];
 
 static void uart_send(const char *str) {
     int len = strlen(str);
@@ -129,7 +128,6 @@ static void process_frame(const char *line) {
 }
 
 static void rx_process_handler(struct k_work *work) {
-    LOG_INF("rx frame [%s] state=%d", frame_buf, state);
     process_frame(frame_buf);
 }
 
@@ -149,7 +147,6 @@ static void uart_irq_handler(const struct device *dev, void *user_data) {
     if (uart_irq_rx_ready(dev)) {
         uint8_t c;
         while (uart_fifo_read(dev, &c, 1) == 1) {
-            rx_byte_count++;
             if (c == '\n' || c == '\r') {
                 if (rx_pos > 0) {
                     rx_buf[rx_pos] = '\0';
@@ -169,8 +166,7 @@ static void uart_irq_handler(const struct device *dev, void *user_data) {
 }
 
 static void handshake_timeout_handler(struct k_work *work) {
-    LOG_WRN("handshake timed out in state %d (rx_bytes_total=%u)",
-            state, rx_byte_count);
+    LOG_WRN("handshake timed out in state %d", state);
     state = HTOYTO_STATE_IDLE;
     htoyto_emit_node_rejected(DT_PROP(HTY_NODE, node_id), "timeout");
 }
