@@ -1,9 +1,7 @@
 name: 🍉 Materialize
 
 on:
-  create:
-    tags:
-      - 'v*'
+  workflow_dispatch: # disabled: trigger manually only when ready
 
 jobs:
   mechanical-output:
