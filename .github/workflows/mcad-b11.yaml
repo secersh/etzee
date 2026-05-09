@@ -4,8 +4,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  export-mcad:
-    name: 🏭 B11 (${{ matrix.profile }} profile, ${{ matrix.columns }} col)
+  export-common:
+    name: 🏭 B11 Common Parts
+    permissions:
+      contents: read
+    uses: ./.github/workflows/mcad-export.yaml
+    with:
+      parts_file: hardware/b11/mcad/parts.yaml
+      onshape_configuration: "List_xrEfmODFsfiBE6=Default,List_kw1ECqDsNAkjBg=Default"
+      artifact_suffix: b11-common
+      build: common
+      variant_suffix: ""
+    secrets: inherit
+
+  export-matrix:
+    name: 🏭 B11 (${{ matrix.variant_suffix }} — ${{ matrix.profile }} profile, ${{ matrix.columns }} col)
     permissions:
       contents: read
     strategy:
@@ -14,26 +27,32 @@ jobs:
         include:
           - profile: normal
             columns: 5
+            variant_suffix: 5-N
             onshape_configuration: "List_xrEfmODFsfiBE6=Default,List_kw1ECqDsNAkjBg=Default"
           - profile: normal
             columns: 6
+            variant_suffix: 6-N
             onshape_configuration: "List_xrEfmODFsfiBE6=Default,List_kw1ECqDsNAkjBg=_6"
           - profile: low
             columns: 5
+            variant_suffix: 5-L
             onshape_configuration: "List_xrEfmODFsfiBE6=Low_profile,List_kw1ECqDsNAkjBg=Default"
           - profile: low
             columns: 6
+            variant_suffix: 6-L
             onshape_configuration: "List_xrEfmODFsfiBE6=Low_profile,List_kw1ECqDsNAkjBg=_6"
     uses: ./.github/workflows/mcad-export.yaml
     with:
       parts_file: hardware/b11/mcad/parts.yaml
       onshape_configuration: ${{ matrix.onshape_configuration }}
-      artifact_suffix: b11-${{ matrix.profile }}-${{ matrix.columns }}col
+      artifact_suffix: b11-${{ matrix.variant_suffix }}
+      build: matrix
+      variant_suffix: ${{ matrix.variant_suffix }}
     secrets: inherit
 
   release:
     name: 🚀 Create Release
-    needs: export-mcad
+    needs: [export-common, export-matrix]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -60,5 +79,5 @@ jobs:
           TAG="mcad-b11-$(date -u +'%Y%m%d%H%M%S')-${{ github.run_number }}"
           gh release create "$TAG" \
             --title "MCAD B11 Export – run #${{ github.run_number }}" \
-            --notes "Automated MCAD export of B11 STEP and STL files (run #${{ github.run_number }}, commit \`${{ github.sha }}\`)." \
+            --notes "Automated MCAD export of B11 STEP, STL, and DXF files (run #${{ github.run_number }}, commit \`${{ github.sha }}\`)." \
             release-assets/*.zip

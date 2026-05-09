@@ -12,9 +12,18 @@ on:
         type: string
         required: true
       artifact_suffix:
-        description: "Suffix for artifact names (e.g. b11-Normal-5col)"
+        description: "Suffix for artifact names (e.g. b11-5-N)"
         type: string
         required: true
+      build:
+        description: "Build type: common or matrix"
+        type: string
+        required: true
+      variant_suffix:
+        description: "Variant suffix appended to matrix output filenames (e.g. 5-N). Empty for common builds."
+        type: string
+        required: false
+        default: ""
     secrets:
       ONSHAPE_API_ACCESS_KEY:
         required: true
@@ -46,60 +55,54 @@ jobs:
       - name: Resolve part IDs from OnShape
         id: read_parts
         run: |
-          echo "::notice:: 📋 Reading part numbers from ${{ inputs.parts_file }}..."
-
-          PART_NUMBERS=$(python3 -c "
-          import yaml
-          with open('${{ inputs.parts_file }}') as f:
-              data = yaml.safe_load(f)
-          nums = [p['part_number'] for p in data['parts'] if p.get('part_number', '').strip()]
-          print('\n'.join(nums))
-          ")
-
-          if [ -z "$PART_NUMBERS" ]; then
-            echo "::error:: 🚨 No part numbers found in ${{ inputs.parts_file }}."
-            exit 1
-          fi
+          echo "::notice:: 📋 Reading part numbers from ${{ inputs.parts_file }} (build: ${{ inputs.build }})..."
 
           echo "::notice:: 🔍 Fetching parts list from OnShape..."
-
           ONSHAPE_PARTS=$(curl -s -X 'GET' \
           "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}?includeFlatParts=true&configuration=$ENCODED_CONFIG" \
           -H "Accept: application/json" \
           -H "Authorization: Basic $AUTH")
 
-          PART_RESOLUTION=$(ONSHAPE_PARTS_JSON="$ONSHAPE_PARTS" PART_NUMBERS_LIST="$PART_NUMBERS" python3 -c "
-          import json, sys, os
-          parts = json.loads(os.environ['ONSHAPE_PARTS_JSON'])
-          part_numbers = os.environ['PART_NUMBERS_LIST'].strip().splitlines()
-          id_map = {p['partNumber']: p['partId'] for p in parts if p.get('partNumber')}
-          missing = [n for n in part_numbers if n not in id_map]
+          ONSHAPE_PARTS_JSON="$ONSHAPE_PARTS" \
+          BUILD_TYPE="${{ inputs.build }}" \
+          PARTS_FILE="${{ inputs.parts_file }}" \
+          python3 - <<'EOF'
+          import json, sys, os, yaml
+
+          with open(os.environ['PARTS_FILE']) as f:
+              data = yaml.safe_load(f)
+
+          build_type = os.environ['BUILD_TYPE']
+          all_parts = [p for p in data['parts'] if p.get('build', 'common') == build_type]
+
+          if not all_parts:
+              print(f'::notice:: No parts found for build type: {build_type}', file=sys.stderr)
+              sys.exit(0)
+
+          onshape_parts = json.loads(os.environ['ONSHAPE_PARTS_JSON'])
+          id_map = {p['partNumber']: p['partId'] for p in onshape_parts if p.get('partNumber')}
+
+          missing = [p['part_number'] for p in all_parts if p['part_number'] not in id_map]
           if missing:
               for n in missing:
                   print(f'Part number not found in OnShape: {n}', file=sys.stderr)
               sys.exit(1)
-          print(','.join(id_map[n] for n in part_numbers))
-          print(','.join(part_numbers))
-          ")
 
-          if [ $? -ne 0 ]; then
-            echo "::error:: 🚨 Some part numbers from ${{ inputs.parts_file }} were not found in OnShape. Check that part numbers match the partNumber property set in OnShape (right-click → Properties)."
-            exit 1
-          fi
-
-          PART_IDS=$(echo "$PART_RESOLUTION" | sed -n '1p')
-          PART_NAMES=$(echo "$PART_RESOLUTION" | sed -n '2p')
-
-          echo "part_ids=$PART_IDS" >> $GITHUB_OUTPUT
-          echo "part_names=$PART_NAMES" >> $GITHUB_OUTPUT
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              for fmt in ['step', 'stl']:
+                  fmt_parts = [p for p in all_parts if fmt in p.get('formats', [])]
+                  out.write(f"{fmt}_names={','.join(p['part_number'] for p in fmt_parts)}\n")
+                  out.write(f"{fmt}_ids={','.join(id_map[p['part_number']] for p in fmt_parts)}\n")
+          EOF
 
       - name: Export STEP files
+        if: steps.read_parts.outputs.step_names != ''
         env:
-          PART_IDS: ${{ steps.read_parts.outputs.part_ids }}
-          PART_NAMES: ${{ steps.read_parts.outputs.part_names }}
+          PART_IDS: ${{ steps.read_parts.outputs.step_ids }}
+          PART_NAMES: ${{ steps.read_parts.outputs.step_names }}
+          VARIANT_SUFFIX: ${{ inputs.variant_suffix }}
         run: |
-          echo "::notice:: 📐 Exporting STEP files from OnShape (${{ inputs.artifact_suffix }})..."
-
+          echo "::notice:: 📐 Exporting STEP files (${{ inputs.artifact_suffix }})..."
           mkdir -p manufacturing/step
 
           IFS=',' read -ra NAMES <<< "$PART_NAMES"
@@ -108,8 +111,9 @@ jobs:
           for i in "${!NAMES[@]}"; do
             NAME="${NAMES[$i]}"
             PID="${IDS[$i]}"
+            OUTPUT_NAME="${NAME}$( [ -n "$VARIANT_SUFFIX" ] && echo "-${VARIANT_SUFFIX}" )"
 
-            echo "::notice:: 📤 Submitting STEP export for part: $NAME (id: $PID)..."
+            echo "::notice:: 📤 Submitting STEP export for part: $NAME..."
 
             JSON_BODY=$(jq -n \
               --arg partIds "$PID" \
@@ -123,80 +127,41 @@ jobs:
             -d "$JSON_BODY")
 
             HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
+            [ -z "$HREF" ] || [ "$HREF" == "null" ] && { echo "::error:: 🚨 Failed to submit STEP export for: $NAME"; exit 1; }
 
-            if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
-              echo "::error:: 🚨 Failed to submit STEP export request for part: $NAME"
-              exit 1
-            fi
-
-            echo "::notice:: 📥 Waiting for STEP file to be ready for part: $NAME..."
-
-            ATTEMPTS=0
-            MAX_ATTEMPTS=60
+            ATTEMPTS=0; MAX_ATTEMPTS=60
             while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
-              STATUS_RES=$(curl -s -X 'GET' "$HREF" \
-              -H "Accept: application/json" \
-              -H "Authorization: Basic $AUTH")
-
+              STATUS_RES=$(curl -s -X 'GET' "$HREF" -H "Accept: application/json" -H "Authorization: Basic $AUTH")
               STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
-
-              echo "::notice:: Current status: $STATUS"
-
-              if [ -z "$STATUS" ]; then
-                echo "::error:: 🚨 Failed to retrieve STEP export status for part: $NAME"
-                exit 1
-              fi
-
-              if [ "$STATUS" == "DONE" ]; then
-                echo "::notice:: ✅ STEP file ready for part: $NAME"
-                FID=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[0]')
-                break
-              elif [ "$STATUS" == "FAILED" ]; then
-                echo "::error:: 🚨 STEP export failed for part: $NAME"
-                exit 1
-              else
-                echo "::notice:: ⏳ STEP file still being processed..."
-                sleep 5
-              fi
-
-              ATTEMPTS=$((ATTEMPTS + 1))
+              [ -z "$STATUS" ] && { echo "::error:: 🚨 Failed to retrieve STEP export status for: $NAME"; exit 1; }
+              [ "$STATUS" == "DONE" ] && { FID=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[0]'); break; }
+              [ "$STATUS" == "FAILED" ] && { echo "::error:: 🚨 STEP export failed for: $NAME"; exit 1; }
+              sleep 5; ATTEMPTS=$((ATTEMPTS + 1))
             done
+            [ $ATTEMPTS -ge $MAX_ATTEMPTS ] && { echo "::error:: 🚨 STEP export timed out for: $NAME"; exit 1; }
 
-            if [ $ATTEMPTS -ge $MAX_ATTEMPTS ]; then
-              echo "::error:: 🚨 STEP export timed out for part: $NAME"
-              exit 1
-            fi
-
-            echo "::notice:: 📥 Downloading STEP file with ID: $FID (part: $NAME)"
             curl -s -X 'GET' \
             "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
-            -H "Accept: application/octet-stream" \
-            -H "Authorization: Basic $AUTH" \
-            -o "manufacturing/step/${NAME}.zip"
+            -H "Accept: application/octet-stream" -H "Authorization: Basic $AUTH" \
+            -o "manufacturing/step/${OUTPUT_NAME}.zip"
 
-            if [ $? -ne 0 ]; then
-              echo "::error:: 🚨 Failed to download STEP file for part: $NAME"
-              exit 1
-            fi
-
-            TMPDIR="manufacturing/step/${NAME}_tmp"
-            unzip -o "manufacturing/step/${NAME}.zip" -d "$TMPDIR"
+            TMPDIR="manufacturing/step/${OUTPUT_NAME}_tmp"
+            unzip -o "manufacturing/step/${OUTPUT_NAME}.zip" -d "$TMPDIR"
             STEP_FILE=$(find "$TMPDIR" -maxdepth 1 -iname "*.step" | head -1)
-            if [ -z "$STEP_FILE" ]; then
-              echo "::error:: 🚨 No STEP file found inside zip for part: $NAME"
-              exit 1
-            fi
-            mv "$STEP_FILE" "manufacturing/step/${NAME}.step"
-            rm -rf "$TMPDIR" "manufacturing/step/${NAME}.zip"
+            [ -z "$STEP_FILE" ] && { echo "::error:: 🚨 No STEP file in zip for: $NAME"; exit 1; }
+            mv "$STEP_FILE" "manufacturing/step/${OUTPUT_NAME}.step"
+            rm -rf "$TMPDIR" "manufacturing/step/${OUTPUT_NAME}.zip"
+            echo "::notice:: ✅ $OUTPUT_NAME.step"
           done
 
       - name: Export STL files
+        if: steps.read_parts.outputs.stl_names != ''
         env:
-          PART_IDS: ${{ steps.read_parts.outputs.part_ids }}
-          PART_NAMES: ${{ steps.read_parts.outputs.part_names }}
+          PART_IDS: ${{ steps.read_parts.outputs.stl_ids }}
+          PART_NAMES: ${{ steps.read_parts.outputs.stl_names }}
+          VARIANT_SUFFIX: ${{ inputs.variant_suffix }}
         run: |
-          echo "::notice:: 🖨️ Exporting STL files from OnShape (${{ inputs.artifact_suffix }})..."
-
+          echo "::notice:: 🖨️ Exporting STL files (${{ inputs.artifact_suffix }})..."
           mkdir -p manufacturing/stl
 
           IFS=',' read -ra NAMES <<< "$PART_NAMES"
@@ -205,8 +170,9 @@ jobs:
           for i in "${!NAMES[@]}"; do
             NAME="${NAMES[$i]}"
             PID="${IDS[$i]}"
+            OUTPUT_NAME="${NAME}$( [ -n "$VARIANT_SUFFIX" ] && echo "-${VARIANT_SUFFIX}" )"
 
-            echo "::notice:: 📤 Submitting STL export for part: $NAME (id: $PID)..."
+            echo "::notice:: 📤 Submitting STL export for part: $NAME..."
 
             JSON_BODY=$(jq -n \
               --arg partIds "$PID" \
@@ -220,80 +186,42 @@ jobs:
             -d "$JSON_BODY")
 
             HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
+            [ -z "$HREF" ] || [ "$HREF" == "null" ] && { echo "::error:: 🚨 Failed to submit STL export for: $NAME"; exit 1; }
 
-            if [ -z "$HREF" ] || [ "$HREF" == "null" ]; then
-              echo "::error:: 🚨 Failed to submit STL export request for part: $NAME"
-              exit 1
-            fi
-
-            echo "::notice:: 📥 Waiting for STL file to be ready for part: $NAME..."
-
-            ATTEMPTS=0
-            MAX_ATTEMPTS=60
+            ATTEMPTS=0; MAX_ATTEMPTS=60
             while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
-              STATUS_RES=$(curl -s -X 'GET' "$HREF" \
-              -H "Accept: application/json" \
-              -H "Authorization: Basic $AUTH")
-
+              STATUS_RES=$(curl -s -X 'GET' "$HREF" -H "Accept: application/json" -H "Authorization: Basic $AUTH")
               STATUS=$(echo "$STATUS_RES" | jq -r '.requestState')
-
-              echo "::notice:: Current status: $STATUS"
-
-              if [ -z "$STATUS" ]; then
-                echo "::error:: 🚨 Failed to retrieve STL export status for part: $NAME"
-                exit 1
-              fi
-
-              if [ "$STATUS" == "DONE" ]; then
-                echo "::notice:: ✅ STL file ready for part: $NAME"
-                FID=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[0]')
-                break
-              elif [ "$STATUS" == "FAILED" ]; then
-                echo "::error:: 🚨 STL export failed for part: $NAME"
-                exit 1
-              else
-                echo "::notice:: ⏳ STL file still being processed..."
-                sleep 5
-              fi
-
-              ATTEMPTS=$((ATTEMPTS + 1))
+              [ -z "$STATUS" ] && { echo "::error:: 🚨 Failed to retrieve STL export status for: $NAME"; exit 1; }
+              [ "$STATUS" == "DONE" ] && { FID=$(echo "$STATUS_RES" | jq -r '.resultExternalDataIds[0]'); break; }
+              [ "$STATUS" == "FAILED" ] && { echo "::error:: 🚨 STL export failed for: $NAME"; exit 1; }
+              sleep 5; ATTEMPTS=$((ATTEMPTS + 1))
             done
+            [ $ATTEMPTS -ge $MAX_ATTEMPTS ] && { echo "::error:: 🚨 STL export timed out for: $NAME"; exit 1; }
 
-            if [ $ATTEMPTS -ge $MAX_ATTEMPTS ]; then
-              echo "::error:: 🚨 STL export timed out for part: $NAME"
-              exit 1
-            fi
-
-            echo "::notice:: 📥 Downloading STL file with ID: $FID (part: $NAME)"
             curl -s -X 'GET' \
             "https://cad.onshape.com/api/v10/documents/d/${{ vars.DID }}/externaldata/$FID" \
-            -H "Accept: application/octet-stream" \
-            -H "Authorization: Basic $AUTH" \
-            -o "manufacturing/stl/${NAME}.zip"
+            -H "Accept: application/octet-stream" -H "Authorization: Basic $AUTH" \
+            -o "manufacturing/stl/${OUTPUT_NAME}.zip"
 
-            if [ $? -ne 0 ]; then
-              echo "::error:: 🚨 Failed to download STL file for part: $NAME"
-              exit 1
-            fi
-
-            TMPDIR="manufacturing/stl/${NAME}_tmp"
-            unzip -o "manufacturing/stl/${NAME}.zip" -d "$TMPDIR"
+            TMPDIR="manufacturing/stl/${OUTPUT_NAME}_tmp"
+            unzip -o "manufacturing/stl/${OUTPUT_NAME}.zip" -d "$TMPDIR"
             STL_FILE=$(find "$TMPDIR" -maxdepth 1 -iname "*.stl" | head -1)
-            if [ -z "$STL_FILE" ]; then
-              echo "::error:: 🚨 No STL file found inside zip for part: $NAME"
-              exit 1
-            fi
-            mv "$STL_FILE" "manufacturing/stl/${NAME}.stl"
-            rm -rf "$TMPDIR" "manufacturing/stl/${NAME}.zip"
+            [ -z "$STL_FILE" ] && { echo "::error:: 🚨 No STL file in zip for: $NAME"; exit 1; }
+            mv "$STL_FILE" "manufacturing/stl/${OUTPUT_NAME}.stl"
+            rm -rf "$TMPDIR" "manufacturing/stl/${OUTPUT_NAME}.zip"
+            echo "::notice:: ✅ $OUTPUT_NAME.stl"
           done
 
       - name: Upload STEP artifact
+        if: steps.read_parts.outputs.step_names != ''
         uses: actions/upload-artifact@v4
         with:
           name: mcad-step-${{ inputs.artifact_suffix }}
           path: manufacturing/step/*.step
 
       - name: Upload STL artifact
+        if: steps.read_parts.outputs.stl_names != ''
         uses: actions/upload-artifact@v4
         with:
           name: mcad-stl-${{ inputs.artifact_suffix }}
