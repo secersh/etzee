@@ -49,7 +49,7 @@ jobs:
 
       - name: Generate ENCODED_CONFIG
         run: |
-          ENCODED_CONFIG=$(jq -rn --arg config "${{ inputs.onshape_configuration }}" '$config | @uri')
+          ENCODED_CONFIG=$(jq -rn --arg config "${{ inputs.onshape_configuration }}" '$config | @uri | gsub("%3B"; ";")')
           echo "ENCODED_CONFIG=$ENCODED_CONFIG" >> $GITHUB_ENV
 
       - name: Resolve part IDs from OnShape
