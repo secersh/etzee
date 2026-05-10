@@ -127,7 +127,7 @@ jobs:
             -d "$JSON_BODY")
 
             HREF=$(echo "$SUBMIT_RES" | jq -r '.href')
-            [ -z "$HREF" ] || [ "$HREF" == "null" ] && { echo "::error:: 🚨 Failed to submit STEP export for: $NAME"; exit 1; }
+            [ -z "$HREF" ] || [ "$HREF" == "null" ] && { echo "::error:: 🚨 Failed to submit STEP export for: $NAME (response: $(echo "$SUBMIT_RES" | jq -c '.'))"; exit 1; }
 
             ATTEMPTS=0; MAX_ATTEMPTS=60
             while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
