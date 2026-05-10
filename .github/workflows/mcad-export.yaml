@@ -111,7 +111,7 @@ jobs:
           for i in "${!NAMES[@]}"; do
             NAME="${NAMES[$i]}"
             PID="${IDS[$i]}"
-            OUTPUT_NAME="${NAME}$( [ -n "$VARIANT_SUFFIX" ] && echo "-${VARIANT_SUFFIX}" )"
+            OUTPUT_NAME="${NAME}${VARIANT_SUFFIX:+-${VARIANT_SUFFIX}}"
 
             echo "::notice:: 📤 Submitting STEP export for part: $NAME..."
 
@@ -170,7 +170,7 @@ jobs:
           for i in "${!NAMES[@]}"; do
             NAME="${NAMES[$i]}"
             PID="${IDS[$i]}"
-            OUTPUT_NAME="${NAME}$( [ -n "$VARIANT_SUFFIX" ] && echo "-${VARIANT_SUFFIX}" )"
+            OUTPUT_NAME="${NAME}${VARIANT_SUFFIX:+-${VARIANT_SUFFIX}}"
 
             echo "::notice:: 📤 Submitting STL export for part: $NAME..."
 
