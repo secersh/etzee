@@ -1,3 +1,6 @@
 [submodule "hardware/lib/MX_V2"]
 	path = hardware/lib/MX_V2
 	url = https://github.com/ai03-2725/MX_V2.git
+[submodule "hardware/lib/keyswitches.pretty"]
+	path = hardware/lib/keyswitches.pretty
+	url = https://github.com/daprice/keyswitches.pretty.git
