@@ -57,9 +57,9 @@ jobs:
         run: |
           echo "::notice:: 📋 Reading part numbers from ${{ inputs.parts_file }} (build: ${{ inputs.build }})..."
 
-          echo "::notice:: 🔍 Fetching parts list from OnShape (default config for stable part IDs)..."
+          echo "::notice:: 🔍 Fetching parts list from OnShape..."
           ONSHAPE_PARTS=$(curl -s -X 'GET' \
-          "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}?includeFlatParts=true" \
+          "https://cad.onshape.com/api/v10/parts/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}?includeFlatParts=true&configuration=$ENCODED_CONFIG" \
           -H "Accept: application/json" \
           -H "Authorization: Basic $AUTH")
 
@@ -120,7 +120,7 @@ jobs:
               '{resolution:"FINE",storeInDocument:false,partIds:$partIds,formatName:"STEP",grouping:false,specifyUnits:true,unit:"MILLIMETER",scale:"1.0"}')
 
             SUBMIT_RES=$(curl -s -X 'POST' \
-            "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations?configuration=$ENCODED_CONFIG" \
+            "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
             -H "Accept: application/json" \
             -H "Authorization: Basic $AUTH" \
             -H "Content-Type: application/json" \
@@ -179,7 +179,7 @@ jobs:
               '{storeInDocument:false,partIds:$partIds,formatName:"STL",grouping:false,specifyUnits:true,unit:"MILLIMETER",scale:"1.0",angularTolerance:0.05,chordTolerance:0.01}')
 
             SUBMIT_RES=$(curl -s -X 'POST' \
-            "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations?configuration=$ENCODED_CONFIG" \
+            "https://cad.onshape.com/api/v10/partstudios/d/${{ vars.DID }}/w/${{ vars.WVMID }}/e/${{ vars.EID }}/translations" \
             -H "Accept: application/json" \
             -H "Authorization: Basic $AUTH" \
             -H "Content-Type: application/json" \
