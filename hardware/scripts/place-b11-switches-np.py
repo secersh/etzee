@@ -97,8 +97,7 @@ def _place_single(pcb_path_str, lib_dir_str, origin_x, origin_y):
         y = go_y + row * PITCH_MM
 
         fp.SetPosition(pcbnew.VECTOR2I(mm(x), mm(y)))
-        if is_right:
-            fp.SetOrientationDegrees(180)
+        fp.SetOrientationDegrees(180)   # south-facing LED
         fp.SetReference(f"SW{i + 1}")
         fp.SetValue(FOOTPRINT)
 

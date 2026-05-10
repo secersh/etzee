@@ -1,0 +1,154 @@
+#!/usr/bin/env python3
+"""
+Place Kailh Choc (PG1350) hot-swap switch footprints on all B11 low-profile carrier PCBs.
+
+Targets: ETZ-B11-{LSC,RSC}-{5,6}-L.kicad_pcb
+Footprint: Kailh_socket_PG1350 from hardware/lib/keyswitches.pretty/
+
+Layout (same column/row structure as normal-profile):
+  6-col:  row 0-2 → cols 0-5 (full)
+          row 3   → cols 2-5 (thumb, 4 keys)
+  5-col:  row 0-2 → cols 0-4 (full)
+          row 3   → cols 2-4 (thumb, 3 keys)
+
+Choc v1 pitch: 18.0 mm horizontal × 17.0 mm vertical.
+Right-side boards are mirrored: col offsets go in the -X direction.
+Footprints on right-side boards are rotated 180°.
+
+Each board is processed in a subprocess to get a clean pcbnew SWIG context.
+
+Run with KiCad's Python:
+  /Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3.9
+"""
+
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+ECAD_DIR     = Path(__file__).parent.parent / "b11/ecad"
+ORIGINS_FILE = Path(__file__).parent.parent / "b11/mcad/switch-origins.yaml"
+LIB_DIR      = Path(__file__).parent.parent / "lib/keyswitches.pretty"
+FOOTPRINT    = "Kailh_socket_PG1350"
+PITCH_X_MM   = 19.2
+PITCH_Y_MM   = 19.2
+
+
+def layout(n_cols):
+    """(row, col) positions relative to grid origin (first switch)."""
+    positions = []
+    thumb_indent = 2
+    thumb_count = 4 if n_cols == 6 else 3
+    for row in range(3):
+        for col in range(n_cols):
+            positions.append((row, col))
+    for col in range(thumb_indent, thumb_indent + thumb_count):
+        positions.append((3, col))
+    return positions
+
+
+# ── single-board worker (runs in its own subprocess) ─────────────────────────
+
+def _place_single(pcb_path_str, lib_dir_str, origin_x, origin_y):
+    """Called in a fresh subprocess — pcbnew SWIG context is clean."""
+    import pcbnew
+
+    pcb_path = Path(pcb_path_str)
+    lib_dir  = Path(lib_dir_str)
+    stem     = pcb_path.stem
+    is_right = "-RSC-" in stem
+    n_cols   = 6 if "-6-" in stem else 5
+
+    def mm(v):
+        return pcbnew.FromMM(v)
+
+    # Pre-initialise PCB_IO and FOOTPRINT SWIG types before LoadBoard to
+    # avoid type-registry corruption (same workaround as place-b11-switches.py).
+    plug = pcbnew.PCB_IO_MGR.PluginFind(pcbnew.PCB_IO_MGR.KICAD_SEXP)
+    _warmup = plug.FootprintLoad(str(lib_dir.resolve()), FOOTPRINT)
+
+    board = pcbnew.LoadBoard(str(pcb_path))
+
+    grid_origin = board.GetDesignSettings().GetGridOrigin()
+    go_x = pcbnew.ToMM(grid_origin.x)
+    go_y = pcbnew.ToMM(grid_origin.y)
+
+    for fp in list(board.GetFootprints()):
+        if FOOTPRINT in fp.GetValue():
+            board.Remove(fp)
+
+    positions = layout(n_cols)
+
+    for i, (row, col) in enumerate(positions):
+        fp = plug.FootprintLoad(str(lib_dir.resolve()), FOOTPRINT)
+
+        x = (go_x - col * PITCH_X_MM) if is_right else (go_x + col * PITCH_X_MM)
+        y = go_y + row * PITCH_Y_MM
+
+        fp.SetPosition(pcbnew.VECTOR2I(mm(x), mm(y)))
+        fp.SetOrientationDegrees(180)   # south-facing LED
+        fp.SetReference(f"SW{i + 1}")
+        fp.SetValue(FOOTPRINT)
+
+        for pad in fp.Pads():
+            n = pad.GetNumber()
+            net_name = f"ROW{row}" if n == "1" else (f"COL{col}" if n == "2" else None)
+            if net_name:
+                net = board.FindNet(net_name)
+                if net is None:
+                    net = pcbnew.NETINFO_ITEM(board, net_name)
+                    board.Add(net)
+                pad.SetNet(net)
+
+        board.Add(fp)
+
+    board.Save(str(pcb_path))
+    print(f"  ✅  {pcb_path.name}  ({len(positions)} switches, {'right' if is_right else 'left'}, {n_cols}-col)")
+
+
+# ── orchestrator ──────────────────────────────────────────────────────────────
+
+def main():
+    try:
+        import yaml
+    except ImportError:
+        print("error: pyyaml not found", file=sys.stderr)
+        sys.exit(1)
+
+    with open(ORIGINS_FILE) as f:
+        origins = yaml.safe_load(f)["origins"]
+
+    targets = sorted(ECAD_DIR.glob("ETZ-B11-*SC-*-L.kicad_pcb"))
+    if not targets:
+        print("error: no low-profile carrier PCBs found", file=sys.stderr)
+        sys.exit(1)
+
+    print(f"Placing Choc switches on {len(targets)} low-profile carrier PCBs...\n")
+
+    for pcb_path in targets:
+        stem   = pcb_path.stem
+        origin = origins[stem]
+        print(f"  🔄  {pcb_path.name}")
+        result = subprocess.run(
+            [sys.executable, __file__, "--single",
+             str(pcb_path.resolve()),
+             str(LIB_DIR.resolve()),
+             str(origin["x"]),
+             str(origin["y"])],
+            capture_output=True, text=True
+        )
+        sys.stdout.write(result.stdout)
+        if result.returncode != 0:
+            sys.stderr.write(result.stderr)
+            sys.exit(result.returncode)
+
+    print(f"\n✅  Done.")
+
+
+if __name__ == "__main__":
+    if "--single" in sys.argv:
+        idx = sys.argv.index("--single")
+        _place_single(sys.argv[idx + 1], sys.argv[idx + 2],
+                      float(sys.argv[idx + 3]), float(sys.argv[idx + 4]))
+    else:
+        main()
