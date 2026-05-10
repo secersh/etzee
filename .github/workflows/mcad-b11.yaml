@@ -11,7 +11,7 @@ jobs:
     uses: ./.github/workflows/mcad-export.yaml
     with:
       parts_file: hardware/b11/mcad/parts.yaml
-      onshape_configuration: "List_xrEfmODFsfiBE6=Default,List_kw1ECqDsNAkjBg=Default"
+      onshape_configuration: "List_xrEfmODFsfiBE6=Default;List_kw1ECqDsNAkjBg=Default"
       artifact_suffix: b11-common
       build: common
       variant_suffix: ""
@@ -28,19 +28,19 @@ jobs:
           - profile: normal
             columns: 5
             variant_suffix: 5-N
-            onshape_configuration: "List_xrEfmODFsfiBE6=Default,List_kw1ECqDsNAkjBg=Default"
+            onshape_configuration: "List_xrEfmODFsfiBE6=Default;List_kw1ECqDsNAkjBg=Default"
           - profile: normal
             columns: 6
             variant_suffix: 6-N
-            onshape_configuration: "List_xrEfmODFsfiBE6=Default,List_kw1ECqDsNAkjBg=_6"
+            onshape_configuration: "List_xrEfmODFsfiBE6=Default;List_kw1ECqDsNAkjBg=_6"
           - profile: low
             columns: 5
             variant_suffix: 5-L
-            onshape_configuration: "List_xrEfmODFsfiBE6=Low_profile,List_kw1ECqDsNAkjBg=Default"
+            onshape_configuration: "List_xrEfmODFsfiBE6=Low_profile;List_kw1ECqDsNAkjBg=Default"
           - profile: low
             columns: 6
             variant_suffix: 6-L
-            onshape_configuration: "List_xrEfmODFsfiBE6=Low_profile,List_kw1ECqDsNAkjBg=_6"
+            onshape_configuration: "List_xrEfmODFsfiBE6=Low_profile;List_kw1ECqDsNAkjBg=_6"
     uses: ./.github/workflows/mcad-export.yaml
     with:
       parts_file: hardware/b11/mcad/parts.yaml

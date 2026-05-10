@@ -37,7 +37,7 @@ jobs:
           ENCODED_CONFIG=$(jq -rn \
           --arg profile "${{ inputs.profile }}" \
           --arg columns "${{ inputs.columns }}" \
-          '$ARGS.named | "List_xrEfmODFsfiBE6=\($profile),List_kw1ECqDsNAkjBg=\($columns)" | @uri')
+          '$ARGS.named | "List_xrEfmODFsfiBE6=\($profile);List_kw1ECqDsNAkjBg=\($columns)" | @uri')
 
           echo "ENCODED_CONFIG=$ENCODED_CONFIG" >> $GITHUB_ENV
 
