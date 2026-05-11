@@ -76,7 +76,13 @@ def _place_single(pcb_path_str, lib_dir_str, origin_x, origin_y):
     # LoadBoard corrupts the SWIG type registry for PCB_IO and FOOTPRINT if they
     # have not been initialised first. Keep both references alive throughout.
     plug = pcbnew.PCB_IO_MGR.PluginFind(pcbnew.PCB_IO_MGR.KICAD_SEXP)
-    _warmup = plug.FootprintLoad(str(lib_dir.resolve()), FOOTPRINT)
+
+    positions = layout(n_cols)
+
+    footprints = [plug.FootprintLoad(str(lib_dir.resolve()), FOOTPRINT)
+                  for _ in positions]
+    fp_pad_nums = [[(pad.GetNumber(), pad) for pad in fp.Pads()]
+                   for fp in footprints]
 
     board = pcbnew.LoadBoard(str(pcb_path))
 
@@ -88,21 +94,18 @@ def _place_single(pcb_path_str, lib_dir_str, origin_x, origin_y):
         if "MX-Hotswap" in fp.GetValue():
             board.Remove(fp)
 
-    positions = layout(n_cols)
-
     for i, (row, col) in enumerate(positions):
-        fp = plug.FootprintLoad(str(lib_dir.resolve()), FOOTPRINT)
+        fp = footprints[i]
 
         x = (go_x - col * PITCH_MM) if is_right else (go_x + col * PITCH_MM)
         y = go_y + row * PITCH_MM
 
         fp.SetPosition(pcbnew.VECTOR2I(mm(x), mm(y)))
-        fp.SetOrientationDegrees(180)   # south-facing LED
+        fp.SetOrientationDegrees(0)
         fp.SetReference(f"SW{i + 1}")
         fp.SetValue(FOOTPRINT)
 
-        for pad in fp.Pads():
-            n = pad.GetNumber()
+        for n, pad in fp_pad_nums[i]:
             net_name = f"ROW{row}" if n == "1" else (f"COL{col}" if n == "2" else None)
             if net_name:
                 net = board.FindNet(net_name)

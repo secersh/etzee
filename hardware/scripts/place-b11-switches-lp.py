@@ -24,6 +24,7 @@ Run with KiCad's Python:
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 ECAD_DIR     = Path(__file__).parent.parent / "b11/ecad"
@@ -32,6 +33,25 @@ LIB_DIR      = Path(__file__).parent.parent / "lib/keyswitches.pretty"
 FOOTPRINT    = "Kailh_socket_PG1350"
 PITCH_X_MM   = 19.2
 PITCH_Y_MM   = 19.2
+MODEL_PATH   = str((Path(__file__).parent.parent / "lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step").resolve())
+
+
+def make_patched_lib(src_lib, model_path):
+    """Copy the .pretty library to tmp, fix model path and convert old (at ...) inch
+    offset to (offset ...) mm format so KiCad 9 doesn't multiply by 25.4."""
+    tmp = Path(tempfile.mkdtemp(suffix=".pretty"))
+    src = src_lib / f"{FOOTPRINT}.kicad_mod"
+    dst = tmp / f"{FOOTPRINT}.kicad_mod"
+    content = src.read_text()
+    # Replace old model block entirely with new-format version (correct mm offsets)
+    import re
+    content = re.sub(
+        r'\(model\s+"[^"]*Kailh-Choc-Socket[^"]*".*?\)',
+        f'(model "{model_path}"\n    (offset (xyz -5 -9.75 -1.6))\n    (scale (xyz 1 1 1))\n    (rotate (xyz 90 0 0))\n  )',
+        content, flags=re.DOTALL
+    )
+    dst.write_text(content)
+    return tmp
 
 
 def layout(n_cols):
@@ -65,7 +85,16 @@ def _place_single(pcb_path_str, lib_dir_str, origin_x, origin_y):
     # Pre-initialise PCB_IO and FOOTPRINT SWIG types before LoadBoard to
     # avoid type-registry corruption (same workaround as place-b11-switches.py).
     plug = pcbnew.PCB_IO_MGR.PluginFind(pcbnew.PCB_IO_MGR.KICAD_SEXP)
-    _warmup = plug.FootprintLoad(str(lib_dir.resolve()), FOOTPRINT)
+
+    positions = layout(n_cols)
+
+    footprints = [plug.FootprintLoad(str(lib_dir.resolve()), FOOTPRINT)
+                  for _ in positions]
+
+    fp_pad_nums = [
+        [(pad.GetNumber(), pad) for pad in fp.Pads()]
+        for fp in footprints
+    ]
 
     board = pcbnew.LoadBoard(str(pcb_path))
 
@@ -77,10 +106,8 @@ def _place_single(pcb_path_str, lib_dir_str, origin_x, origin_y):
         if FOOTPRINT in fp.GetValue():
             board.Remove(fp)
 
-    positions = layout(n_cols)
-
     for i, (row, col) in enumerate(positions):
-        fp = plug.FootprintLoad(str(lib_dir.resolve()), FOOTPRINT)
+        fp = footprints[i]
 
         x = (go_x - col * PITCH_X_MM) if is_right else (go_x + col * PITCH_X_MM)
         y = go_y + row * PITCH_Y_MM
@@ -90,8 +117,7 @@ def _place_single(pcb_path_str, lib_dir_str, origin_x, origin_y):
         fp.SetReference(f"SW{i + 1}")
         fp.SetValue(FOOTPRINT)
 
-        for pad in fp.Pads():
-            n = pad.GetNumber()
+        for n, pad in fp_pad_nums[i]:
             net_name = f"ROW{row}" if n == "1" else (f"COL{col}" if n == "2" else None)
             if net_name:
                 net = board.FindNet(net_name)
@@ -123,16 +149,18 @@ def main():
         print("error: no low-profile carrier PCBs found", file=sys.stderr)
         sys.exit(1)
 
+    patched_lib = make_patched_lib(LIB_DIR, MODEL_PATH)
     print(f"Placing Choc switches on {len(targets)} low-profile carrier PCBs...\n")
 
-    for pcb_path in targets:
+    try:
+      for pcb_path in targets:
         stem   = pcb_path.stem
         origin = origins[stem]
         print(f"  🔄  {pcb_path.name}")
         result = subprocess.run(
             [sys.executable, __file__, "--single",
              str(pcb_path.resolve()),
-             str(LIB_DIR.resolve()),
+             str(patched_lib.resolve()),
              str(origin["x"]),
              str(origin["y"])],
             capture_output=True, text=True
@@ -141,6 +169,8 @@ def main():
         if result.returncode != 0:
             sys.stderr.write(result.stderr)
             sys.exit(result.returncode)
+    finally:
+        shutil.rmtree(patched_lib)
 
     print(f"\n✅  Done.")
 
