@@ -25,7 +25,7 @@ ORIGINS_FILE = Path(__file__).parent.parent / "b11/mcad/switch-origins.yaml"
 LIB_DIR      = Path(__file__).parent.parent / "lib/LED.pretty"
 FOOTPRINT    = "LED_SMD_6028_BackMount"
 PITCH_MM     = 19.2
-LED_OFFSET_Y = 5.9   # mm south of switch center
+LED_OFFSET_Y = 5.0   # mm south of switch center
 
 
 def layout(n_cols):
