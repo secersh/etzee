@@ -341,18 +341,6 @@
 		(roundrect_rratio 0.08)
 		(uuid "bea98f7b-4d8a-44fd-9fa1-5c2140c43220")
 	)
-	(group ""
-		(uuid "6d7c2c30-6152-4f3e-b12a-9f9e1f8b1cda")
-		(members "20297248-6cf5-4823-92de-ee3d5abb4738" "211107a6-6d2e-4c4a-ac91-ae96b73336cb"
-			"3826e818-2a36-4c26-840f-1d40f7182f1b" "47ae8f01-3d6b-4e0a-b663-81d4e7a2f3f4"
-			"4c89a654-1e7d-4d0d-a3e3-0e93dd53e82f" "5bff2efa-b7d5-46e6-b7f7-b1d14e68b1ad"
-			"5ce7cec6-61e1-4054-9837-578242cb6685" "62520387-c992-4f8c-806b-50aa383eb037"
-			"7773cd5e-9be0-4bc0-851a-837c9d3e29b0" "8736ef60-e98c-4fee-ac17-52c5a4021b23"
-			"8f80671f-6100-4007-bb22-5300e53e9847" "9c02bb05-74f7-4682-bc78-89595a6e008b"
-			"a5fafc66-98ef-4ec0-9891-e1240ee1bb42" "ddc69dd2-f39c-460e-81a5-1b87595f2eb4"
-			"e1a866c0-5345-4e48-b29c-0f59217d0592"
-		)
-	)
 	(embedded_fonts no)
 	(model "../3d-models/CPG135001S30.stp"
 		(offset
