@@ -640,7 +640,7 @@
 		(uuid "d5f30167-9afa-4bf8-9319-40c2650aaf4a")
 	)
 	(embedded_fonts no)
-	(model "../3d-models/KS-2P02B01-01-a.stp"
+	(model "${KIPRJMOD}/../../../../lib/3d-models/KS-2P02B01-01-a.stp"
 		(offset
 			(xyz -18.76 -31.41 -5.145)
 		)

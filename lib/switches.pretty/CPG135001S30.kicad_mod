@@ -342,7 +342,7 @@
 		(uuid "bea98f7b-4d8a-44fd-9fa1-5c2140c43220")
 	)
 	(embedded_fonts no)
-	(model "../3d-models/CPG135001S30.stp"
+	(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 		(offset
 			(xyz 5 9.75 -1.6)
 		)

@@ -269,7 +269,7 @@
 		(uuid "713a11c4-6498-42f5-8094-f61652265de3")
 	)
 	(embedded_fonts no)
-	(model "../3d-models/PG151101S11.stp"
+	(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 		(offset
 			(xyz 4.815 0.86 -1.65)
 		)

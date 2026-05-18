@@ -219,7 +219,6 @@
     },
     "layer_pairs": [],
     "layer_presets": [],
-    "page_layout_descr_file": "${KIPRJMOD}/blank.kicad_wks",
     "viewports": []
   },
   "boards": [],
@@ -231,7 +230,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "ETZ-B11-LSP-5-N.kicad_pro",
+    "filename": "ETZ-B11-LSC-6-MX.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -274,9 +273,7 @@
       "svg": "",
       "vrml": ""
     },
-    "page_layout_descr_file": "",
-    "user_grid_x": "19200000",
-    "user_grid_y": "19200000"
+    "page_layout_descr_file": ""
   },
   "schematic": {
     "legacy_lib_dir": "",

@@ -22,10 +22,10 @@ SWITCHES_LIB = LIB_ROOT / "switches.pretty"
 FAMILY_RE    = re.compile(r'ETZ-B11-[LR]SC-\d+-(MX|CHOC-V2|KS-33)')
 
 
-def _place_single(pcb_path_str, origin_x, origin_y):
+def _place_single(pcb_path_str):
     """Called in a fresh subprocess — pcbnew SWIG context is clean."""
     import pcbnew
-    from placement import init_swig, board_meta, existing_refs, layout
+    from placement import init_swig, board_meta, existing_refs, layout, grid_origin_mm
 
     pcb_path = Path(pcb_path_str)
     stem     = pcb_path.stem
@@ -53,7 +53,7 @@ def _place_single(pcb_path_str, origin_x, origin_y):
     def mm(v):
         return pcbnew.FromMM(v)
 
-    go_x, go_y = float(origin_x), float(origin_y)
+    go_x, go_y = grid_origin_mm(board)
     placed = 0
 
     for i, (row, col) in enumerate(positions):
@@ -97,16 +97,13 @@ def main():
         print("error: no carrier PCBs found", file=sys.stderr)
         sys.exit(1)
 
-    origin = GRID_ORIGINS["switch-carrier"]
     print(f"Placing switch sockets on {len(targets)} carrier PCBs...\n")
 
     import subprocess
     for pcb_path in targets:
         print(f"  -> {pcb_path.name}")
         result = subprocess.run(
-            [sys.executable, __file__, "--single",
-             str(pcb_path.resolve()),
-             str(origin[0]), str(origin[1])],
+            [sys.executable, __file__, "--single", str(pcb_path.resolve())],
             capture_output=True, text=True
         )
         sys.stdout.write(result.stdout)
@@ -120,6 +117,6 @@ def main():
 if __name__ == "__main__":
     if "--single" in sys.argv:
         idx = sys.argv.index("--single")
-        _place_single(sys.argv[idx + 1], sys.argv[idx + 2], sys.argv[idx + 3])
+        _place_single(sys.argv[idx + 1])
     else:
         main()

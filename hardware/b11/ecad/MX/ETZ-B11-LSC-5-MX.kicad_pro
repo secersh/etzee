@@ -230,7 +230,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "ETZ-B11-LSC-6-N.kicad_pro",
+    "filename": "ETZ-B11-LSC-5-MX.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -269,7 +269,7 @@
       "plot": "",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "../../../../../../Downloads/ETZ-B11-LSC-6-N.step",
+      "step": "",
       "svg": "",
       "vrml": ""
     },

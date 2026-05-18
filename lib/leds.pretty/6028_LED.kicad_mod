@@ -213,7 +213,7 @@
 		(uuid "a1000006-0000-0000-0000-000000000002")
 	)
 	(embedded_fonts no)
-	(model "../3d-models/6028_LED.stp"
+	(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 		(offset
 			(xyz 0 0 -1.75)
 		)
