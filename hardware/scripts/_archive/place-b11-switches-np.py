@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Place MX hot-swap switch footprints on all B11 normal-profile carrier PCBs.
+Place MX-compatible hot-swap switch footprints on all B11 normal-profile carrier PCBs.
 
 Targets: ETZ-B11-{LSC,RSC}-{5,6}-N.kicad_pcb
-Footprint: MX-Hotswap-1U from hardware/lib/MX_V2/MX_Hotswap.pretty/
+Footprint: PG151101S11 from repo-local lib/switches.pretty/
 
 Layout (left side, coords in 19.2 mm grid units from first switch / grid origin):
   6-col:  row 0-2 → cols 0-5 (full)
@@ -28,10 +28,10 @@ from pathlib import Path
 
 ECAD_DIR     = Path(__file__).parent.parent / "b11/ecad"
 ORIGINS_FILE = Path(__file__).parent.parent / "b11/mcad/switch-origins.yaml"
-LIB_DIR      = Path(__file__).parent.parent / "lib/MX_V2/MX_Hotswap.pretty"
-FOOTPRINT    = "MX-Hotswap-1U"
+LIB_DIR      = Path(__file__).parents[2] / "lib/switches.pretty"
+FOOTPRINT    = "PG151101S11"
 PITCH_MM     = 19.2
-MODEL_PATH   = "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+MODEL_PATH   = "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 
 
 def layout(n_cols):
@@ -52,7 +52,8 @@ def make_patched_lib(src_lib, model_path):
     tmp = Path(tempfile.mkdtemp(suffix=".pretty"))
     src = src_lib / f"{FOOTPRINT}.kicad_mod"
     dst = tmp / f"{FOOTPRINT}.kicad_mod"
-    content = src.read_text().replace('"./MX-Hotswap-Socket.step"', f'"{model_path}"')
+    content = src.read_text().replace('"${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"',
+                                      f'"{model_path}"')
     dst.write_text(content)
     return tmp
 

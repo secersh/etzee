@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Place Kailh Choc (PG1350) hot-swap switch footprints on all B11 low-profile carrier PCBs.
+Place Kailh Choc v2 hot-swap switch footprints on archived B11 low-profile carrier PCBs.
 
 Targets: ETZ-B11-{LSC,RSC}-{5,6}-L.kicad_pcb
-Footprint: Kailh_socket_PG1350 from hardware/lib/keyswitches.pretty/
+Footprint/model: repo-local lib/switches.pretty/CPG135001S30 and lib/3d-models/CPG135001S30.stp
 
 Layout (same column/row structure as normal-profile):
   6-col:  row 0-2 → cols 0-5 (full)
@@ -29,11 +29,11 @@ from pathlib import Path
 
 ECAD_DIR     = Path(__file__).parent.parent / "b11/ecad"
 ORIGINS_FILE = Path(__file__).parent.parent / "b11/mcad/switch-origins.yaml"
-LIB_DIR      = Path(__file__).parent.parent / "lib/keyswitches.pretty"
-FOOTPRINT    = "Kailh_socket_PG1350"
+LIB_DIR      = Path(__file__).parents[2] / "lib/switches.pretty"
+FOOTPRINT    = "CPG135001S30"
 PITCH_X_MM   = 19.2
 PITCH_Y_MM   = 19.2
-MODEL_PATH   = str((Path(__file__).parent.parent / "lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step").resolve())
+MODEL_PATH   = str((Path(__file__).parents[2] / "lib/3d-models/CPG135001S30.stp").resolve())
 
 
 def make_patched_lib(src_lib, model_path):

@@ -516,7 +516,7 @@
 			(uuid "f213db53-29be-404c-b5d9-5113ae508595")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -906,7 +906,7 @@
 			(uuid "b221a013-6d1b-4381-8c1a-b3edf60113bd")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -1296,7 +1296,7 @@
 			(uuid "c03b8093-0c27-4673-a154-3b8a69a58536")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -1686,7 +1686,7 @@
 			(uuid "b0f6db0b-fc24-47b7-a2c0-1a5c3c667e8f")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -2076,7 +2076,7 @@
 			(uuid "58e4a755-6c5a-4b81-b984-c36cfbef9cf1")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -2466,7 +2466,7 @@
 			(uuid "f316b2d5-170f-4762-be42-efe5dcaf2c3e")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -2856,7 +2856,7 @@
 			(uuid "a12256b3-9629-4c74-95a3-9ea0babcf3eb")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -3246,7 +3246,7 @@
 			(uuid "3f140a47-d353-4a72-8802-56c805c8a20a")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -3636,7 +3636,7 @@
 			(uuid "f4f0b08b-14e3-4edb-a27f-92620d07f90a")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -4026,7 +4026,7 @@
 			(uuid "b688f8cd-b906-4b59-9148-dda7368561cd")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -4416,7 +4416,7 @@
 			(uuid "aabfae4f-3c77-4661-b44e-3d7522f13956")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -4806,7 +4806,7 @@
 			(uuid "ca457a75-36a6-40ad-946e-0738182514a3")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -5196,7 +5196,7 @@
 			(uuid "834924da-db5f-459b-b11a-f8a678c4615e")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -5586,7 +5586,7 @@
 			(uuid "a52a51dd-6f23-414d-9fe3-8e871a35ed1f")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -5976,7 +5976,7 @@
 			(uuid "61cea9fa-57b5-4d06-83ad-5587be3bfc3b")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -6366,7 +6366,7 @@
 			(uuid "66ddf961-ec22-4ea7-80ab-28aa9287d106")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -6756,7 +6756,7 @@
 			(uuid "00fbb2e1-72af-464e-bbbe-25c23c9ec4d9")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -7146,7 +7146,7 @@
 			(uuid "9e84ae33-d4df-4710-bebf-540976ee766a")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/MX_V2/MX_Hotswap.pretty/MX-Hotswap-Socket.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/PG151101S11.stp"
 			(offset
 				(xyz 4.815 0.86 -1.65)
 			)
@@ -7442,7 +7442,7 @@
 			(uuid "03a35e71-dc34-4dbe-b98b-ea4ba641473d")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -7738,7 +7738,7 @@
 			(uuid "a9f5d292-c9b0-495b-8287-abd7b58f593e")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -8034,7 +8034,7 @@
 			(uuid "e3255478-fd30-422f-993a-d698900ff63d")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -8330,7 +8330,7 @@
 			(uuid "54cc0d24-83f4-434a-b672-2e0eb9971883")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -8626,7 +8626,7 @@
 			(uuid "fb61a329-6431-47c0-99e6-12b51eb86897")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -8922,7 +8922,7 @@
 			(uuid "71521e96-5cf9-4423-8c40-a71293233584")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -9218,7 +9218,7 @@
 			(uuid "cd5c10e0-a0d0-4622-a43c-9288dcf6f59b")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -9514,7 +9514,7 @@
 			(uuid "066d8894-7a3e-4224-8799-ba9455cb1a77")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -9810,7 +9810,7 @@
 			(uuid "fc8bbb09-16f8-403c-90ea-85f71cf40736")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -10106,7 +10106,7 @@
 			(uuid "3ae641b6-8d94-4d8a-92d1-724c167cb4e0")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -10402,7 +10402,7 @@
 			(uuid "364e2a68-ccf2-4bdc-90dc-d3ae5cc0d4a3")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -10698,7 +10698,7 @@
 			(uuid "ea61e705-0f9e-40db-9245-f324a1fd32ee")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -10994,7 +10994,7 @@
 			(uuid "d48d47fe-b8e1-40c8-9202-f281eaa1dfeb")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -11290,7 +11290,7 @@
 			(uuid "d6c74a98-cb6f-4f42-8bc7-5bb01914aea8")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -11586,7 +11586,7 @@
 			(uuid "d0828165-2c28-49f9-8d1e-9efdb2a99505")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -11882,7 +11882,7 @@
 			(uuid "9f0a23a9-e522-4a45-ae6c-3c156a514582")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -12178,7 +12178,7 @@
 			(uuid "374110ce-d411-4767-9e60-cfaf379fdc49")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -12474,7 +12474,7 @@
 			(uuid "9760b51e-dfe4-4e5a-bf54-66fb8ceb9240")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)

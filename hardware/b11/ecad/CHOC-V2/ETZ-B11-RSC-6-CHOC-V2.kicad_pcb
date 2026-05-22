@@ -808,7 +808,7 @@
 			(uuid "cb1ecf3c-cb5a-43e3-b4b3-ad1a8e3eaf91")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -1489,7 +1489,7 @@
 			(uuid "124b3db6-0819-44b6-92e6-3bf4d988ea3d")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -2170,7 +2170,7 @@
 			(uuid "7865637d-f9e7-4a63-98fc-cacf530fa824")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -2851,7 +2851,7 @@
 			(uuid "8f45a375-06a7-4cc1-a25a-8f20cf5ce32d")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -3532,7 +3532,7 @@
 			(uuid "f884a509-9cda-4b35-9339-ebbe1256d039")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -4213,7 +4213,7 @@
 			(uuid "5818fbf8-4154-4d76-a5e1-1ed43b77a55f")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -4894,7 +4894,7 @@
 			(uuid "70980d98-cc29-432e-bd4f-0c540447d390")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -5575,7 +5575,7 @@
 			(uuid "5e93c5d4-d359-4b0c-96f9-a70fd70dcbd9")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -6256,7 +6256,7 @@
 			(uuid "63321a4a-43c1-47c2-ba12-e036c071d51d")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -6937,7 +6937,7 @@
 			(uuid "3ec3470f-d8ea-485e-ae14-40118b1c8675")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -7618,7 +7618,7 @@
 			(uuid "17a78e41-c5eb-44f2-8d8c-7d7911856cca")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -8299,7 +8299,7 @@
 			(uuid "75ec1306-b1b0-4a5f-a928-60278c491715")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -8980,7 +8980,7 @@
 			(uuid "ce4512ac-163d-4ff3-a576-83f447dc9f14")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -9661,7 +9661,7 @@
 			(uuid "131efb84-fd3b-4b3f-a81c-e915967dc001")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -10342,7 +10342,7 @@
 			(uuid "c632fb15-f975-426e-a0b4-d6aadd0df43c")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -11023,7 +11023,7 @@
 			(uuid "03896702-1412-4ceb-ba1b-8bde33c0e730")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -11704,7 +11704,7 @@
 			(uuid "d8a10942-dd3f-4b8c-b1cc-f03d05e81e19")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -12385,7 +12385,7 @@
 			(uuid "5ffcdfe0-47fe-4055-a322-cd3ff0d75e41")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -13066,7 +13066,7 @@
 			(uuid "07228d51-27d7-448c-8433-f3defdf26452")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -13747,7 +13747,7 @@
 			(uuid "c5d6cf0c-7aae-410f-ab96-346d99cfa34e")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -14428,7 +14428,7 @@
 			(uuid "c8d843dd-52bb-4163-9f47-631a151f19eb")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -15109,7 +15109,7 @@
 			(uuid "aa0f3cc1-8ae4-4850-af6c-2601f5c862b9")
 		)
 		(embedded_fonts no)
-		(model "/Users/secersh/Developer/Personal/etzee/hardware/lib/keyswitches.pretty/Kailh-Choc-Socket-CPG135001S30.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CPG135001S30.stp"
 			(offset
 				(xyz -5 -9.75 -1.6)
 			)
@@ -15405,7 +15405,7 @@
 			(uuid "7d35b22d-7641-4d67-a373-cfc0910cf2de")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -15701,7 +15701,7 @@
 			(uuid "9eeb2b6d-5452-4f97-b179-c680e31e90f2")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -15997,7 +15997,7 @@
 			(uuid "6e9c7d0e-56d1-40bc-b2ec-e21258a786e1")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -16293,7 +16293,7 @@
 			(uuid "ac7371da-8b38-443a-ba0f-9e8d56b47396")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -16589,7 +16589,7 @@
 			(uuid "bae12dc1-17c8-4921-84b3-51c417fb2ffa")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -16885,7 +16885,7 @@
 			(uuid "7f69f9ba-1b88-44aa-854c-7c74200d6531")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -17181,7 +17181,7 @@
 			(uuid "90e8d736-4aa1-434f-b749-9026d38d1bce")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -17477,7 +17477,7 @@
 			(uuid "391c0068-b8f7-4e81-a5db-322820ff585a")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -17773,7 +17773,7 @@
 			(uuid "84daa22f-ed7f-4bb0-913c-593d51e9ec67")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -18069,7 +18069,7 @@
 			(uuid "a2f8c4d3-9ce8-4750-a570-0ef9a94990c3")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -18365,7 +18365,7 @@
 			(uuid "00d5f7a6-6507-494a-9c09-005ba926cb8c")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -18661,7 +18661,7 @@
 			(uuid "5f76adfb-86c3-4bc6-841e-9df0a84e6f62")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -18957,7 +18957,7 @@
 			(uuid "b5723cfd-32fc-47ea-9b7c-4adcddd5c9c4")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -19253,7 +19253,7 @@
 			(uuid "b274d1ee-d4e8-48bc-91a3-fa6a8057507d")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -19549,7 +19549,7 @@
 			(uuid "9bc65733-a1da-4f92-9ac3-b45504956cd7")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -19845,7 +19845,7 @@
 			(uuid "2dc71e23-1481-46f0-b3d0-d57cff3c7385")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -20141,7 +20141,7 @@
 			(uuid "a19e5182-6842-4610-b33c-f3720ef8a594")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -20437,7 +20437,7 @@
 			(uuid "3d5bbe3e-a79e-4edb-81b0-2d01d6171b20")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -20733,7 +20733,7 @@
 			(uuid "3e349806-a485-443a-8c73-66577e661eca")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -21029,7 +21029,7 @@
 			(uuid "8b085050-3172-4406-851e-25d84428b35f")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -21325,7 +21325,7 @@
 			(uuid "a59b5090-8479-4ad6-8ec8-968c616f211e")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -21621,7 +21621,7 @@
 			(uuid "54e4e4d1-a46b-43c7-91ba-1fb94222e4bf")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../../lib/LED.pretty/LED_SMD_6028.step"
+		(model "${KIPRJMOD}/../../../../lib/3d-models/6028_LED.stp"
 			(offset
 				(xyz 0 0 0)
 			)

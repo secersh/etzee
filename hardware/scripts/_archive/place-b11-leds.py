@@ -3,7 +3,7 @@
 Place SMD 6028 back-mount LED footprints on all B11 carrier PCBs.
 
 Targets: ETZ-B11-{LSC,RSC}-{5,6}-{N,L}.kicad_pcb
-Footprint: LED_SMD_6028_BackMount from hardware/lib/LED.pretty/
+Footprint: 6028_LED from repo-local lib/leds.pretty/
 
 Layout mirrors the switch grid (same row/col positions).
 LED is offset +LED_OFFSET_Y mm south of each switch center.
@@ -22,8 +22,8 @@ from pathlib import Path
 
 ECAD_DIR     = Path(__file__).parent.parent / "b11/ecad"
 ORIGINS_FILE = Path(__file__).parent.parent / "b11/mcad/switch-origins.yaml"
-LIB_DIR      = Path(__file__).parent.parent / "lib/LED.pretty"
-FOOTPRINT    = "LED_SMD_6028_BackMount"
+LIB_DIR      = Path(__file__).parents[2] / "lib/leds.pretty"
+FOOTPRINT    = "6028_LED"
 PITCH_MM     = 19.2
 LED_OFFSET_Y = 5.0   # mm south of switch center
 
