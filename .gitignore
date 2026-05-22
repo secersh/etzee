@@ -1,34 +1,54 @@
-# For PCBs designed using KiCad: https://www.kicad.org/
-# Format documentation: https://kicad.org/help/file-formats/
+# ── KiCad ────────────────────────────────────────────────────────────────────
 
-# Temporary files
-*.000
-*.bak
-*.bck
+# Backups and auto-saves
 *.kicad_pcb-bak
 *.kicad_sch-bak
-*-backups
-*.kicad_prl
-*.sch-bak
+*.kicad_pro-bak
+*-backups/
+*.bak
+*.bck
+*.000
 *~
 _autosave-*
-*.tmp
 *-save.pro
 *-save.kicad_pcb
-fp-info-cache
-~*.lck
 \#auto_saved_files#
+~*.lck
 
-# Netlist files (exported from Eeschema)
+# Local project settings (view state, colour scheme, grid — not shared)
+*.kicad_prl
+
+# Footprint cache (regenerated on demand)
+fp-info-cache
+
+# KiCad auto-creates .kicad_pro inside .pretty library dirs — ignore them
+**/*.pretty/*.kicad_pro
+
+# Netlist exports
 *.net
 
-# Autorouter files (exported from Pcbnew)
+# Autorouter exchange files
 *.dsn
 *.ses
 
-# Exported BOM files
+# Fab outputs (regenerated from board)
+*.gbr
+*.drl
+*.dxf
+gerbers/
+fab/
+
+# ── Python scripting ─────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+
+# ── Firmware ─────────────────────────────────────────────────────────────────
+.firmware-cache/
+
+# ── General ──────────────────────────────────────────────────────────────────
+*.tmp
+*.DS_Store
 *.xml
 *.csv
-
-# Mac stuff
-*.DS_Store
+.backup/

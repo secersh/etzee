@@ -1,0 +1,5 @@
+# place-display-leds.py — KiCad IPC API (requires a running KiCad instance)
+kicad-python
+
+# place-switch-sockets.py, place-switch-leds.py — use pcbnew (bundled with KiCad)
+# No additional pip packages needed; run with KiCad's own Python interpreter.

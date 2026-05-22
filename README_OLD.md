@@ -1,0 +1,158 @@
+# etzee 101
+
+**Modular • Ortholinear • Ergonomic**
+
+The first keyboard from the **etzee** project, where code meets craft.
+
+<img width="1920" height="1080" alt="etzee-101-blender" src="https://github.com/user-attachments/assets/cdb41498-8385-4d31-bc19-690691e91c5b" />
+<img width="1920" height="613" alt="Screenshot 2025-10-13 at 21 18 49" src="https://github.com/user-attachments/assets/0a74d380-4528-458b-8f4b-866a6d9344f8" />
+
+---
+### Layout (DRAFT)
+```
+| --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
+| ESC |  Q  |  W  |  E  |  R  |  T  |     |  Y  |  U  |  I  |  O  |  P  | DEL |
+| --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
+| TAB |  A  |  S  |  D  |  F  |  G  |     |  H  |  J  |  K  |  L  | ;   |  '  |
+| --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
+| SHF |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M  | ,   | .   | /   | SHF |
+| --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
+            | CTR | OPT | CMD | SPC |     | SPC | RET | FN1 | FN2 |
+            | --- | --- | --- | --- |     | --- | --- | --- | --- | 
+```
+```
+| --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
+|  1  |  2  |  3  |  4  |  5  |  6  |     |  7  |  8  |  9  |  0  |  -  |  =  |
+| --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
+|  `  |     |     |     |     |     |     | PUP | HME | END |  [  |  ]  |  \  |
+| --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
+| SHF |     |     |     |     |     |     | PDN |     |     |     |     | SHF |
+| --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
+            | CTR | OPT | CMD |^SPC^|     | SPC | RET | FN1 | FN2 |
+            | --- | --- | --- | --- |     | --- | --- | --- | --- |
+```
+```
+| --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
+| F1  | F2  | F3  | F4  | F5  | F6  |     | F7  | F8  | F9  | F10 | F11 | F12 |
+| --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
+| BT1 | BT2 | BT3 | BLT | BL- | BL+ |     | LFT | DWN | UP  | RGH |     |     |
+| --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
+| MAC | PC  |     |     |     |     |     |     |     |     |     |     |     |
+| --- | --- | --- | --- | --- | --- |     | --- | --- | --- | --- | --- | --- |
+            | CTR | OPT | CMD | SPC |     |^SPC^| RET | FN1 | FN2 |
+            | --- | --- | --- | --- |     | --- | --- | --- | --- |
+```
+
+### 💻 Custom software implementataion
+
+[htoyto](HOTOYTO.md) is a custom protocol for chaining devices together
+
+### 👋 About
+
+**etzee 101** is a split, ortholinear ergonomic keyboard designed for developers, tinkerers, and digital creators.  
+It combines a minimalist grid layout with a modular form factor, optimized for comfort, adaptability, and expressive input.
+
+Its name, etzee 101, reflects both form and function: The keyboard features two opposing vertical displays and a central knob, visually evoking the structure of 1-0-1. But the deeper inspiration comes from the side connector, whose repeating pattern of dot–dash–dot–dash recalls the rhythm of Morse code, a symbolic thread woven into the design language.
+More than a tool, it's a signal, a functional artifact shaped by story, precision, and developer intuition.
+
+---
+
+### 🐌 Areas TBD
+
+- 🔧 1. Mechanical
+- 🔌 2. Electrical
+- 🧠 3. Firmware / Software
+- 🛠️ 4. Manufacturing & Assembly
+- 🖌️ 5. Visual & Branding
+- 📚 6. Documentation
+- 🧾 7. Administrative
+
+### 💶 Cost tracking
+
+Transparent by design. Track the current bill of materials, component prices, and vendor sources here:
+
+👉 [Cost tracking spreadsheet](https://docs.google.com/spreadsheets/d/1hsjmCfjx_bOpDNgU5xkm26Te8jMBZIxf6nlqbuKPTOA/edit?gid=0#gid=0)
+
+---
+
+### 🏭 Manufacturing 
+
+Each component of etzee 101 is identified with a structured part number. This system keeps the design, manufacturing, and documentation process clear and consistent.
+
+Part numbers encode relevant details such as the type of part, half side (if applicable), switch profile (if applicable), and number of key swith columns (also if applicable).
+Some parts may omit certain fields when they're not relevant by using value `U`.
+
+Part No. format:
+
+```text
+XXX-SX-PX-WX
+^-^ ^^ ^^ ^^
+|   |  |   |
+|   |  |   +--- (W) Number of key switch column
+|   |  +------- (P) Keyboard key switch profile
+|   +---------- (S) Keyboard half side designator
++-------------- Unique part identifier code
+
+(W) -> 5, 6, U
+(P) -> [N]ormal, [L]ow, U
+(S) -> [L]eft, [R]ight, U
+```
+
+###### 3D printing [Export](https://github.com/secersh/le-board/actions/workflows/onshape-export.yaml)
+
+| Part No. | Version | Material | Status     | Notes |
+| -------- | ------- | -------- | ---------- | ----- |
+| TP-L-6-N | v1.4    | PLA      | ✅ Printed |       |
+
+### 🧠 Firmware
+
+Open-source and fully customizable firmware based on **[QMK](https://qmk.fm/)** or **[ZMK](https://zmk.dev/)** (TBD).
+
+- Support for split communication (I²C / serial)
+- Rotary encoder support
+- Display integration (e.g., OLED or e-paper modules)
+- Layer-based layouts
+- Hotkey macros and developer-friendly tweaks
+
+*Firmware development is ongoing — contributions welcome!*
+
+---
+
+### 🖌️ Graphical design
+
+- Visual identity inspired by **monospace typography** and **Morse code** rhythm  
+- Brand assets (logos, iconography) are optimized for both digital and physical media  
+- Aesthetic: clean, modular, developer-native  
+
+> Fonts used: JetBrains Mono, IBM Plex Mono, Recursive  
+> Logo sketching and refinement in progress — see `/design` folder for prototypes
+
+---
+
+### 🚧 Roadmap
+
+- [ ] Publish full STL/STEP parts
+- [ ] Complete first full assembly
+- [ ] Finalize firmware base layer
+- [ ] Launch landing page
+- [ ] Get initial community feedback
+- [ ] Open preorders
+
+---
+
+### 🤝 Contributing
+
+Whether you're a firmware nerd, a 3D-printing wizard, or just someone with strong opinions about keyboards — you're welcome to help shape **etzee 101**.
+
+Pull requests, issues, and ideas encouraged.
+
+---
+
+### 🛰️ License
+
+Open-source hardware & software. Final license TBA. Likely CERN-OHL or MIT.
+
+---
+
+> Created with intent. Designed for flow.  
+> **etzee 101** — the first signal in a new developer ecosystem.
