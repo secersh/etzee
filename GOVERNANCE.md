@@ -1,10 +1,10 @@
 # Governance
 
-etzee is currently maintained by the repository owner with public input from contributors.
+etzee is maintained by its founders as peers. Current founder-maintainers are listed in `MAINTAINERS.md`.
 
 ## Decision Making
 
-Project decisions are made pragmatically around:
+Major project decisions are made by founder consensus. Decisions are made pragmatically around:
 
 - reproducible hardware and firmware outputs
 - manufacturability
@@ -14,15 +14,20 @@ Project decisions are made pragmatically around:
 
 Maintainers may decline or defer changes that are useful but outside the current project scope.
 
-## Maintainer Responsibilities
+## Founder-Maintainer Responsibilities
 
-Maintainers are responsible for:
+Founder-maintainers jointly share responsibility for:
 
 - reviewing and merging pull requests
 - keeping generated files reproducible
 - setting release and manufacturing direction
+- product direction
+- hardware and firmware architecture
+- licensing
 - enforcing the code of conduct
 - coordinating security disclosures
+
+Specific implementation areas may be handled by whoever has the relevant context for that change.
 
 ## Contributor Responsibilities
 

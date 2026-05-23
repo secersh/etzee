@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Download B11 PCB STEP exports from an MCAD release and convert them to DXF outlines."""
 
 import argparse

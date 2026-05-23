@@ -6,7 +6,11 @@ etzee includes firmware, hardware designs, and manufacturing files. Security rep
 
 Do not open a public issue for a suspected security vulnerability.
 
-Report privately to the repository owner through GitHub or an established private contact channel. Include:
+Report privately through GitHub's private vulnerability reporting:
+
+https://github.com/secersh/etzee/security/advisories/new
+
+Include:
 
 - affected component or path
 - impact
@@ -31,4 +35,4 @@ Out of scope:
 
 ## Disclosure
 
-Maintainers will coordinate fixes and public disclosure based on impact and practical mitigation timing.
+Maintainers will acknowledge reports within 7 days and coordinate fixes and public disclosure based on impact and practical mitigation timing.

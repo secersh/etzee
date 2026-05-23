@@ -22,4 +22,6 @@ etzee contributors are expected to keep discussion technical, respectful, and us
 
 Maintainers may edit, hide, or remove comments; close issues or pull requests; limit participation; or block users when behavior damages the project or community.
 
-Report conduct issues privately to the project maintainer or through the repository owner contact channel.
+Report conduct issues privately through the etzee Discord by direct message to the founder-maintainers listed in `MAINTAINERS.md`:
+
+https://discord.gg/y3pcSCghcg

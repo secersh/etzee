@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+
 """JLCPCB standard 2-layer fabrication profile."""
 
 NAME = "jlcpcb"

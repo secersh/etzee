@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+
 """
 Shared helpers for B11 footprint placement scripts.
 

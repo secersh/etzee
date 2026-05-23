@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Apply manufacturer stackups to all B11 PCBs."""
 
 import argparse

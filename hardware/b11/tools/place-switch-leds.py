@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """
 Place per-key 6028 reverse-mount LED footprints on all B11 carrier PCBs.
 

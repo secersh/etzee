@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Generate B11 KiCad PCB files from local DXF outlines."""
 
 import argparse

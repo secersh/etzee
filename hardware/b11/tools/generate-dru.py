@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Generate manufacturer design-rule files for all B11 PCBs."""
 
 import argparse

@@ -9,6 +9,20 @@ etzee is an open hardware, firmware, and documentation project. Contributions ar
 3. Run the relevant checks or dry-runs.
 4. Update docs when behavior, naming, generated files, or workflows change.
 
+## Licensing
+
+By contributing, you certify the Developer Certificate of Origin 1.1:
+
+https://developercertificate.org
+
+Sign commits with:
+
+```sh
+git commit -s
+```
+
+By contributing a change to a file, you agree that the change is licensed under the same license as that file according to `LICENSE.md`.
+
 ## B11 PCB Tooling
 
 Use KiCad's bundled Python for pcbnew-based scripts:

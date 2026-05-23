@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """
 Place 0201 display LED matrix on all B11 switch plate PCBs.
 
