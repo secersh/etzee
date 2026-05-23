@@ -1,0 +1,7 @@
+# B11 PCB generation/update tools.
+#
+# Run pcbnew-based scripts with KiCad's bundled Python interpreter.
+ezdxf
+
+# fetch-outlines.py needs cadquery when converting STEP -> DXF.
+cadquery

@@ -1,56 +1,38 @@
-## Licenses
+# etzee License
 
-The etzee ecosystem is built on open collaboration and shared engineering.
-To balance openness, attribution, and identity protection, different parts of this project are released under distinct licenses as outlined below.
+The etzee repository contains hardware designs, firmware/software, documentation, and supporting assets.
 
----
+Project-authored material uses a lean two-license model:
 
-#### Firmware and Protocols
+- Hardware design source is licensed under CERN Open Hardware Licence Version 2 - Strongly Reciprocal (`CERN-OHL-S-2.0`).
+- Everything else is licensed under Apache License 2.0 (`Apache-2.0`) unless a file states otherwise.
 
-License: Apache License 2.0
+## License Map
 
-Covers:
--	The htoyto protocol implementation
+| Material | Path examples | License |
+|----------|---------------|---------|
+| Hardware source, PCB designs, schematics, footprints, MCAD source, 3D models, and manufacturing source files | `hardware/**/*.kicad_pcb`, `hardware/**/*.kicad_pro`, `hardware/**/*.kicad_dru`, `hardware/**/*.dxf`, `hardware/**/*.step`, `hardware/**/*.stp`, `lib/*.pretty/`, `lib/3d-models/` | CERN Open Hardware Licence Version 2 - Strongly Reciprocal (`CERN-OHL-S-2.0`) |
+| Firmware, scripts, protocol/software implementations, CI/tooling code, configuration, documentation, and repository text | `firmware/`, `hardware/**/*.py`, `.github/`, `docs/`, `README.md`, `*.md`, `*.yaml`, `*.yml`, `*.toml`, `requirements.txt` | Apache License 2.0 (`Apache-2.0`) |
 
-You may:
--	Use, modify, and distribute freely (including commercially)
--	File patents while protecting contributors through explicit patent rights
+Generated manufacturing outputs inherit the license of the source material used to generate them unless explicitly stated otherwise.
 
-You must:
--	Include copyright and license notices in redistributions
--	Provide attribution to the original authors
+## Attribution
 
----
+Copyright belongs to the etzee project authors.
 
-#### Hardware Designs
+The etzee project is owned and maintained by its founders as peers. Current founder-maintainers are listed in `MAINTAINERS.md`.
 
-License: CERN Open Hardware License Version 2 – Strongly Reciprocal (CERN OHL-S v2)
+When redistributing or modifying this work, preserve license notices and attribute the etzee project and relevant contributors.
 
-Covers:
--	PCBs, schematics, 3D models, and connector layouts
+## License Texts
 
-You may:
--	Study, modify, and manufacture derived hardware
--	Distribute modified designs under the same license
+The full legal texts are included in this repository:
 
-You must:
--	Release source files of modified hardware publicly
-- Attribute the original design to etzee contributors
+- `LICENSES/Apache-2.0.txt`
+- `LICENSES/CERN-OHL-S-2.0.txt`
 
----
+## Trademarks and Identity
 
-#### Documentation and Diagrams
+The licenses above do not grant trademark rights in the etzee name, logos, visual identity, or branding marks except as required for reasonable attribution.
 
-License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
-
-Covers:
--	Documentation and Markdown files
--	Diagrams, charts, manufacturing instructions
-
-You may:
--	Share and remix, including for commercial purposes
--	Publish derivatives under the same license
-
-You must:
--	Attribute etzee and its contributors
--	Maintain the same license for derivatives
+Forks and modified distributions should use a distinct project name unless they are clearly presented as unmodified etzee releases.

@@ -1,69 +1,109 @@
-# Project etzee
+# etzee
 
-The goal of this project is to create a highly modular, customizable, reparable, extendable and versatile keyboard ecosystem that caters to a wide range of users, from casual typists to creative professionals. Each module is an experiment in human–machine interaction, blending tactile, visual, and haptic feedback to create a customizable ecosystem of connected input devices. The envisioned ecosystem includes two main categories of devices:
+etzee is an open modular input-device ecosystem. It combines keyboards, utility modules, magnetic pogo-pin connectors, local displays, haptics, and firmware that can discover and communicate across connected modules.
 
-Primary input devices, marked with b in their names for board
+The project is early and hardware-heavy. The current active board is B11; M0 and M9 are planned modules.
 
-Accessory devices, marked with m in their names for module
+## Devices
 
-The entire ecosystem is named etzee, inspired by the dot-dash pattern of Morse code reflected in the design of its magnetic pogo pin connectors used for data and power transfer. Communication between modules is standardized through the htoyto protocol (hello to you too), ensuring consistent interoperability across all components.
+| Device | Type | Status | Notes |
+|--------|------|--------|-------|
+| B11 | Primary keyboard board | Active | Split or monoblock keyboard, 5/6 columns per half, switch-family PCB variants |
+| M0 | Module | Planned | USB-C module with haptic dial and round touch display |
+| M9 | Module | Planned | USB-C 3x3 mechanical keypad with display |
 
-In the top view of any device, the right side always acts as the sender, and the left side always acts as the receiver, allowing modules to form a node chain that communicates like a bus. When a new module joins the bus, the system automatically triggers node enumeration, effectively performing dynamic node discovery and registration. The same process applies when a node is removed from the chain.
+## B11
 
-## Contribute
+B11 is the first primary etzee keyboard. Current design goals:
 
-etzee is an open project for everyone who believe input devices can be more expressive. Join the experiment, build, modify, and extend the ecosystem in your own way.
+- split or monoblock use
+- Bluetooth-first firmware target
+- hot-swappable switch carriers
+- integrated dot-matrix display on switch plates
+- south-facing per-key LEDs
+- magnetic pogo-pin module connectors
+- 5-column and 6-column half variants
+- MX, Choc v2, and KS-33 switch-family variants
+- generated KiCad PCB files from tracked MCAD-derived outlines
 
-### 💬 Join the Etzee Discord
+Current B11 docs:
 
-etzee is built in public.
+- [switch compatibility](docs/b11/switch-compatibility.md)
+- [switch profiles](docs/b11/switch-profiles.md)
+- [keycap compatibility](docs/b11/keycap-compatibility.md)
 
-If you want to:
-- discuss implementation decisions
-- contribute to mechanical / PCB / firmware design
-- follow milestone progress
-- give technical feedback
+## Repository Layout
 
-Join the etzee Discord:
+```text
+.github/workflows/          GitHub Actions workflows
+docs/b11/                   B11 hardware compatibility and profile docs
+docs/firmware/              firmware and protocol docs
+firmware/                   firmware workspaces
+hardware/b11/ecad/          B11 KiCad projects and generated boards
+hardware/b11/mcad/          B11 MCAD export config and PCB outlines
+hardware/b11/tools/         B11 PCB generation/update tools
+hardware/tools/             shared hardware tooling
+lib/                        shared KiCad footprints, 3D models, datasheets
+```
 
-👉 [https://discord.gg/y3pcSCghcg](https://discord.gg/y3pcSCghcg)
+## Generated PCB Workflow
 
-The server is implementation-focused and minimal.
-Come to build.
+B11 generated boards are updated through one batch script:
 
-## etzee b11
+```sh
+/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3 hardware/b11/tools/update-pcbs.py --manufacturer jlcpcb --dry-run
+```
 
-Traits:
+Remove `--dry-run` to update generated PCB files locally. The updater can generate PCB outlines, place switch sockets, place switch LEDs, place display LEDs, apply manufacturer stackups, and generate manufacturer design rules.
 
-- Monolith or split
-- Bluetooth
-- Hotswappable
-- South facing LEDs
-- Modular
-- Programable
-- Open source
-- Sound producing
-- Haptic enabled
-- Slim and full thickness
-- Battary powered
-- Integrated dot matrix display
-- ZMK support
-- Magnetic connectors
-- 5 or 6 columns per half
+Current generated B11 PCB variants:
 
-## etzee m0
+| Family | Columns | Boards |
+|--------|---------|--------|
+| MX | 5, 6 | `LSP`, `RSP`, `LSC`, `RSC` |
+| CHOC-V2 | 5, 6 | `LSP`, `RSP`, `LSC`, `RSC` |
+| KS-33 | 5, 6 | `LSP`, `RSP`, `LSC`, `RSC` |
 
-Traits:
+Board names use:
 
-- USB C
-- Haptic feedback dial
-- Touch screen 240x240 round LCD
+```text
+ETZ-B11-{board_code}-{columns}-{switch_family}.kicad_pcb
+```
 
-## etzee m9
+Example:
 
-Traits:
+```text
+ETZ-B11-LSP-5-KS-33.kicad_pcb
+```
 
-- USB C
-- 3x3 mechanical keypad
-- South facing LEDs
-- LCD screen
+## MCAD Exports
+
+B11 MCAD export inputs are defined in [hardware/b11/mcad/parts.yaml](hardware/b11/mcad/parts.yaml). The GitHub workflow exports common parts once and matrix parts once per board variant:
+
+- `5-MX`, `6-MX`
+- `5-CHOC-V2`, `6-CHOC-V2`
+- `5-KS-33`, `6-KS-33`
+
+PCB outline DXFs live under:
+
+```text
+hardware/b11/mcad/pcb-outlines/{MX,CHOC-V2,KS-33}/
+```
+
+## Firmware
+
+Firmware is based around ZMK-compatible targets. The htoyto protocol is the project-specific communication concept for inter-module discovery and messaging.
+
+- [htoyto protocol overview](docs/firmware/htoyto.md)
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). The short version: keep generated files reproducible, keep hardware changes scoped, and run the relevant dry-runs before opening a pull request.
+
+For discussion and implementation feedback, join the etzee Discord:
+
+https://discord.gg/y3pcSCghcg
+
+## License
+
+This repository uses different open licenses for different material types. See [LICENSE.md](LICENSE.md) for the full licensing map.
