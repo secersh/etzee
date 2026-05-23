@@ -12,15 +12,15 @@ on:
         type: string
         required: true
       artifact_suffix:
-        description: "Suffix for artifact names (e.g. b11-5-N)"
+        description: "Suffix for artifact names (e.g. b11-5-MX)"
         type: string
         required: true
       build:
         description: "Build type: common or matrix"
         type: string
         required: true
-      variant_suffix:
-        description: "Variant suffix appended to matrix output filenames (e.g. 5-N). Empty for common builds."
+      board_variant:
+        description: "Board variant appended to matrix output filenames (e.g. 5-MX). Empty for common builds."
         type: string
         required: false
         default: ""
@@ -100,7 +100,7 @@ jobs:
         env:
           PART_IDS: ${{ steps.read_parts.outputs.step_ids }}
           PART_NAMES: ${{ steps.read_parts.outputs.step_names }}
-          VARIANT_SUFFIX: ${{ inputs.variant_suffix }}
+          BOARD_VARIANT: ${{ inputs.board_variant }}
         run: |
           echo "::notice:: 📐 Exporting STEP files (${{ inputs.artifact_suffix }})..."
           mkdir -p manufacturing/step
@@ -111,7 +111,7 @@ jobs:
           for i in "${!NAMES[@]}"; do
             NAME="${NAMES[$i]}"
             PID="${IDS[$i]}"
-            OUTPUT_NAME="${NAME}${VARIANT_SUFFIX:+-${VARIANT_SUFFIX}}"
+            OUTPUT_NAME="${NAME}${BOARD_VARIANT:+-${BOARD_VARIANT}}"
 
             echo "::notice:: 📤 Submitting STEP export for part: $NAME..."
 
@@ -159,7 +159,7 @@ jobs:
         env:
           PART_IDS: ${{ steps.read_parts.outputs.stl_ids }}
           PART_NAMES: ${{ steps.read_parts.outputs.stl_names }}
-          VARIANT_SUFFIX: ${{ inputs.variant_suffix }}
+          BOARD_VARIANT: ${{ inputs.board_variant }}
         run: |
           echo "::notice:: 🖨️ Exporting STL files (${{ inputs.artifact_suffix }})..."
           mkdir -p manufacturing/stl
@@ -170,7 +170,7 @@ jobs:
           for i in "${!NAMES[@]}"; do
             NAME="${NAMES[$i]}"
             PID="${IDS[$i]}"
-            OUTPUT_NAME="${NAME}${VARIANT_SUFFIX:+-${VARIANT_SUFFIX}}"
+            OUTPUT_NAME="${NAME}${BOARD_VARIANT:+-${BOARD_VARIANT}}"
 
             echo "::notice:: 📤 Submitting STL export for part: $NAME..."
 

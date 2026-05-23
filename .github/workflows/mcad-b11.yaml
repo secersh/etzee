@@ -14,40 +14,48 @@ jobs:
       onshape_configuration: "List_xrEfmODFsfiBE6=Default;List_kw1ECqDsNAkjBg=Default"
       artifact_suffix: b11-common
       build: common
-      variant_suffix: ""
+      board_variant: ""
     secrets: inherit
 
   export-matrix:
-    name: 🏭 B11 (${{ matrix.variant_suffix }} — ${{ matrix.profile }} profile, ${{ matrix.columns }} col)
+    name: 🏭 B11 (${{ matrix.board_variant }} — ${{ matrix.switch_family }}, ${{ matrix.columns }} col)
     permissions:
       contents: read
     strategy:
       fail-fast: false
       matrix:
         include:
-          - profile: normal
+          - switch_family: MX
             columns: 5
-            variant_suffix: 5-N
+            board_variant: 5-MX
             onshape_configuration: "List_xrEfmODFsfiBE6=Default;List_kw1ECqDsNAkjBg=Default"
-          - profile: normal
+          - switch_family: MX
             columns: 6
-            variant_suffix: 6-N
+            board_variant: 6-MX
             onshape_configuration: "List_xrEfmODFsfiBE6=Default;List_kw1ECqDsNAkjBg=_6"
-          - profile: low
+          - switch_family: CHOC-V2
             columns: 5
-            variant_suffix: 5-L
+            board_variant: 5-CHOC-V2
             onshape_configuration: "List_xrEfmODFsfiBE6=Low_profile;List_kw1ECqDsNAkjBg=Default"
-          - profile: low
+          - switch_family: CHOC-V2
             columns: 6
-            variant_suffix: 6-L
+            board_variant: 6-CHOC-V2
             onshape_configuration: "List_xrEfmODFsfiBE6=Low_profile;List_kw1ECqDsNAkjBg=_6"
+          - switch_family: KS-33
+            columns: 5
+            board_variant: 5-KS-33
+            onshape_configuration: "List_xrEfmODFsfiBE6=KS_33;List_kw1ECqDsNAkjBg=Default"
+          - switch_family: KS-33
+            columns: 6
+            board_variant: 6-KS-33
+            onshape_configuration: "List_xrEfmODFsfiBE6=KS_33;List_kw1ECqDsNAkjBg=_6"
     uses: ./.github/workflows/mcad-export.yaml
     with:
       parts_file: hardware/b11/mcad/parts.yaml
       onshape_configuration: ${{ matrix.onshape_configuration }}
-      artifact_suffix: b11-${{ matrix.variant_suffix }}
+      artifact_suffix: b11-${{ matrix.board_variant }}
       build: matrix
-      variant_suffix: ${{ matrix.variant_suffix }}
+      board_variant: ${{ matrix.board_variant }}
     secrets: inherit
 
   release:

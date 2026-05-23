@@ -4,14 +4,17 @@
 # Only parts listed here will be exported.
 #
 # build:   common  → exported once, filename is the part number
-#          matrix  → exported once per variant, filename gets the variant suffix (e.g. -5-N)
-# formats: step    → STEP file (3D)
+#          matrix  → exported once per board variant, filename gets the board variant suffix (e.g. -5-MX)
+# formats: step    → STEP file (3D and PCB outline source)
 #          stl     → STL file (3D printing)
-#          dxf     → DXF file (2D board outline, committed to hardware/b11/mcad/pcb-outlines/)
+#
+# PCB outlines are derived from STEP exports by hardware/b11/tools/fetch-outlines.py:
+#   common PCB outlines          → hardware/b11/mcad/pcb-outlines/common/
+#   switch-family PCB outlines   → hardware/b11/mcad/pcb-outlines/{MX,CHOC-V2,KS-33}/
 
 parts:
 
-  # common parts — exported once, no variant suffix
+  # common parts — exported once, no board variant suffix
   - part_number: ETZ-B11-TC       # Top cap
     formats: [step, stl]
     build: common
@@ -20,7 +23,7 @@ parts:
     formats: [step, stl]
     build: common
 
-  # matrix parts — exported once per variant (5-N, 5-L, 6-N, 6-L)
+  # matrix parts — exported once per board variant (5-MX, 5-CHOC-V2, 5-KS-33, etc.)
   - part_number: ETZ-B11-LB       # Left base
     formats: [step, stl]
     build: matrix

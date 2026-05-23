@@ -16,13 +16,13 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from config import SWITCH_FAMILIES, SWITCH_PITCH_MM, GRID_ORIGINS, LIB_ROOT, ECAD_ROOT
+from config import SWITCH_FAMILIES, SWITCH_PITCH_MM, GRID_ORIGINS, LIB_ROOT, ECAD_ROOT, FAMILY_PATTERN
 
 SWITCHES_LIB = LIB_ROOT / "switches.pretty"
-FAMILY_RE    = re.compile(r'ETZ-B11-[LR]SC-\d+-(MX|CHOC-V2|KS-33)')
+FAMILY_RE    = re.compile(rf'ETZ-B11-[LR]SC-\d+-({FAMILY_PATTERN})')
 
 
-def _place_single(pcb_path_str):
+def _place_single(pcb_path_str, dry_run=False):
     """Called in a fresh subprocess — pcbnew SWIG context is clean."""
     import pcbnew
     from placement import init_swig, board_meta, existing_refs, layout, grid_origin_mm
@@ -82,12 +82,14 @@ def _place_single(pcb_path_str):
         board.Add(fp)
         placed += 1
 
-    board.Save(str(pcb_path))
+    if not dry_run:
+        board.Save(str(pcb_path))
     skipped = len(positions) - placed
-    print(f"  {pcb_path.name}  ({placed} placed, {skipped} skipped, {side}-side, {n_cols}-col)")
+    status = "would place" if dry_run else "placed"
+    print(f"  {pcb_path.name}  ({placed} {status}, {skipped} skipped, {side}-side, {n_cols}-col)")
 
 
-def main():
+def main(dry_run=False):
     targets = []
     for family in SWITCH_FAMILIES:
         targets.extend((ECAD_ROOT / family).glob("ETZ-B11-*SC-*.kicad_pcb"))
@@ -103,7 +105,8 @@ def main():
     for pcb_path in targets:
         print(f"  -> {pcb_path.name}")
         result = subprocess.run(
-            [sys.executable, __file__, "--single", str(pcb_path.resolve())],
+            [sys.executable, __file__, "--single", str(pcb_path.resolve())]
+            + (["--dry-run"] if dry_run else []),
             capture_output=True, text=True
         )
         sys.stdout.write(result.stdout)
@@ -115,8 +118,9 @@ def main():
 
 
 if __name__ == "__main__":
+    dry_run = "--dry-run" in sys.argv
     if "--single" in sys.argv:
         idx = sys.argv.index("--single")
-        _place_single(sys.argv[idx + 1])
+        _place_single(sys.argv[idx + 1], dry_run=dry_run)
     else:
-        main()
+        main(dry_run=dry_run)

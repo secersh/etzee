@@ -6,7 +6,7 @@ Targets: hardware/b11/ecad/{MX,CHOC-V2,KS-33}/ETZ-B11-{L,R}SP-*.kicad_pcb
 
 Matrix layout:
   39 rows (vertical,   mapped to IS31FL3741A CS lines as LED_CS# nets)
-   9 cols (horizontal, mapped to IS31FL3741A SW lines as LED_SW# nets)
+   9 columns (horizontal, mapped to IS31FL3741A SW lines as LED_SW# nets)
   339 LEDs after clipping a 39 × 9 grid to the rounded display area.
 
 Bounding box: 14.5 mm wide × 73.8 mm tall, r=5.5 mm corners

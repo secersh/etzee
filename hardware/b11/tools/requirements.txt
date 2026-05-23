@@ -1,5 +1,7 @@
-# place-display-leds.py — KiCad IPC API (requires a running KiCad instance)
-kicad-python
+# B11 PCB generation/update tools.
+#
+# Run pcbnew-based scripts with KiCad's bundled Python interpreter.
+ezdxf
 
-# place-switch-sockets.py, place-switch-leds.py — use pcbnew (bundled with KiCad)
-# No additional pip packages needed; run with KiCad's own Python interpreter.
+# fetch-outlines.py needs cadquery when converting STEP -> DXF.
+cadquery
