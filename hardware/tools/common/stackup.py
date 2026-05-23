@@ -7,7 +7,17 @@ def replace_stackup(text, new_block):
     marker = '\t\t(stackup'
     start = text.find(marker)
     if start == -1:
-        return None, "no (stackup ...) block found"
+        setup_marker = '\t(setup\n'
+        setup_start = text.find(setup_marker)
+        if setup_start == -1:
+            return None, "no (setup ...) block found"
+
+        plot_marker = '\t\t(pcbplotparams'
+        insert_at = text.find(plot_marker, setup_start)
+        if insert_at == -1:
+            return None, "no insertion point in (setup ...) block found"
+
+        return text[:insert_at] + new_block + "\n" + text[insert_at:], None
 
     depth = 0
     end = start
