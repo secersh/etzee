@@ -1,0 +1,39 @@
+(version 1)
+
+# ── Copper ──────────────────────────────────────────────────────────────────
+(rule "JLCPCB Min Clearance"
+   (constraint clearance (min 0.127mm))
+)
+(rule "JLCPCB Min Track Width"
+   (constraint track_width (min 0.127mm))
+)
+
+# ── Vias ─────────────────────────────────────────────────────────────────────
+(rule "JLCPCB Min Via Drill"
+   (constraint hole_size (min 0.3mm))
+   (condition "A.Type == 'Via'")
+)
+(rule "JLCPCB Min Via Annular Ring"
+   (constraint annular_width (min 0.13mm))
+   (condition "A.Type == 'Via'")
+)
+
+# ── Through-hole ─────────────────────────────────────────────────────────────
+(rule "JLCPCB Min Drill"
+   (constraint hole_size (min 0.2mm))
+)
+(rule "JLCPCB Hole-to-Hole Clearance"
+   (constraint hole_to_hole (min 0.5mm))
+)
+
+# ── Board edge ───────────────────────────────────────────────────────────────
+(rule "JLCPCB Copper to Board Edge"
+   (constraint edge_clearance (min 0.3mm))
+   (condition "A.Reference != 'J1'")
+)
+
+# ── Silkscreen ───────────────────────────────────────────────────────────────
+(rule "JLCPCB Min Silkscreen Width"
+   (constraint track_width (min 0.153mm))
+   (condition "A.Type == 'Text' || A.Type == 'GraphicShape'")
+)
