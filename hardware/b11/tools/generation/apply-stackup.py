@@ -8,9 +8,10 @@ import re
 import sys
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).parents[3]
+TOOLS_DIR = Path(__file__).parents[1]
+REPO_ROOT = Path(__file__).parents[4]
 sys.path.insert(0, str(REPO_ROOT))
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(TOOLS_DIR))
 
 from config import ECAD_ROOT, PCB_STACKUP, SWITCH_FAMILIES, FAMILY_PATTERN
 from hardware.tools import manufacturers

@@ -10,6 +10,8 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[3]
 TOOLS_DIR = Path(__file__).parent
+GENERATION_DIR = TOOLS_DIR / "generation"
+PLACEMENT_DIR = TOOLS_DIR / "placement"
 
 sys.path.insert(0, str(REPO_ROOT))
 from hardware.tools import manufacturers
@@ -47,44 +49,44 @@ def main():
         else:
             run_step("Fetch/convert PCB outline DXFs", [
                 sys.executable,
-                str(TOOLS_DIR / "fetch-outlines.py"),
+                str(GENERATION_DIR / "fetch-outlines.py"),
                 *(["--release", args.release] if args.release else []),
             ])
 
     if "outlines" in selected:
         run_step("Generate PCB files from outlines", [
             sys.executable,
-            str(TOOLS_DIR / "generate-pcbs.py"),
+            str(GENERATION_DIR / "generate-pcbs.py"),
             *dry_run,
         ])
 
     if "placement" in selected:
         run_step("Place switch sockets", [
             sys.executable,
-            str(TOOLS_DIR / "place-switch-sockets.py"),
+            str(PLACEMENT_DIR / "place-switch-sockets.py"),
             *dry_run,
         ])
         run_step("Place switch LEDs", [
             sys.executable,
-            str(TOOLS_DIR / "place-switch-leds.py"),
+            str(PLACEMENT_DIR / "place-switch-leds.py"),
             *dry_run,
         ])
         run_step("Place display LEDs", [
             sys.executable,
-            str(TOOLS_DIR / "place-display-leds.py"),
+            str(PLACEMENT_DIR / "place-display-leds.py"),
             *dry_run,
         ])
 
     if "fab" in selected:
         run_step("Apply stackups", [
             sys.executable,
-            str(TOOLS_DIR / "apply-stackup.py"),
+            str(GENERATION_DIR / "apply-stackup.py"),
             *manufacturer,
             *dry_run,
         ])
         run_step("Generate design rules", [
             sys.executable,
-            str(TOOLS_DIR / "generate-dru.py"),
+            str(GENERATION_DIR / "generate-dru.py"),
             *manufacturer,
             *dry_run,
         ])

@@ -12,8 +12,8 @@ import zipfile
 from pathlib import Path
 
 REPO = "secersh/etzee"
-TOOLS_DIR = Path(__file__).parent
-REPO_ROOT = TOOLS_DIR.parents[2]
+TOOLS_DIR = Path(__file__).parents[1]
+REPO_ROOT = Path(__file__).parents[4]
 OUTLINES_DIR = TOOLS_DIR.parent / "mcad/pcb-outlines"
 
 COMMON_PCB_PARTS = {"ETZ-B11-LGB"}

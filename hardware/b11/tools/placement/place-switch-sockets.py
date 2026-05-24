@@ -2,10 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 """
-Place per-key 6028 reverse-mount LED footprints on all B11 carrier PCBs.
+Place hot-swap switch socket footprints on all B11 carrier PCBs.
 
 Targets: hardware/b11/ecad/{MX,CHOC-V2,KS-33}/ETZ-B11-*SC-*.kicad_pcb
-Each LED is placed LED_OFFSET_Y mm south of its corresponding switch center.
+Socket footprint is looked up from config.py by family parsed from filename.
 
 Non-destructive: refs already present on the board are skipped.
 Each board is processed in a subprocess for a clean pcbnew SWIG context.
@@ -18,17 +18,17 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from config import SWITCH_FAMILIES, SWITCH_PITCH_MM, LIB_ROOT, ECAD_ROOT, FAMILY_PATTERN
+sys.path.insert(0, str(Path(__file__).parents[1]))
+from config import SWITCH_FAMILIES, SWITCH_PITCH_MM, GRID_ORIGINS, LIB_ROOT, ECAD_ROOT, FAMILY_PATTERN
 
-LEDS_LIB     = LIB_ROOT / "leds.pretty"
+SWITCHES_LIB = LIB_ROOT / "switches.pretty"
 FAMILY_RE    = re.compile(rf'ETZ-B11-[LR]SC-\d+-({FAMILY_PATTERN})')
-LED_OFFSET_Y = 5.0   # mm south of switch center
 
 
 def _place_single(pcb_path_str, dry_run=False):
     """Called in a fresh subprocess — pcbnew SWIG context is clean."""
     import pcbnew
-    from placement import init_swig, board_meta, existing_refs, layout, grid_origin_mm
+    from common import init_swig, board_meta, existing_refs, layout, grid_origin_mm
 
     pcb_path = Path(pcb_path_str)
     stem     = pcb_path.stem
@@ -38,8 +38,8 @@ def _place_single(pcb_path_str, dry_run=False):
         print(f"error: cannot parse family from {stem!r}", file=sys.stderr)
         sys.exit(1)
     family         = m.group(1)
-    footprint_name = SWITCH_FAMILIES[family]["led"]
-    lib_dir        = LEDS_LIB
+    footprint_name = SWITCH_FAMILIES[family]["socket"]
+    lib_dir        = SWITCHES_LIB
 
     side, _, n_cols = board_meta(stem)
     positions       = layout(n_cols)
@@ -47,29 +47,41 @@ def _place_single(pcb_path_str, dry_run=False):
     plug       = init_swig()
     footprints = [plug.FootprintLoad(str(lib_dir.resolve()), footprint_name)
                   for _ in positions]
+    fp_pads    = [[(pad.GetNumber(), pad) for pad in fp.Pads()]
+                  for fp in footprints]
 
     board   = pcbnew.LoadBoard(str(pcb_path))
     present = existing_refs(board)
-    go_x, go_y = grid_origin_mm(board)
 
     def mm(v):
         return pcbnew.FromMM(v)
 
+    go_x, go_y = grid_origin_mm(board)
     placed = 0
 
     for i, (row, col) in enumerate(positions):
-        ref = f"LED{i + 1}"
+        ref = f"SW{i + 1}"
         if ref in present:
             continue
 
         fp = footprints[i]
         x  = (go_x - col * SWITCH_PITCH_MM) if side == "R" else (go_x + col * SWITCH_PITCH_MM)
-        y  = go_y + row * SWITCH_PITCH_MM + LED_OFFSET_Y
+        y  = go_y + row * SWITCH_PITCH_MM
 
         fp.SetPosition(pcbnew.VECTOR2I(mm(x), mm(y)))
         fp.SetOrientationDegrees(0)
         fp.SetReference(ref)
         fp.SetValue(footprint_name)
+
+        for pad_num, pad in fp_pads[i]:
+            net_name = f"ROW{row}" if pad_num == "1" else (f"COL{col}" if pad_num == "2" else None)
+            if net_name:
+                net = board.FindNet(net_name)
+                if net is None:
+                    net = pcbnew.NETINFO_ITEM(board, net_name)
+                    board.Add(net)
+                pad.SetNet(net)
+
         board.Add(fp)
         placed += 1
 
@@ -90,7 +102,7 @@ def main(dry_run=False):
         print("error: no carrier PCBs found", file=sys.stderr)
         sys.exit(1)
 
-    print(f"Placing LEDs on {len(targets)} carrier PCBs...\n")
+    print(f"Placing switch sockets on {len(targets)} carrier PCBs...\n")
 
     import subprocess
     for pcb_path in targets:

@@ -36,7 +36,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parents[1]))
 from config import ECAD_ROOT, LIB_ROOT, SWITCH_FAMILIES
 
 LEDS_LIB = LIB_ROOT / "leds.pretty"
@@ -215,7 +215,7 @@ def _hide_led_fields(fp):
 def _place_single(pcb_path_str, dry_run=False):
     """Called in a fresh subprocess so each pcbnew SWIG context is clean."""
     import pcbnew
-    from placement import init_swig
+    from common import init_swig
 
     pcb_path = Path(pcb_path_str)
     plug = init_swig()

@@ -20,7 +20,7 @@ except ImportError:
     print("error: ezdxf not found; install hardware/b11/tools/requirements.txt", file=sys.stderr)
     sys.exit(1)
 
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parents[1]))
 from config import ECAD_ROOT, GRID_ORIGINS, MCAD_ROOT, PCB_STACKUP, SWITCH_FAMILIES
 
 EDGE_WIDTH_MM = 0.05
