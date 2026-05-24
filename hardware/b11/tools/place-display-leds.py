@@ -9,10 +9,14 @@ Targets: hardware/b11/ecad/{MX,CHOC-V2,KS-33}/ETZ-B11-{L,R}SP-*.kicad_pcb
 Matrix layout:
   39 rows (vertical,   mapped to IS31FL3741A CS lines as LED_CS# nets)
    9 columns (horizontal, mapped to IS31FL3741A SW lines as LED_SW# nets)
-  339 LEDs after clipping a 39 × 9 grid to the rounded display area.
+  LEDs are placed around the display bounding-box center and clipped to the rounded display area.
 
 Bounding box: 14.5 mm wide × 73.8 mm tall, r=5.5 mm corners
-  Top-right corner: 8.2 mm inward from PCB right edge, 8.2 mm below PCB top edge.
+  Left switch plates:  top-right corner is 8.2 mm inward from PCB right edge, 8.2 mm below PCB top edge.
+  Right switch plates: top-left corner is 8.2 mm inward from PCB left edge,  8.2 mm below PCB top edge.
+
+The ALS position is reserved by omitting display LEDs from the top display corner:
+  left switch plates reserve top-right, right switch plates reserve top-left.
 
 Idempotent: existing D refs are moved to the expected position and netted.
 New footprints are loaded from the repo-local lib/leds.pretty library.
@@ -27,6 +31,7 @@ Run with KiCad's Python interpreter.
 
 import argparse
 import math
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -44,9 +49,20 @@ BB_W   = 14.5   # mm
 BB_H   = 73.8   # mm
 BB_R   = 5.5    # mm corner radius
 
-BB_TR_FROM_TOP   = 8.2   # mm from PCB top edge to BB top-right corner
-BB_TR_FROM_RIGHT = 8.2   # mm from PCB right edge to BB top-right corner
-BB_MARGIN        = 0.75  # mm inset from BB edge to first/last LED centre
+BB_FROM_TOP  = 8.2   # mm from PCB top edge to display bounding-box top edge
+BB_FROM_SIDE = 8.2   # mm from PCB side edge to display bounding-box side edge
+BB_MARGIN    = 1.0   # mm inset from BB edge to first/last LED centre
+
+ALS_RESERVED_W = 5.0  # mm, LED-free region from the side of the display bounding box
+ALS_RESERVED_H = 5.0  # mm, LED-free region from the top of the display bounding box
+
+LEFT_CASE_CLEARANCE_OMIT = {
+    0: {0, 4},
+    1: {0, 5},
+    2: {5},
+    37: {0, 8},
+    38: {0, 6},
+}
 
 
 def _in_rounded_rect(x, y):
@@ -57,16 +73,83 @@ def _in_rounded_rect(x, y):
     return True
 
 
-def _compute_positions():
+def _is_reserved_for_als(x, y, side):
+    if y > ALS_RESERVED_H:
+        return False
+    if side == "left":
+        return BB_W - x <= ALS_RESERVED_W
+    return x <= ALS_RESERVED_W
+
+
+def _base_positions(side):
     pitch_x = (BB_W - 2 * BB_MARGIN) / (N_COLS - 1)
     pitch_y = (BB_H - 2 * BB_MARGIN) / (N_ROWS - 1)
+    center_row = N_ROWS // 2
+    center_col = N_COLS // 2
+    positions = []
+    for row in range(N_ROWS):
+        for col in range(N_COLS):
+            x = BB_W / 2 + (col - center_col) * pitch_x
+            y = BB_H / 2 + (row - center_row) * pitch_y
+            if (
+                _in_rounded_rect(x, y)
+                and not _is_reserved_for_als(x, y, side)
+            ):
+                positions.append((row, col, x, y))
+    return positions, pitch_x, pitch_y
+
+
+def _case_omitted_cols(side):
+    left_positions, _, _ = _base_positions("left")
+    left_cols_by_row = {}
+    for row, col, _, _ in left_positions:
+        left_cols_by_row.setdefault(row, []).append(col)
+
+    omitted = {}
+    for row, indexes in LEFT_CASE_CLEARANCE_OMIT.items():
+        cols = left_cols_by_row.get(row, [])
+        omitted_cols = {
+            cols[index]
+            for index in indexes
+            if index < len(cols)
+        }
+        if side == "right":
+            omitted_cols = {N_COLS - 1 - col for col in omitted_cols}
+        omitted[row] = omitted_cols
+    return omitted
+
+
+def _compute_positions(side):
+    positions, pitch_x, pitch_y = _base_positions(side)
+    omitted = _case_omitted_cols(side)
     positions = [
-        (row, col)
-        for row in range(N_ROWS)
-        for col in range(N_COLS)
-        if _in_rounded_rect(BB_MARGIN + col * pitch_x, BB_MARGIN + row * pitch_y)
+        position
+        for position in positions
+        if position[1] not in omitted.get(position[0], set())
     ]
     return positions, pitch_x, pitch_y
+
+
+def _board_side(pcb_path):
+    board_code = pcb_path.name.split("-")[2]
+    if board_code.startswith("L"):
+        return "left"
+    if board_code.startswith("R"):
+        return "right"
+    raise ValueError(f"could not infer board side from {pcb_path.name}")
+
+
+def _display_top_left(outline, side):
+    import pcbnew
+
+    pcb_left = pcbnew.ToMM(outline.GetLeft())
+    pcb_right = pcbnew.ToMM(outline.GetRight())
+    pcb_top = pcbnew.ToMM(outline.GetTop())
+    if side == "left":
+        x = pcb_right - BB_FROM_SIDE - BB_W
+    else:
+        x = pcb_left + BB_FROM_SIDE
+    return x, pcb_top + BB_FROM_TOP
 
 
 def _ensure_net(board, net_name):
@@ -111,6 +194,10 @@ def _has_body_outline(fp):
     return any(item.GetLayerName() == "F.Fab" for item in fp.GraphicalItems())
 
 
+def _is_display_led_ref(ref):
+    return re.fullmatch(r"D[1-9][0-9]*", ref) is not None
+
+
 def _hide_led_fields(fp):
     import pcbnew
 
@@ -133,20 +220,20 @@ def _place_single(pcb_path_str, dry_run=False):
     pcb_path = Path(pcb_path_str)
     plug = init_swig()
 
-    positions, pitch_x, pitch_y = _compute_positions()
+    side = _board_side(pcb_path)
+    positions, pitch_x, pitch_y = _compute_positions(side)
     board = pcbnew.LoadBoard(str(pcb_path))
     existing, duplicates = _existing_by_ref(board)
 
     outline = board.GetBoardEdgesBoundingBox()
-    pcb_right = pcbnew.ToMM(outline.GetRight())
-    pcb_top = pcbnew.ToMM(outline.GetTop())
-    bb_tl_x = pcb_right - BB_TR_FROM_RIGHT - BB_W
-    bb_tl_y = pcb_top + BB_TR_FROM_TOP
+    bb_tl_x, bb_tl_y = _display_top_left(outline, side)
 
     added = 0
     replaced = 0
     updated = 0
-    for i, (row, col) in enumerate(positions):
+    removed = 0
+    desired_refs = {f"D{i + 1}" for i in range(len(positions))}
+    for i, (row, col, local_x, local_y) in enumerate(positions):
         ref = f"D{i + 1}"
         fp = existing.get(ref)
         replace = fp is not None and (_footprint_name(fp) != FOOTPRINT or not _has_body_outline(fp))
@@ -173,13 +260,25 @@ def _place_single(pcb_path_str, dry_run=False):
         else:
             updated += 1
 
-        x = bb_tl_x + BB_MARGIN + col * pitch_x
-        y = bb_tl_y + BB_MARGIN + row * pitch_y
+        x = bb_tl_x + local_x
+        y = bb_tl_y + local_y
         fp.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(x), pcbnew.FromMM(y)))
-        fp.SetOrientationDegrees(45)
+        fp.SetOrientationDegrees(225)
         fp.SetValue(FOOTPRINT)
         _hide_led_fields(fp)
         _set_led_nets(board, fp, row, col)
+
+    stale_refs = [
+        (ref, fp)
+        for ref, fp in existing.items()
+        if ref not in desired_refs and _is_display_led_ref(ref) and _footprint_name(fp) == FOOTPRINT
+    ]
+    if dry_run:
+        removed = len(stale_refs)
+    else:
+        for _, fp in stale_refs:
+            board.Remove(fp)
+            removed += 1
 
     if dry_run:
         status = "dry-run"
@@ -189,7 +288,7 @@ def _place_single(pcb_path_str, dry_run=False):
 
     duplicate_note = f", duplicate refs: {', '.join(sorted(duplicates))}" if duplicates else ""
     print(
-        f"  {pcb_path.name}  ({status}, {added} added, {replaced} replaced, {updated} updated, "
+        f"  {pcb_path.name}  ({status}, {added} added, {replaced} replaced, {updated} updated, {removed} removed, "
         f"{len(positions)} expected, pitch {pitch_x:.3f}x{pitch_y:.3f} mm{duplicate_note})"
     )
 
