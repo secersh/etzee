@@ -12,11 +12,12 @@ REPO_ROOT = Path(__file__).parents[3]
 TOOLS_DIR = Path(__file__).parent
 GENERATION_DIR = TOOLS_DIR / "generation"
 PLACEMENT_DIR = TOOLS_DIR / "placement"
+ROUTING_DIR = TOOLS_DIR / "routing"
 
 sys.path.insert(0, str(REPO_ROOT))
 from hardware.tools import manufacturers
 
-STAGES = ("outlines", "placement", "fab")
+STAGES = ("outlines", "placement", "routing", "fab")
 
 
 def run_step(label, command):
@@ -74,6 +75,13 @@ def main():
         run_step("Place display LEDs", [
             sys.executable,
             str(PLACEMENT_DIR / "place-display-leds.py"),
+            *dry_run,
+        ])
+
+    if "routing" in selected:
+        run_step("Route display LEDs", [
+            sys.executable,
+            str(ROUTING_DIR / "route-display-leds.py"),
             *dry_run,
         ])
 
