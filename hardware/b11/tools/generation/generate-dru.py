@@ -17,21 +17,29 @@ from hardware.tools import manufacturers
 
 
 def targets():
-    return sorted(
+    switch_targets = sorted(
         pcb
         for family in SWITCH_FAMILIES
         for pcb in (ECAD_ROOT / family).glob("ETZ-B11-*.kicad_pcb")
     )
+    common_targets = sorted((ECAD_ROOT / "common").glob("ETZ-B11-*.kicad_pcb"))
+    return switch_targets + common_targets
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--manufacturer", default="jlcpcb", choices=manufacturers.choices())
+    parser.add_argument("--single", metavar="PCB_STEM", help="only process one PCB stem, e.g. ETZ-B11-DSP")
     parser.add_argument("--dry-run", action="store_true", help="report changes without writing files")
     args = parser.parse_args()
 
     manufacturer = manufacturers.get(args.manufacturer)
     pcb_paths = targets()
+    if args.single:
+        pcb_paths = [path for path in pcb_paths if path.stem == args.single]
+        if not pcb_paths:
+            print(f"error: no board found named {args.single}", file=sys.stderr)
+            sys.exit(1)
     if not pcb_paths:
         print("error: no boards found", file=sys.stderr)
         sys.exit(1)

@@ -16,7 +16,7 @@ TOOLS_DIR = Path(__file__).parents[1]
 REPO_ROOT = Path(__file__).parents[4]
 OUTLINES_DIR = TOOLS_DIR.parent / "mcad/pcb-outlines"
 
-COMMON_PCB_PARTS = {"ETZ-B11-LGB"}
+COMMON_PCB_PARTS = {"ETZ-B11-DSP", "ETZ-B11-LGB"}
 SWITCH_PCB_PARTS = {"ETZ-B11-LSP", "ETZ-B11-RSP", "ETZ-B11-LSC", "ETZ-B11-RSC"}
 
 ASSET_BOARD_VARIANTS = {

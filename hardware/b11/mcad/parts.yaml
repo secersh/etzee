@@ -23,6 +23,10 @@ parts:
     formats: [step, stl]
     build: common
 
+  - part_number: ETZ-B11-DSP      # Display PCB
+    formats: [step, stl]
+    build: common
+
   # matrix parts — exported once per board variant (5-MX, 5-CHOC-V2, 5-KS-33, etc.)
   - part_number: ETZ-B11-LB       # Left base
     formats: [step, stl]

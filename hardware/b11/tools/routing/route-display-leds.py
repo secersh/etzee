@@ -2,13 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 """
-Route B11 display LED matrices on switch plate PCBs.
+Route B11 display LED matrices on switch plate PCBs and the common DSP PCB.
 
 Generated topology:
-  F.Cu: LED_SW# columns on offset spines with short stubs to display LED pad 2
-  F.Cu: short LED_CS# escapes from display LED pad 1 to off-pad vias
-  vias: one off-pad LED_CS# via near each display LED pad 1
-  B.Cu: LED_CS# rows through the off-pad vias
+  F.Cu: LED_CS# rows on offset spines with short stubs to display LED pad 1
+  F.Cu: short LED_SW# escapes from display LED pad 2 to off-pad vias
+  vias: one off-pad LED_SW# via near each display LED pad 2
+  B.Cu: LED_SW# columns through the off-pad vias
 
 The script is idempotent for its generated area. It removes existing LED_CS#/LED_SW#
 tracks and vias inside the display routing bounds, then recreates them from the
@@ -37,10 +37,10 @@ SWIG_WARNING_PREFIX = "swig/python detected a memory leak of type "
 TRACK_WIDTH_MM = 0.127
 VIA_DIAMETER_MM = 0.60
 VIA_DRILL_MM = 0.30
-CS_VIA_ESCAPE_MM = 0.72
-CS_SAME_NET_VIA_CLEARANCE_MM = 0.13
+SW_VIA_ESCAPE_MM = 0.72
+SW_SAME_NET_VIA_CLEARANCE_MM = 0.13
 LED_PAD_AXIS_HALF_MM = 0.23
-COLUMN_SPINE_X_OFFSET_MM = -0.08
+ROW_SPINE_Y_OFFSET_MM = -0.08
 ROUTE_BOUNDS_MARGIN_MM = 2.0
 
 DISPLAY_LED_RE = re.compile(r"D([1-9][0-9]*)$")
@@ -70,16 +70,20 @@ def _point_mm(point):
     return pcbnew.ToMM(point.x), pcbnew.ToMM(point.y)
 
 
-def _display_route_bounds(board, side):
+def _display_route_bounds(board, side, pcb_path):
     import pcbnew
 
-    outline = board.GetBoardEdgesBoundingBox()
-    bb_x, bb_y = DISPLAY._display_top_left(outline, side)
+    if pcb_path.stem == "ETZ-B11-DSP":
+        _, bb_x, bb_y, bb_w, bb_h, _ = DISPLAY._display_context(board, pcb_path)
+    else:
+        outline = board.GetBoardEdgesBoundingBox()
+        bb_x, bb_y = DISPLAY._display_top_left(outline, side)
+        bb_w, bb_h = DISPLAY.BB_W, DISPLAY.BB_H
     margin = ROUTE_BOUNDS_MARGIN_MM
     left = bb_x - margin
-    right = bb_x + DISPLAY.BB_W + margin
+    right = bb_x + bb_w + margin
     top = bb_y - margin
-    bottom = bb_y + DISPLAY.BB_H + margin
+    bottom = bb_y + bb_h + margin
     return (
         pcbnew.FromMM(left),
         pcbnew.FromMM(top),
@@ -141,8 +145,7 @@ def _pad(fp, number):
 
 
 def _ordered_led_points(board, pcb_path):
-    side = DISPLAY._board_side(pcb_path)
-    positions, _, _ = DISPLAY._compute_positions(side)
+    side, _, _, positions, _, _ = DISPLAY._display_positions(board, pcb_path)
     footprints = _display_leds_by_ref(board)
     expected = len(positions)
     if len(footprints) != expected:
@@ -159,8 +162,8 @@ def _ordered_led_points(board, pcb_path):
             raise RuntimeError(f"{pcb_path.name}: missing display LED D{i}; run placement first")
         pad1 = _pad(fp, "1")
         pad2 = _pad(fp, "2")
-        by_row.setdefault(row, []).append((pad1.GetPosition(), pad2.GetPosition(), pad1.GetNet()))
-        by_col.setdefault(col, []).append((pad2.GetPosition(), pad2.GetNet()))
+        by_row.setdefault(row, []).append((pad1.GetPosition(), pad1.GetNet()))
+        by_col.setdefault(col, []).append((pad2.GetPosition(), pad1.GetPosition(), pad2.GetNet()))
     return side, by_row, by_col
 
 
@@ -189,10 +192,10 @@ def _add_via(board, position, net):
     return via
 
 
-def _route_column(board, entries, dry_run):
+def _route_row(board, entries, dry_run):
     import pcbnew
 
-    entries = sorted(entries, key=lambda entry: (entry[0].y, entry[0].x))
+    entries = sorted(entries, key=lambda entry: (entry[0].x, entry[0].y))
     if len(entries) < 2:
         return 0
     if dry_run:
@@ -200,7 +203,7 @@ def _route_column(board, entries, dry_run):
 
     net = entries[0][1]
     spine_points = [
-        _offset_point(position, COLUMN_SPINE_X_OFFSET_MM, 0)
+        _offset_point(position, 0, ROW_SPINE_Y_OFFSET_MM)
         for position, _ in entries
     ]
     for (position, _), spine_point in zip(entries, spine_points):
@@ -215,45 +218,45 @@ def _offset_point(point, dx_mm, dy_mm):
     return pcbnew.VECTOR2I(point.x + pcbnew.FromMM(dx_mm), point.y + pcbnew.FromMM(dy_mm))
 
 
-def _cs_via_position(pad1_position, pad2_position):
+def _sw_via_position(pad2_position, pad1_position):
     import math
 
     p1_x, p1_y = _point_mm(pad1_position)
     p2_x, p2_y = _point_mm(pad2_position)
-    dx = p1_x - p2_x
-    dy = p1_y - p2_y
+    dx = p2_x - p1_x
+    dy = p2_y - p1_y
     length = math.hypot(dx, dy)
     if length == 0:
         raise RuntimeError("display LED pad positions overlap")
     via_position = _offset_point(
-        pad1_position,
-        CS_VIA_ESCAPE_MM * dx / length,
-        CS_VIA_ESCAPE_MM * dy / length,
+        pad2_position,
+        SW_VIA_ESCAPE_MM * dx / length,
+        SW_VIA_ESCAPE_MM * dy / length,
     )
     via_x, via_y = _point_mm(via_position)
     via_clearance = (
-        math.hypot(via_x - p1_x, via_y - p1_y)
+        math.hypot(via_x - p2_x, via_y - p2_y)
         - LED_PAD_AXIS_HALF_MM
         - VIA_DIAMETER_MM / 2
     )
-    if via_clearance < CS_SAME_NET_VIA_CLEARANCE_MM:
+    if via_clearance < SW_SAME_NET_VIA_CLEARANCE_MM:
         raise RuntimeError(
-            f"CS via is only {via_clearance:.3f} mm from LED pad copper; "
-            f"need at least {CS_SAME_NET_VIA_CLEARANCE_MM:.3f} mm"
+            f"SW via is only {via_clearance:.3f} mm from LED pad copper; "
+            f"need at least {SW_SAME_NET_VIA_CLEARANCE_MM:.3f} mm"
         )
     return via_position
 
 
-def _route_row(board, entries, dry_run):
+def _route_column(board, entries, dry_run):
     import pcbnew
 
-    entries = sorted(entries, key=lambda entry: (entry[0].x, entry[0].y))
+    entries = sorted(entries, key=lambda entry: (entry[0].y, entry[0].x))
     if dry_run:
         return len(entries), len(entries), max(0, len(entries) - 1)
     via_positions = []
-    for pad1_position, pad2_position, net in entries:
-        via_position = _cs_via_position(pad1_position, pad2_position)
-        _add_track(board, pad1_position, via_position, pcbnew.F_Cu, net)
+    for pad2_position, pad1_position, net in entries:
+        via_position = _sw_via_position(pad2_position, pad1_position)
+        _add_track(board, pad2_position, via_position, pcbnew.F_Cu, net)
         _add_via(board, via_position, net)
         via_positions.append((via_position, net))
     for (start, net), (end, _) in zip(via_positions, via_positions[1:]):
@@ -270,21 +273,21 @@ def _route_single(pcb_path_str, dry_run=False):
     board = pcbnew.LoadBoard(str(pcb_path))
 
     side, by_row, by_col = _ordered_led_points(board, pcb_path)
-    bounds = _display_route_bounds(board, side)
+    bounds = _display_route_bounds(board, side, pcb_path)
     removed = _remove_existing_routes(board, bounds, dry_run)
 
     top_tracks = 0
-    for col in sorted(by_col):
-        top_tracks += _route_column(board, by_col[col], dry_run)
+    for row in sorted(by_row):
+        top_tracks += _route_row(board, by_row[row], dry_run)
 
-    cs_escapes = 0
+    sw_escapes = 0
     vias = 0
     bottom_tracks = 0
-    for row in sorted(by_row):
-        row_escapes, row_vias, row_tracks = _route_row(board, by_row[row], dry_run)
-        cs_escapes += row_escapes
-        vias += row_vias
-        bottom_tracks += row_tracks
+    for col in sorted(by_col):
+        col_escapes, col_vias, col_tracks = _route_column(board, by_col[col], dry_run)
+        sw_escapes += col_escapes
+        vias += col_vias
+        bottom_tracks += col_tracks
 
     if dry_run:
         status = "dry-run"
@@ -293,8 +296,8 @@ def _route_single(pcb_path_str, dry_run=False):
         status = "saved"
 
     print(
-        f"  {pcb_path.name}  ({status}, {removed} removed, {top_tracks} F.Cu column tracks, "
-        f"{cs_escapes} F.Cu CS escapes, {vias} vias, {bottom_tracks} B.Cu row tracks, "
+        f"  {pcb_path.name}  ({status}, {removed} removed, {top_tracks} F.Cu row tracks, "
+        f"{sw_escapes} F.Cu SW escapes, {vias} vias, {bottom_tracks} B.Cu column tracks, "
         f"{TRACK_WIDTH_MM:.3f} mm tracks, {VIA_DIAMETER_MM:.2f}/{VIA_DRILL_MM:.2f} mm vias)"
     )
 
@@ -324,6 +327,9 @@ def main():
         for family in SWITCH_FAMILIES
         for pcb in (ECAD_ROOT / family).glob("ETZ-B11-*SP-*.kicad_pcb")
     )
+    dsp_pcb = ECAD_ROOT / "common" / "ETZ-B11-DSP.kicad_pcb"
+    if dsp_pcb.exists():
+        targets.append(dsp_pcb)
     if not targets:
         print("error: no switch plate PCBs found", file=sys.stderr)
         sys.exit(1)

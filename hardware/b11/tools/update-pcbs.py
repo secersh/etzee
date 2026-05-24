@@ -77,6 +77,11 @@ def main():
             str(PLACEMENT_DIR / "place-display-leds.py"),
             *dry_run,
         ])
+        run_step("Place DSP edge holes", [
+            sys.executable,
+            str(PLACEMENT_DIR / "place-dsp-edge-holes.py"),
+            *dry_run,
+        ])
 
     if "routing" in selected:
         run_step("Route display LEDs", [

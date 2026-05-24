@@ -21,7 +21,7 @@ except ImportError:
     sys.exit(1)
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from config import ECAD_ROOT, GRID_ORIGINS, MCAD_ROOT, PCB_STACKUP, SWITCH_FAMILIES
+from config import COMMON_PCBS, ECAD_ROOT, GRID_ORIGINS, MCAD_ROOT, PCB_STACKUP, SWITCH_FAMILIES
 
 EDGE_WIDTH_MM = 0.05
 A4_W_MM = 297.0
@@ -123,12 +123,18 @@ def board_targets():
             for columns in column_options:
                 dxf_path = outline_path(board_code, columns, switch_family)
                 pcb_path = family_dir / f"ETZ-B11-{board_code}-{columns}-{switch_family}.kicad_pcb"
-                targets.append((dxf_path, pcb_path, switch_family, board_code))
+                targets.append((dxf_path, pcb_path, switch_family, board_code, None))
+
+    common_dir = ECAD_ROOT / "common"
+    for part_number, data in COMMON_PCBS.items():
+        dxf_path = MCAD_ROOT / "pcb-outlines" / "common" / data["outline"]
+        pcb_path = common_dir / f"{part_number}.kicad_pcb"
+        targets.append((dxf_path, pcb_path, "common", part_number, part_number))
 
     return targets
 
 
-def generate_board(dxf_path, pcb_path, switch_family, board_code, dry_run=False):
+def generate_board(dxf_path, pcb_path, switch_family, board_code, common_part=None, dry_run=False):
     doc = ezdxf.readfile(str(dxf_path))
     modelspace = doc.modelspace()
     min_x, min_y, max_x, max_y = compute_bbox(modelspace)
@@ -138,7 +144,7 @@ def generate_board(dxf_path, pcb_path, switch_family, board_code, dry_run=False)
     off_x = (A4_W_MM - board_w) / 2
     off_y = (A4_H_MM - board_h) / 2
 
-    board_type = "SP" if board_code.endswith("SP") else "SC"
+    board_type = common_part or ("SP" if board_code.endswith("SP") else "SC")
     total_thickness = PCB_STACKUP[(switch_family, board_type)][0]
 
     if dry_run:
@@ -148,12 +154,15 @@ def generate_board(dxf_path, pcb_path, switch_family, board_code, dry_run=False)
     board = pcbnew.NewBoard(str(pcb_path))
     board.SetTitleBlock(pcbnew.TITLE_BLOCK())
     board.GetDesignSettings().SetBoardThickness(mm(total_thickness))
+    if common_part is not None:
+        board.GetDesignSettings().m_CopperEdgeClearance = mm(0.001)
 
-    origin_x, origin_y = GRID_ORIGINS["switch-plate" if board_type == "SP" else "switch-carrier"]
-    is_right = board_code.startswith("R")
-    switch_x = off_x + board_w - origin_x if is_right else off_x + origin_x
-    switch_y = off_y + origin_y
-    board.GetDesignSettings().SetGridOrigin(pcbnew.VECTOR2I(mm(switch_x), mm(switch_y)))
+    if common_part is None:
+        origin_x, origin_y = GRID_ORIGINS["switch-plate" if board_type == "SP" else "switch-carrier"]
+        is_right = board_code.startswith("R")
+        switch_x = off_x + board_w - origin_x if is_right else off_x + origin_x
+        switch_y = off_y + origin_y
+        board.GetDesignSettings().SetGridOrigin(pcbnew.VECTOR2I(mm(switch_x), mm(switch_y)))
 
     add_edge_cuts(board, modelspace, min_x, min_y, max_x, max_y, off_x, off_y)
 
@@ -164,11 +173,18 @@ def generate_board(dxf_path, pcb_path, switch_family, board_code, dry_run=False)
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--single", metavar="PCB_STEM", help="only generate one PCB stem, e.g. ETZ-B11-DSP")
     parser.add_argument("--dry-run", action="store_true", help="report changes without writing PCB files")
     args = parser.parse_args()
 
     targets = board_targets()
-    missing = [str(dxf.relative_to(MCAD_ROOT / "pcb-outlines")) for dxf, _, _, _ in targets if not dxf.exists()]
+    if args.single:
+        targets = [target for target in targets if target[1].stem == args.single]
+        if not targets:
+            print(f"error: no generated PCB target named {args.single}", file=sys.stderr)
+            sys.exit(1)
+
+    missing = [str(dxf.relative_to(MCAD_ROOT / "pcb-outlines")) for dxf, *_ in targets if not dxf.exists()]
     if missing:
         print("error: missing outline DXFs:", file=sys.stderr)
         for name in missing:
@@ -178,8 +194,8 @@ def main():
     mode = "Checking" if args.dry_run else "Generating"
     print(f"{mode} {len(targets)} B11 PCB files from DXF outlines...\n")
 
-    for dxf_path, pcb_path, switch_family, board_code in targets:
-        status = generate_board(dxf_path, pcb_path, switch_family, board_code, dry_run=args.dry_run)
+    for dxf_path, pcb_path, switch_family, board_code, common_part in targets:
+        status = generate_board(dxf_path, pcb_path, switch_family, board_code, common_part, dry_run=args.dry_run)
         print(f"  {status:<34} {dxf_path.name} -> {pcb_path.relative_to(ECAD_ROOT)}")
 
     print("\nDone.")
