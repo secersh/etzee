@@ -13,6 +13,7 @@ sys.path.insert(0, str(TOOLS_DIR))
 sys.path.insert(0, str(PLACEMENT_DIR))
 
 from config import ECAD_ROOT
+from display_pinout import DSP_EDGE_PINOUT
 
 DSP_PCB = ECAD_ROOT / "common" / "ETZ-B11-DSP.kicad_pcb"
 
@@ -28,6 +29,8 @@ PAD_SIZE_Y_MM = 0.95
 SLOT_DRILL_X_MM = 0.80
 SLOT_DRILL_Y_MM = 0.45
 SOLDER_MASK_MARGIN_MM = 0.0
+
+PAD_NETS = DSP_EDGE_PINOUT
 
 
 def _mm(value):
@@ -90,18 +93,30 @@ def _make_pad(fp, number, x, y):
     pad.SetDrillSize(_vec(SLOT_DRILL_X_MM, SLOT_DRILL_Y_MM))
     pad.SetLocalSolderMaskMargin(_mm(SOLDER_MASK_MARGIN_MM))
 
-    layers = pcbnew.LSET.ExternalCuMask()
+    layers = pcbnew.LSET()
+    layers.AddLayer(pcbnew.F_Cu)
+    layers.AddLayer(pcbnew.B_Cu)
     layers.AddLayer(pcbnew.F_Mask)
     layers.AddLayer(pcbnew.B_Mask)
     pad.SetLayerSet(layers)
     return pad
 
 
+def _ensure_net(board, net_name):
+    import pcbnew
+
+    net = board.FindNet(net_name)
+    if net is None:
+        net = pcbnew.NETINFO_ITEM(board, net_name)
+        board.Add(net)
+    return net
+
+
 def _place_single(pcb_path, dry_run=False):
     import pcbnew
     from common import init_swig
 
-    init_swig()
+    plugin = init_swig()
     board = pcbnew.LoadBoard(str(pcb_path))
     positions = list(_edge_groups(board))
 
@@ -119,10 +134,15 @@ def _place_single(pcb_path, dry_run=False):
     board.Add(fp)
 
     for number, (x, y) in enumerate(positions, start=1):
-        fp.Add(_make_pad(fp, number, x, y))
+        pad = _make_pad(fp, number, x, y)
+        net_name = PAD_NETS[number]
+        if net_name != "NC":
+            pad.SetNet(_ensure_net(board, net_name))
+        fp.Add(pad)
 
     board.Save(str(pcb_path))
     print(f"  {pcb_path.name}  (saved, removed {removed}, placed {PAD_COUNT} castellated pads)")
+    return plugin
 
 
 def main():
