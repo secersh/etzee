@@ -6,7 +6,7 @@
 	(tags "IS31FL3741A QFN-60 7x7 LED driver")
 	(property "Reference" "U**" (at 0 -4.8 0) (layer "F.SilkS") (effects (font (size 1 1) (thickness 0.1))))
 	(property "Value" "IS31FL3741A" (at 0 4.8 0) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.1))))
-	(property "Datasheet" "https://www.lumissil.com/assets/pdf/core/IS31FL3741A_DS.pdf" (at 0 0 0) (layer "F.Fab") (hide yes) (effects (font (size 1.27 1.27) (thickness 0.15))))
+	(property "Datasheet" "../../datasheets/IS31FL3741A.pdf" (at 0 0 0) (layer "F.Fab") (hide yes) (effects (font (size 1.27 1.27) (thickness 0.15))))
 	(property "Description" "39x9 dot matrix LED driver, QFN-60 7x7" (at 0 0 0) (layer "F.Fab") (hide yes) (effects (font (size 1.27 1.27) (thickness 0.15))))
 	(attr smd)
 	(fp_line (start -3.500 -3.000) (end -3.000 -3.500) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
