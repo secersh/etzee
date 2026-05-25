@@ -13,17 +13,20 @@ sys.path.insert(0, str(TOOLS_DIR))
 sys.path.insert(0, str(PLACEMENT_DIR))
 
 from config import ECAD_ROOT
-from display_pinout import DSP_EDGE_PINOUT
+from display_pinout import ALS_EDGE_PINOUT, DSP_EDGE_PINOUT
 
 DSP_PCB = ECAD_ROOT / "common" / "ETZ-B11-DSP.kicad_pcb"
 
 REF = "J1"
-VALUE = "DSP_CASTELLATED_EDGE"
+VALUE = "DSP_LED_CASTELLATIONS"
+ALS_REF = "J_ALS1"
+ALS_VALUE = "DSP_ALS_CASTELLATIONS"
 PADS_PER_GROUP = 12
-GROUPS = 4
-PAD_COUNT = PADS_PER_GROUP * GROUPS
+PAD_COUNT = len(DSP_EDGE_PINOUT)
+ALS_PAD_COUNT = len(ALS_EDGE_PINOUT)
 PAD_PITCH_MM = 1.27
 GROUP_END_MARGIN_MM = 6.0
+ALS_PAD_PITCH_MM = 1.27
 PAD_SIZE_X_MM = 1.50
 PAD_SIZE_Y_MM = 0.95
 SLOT_DRILL_X_MM = 0.80
@@ -48,13 +51,13 @@ def _vec(x_mm, y_mm):
 def _remove_existing(board):
     removed = 0
     for fp in list(board.GetFootprints()):
-        if fp.GetReference() == REF:
+        if fp.GetReference() in {REF, ALS_REF}:
             board.Remove(fp)
             removed += 1
     return removed
 
 
-def _edge_groups(board):
+def _edge_positions(board):
     import pcbnew
 
     bbox = board.GetBoardEdgesBoundingBox()
@@ -70,14 +73,28 @@ def _edge_groups(board):
         raise RuntimeError("DSP board is too short for four separated 12-pad edge groups")
 
     groups = (
-        ("left-top", left, top_start),
-        ("left-bottom", left, bottom_start),
-        ("right-top", right, top_start),
-        ("right-bottom", right, bottom_start),
+        (left, top_start, 11, 1),
+        (left, bottom_start, PADS_PER_GROUP, 1),
+        (right, bottom_start + PAD_PITCH_MM * (PADS_PER_GROUP - 1), PADS_PER_GROUP, -1),
+        (right, top_start + PAD_PITCH_MM * 10, 11, -1),
     )
-    for _, x, y_start in groups:
-        for index in range(PADS_PER_GROUP):
-            yield x, y_start + index * PAD_PITCH_MM
+    for x, y_start, count, direction in groups:
+        for index in range(count):
+            yield x, y_start + direction * index * PAD_PITCH_MM
+
+
+def _als_edge_positions(board):
+    import pcbnew
+
+    bbox = board.GetBoardEdgesBoundingBox()
+    left = pcbnew.ToMM(bbox.GetLeft())
+    right = pcbnew.ToMM(bbox.GetRight())
+    top = pcbnew.ToMM(bbox.GetTop())
+
+    total_span = ALS_PAD_PITCH_MM * (ALS_PAD_COUNT - 1)
+    x_start = (left + right - total_span) / 2
+    for index in range(ALS_PAD_COUNT):
+        yield x_start + index * ALS_PAD_PITCH_MM, top
 
 
 def _make_pad(fp, number, x, y):
@@ -88,6 +105,7 @@ def _make_pad(fp, number, x, y):
     pad.SetAttribute(pcbnew.PAD_ATTRIB_PTH)
     pad.SetShape(pcbnew.PAD_SHAPE_OVAL)
     pad.SetDrillShape(pcbnew.PAD_DRILL_SHAPE_OBLONG)
+    pad.SetProperty(pcbnew.PAD_PROP_CASTELLATED)
     pad.SetPosition(_vec(x, y))
     pad.SetSize(_vec(PAD_SIZE_X_MM, PAD_SIZE_Y_MM))
     pad.SetDrillSize(_vec(SLOT_DRILL_X_MM, SLOT_DRILL_Y_MM))
@@ -99,6 +117,15 @@ def _make_pad(fp, number, x, y):
     layers.AddLayer(pcbnew.F_Mask)
     layers.AddLayer(pcbnew.B_Mask)
     pad.SetLayerSet(layers)
+    return pad
+
+
+def _make_top_edge_pad(fp, number, x, y):
+    import pcbnew
+
+    pad = _make_pad(fp, number, x, y)
+    pad.SetSize(_vec(PAD_SIZE_Y_MM, PAD_SIZE_X_MM))
+    pad.SetDrillSize(_vec(SLOT_DRILL_Y_MM, SLOT_DRILL_X_MM))
     return pad
 
 
@@ -118,11 +145,15 @@ def _place_single(pcb_path, dry_run=False):
 
     plugin = init_swig()
     board = pcbnew.LoadBoard(str(pcb_path))
-    positions = list(_edge_groups(board))
+    positions = list(_edge_positions(board))
+    als_positions = list(_als_edge_positions(board))
 
     existing = sum(1 for fp in board.GetFootprints() if fp.GetReference() == REF)
     if dry_run:
-        print(f"  {pcb_path.name}  (dry-run, {existing} existing {REF} footprints, {PAD_COUNT} pads expected)")
+        print(
+            f"  {pcb_path.name}  (dry-run, {existing} existing {REF} footprints, "
+            f"{PAD_COUNT} LED pads and {ALS_PAD_COUNT} ALS pads expected)"
+        )
         return
 
     removed = _remove_existing(board)
@@ -140,8 +171,22 @@ def _place_single(pcb_path, dry_run=False):
             pad.SetNet(_ensure_net(board, net_name))
         fp.Add(pad)
 
+    als_fp = pcbnew.FOOTPRINT(board)
+    als_fp.SetReference(ALS_REF)
+    als_fp.SetValue(ALS_VALUE)
+    als_fp.SetPosition(_vec(0, 0))
+    board.Add(als_fp)
+
+    for number, (x, y) in enumerate(als_positions, start=1):
+        pad = _make_top_edge_pad(als_fp, number, x, y)
+        pad.SetNet(_ensure_net(board, ALS_EDGE_PINOUT[number]))
+        als_fp.Add(pad)
+
     board.Save(str(pcb_path))
-    print(f"  {pcb_path.name}  (saved, removed {removed}, placed {PAD_COUNT} castellated pads)")
+    print(
+        f"  {pcb_path.name}  (saved, removed {removed}, placed {PAD_COUNT} LED pads "
+        f"and {ALS_PAD_COUNT} ALS pads)"
+    )
     return plugin
 
 

@@ -69,13 +69,13 @@ IS31FL3741A_PINS = {
 }
 
 
-# Rev1 DSP castellated edge pinout, optimized for fanout from an IS31FL3741A
-# placed near the center/right of the SP board. The groups match the four
-# 12-pad edge clusters:
-#   1..12   left/top
-#   13..24  left/bottom
-#   25..36  right/top
-#   37..48  right/bottom
+# Rev1 DSP castellated LED edge pinout, optimized for fanout from an
+# IS31FL3741A placed near the center/right of the SP board. Pads walk
+# counter-clockwise around the side castellations. The groups are:
+#   1..11   left/top
+#   12..23  left/bottom
+#   24..35  right/bottom
+#   36..46  right/top
 #
 # The map is mirrored left-to-right so the SP-side driver can fan out mostly
 # toward the nearer right-side castellated groups. SW8/SW9 are intentionally
@@ -93,40 +93,46 @@ DSP_EDGE_PINOUT = {
     10: "LED_CS20",
     11: "LED_CS19",
     12: "LED_CS18",
-    13: "LED_CS17",
-    14: "LED_CS16",
-    15: "LED_CS15",
-    16: "LED_CS14",
-    17: "LED_CS13",
-    18: "LED_CS12",
-    19: "LED_CS11",
-    20: "LED_CS10",
-    21: "LED_CS9",
-    22: "LED_CS8",
-    23: "LED_CS7",
-    24: "LED_CS6",
-    25: "LED_CS30",
-    26: "LED_CS31",
-    27: "LED_CS32",
-    28: "LED_CS33",
-    29: "LED_CS34",
-    30: "LED_CS35",
-    31: "LED_CS36",
-    32: "LED_CS37",
-    33: "LED_CS38",
-    34: "LED_CS39",
-    35: "NC",
-    36: "NC",
-    37: "LED_SW1",
-    38: "LED_SW2",
-    39: "LED_SW3",
-    40: "LED_SW4",
-    41: "LED_SW5",
-    42: "LED_SW6",
-    43: "LED_SW7",
-    44: "LED_CS1",
-    45: "LED_CS2",
-    46: "LED_CS3",
-    47: "LED_CS4",
-    48: "LED_CS5",
+    13: "LED_CS16",
+    14: "LED_CS15",
+    15: "LED_CS14",
+    16: "LED_CS13",
+    17: "LED_CS12",
+    18: "LED_CS11",
+    19: "LED_CS10",
+    20: "LED_CS9",
+    21: "LED_CS8",
+    22: "LED_CS7",
+    23: "LED_CS6",
+    24: "LED_CS5",
+    25: "LED_CS4",
+    26: "LED_CS3",
+    27: "LED_CS2",
+    28: "LED_CS1",
+    29: "LED_SW7",
+    30: "LED_SW6",
+    31: "LED_SW5",
+    32: "LED_SW4",
+    33: "LED_SW3",
+    34: "LED_SW2",
+    35: "LED_SW1",
+    36: "LED_CS17",
+    37: "LED_CS39",
+    38: "LED_CS38",
+    39: "LED_CS37",
+    40: "LED_CS36",
+    41: "LED_CS35",
+    42: "LED_CS34",
+    43: "LED_CS33",
+    44: "LED_CS32",
+    45: "LED_CS31",
+    46: "LED_CS30",
+}
+
+
+ALS_EDGE_PINOUT = {
+    1: "ALS_VDD",
+    2: "ALS_SCL",
+    3: "ALS_SDA",
+    4: "ALS_GND",
 }
