@@ -1,0 +1,294 @@
+(footprint "KLJ-8530-3627"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "KELIKING KLJ-8530-3627 passive electromagnetic SMD buzzer, LCSC C189206, 8.5x8.5x3.3 mm")
+	(tags "KELIKING KLJ-8530-3627 C189206 buzzer passive electromagnetic SMD 8.5x8.5mm")
+	(property "Reference" "BZ**"
+		(at 0 -5.8 0)
+		(layer "F.SilkS")
+		(uuid "acecae10-fa71-41c0-9c79-bac9393805f8")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "KLJ-8530-3627"
+		(at 0 5.8 0)
+		(layer "F.Fab")
+		(uuid "d0310819-a1c9-4b08-ac03-2f68d46fc6cc")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Datasheet" "../../datasheets/KLJ-8530-3627.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "241e2371-161d-4129-a0ab-5cd43e303280")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Passive externally driven electromagnetic buzzer, 2.5-4.5 Vp-p, 2.731 kHz, 86 dB, 90 mA max"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "57e6f5d9-925d-4ca9-b881-9ca2a26e43cc")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "LCSC Part" "C189206"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2a1b058d-4ed7-4490-a7f6-0e62c122369d")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Manufacturer" "KELIKING"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "07b6178e-2ac1-4a3d-98c4-42d4d0baf51d")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "MPN" "KLJ-8530-3627"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cc7f8b9b-74ca-49e9-92b3-ef77ddc3f2bb")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -4.25 -2.1)
+		(end -4.25 2.1)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9f7f1f6b-fbf0-4ddf-ab77-3ad81ab5c22c")
+	)
+	(fp_line
+		(start -2.55 -2)
+		(end -1.45 -2)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "8db4f2e6-cf53-4e4b-b85e-834da3d06dea")
+	)
+	(fp_line
+		(start -2.2 -4.25)
+		(end 2.2 -4.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3bd22acb-0d1a-4afd-b224-c3d16bcba555")
+	)
+	(fp_line
+		(start -2.2 4.25)
+		(end 2.2 4.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "1a956071-2fce-4b65-a4c4-6f275e9d4f19")
+	)
+	(fp_line
+		(start -2 -1.45)
+		(end -2 -2.55)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "e42d410f-f3bb-497f-9ae4-6e5ad9153c0d")
+	)
+	(fp_line
+		(start 4.25 -2.1)
+		(end 4.25 2.1)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f15d02a9-ca9b-49af-9e93-da0a94059f7e")
+	)
+	(fp_rect
+		(start -4.95 -4.95)
+		(end 4.95 4.95)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "bf427119-6182-4997-b78f-a6445b4f8bd4")
+	)
+	(fp_line
+		(start 3 -0.5)
+		(end 3 0.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "3f1be6b4-a0a9-48d5-83cf-e23e414af119")
+	)
+	(fp_line
+		(start 3.5 0)
+		(end 3 -0.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "34fd4a01-2b20-411d-8069-188a3ddb1eec")
+	)
+	(fp_line
+		(start 3.5 0)
+		(end 3 0.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "61dd945f-9dc2-4852-9ba4-74de5b85166a")
+	)
+	(fp_rect
+		(start -4.25 -4.25)
+		(end 4.25 4.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "ac388324-b2ca-407f-ade4-d71ad1db4081")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 1.8 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "b0697ad2-a285-4e92-9d82-e3f66ef0349c")
+	)
+	(fp_text user "+"
+		(at -3.58 -1.95 0)
+		(layer "F.Fab")
+		(uuid "0010a75a-0fba-4342-adde-20af3fee6d39")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.08)
+			)
+		)
+	)
+	(fp_text user "NC"
+		(at 3.58 1.95 0)
+		(layer "F.Fab")
+		(uuid "320aadca-4e0c-49c5-86f6-ec0f672708e6")
+		(effects
+			(font
+				(size 0.45 0.45)
+				(thickness 0.06)
+			)
+		)
+	)
+	(fp_text user "-"
+		(at -3.58 1.95 0)
+		(layer "F.Fab")
+		(uuid "3a43b00a-9426-4cd6-92c1-713906a6dd75")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.08)
+			)
+		)
+	)
+	(fp_text user "NC"
+		(at 3.58 -1.95 0)
+		(layer "F.Fab")
+		(uuid "8a0c9c65-ac7c-4ff5-9c83-396af742dd8b")
+		(effects
+			(font
+				(size 0.45 0.45)
+				(thickness 0.06)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -3.57 -3.54)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "15e40425-af25-43a8-867f-1f05b5640c13")
+	)
+	(pad "2" smd rect
+		(at -3.58 3.56)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "820e88b7-7e2f-4e2b-bc13-a2646b6a3c0a")
+	)
+	(pad "3" smd rect
+		(at 3.58 3.53)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "54328910-4c7e-4a19-9837-195846d18d54")
+	)
+	(pad "4" smd rect
+		(at 3.58 -3.56)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "1396eb56-cc08-48e0-8d6a-60b251b7d9ee")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/../../../../lib/3d-models/KLJ-8530-3627.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
+)
