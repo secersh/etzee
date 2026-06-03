@@ -1385,6 +1385,161 @@
 			)
 		)
 	)
+	(footprint "POGO-PADS-2X4-P2.54"
+		(layer "B.Cu")
+		(uuid "fc276763-0bc1-4104-b918-25e14a5ec79c")
+		(at 215.25 142)
+		(descr "2x4 2.54 mm exposed pogo-pin contact pad array")
+		(tags "pogo contact pads 2x4 2.54mm")
+		(property "Reference" "J_LOGIC1"
+			(at 0 6.6 0)
+			(layer "B.SilkS")
+			(uuid "5fcf320f-2dac-4293-9a83-ffd0da3179cc")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "POGO-PADS-2X4-P2.54"
+			(at 0 -6.6 0)
+			(layer "B.Fab")
+			(uuid "ec71d256-e918-40a8-937e-036895948b12")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/POGO-HEADER-2X4-P2.54.pdf"
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "fc053091-79c1-4077-8a55-0abb06798cf2")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "2x4 2.54 mm exposed SMD pads for spring-loaded pogo-pin mating connector"
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "c6f5c764-651f-4dd3-9451-e2bf8ed54bbb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C5280862"
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "4b8ed6d6-2ed6-4da5-b9f1-c63510d3cf67")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_rect
+			(start -2.84 5.38)
+			(end 2.84 -5.38)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "d7586497-a6f5-4593-9674-355b1c5a2329")
+		)
+		(fp_rect
+			(start -2.54 5.08)
+			(end 2.54 -5.08)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill no)
+			(layer "B.Fab")
+			(uuid "fc4b8453-c687-4b85-b432-81c7cf6836af")
+		)
+		(fp_text user "1"
+			(at -2.3 5.6 0)
+			(layer "B.Fab")
+			(uuid "d7f76f0d-ef65-48fe-b8c5-69eeb59129ff")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd circle
+			(at -1.27 3.81)
+			(size 2.2 2.2)
+			(layers "B.Cu" "B.Mask")
+			(uuid "eb5074e5-e79a-45ff-9c84-b615f30bc5f4")
+		)
+		(pad "2" smd circle
+			(at 1.27 3.81)
+			(size 2.2 2.2)
+			(layers "B.Cu" "B.Mask")
+			(uuid "7b73be61-c474-401a-8a36-1ee5ac3ac221")
+		)
+		(pad "3" smd circle
+			(at -1.27 1.27)
+			(size 2.2 2.2)
+			(layers "B.Cu" "B.Mask")
+			(uuid "d9fd478c-8444-4650-97a0-c756d23b7e18")
+		)
+		(pad "4" smd circle
+			(at 1.27 1.27)
+			(size 2.2 2.2)
+			(layers "B.Cu" "B.Mask")
+			(uuid "6448d768-e14c-45a4-aaa4-e9d515a81f6d")
+		)
+		(pad "5" smd circle
+			(at -1.27 -1.27)
+			(size 2.2 2.2)
+			(layers "B.Cu" "B.Mask")
+			(uuid "39a81903-1a6c-4d8e-9023-29d391992687")
+		)
+		(pad "6" smd circle
+			(at 1.27 -1.27)
+			(size 2.2 2.2)
+			(layers "B.Cu" "B.Mask")
+			(uuid "e3c30653-8528-482f-9c04-b139ed721047")
+		)
+		(pad "7" smd circle
+			(at -1.27 -3.81)
+			(size 2.2 2.2)
+			(layers "B.Cu" "B.Mask")
+			(uuid "a79fc98e-2f9a-4b51-8533-2bbce6a65e25")
+		)
+		(pad "8" smd circle
+			(at 1.27 -3.81)
+			(size 2.2 2.2)
+			(layers "B.Cu" "B.Mask")
+			(uuid "dedc6174-f6be-49f4-a183-30a158d44d57")
+		)
+		(embedded_fonts no)
+
+	)
 	(footprint "IS31FL3741A-QFN-60-7x7"
 		(layer "B.Cu")
 		(uuid "0063a33a-0697-4b8b-9c01-76d598874b2d")
@@ -2162,6 +2317,309 @@
 		)
 		(embedded_fonts no)
 	)
+	(footprint "DRV2605LDGSR"
+		(layer "B.Cu")
+		(uuid "13f156ad-a730-4e0e-9cfd-5c5d09a92e37")
+		(at 201.65 116.35)
+		(descr "Texas Instruments DRV2605LDGSR haptic driver, VSSOP-10/DGS, LCSC C527464")
+		(tags "TI DRV2605L DRV2605LDGSR C527464 haptic driver VSSOP-10 DGS")
+		(property "Reference" "U_HAPTIC1"
+			(at 0 3.65 0)
+			(layer "B.SilkS")
+			(uuid "059b7422-1e7e-4600-bc86-3b36f8ad05f2")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "DRV2605LDGSR"
+			(at 0 -3.65 0)
+			(layer "B.Fab")
+			(uuid "ee0f45e8-923c-4ff1-bddb-74606ca278e4")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/DRV2605L.pdf"
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "14e322c6-4576-40f7-9c83-bae3c8fb14ee")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "TI DRV2605L I2C haptic driver for ERM and LRA actuators, VSSOP-10 package"
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "a285db9b-4878-4b0a-8fe8-c0eef41ff94b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C527464"
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "a7811500-85c5-48a3-aa46-ef03db45e0c2")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Manufacturer" "Texas Instruments"
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "3420f72a-d5a3-410b-a496-314d03bcab15")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "MPN" "DRV2605LDGSR"
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "b2fb68c6-450b-46f9-b7b8-6c8fb48e185e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.65 -1.6)
+			(end 1.65 -1.6)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "1a74eee7-4d97-45dd-ac47-4c3e34b7e6ad")
+		)
+		(fp_line
+			(start -1.65 -0.9)
+			(end -1.65 -1.6)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "8417c31c-1c0e-44a0-a20c-225c4bba25bd")
+		)
+		(fp_line
+			(start -1.65 1.6)
+			(end -1.65 0.9)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "55ec2dcc-aac0-431d-9dab-ae7444ec00b7")
+		)
+		(fp_line
+			(start -1.65 1.6)
+			(end 1.65 1.6)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "a89914c0-0edb-44af-8544-49f0c6b15410")
+		)
+		(fp_circle
+			(center -1.55 -2.75)
+			(end -1.43 -2.75)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill yes)
+			(layer "B.SilkS")
+			(uuid "83d797e0-aa0a-4c23-a3a7-23608a84c32c")
+		)
+		(fp_rect
+			(start -1.75 3.1)
+			(end 1.75 -3.1)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "95189815-b9c9-4999-9985-808b3e9c7e04")
+		)
+		(fp_line
+			(start -1.5 -1.1)
+			(end -1.5 1.5)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "4ee68005-74f5-4fd4-aa6c-1a87dc6606ca")
+		)
+		(fp_line
+			(start -1.5 1.5)
+			(end 1.5 1.5)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "5fbf7f45-6e2e-460b-9e5b-9e3febd7d1fb")
+		)
+		(fp_line
+			(start -1.1 -1.5)
+			(end -1.5 -1.1)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "a3a56722-a58b-4645-a7d0-c3f96726d54e")
+		)
+		(fp_line
+			(start 1.5 -1.5)
+			(end -1.1 -1.5)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "8c187a49-39ac-4af9-8d9d-001343838639")
+		)
+		(fp_line
+			(start 1.5 1.5)
+			(end 1.5 -1.5)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "7c6c60b6-6f8d-4a1b-a840-95cb29063a7b")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 0 0)
+			(layer "B.Fab")
+			(uuid "0a14ab12-a474-497f-8b1b-42ab9ac7e398")
+			(effects
+				(font
+					(size 0.55 0.55)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1 -2.35)
+			(size 0.3 1.3)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(uuid "4220e0cd-883e-4c5f-b736-af56e1355b01")
+		)
+		(pad "2" smd roundrect
+			(at -0.5 -2.35)
+			(size 0.3 1.3)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(uuid "f1f76788-9561-4d55-80fb-c4e1765ea71f")
+		)
+		(pad "3" smd roundrect
+			(at 0 -2.35)
+			(size 0.3 1.3)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(uuid "150381af-ee17-40ea-a4c4-60f4bc091654")
+		)
+		(pad "4" smd roundrect
+			(at 0.5 -2.35)
+			(size 0.3 1.3)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(uuid "4b481c5b-36f9-4aa5-aa3f-34fff1adde7c")
+		)
+		(pad "5" smd roundrect
+			(at 1 -2.35)
+			(size 0.3 1.3)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(uuid "d2e60bd4-4341-417b-abb9-51e948994d37")
+		)
+		(pad "6" smd roundrect
+			(at 1 2.35)
+			(size 0.3 1.3)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(uuid "54427db9-2415-40df-8d3d-d6624fc6e823")
+		)
+		(pad "7" smd roundrect
+			(at 0.5 2.35)
+			(size 0.3 1.3)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(uuid "870e1ffe-57ca-44dc-ad2b-f75a60a044e4")
+		)
+		(pad "8" smd roundrect
+			(at 0 2.35)
+			(size 0.3 1.3)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(uuid "a3de234c-92ab-4389-859e-7b3bf113a16e")
+		)
+		(pad "9" smd roundrect
+			(at -0.5 2.35)
+			(size 0.3 1.3)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(uuid "fa602008-2605-41fc-bffd-cabc4de82565")
+		)
+		(pad "10" smd roundrect
+			(at -1 2.35)
+			(size 0.3 1.3)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(uuid "fe01187c-3ce4-4eab-b8ba-eee4f6aed825")
+		)
+		(embedded_fonts no)
+		(model "${KIPRJMOD}/../../../../lib/3d-models/DRV2605LDGSR.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
 	(footprint "VLV041235L-L20"
 		(layer "B.Cu")
 		(uuid "46ba3902-91de-46ca-8a3f-d65743ff8163")
@@ -2399,9 +2857,9 @@
 		(descr "KELIKING KLJ-8530-3627 passive electromagnetic SMD buzzer, LCSC C189206, 8.5x8.5x3.3 mm")
 		(tags "KELIKING KLJ-8530-3627 C189206 buzzer passive electromagnetic SMD 8.5x8.5mm")
 		(property "Reference" "BZ1"
-			(hide yes)
 			(at 0 -5.8 90)
 			(layer "B.SilkS")
+			(hide yes)
 			(uuid "5a039699-7295-4707-b898-8fdb377a0dc9")
 			(effects
 				(font
