@@ -21,6 +21,7 @@
 # ── Through-hole and castellated pads ───────────────────────────────────────
 (rule "PCBWay HDI Min Mechanical Drill"
    (constraint hole_size (min 0.15mm))
+   (condition "A.Type != 'Via'")
 )
 (rule "PCBWay HDI Hole-to-Hole Clearance"
    (constraint hole_to_hole (min 0.50mm))

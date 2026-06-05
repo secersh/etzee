@@ -13,7 +13,7 @@ sys.path.insert(0, str(TOOLS_DIR))
 sys.path.insert(0, str(PLACEMENT_DIR))
 
 from config import ECAD_ROOT
-from display_pinout import ALS_EDGE_PINOUT, DSP_EDGE_PINOUT
+from display_pinout import ALS_EDGE_CLUSTERS, ALS_EDGE_PINOUT, DSP_EDGE_CLUSTERS, DSP_EDGE_PINOUT
 
 DSP_PCB = ECAD_ROOT / "common" / "ETZ-B11-DSP.kicad_pcb"
 
@@ -32,6 +32,7 @@ PAD_SIZE_Y_MM = 0.95
 SLOT_DRILL_X_MM = 0.80
 SLOT_DRILL_Y_MM = 0.45
 SOLDER_MASK_MARGIN_MM = 0.0
+BUS_LABEL_PREFIX = "DSP_BUS:"
 
 PAD_NETS = DSP_EDGE_PINOUT
 
@@ -49,10 +50,20 @@ def _vec(x_mm, y_mm):
 
 
 def _remove_existing(board):
+    import pcbnew
+
     removed = 0
     for fp in list(board.GetFootprints()):
         if fp.GetReference() in {REF, ALS_REF}:
             board.Remove(fp)
+            removed += 1
+    try:
+        drawings = list(board.Drawings())
+    except TypeError:
+        drawings = []
+    for drawing in drawings:
+        if isinstance(drawing, pcbnew.PCB_TEXT) and drawing.GetText().startswith(BUS_LABEL_PREFIX):
+            board.Remove(drawing)
             removed += 1
     return removed
 
@@ -139,11 +150,44 @@ def _ensure_net(board, net_name):
     return net
 
 
+def _add_bus_label(board, text, x, y, angle_degrees=0):
+    import pcbnew
+
+    label = pcbnew.PCB_TEXT(board)
+    label.SetText(f"{BUS_LABEL_PREFIX} {text}")
+    label.SetLayer(pcbnew.Cmts_User)
+    label.SetPosition(_vec(x, y))
+    label.SetTextAngleDegrees(angle_degrees)
+    label.SetTextSize(_vec(1.0, 1.0))
+    label.SetTextThickness(_mm(0.12))
+    label.SetHorizJustify(pcbnew.GR_TEXT_H_ALIGN_CENTER)
+    label.SetVertJustify(pcbnew.GR_TEXT_V_ALIGN_CENTER)
+    board.Add(label)
+
+
+def _add_edge_bus_labels(board, positions, als_positions):
+    left = min(x for x, _ in positions)
+    right = max(x for x, _ in positions)
+    top = min(y for _, y in als_positions)
+
+    for cluster in DSP_EDGE_CLUSTERS:
+        points = [positions[pad - 1] for pad in cluster["pads"]]
+        avg_x = sum(x for x, _ in points) / len(points)
+        avg_y = sum(y for _, y in points) / len(points)
+        if avg_x < (left + right) / 2:
+            _add_bus_label(board, cluster["label"], left - 2.4, avg_y, 90)
+        else:
+            _add_bus_label(board, cluster["label"], right + 2.4, avg_y, 90)
+
+    for cluster in ALS_EDGE_CLUSTERS:
+        points = [als_positions[pad - 1] for pad in cluster["pads"]]
+        avg_x = sum(x for x, _ in points) / len(points)
+        _add_bus_label(board, cluster["label"], avg_x, top - 2.2, 0)
+
+
 def _place_single(pcb_path, dry_run=False):
     import pcbnew
-    from common import init_swig
 
-    plugin = init_swig()
     board = pcbnew.LoadBoard(str(pcb_path))
     positions = list(_edge_positions(board))
     als_positions = list(_als_edge_positions(board))
@@ -182,12 +226,13 @@ def _place_single(pcb_path, dry_run=False):
         pad.SetNet(_ensure_net(board, ALS_EDGE_PINOUT[number]))
         als_fp.Add(pad)
 
+    _add_edge_bus_labels(board, positions, als_positions)
+
     board.Save(str(pcb_path))
     print(
         f"  {pcb_path.name}  (saved, removed {removed}, placed {PAD_COUNT} LED pads "
         f"and {ALS_PAD_COUNT} ALS pads)"
     )
-    return plugin
 
 
 def main():

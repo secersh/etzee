@@ -37,7 +37,10 @@ SWIG_WARNING_PREFIX = "swig/python detected a memory leak of type "
 TRACK_WIDTH_MM = 0.127
 VIA_DIAMETER_MM = 0.60
 VIA_DRILL_MM = 0.30
+MICROVIA_DIAMETER_MM = 0.30
+MICROVIA_DRILL_MM = 0.1016
 SW_VIA_ESCAPE_MM = 0.72
+SW_MICROVIA_ESCAPE_MM = 0.55
 SW_SAME_NET_VIA_CLEARANCE_MM = 0.13
 LED_PAD_AXIS_HALF_MM = 0.23
 ROW_SPINE_Y_OFFSET_MM = -0.08
@@ -106,21 +109,24 @@ def _net_name(item):
     return net.GetNetname() if net is not None else ""
 
 
-def _is_generated_led_route(item, bounds):
+def _is_generated_led_route(item, bounds, clear_unnetted=False):
     import pcbnew
 
-    if not LED_NET_RE.fullmatch(_net_name(item)):
+    net_name = _net_name(item)
+    if clear_unnetted and not net_name:
+        pass
+    elif not LED_NET_RE.fullmatch(net_name):
         return False
     if isinstance(item, pcbnew.PCB_VIA):
         return _inside_bounds(item.GetPosition(), bounds)
     return _segment_touches_bounds(item, bounds)
 
 
-def _remove_existing_routes(board, bounds, dry_run):
+def _remove_existing_routes(board, bounds, dry_run, clear_unnetted=False):
     routes = [
         item
         for item in list(board.GetTracks())
-        if _is_generated_led_route(item, bounds)
+        if _is_generated_led_route(item, bounds, clear_unnetted=clear_unnetted)
     ]
     if not dry_run:
         for item in routes:
@@ -180,13 +186,19 @@ def _add_track(board, start, end, layer, net):
     return track
 
 
-def _add_via(board, position, net):
+def _add_via(board, position, net, microvia=False):
     import pcbnew
 
     via = pcbnew.PCB_VIA(board)
     via.SetPosition(position)
-    via.SetWidth(_mm(VIA_DIAMETER_MM))
-    via.SetDrill(_mm(VIA_DRILL_MM))
+    if microvia:
+        via.SetViaType(pcbnew.VIATYPE_MICROVIA)
+        via.SetLayerPair(pcbnew.F_Cu, pcbnew.In1_Cu)
+        via.SetWidth(_mm(MICROVIA_DIAMETER_MM))
+        via.SetDrill(_mm(MICROVIA_DRILL_MM))
+    else:
+        via.SetWidth(_mm(VIA_DIAMETER_MM))
+        via.SetDrill(_mm(VIA_DRILL_MM))
     via.SetNet(net)
     board.Add(via)
     return via
@@ -218,26 +230,23 @@ def _offset_point(point, dx_mm, dy_mm):
     return pcbnew.VECTOR2I(point.x + pcbnew.FromMM(dx_mm), point.y + pcbnew.FromMM(dy_mm))
 
 
-def _sw_via_position(pad2_position, pad1_position):
+def _sw_via_position(pad2_position, pad1_position, escape_direction, via_diameter_mm, escape_mm):
     import math
 
     p1_x, p1_y = _point_mm(pad1_position)
     p2_x, p2_y = _point_mm(pad2_position)
-    dx = p2_x - p1_x
-    dy = p2_y - p1_y
-    length = math.hypot(dx, dy)
-    if length == 0:
+    if math.hypot(p2_x - p1_x, p2_y - p1_y) == 0:
         raise RuntimeError("display LED pad positions overlap")
     via_position = _offset_point(
         pad2_position,
-        SW_VIA_ESCAPE_MM * dx / length,
-        SW_VIA_ESCAPE_MM * dy / length,
+        escape_mm * escape_direction,
+        0,
     )
     via_x, via_y = _point_mm(via_position)
     via_clearance = (
         math.hypot(via_x - p2_x, via_y - p2_y)
         - LED_PAD_AXIS_HALF_MM
-        - VIA_DIAMETER_MM / 2
+        - via_diameter_mm / 2
     )
     if via_clearance < SW_SAME_NET_VIA_CLEARANCE_MM:
         raise RuntimeError(
@@ -247,24 +256,36 @@ def _sw_via_position(pad2_position, pad1_position):
     return via_position
 
 
-def _route_column(board, entries, dry_run):
+def _route_column(board, entries, dry_run, top_microvias_only=False, microvia_fanout=False, escape_direction=1):
     import pcbnew
 
     entries = sorted(entries, key=lambda entry: (entry[0].y, entry[0].x))
+    use_microvias = top_microvias_only or microvia_fanout
     if dry_run:
-        return len(entries), len(entries), max(0, len(entries) - 1)
+        return len(entries), len(entries), 0 if top_microvias_only else max(0, len(entries) - 1)
     via_positions = []
+    via_diameter = MICROVIA_DIAMETER_MM if use_microvias else VIA_DIAMETER_MM
+    escape_mm = SW_MICROVIA_ESCAPE_MM if use_microvias else SW_VIA_ESCAPE_MM
     for pad2_position, pad1_position, net in entries:
-        via_position = _sw_via_position(pad2_position, pad1_position)
+        via_position = _sw_via_position(
+            pad2_position,
+            pad1_position,
+            escape_direction,
+            via_diameter,
+            escape_mm,
+        )
         _add_track(board, pad2_position, via_position, pcbnew.F_Cu, net)
-        _add_via(board, via_position, net)
+        _add_via(board, via_position, net, microvia=use_microvias)
         via_positions.append((via_position, net))
+    if top_microvias_only:
+        return len(via_positions), len(via_positions), 0
+    column_layer = pcbnew.In1_Cu if microvia_fanout else pcbnew.B_Cu
     for (start, net), (end, _) in zip(via_positions, via_positions[1:]):
-        _add_track(board, start, end, pcbnew.B_Cu, net)
+        _add_track(board, start, end, column_layer, net)
     return len(via_positions), len(via_positions), len(via_positions) - 1
 
 
-def _route_single(pcb_path_str, dry_run=False):
+def _route_single(pcb_path_str, dry_run=False, top_microvias_only=False, microvia_fanout=False):
     import pcbnew
     from common import init_swig
 
@@ -274,7 +295,12 @@ def _route_single(pcb_path_str, dry_run=False):
 
     side, by_row, by_col = _ordered_led_points(board, pcb_path)
     bounds = _display_route_bounds(board, side, pcb_path)
-    removed = _remove_existing_routes(board, bounds, dry_run)
+    removed = _remove_existing_routes(
+        board,
+        bounds,
+        dry_run,
+        clear_unnetted=top_microvias_only or microvia_fanout,
+    )
 
     top_tracks = 0
     for row in sorted(by_row):
@@ -283,8 +309,17 @@ def _route_single(pcb_path_str, dry_run=False):
     sw_escapes = 0
     vias = 0
     bottom_tracks = 0
+    max_col = max(by_col)
     for col in sorted(by_col):
-        col_escapes, col_vias, col_tracks = _route_column(board, by_col[col], dry_run)
+        escape_direction = -1 if col == max_col else (1 if col % 2 == 0 else -1)
+        col_escapes, col_vias, col_tracks = _route_column(
+            board,
+            by_col[col],
+            dry_run,
+            top_microvias_only=top_microvias_only,
+            microvia_fanout=microvia_fanout,
+            escape_direction=escape_direction,
+        )
         sw_escapes += col_escapes
         vias += col_vias
         bottom_tracks += col_tracks
@@ -295,10 +330,18 @@ def _route_single(pcb_path_str, dry_run=False):
         board.Save(str(pcb_path))
         status = "saved"
 
+    use_microvias = top_microvias_only or microvia_fanout
+    via_label = "microvias" if use_microvias else "vias"
+    column_layer = "In1.Cu" if microvia_fanout else "B.Cu"
+    via_size = (
+        f"{MICROVIA_DIAMETER_MM:.2f}/{MICROVIA_DRILL_MM:.4f} mm microvias"
+        if use_microvias
+        else f"{VIA_DIAMETER_MM:.2f}/{VIA_DRILL_MM:.2f} mm vias"
+    )
     print(
         f"  {pcb_path.name}  ({status}, {removed} removed, {top_tracks} F.Cu row tracks, "
-        f"{sw_escapes} F.Cu SW escapes, {vias} vias, {bottom_tracks} B.Cu column tracks, "
-        f"{TRACK_WIDTH_MM:.3f} mm tracks, {VIA_DIAMETER_MM:.2f}/{VIA_DRILL_MM:.2f} mm vias)"
+        f"{sw_escapes} F.Cu SW escapes, {vias} {via_label}, {bottom_tracks} B.Cu column tracks, "
+        f"{column_layer if microvia_fanout else 'B.Cu'} column layer, {TRACK_WIDTH_MM:.3f} mm tracks, {via_size})"
     )
 
 
@@ -316,10 +359,25 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--single", metavar="PCB", help="process one .kicad_pcb file")
     parser.add_argument("--dry-run", action="store_true", help="report changes without saving")
+    parser.add_argument(
+        "--top-microvias-only",
+        action="store_true",
+        help="generate F.Cu rows/escapes and F.Cu-In1.Cu microvias, but no B.Cu column tracks",
+    )
+    parser.add_argument(
+        "--microvia-fanout",
+        action="store_true",
+        help="generate F.Cu rows/escapes, F.Cu-In1.Cu microvias, and In1.Cu SW columns",
+    )
     args = parser.parse_args()
 
     if args.single:
-        _route_single(args.single, dry_run=args.dry_run)
+        _route_single(
+            args.single,
+            dry_run=args.dry_run,
+            top_microvias_only=args.top_microvias_only,
+            microvia_fanout=args.microvia_fanout,
+        )
         return
 
     targets = sorted(
@@ -340,7 +398,9 @@ def main():
         print(f"  -> {pcb_path.name}")
         result = subprocess.run(
             [sys.executable, __file__, "--single", str(pcb_path.resolve())]
-            + (["--dry-run"] if args.dry_run else []),
+            + (["--dry-run"] if args.dry_run else [])
+            + (["--top-microvias-only"] if args.top_microvias_only else [])
+            + (["--microvia-fanout"] if args.microvia_fanout else []),
             capture_output=True,
             text=True,
         )

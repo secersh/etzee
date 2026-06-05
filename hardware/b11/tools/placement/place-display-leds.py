@@ -338,7 +338,7 @@ def _place_single(pcb_path_str, dry_run=False):
         x = bb_tl_x + local_x
         y = bb_tl_y + local_y
         fp.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(x), pcbnew.FromMM(y)))
-        fp.SetOrientationDegrees(225)
+        fp.SetOrientationDegrees(270)
         fp.SetValue(FOOTPRINT)
         _hide_led_fields(fp)
         _set_led_nets(board, fp, row, col)

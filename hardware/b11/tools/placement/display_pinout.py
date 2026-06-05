@@ -136,3 +136,49 @@ ALS_EDGE_PINOUT = {
     3: "ALS_SDA",
     4: "ALS_GND",
 }
+
+
+DSP_NET_BUSES = {
+    "LED_CS": tuple(f"LED_CS{i}" for i in range(1, 40)),
+    "LED_SW": tuple(f"LED_SW{i}" for i in range(1, 8)),
+    "ALS_I2C": ("ALS_SCL", "ALS_SDA"),
+    "ALS_PWR": ("ALS_VDD", "ALS_GND"),
+}
+
+
+DSP_EDGE_CLUSTERS = (
+    {
+        "name": "CS-LT",
+        "bus": "LED_CS",
+        "pads": tuple(range(1, 12)),
+        "label": "BUS LED_CS 29..19",
+    },
+    {
+        "name": "CS-LB",
+        "bus": "LED_CS",
+        "pads": tuple(range(12, 24)),
+        "label": "BUS LED_CS 18,16..6",
+    },
+    {
+        "name": "CS/SW-RB",
+        "bus": "LED_CS+LED_SW",
+        "pads": tuple(range(24, 36)),
+        "label": "BUS LED_CS 5..1 / LED_SW 7..1",
+    },
+    {
+        "name": "CS-RT",
+        "bus": "LED_CS",
+        "pads": tuple(range(36, 47)),
+        "label": "BUS LED_CS 17,39..30",
+    },
+)
+
+
+ALS_EDGE_CLUSTERS = (
+    {
+        "name": "ALS-TOP",
+        "bus": "ALS_I2C+ALS_PWR",
+        "pads": tuple(range(1, 5)),
+        "label": "BUS ALS VDD/SCL/SDA/GND",
+    },
+)

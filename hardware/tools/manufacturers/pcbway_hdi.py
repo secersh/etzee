@@ -39,6 +39,7 @@ DESIGN_RULES = """\
 # ── Through-hole and castellated pads ───────────────────────────────────────
 (rule "PCBWay HDI Min Mechanical Drill"
    (constraint hole_size (min 0.15mm))
+   (condition "A.Type != 'Via'")
 )
 (rule "PCBWay HDI Hole-to-Hole Clearance"
    (constraint hole_to_hole (min 0.50mm))
@@ -76,6 +77,8 @@ def stackup(total_thickness):
         '\t\t\t\t(color "Black")\n'
         '\t\t\t\t(thickness 0.01524)\n'
         '\t\t\t\t(material "PCBWay soldermask")\n'
+        '\t\t\t\t(epsilon_r 3.3)\n'
+        '\t\t\t\t(loss_tangent 0)\n'
         '\t\t\t)\n'
         '\t\t\t(layer "F.Cu"\n'
         '\t\t\t\t(type "copper")\n'
@@ -83,8 +86,11 @@ def stackup(total_thickness):
         '\t\t\t)\n'
         '\t\t\t(layer "dielectric 1"\n'
         '\t\t\t\t(type "prepreg")\n'
+        '\t\t\t\t(color "PTFE natural")\n'
         '\t\t\t\t(thickness 0.065)\n'
         '\t\t\t\t(material "HDI prepreg, confirm with PCBWay")\n'
+        '\t\t\t\t(epsilon_r 4.5)\n'
+        '\t\t\t\t(loss_tangent 0.02)\n'
         '\t\t\t)\n'
         '\t\t\t(layer "In1.Cu"\n'
         '\t\t\t\t(type "copper")\n'
@@ -92,8 +98,11 @@ def stackup(total_thickness):
         '\t\t\t)\n'
         '\t\t\t(layer "dielectric 2"\n'
         '\t\t\t\t(type "core")\n'
+        '\t\t\t\t(color "FR4 natural")\n'
         '\t\t\t\t(thickness 0.16752)\n'
         '\t\t\t\t(material "HDI core, confirm with PCBWay")\n'
+        '\t\t\t\t(epsilon_r 4.5)\n'
+        '\t\t\t\t(loss_tangent 0.02)\n'
         '\t\t\t)\n'
         '\t\t\t(layer "In2.Cu"\n'
         '\t\t\t\t(type "copper")\n'
@@ -101,8 +110,11 @@ def stackup(total_thickness):
         '\t\t\t)\n'
         '\t\t\t(layer "dielectric 3"\n'
         '\t\t\t\t(type "prepreg")\n'
+        '\t\t\t\t(color "PTFE natural")\n'
         '\t\t\t\t(thickness 0.065)\n'
         '\t\t\t\t(material "HDI prepreg, confirm with PCBWay")\n'
+        '\t\t\t\t(epsilon_r 4.5)\n'
+        '\t\t\t\t(loss_tangent 0.02)\n'
         '\t\t\t)\n'
         '\t\t\t(layer "B.Cu"\n'
         '\t\t\t\t(type "copper")\n'
@@ -113,6 +125,8 @@ def stackup(total_thickness):
         '\t\t\t\t(color "Black")\n'
         '\t\t\t\t(thickness 0.01524)\n'
         '\t\t\t\t(material "PCBWay soldermask")\n'
+        '\t\t\t\t(epsilon_r 3.3)\n'
+        '\t\t\t\t(loss_tangent 0)\n'
         '\t\t\t)\n'
         '\t\t\t(layer "B.Paste"\n'
         '\t\t\t\t(type "Bottom Solder Paste")\n'
