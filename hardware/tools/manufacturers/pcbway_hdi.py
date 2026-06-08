@@ -29,17 +29,21 @@ DESIGN_RULES = """\
 # ── Laser microvias ─────────────────────────────────────────────────────────
 (rule "PCBWay HDI Min Laser Via Drill"
    (constraint hole_size (min 0.1016mm))
-   (condition "A.Type == 'Via'")
+   (condition "A.Type == 'Via' && A.Via_Type == 'Micro'")
 )
 (rule "PCBWay HDI Min Laser Via Annular Ring"
    (constraint annular_width (min 0.075mm))
-   (condition "A.Type == 'Via'")
+   (condition "A.Type == 'Via' && A.Via_Type == 'Micro'")
 )
 
 # ── Through-hole and castellated pads ───────────────────────────────────────
 (rule "PCBWay HDI Min Mechanical Drill"
    (constraint hole_size (min 0.15mm))
    (condition "A.Type != 'Via'")
+)
+(rule "PCBWay HDI Min Mechanical Via Drill"
+   (constraint hole_size (min 0.15mm))
+   (condition "A.Type == 'Via' && A.Via_Type != 'Micro'")
 )
 (rule "PCBWay HDI Hole-to-Hole Clearance"
    (constraint hole_to_hole (min 0.50mm))
