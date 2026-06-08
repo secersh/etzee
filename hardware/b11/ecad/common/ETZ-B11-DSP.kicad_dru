@@ -1,0 +1,44 @@
+(version 1)
+
+# ── Copper ──────────────────────────────────────────────────────────────────
+(rule "PCBWay HDI Min Clearance"
+   (constraint clearance (min 0.065mm))
+)
+(rule "PCBWay HDI Min Track Width"
+   (constraint track_width (min 0.065mm))
+)
+
+# ── Laser microvias ─────────────────────────────────────────────────────────
+(rule "PCBWay HDI Min Laser Via Drill"
+   (constraint hole_size (min 0.1016mm))
+   (condition "A.Type == 'Via' && A.Via_Type == 'Micro'")
+)
+(rule "PCBWay HDI Min Laser Via Annular Ring"
+   (constraint annular_width (min 0.075mm))
+   (condition "A.Type == 'Via' && A.Via_Type == 'Micro'")
+)
+
+# ── Through-hole and castellated pads ───────────────────────────────────────
+(rule "PCBWay HDI Min Mechanical Drill"
+   (constraint hole_size (min 0.15mm))
+   (condition "A.Type != 'Via'")
+)
+(rule "PCBWay HDI Min Mechanical Via Drill"
+   (constraint hole_size (min 0.15mm))
+   (condition "A.Type == 'Via' && A.Via_Type != 'Micro'")
+)
+(rule "PCBWay HDI Hole-to-Hole Clearance"
+   (constraint hole_to_hole (min 0.50mm))
+)
+
+# ── Board edge ───────────────────────────────────────────────────────────────
+(rule "PCBWay HDI Copper to Board Edge"
+   (constraint edge_clearance (min 0.30mm))
+   (condition "A.Reference != 'J1' && A.Reference != 'J_ALS1'")
+)
+
+# ── Silkscreen ───────────────────────────────────────────────────────────────
+(rule "PCBWay HDI Min Silkscreen Width"
+   (constraint track_width (min 0.153mm))
+   (condition "A.Type == 'Text' || A.Type == 'GraphicShape'")
+)

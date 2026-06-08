@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
+"""Generate manufacturer design-rule files for all B11 PCBs."""
+
+import argparse
+import sys
+from pathlib import Path
+
+TOOLS_DIR = Path(__file__).parents[1]
+REPO_ROOT = Path(__file__).parents[4]
+sys.path.insert(0, str(REPO_ROOT))
+sys.path.insert(0, str(TOOLS_DIR))
+
+from config import ECAD_ROOT, SWITCH_FAMILIES
+from hardware.tools import manufacturers
+
+
+def targets():
+    switch_targets = sorted(
+        pcb
+        for family in SWITCH_FAMILIES
+        for pcb in (ECAD_ROOT / family).glob("ETZ-B11-*.kicad_pcb")
+    )
+    common_targets = sorted((ECAD_ROOT / "common").glob("ETZ-B11-*.kicad_pcb"))
+    return switch_targets + common_targets
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--manufacturer", default="jlcpcb", choices=manufacturers.choices())
+    parser.add_argument("--single", metavar="PCB_STEM", help="only process one PCB stem, e.g. ETZ-B11-DSP")
+    parser.add_argument("--dry-run", action="store_true", help="report changes without writing files")
+    args = parser.parse_args()
+
+    manufacturer = manufacturers.get(args.manufacturer)
+    pcb_paths = targets()
+    if args.single:
+        pcb_paths = [path for path in pcb_paths if path.stem == args.single]
+        if not pcb_paths:
+            print(f"error: no board found named {args.single}", file=sys.stderr)
+            sys.exit(1)
+    if not pcb_paths:
+        print("error: no boards found", file=sys.stderr)
+        sys.exit(1)
+
+    mode = "Checking" if args.dry_run else "Generating"
+    print(f"{mode} {manufacturer.NAME} DRU files for {len(pcb_paths)} boards...\n")
+
+    for pcb_path in pcb_paths:
+        dru_path = pcb_path.with_suffix(".kicad_dru")
+        changed = not dru_path.exists() or dru_path.read_text() != manufacturer.DESIGN_RULES
+        if changed and not args.dry_run:
+            dru_path.write_text(manufacturer.DESIGN_RULES)
+
+        if args.dry_run:
+            status = "would write" if changed else "same"
+        else:
+            status = "wrote" if changed else "same"
+        print(f"  {status:<11} {dru_path.name}")
+
+    print("\nDone.")
+
+
+if __name__ == "__main__":
+    main()

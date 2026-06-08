@@ -1,0 +1,225 @@
+(footprint "VLV041235L-L20"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "Vybronics VLV041235L-L20 rectangular Z-axis LRA vibration motor, 12x4x3.5 mm, 20 mm wire leads")
+	(tags "Vybronics VLV041235L-L20 LRA haptic motor wire leads")
+	(property "Reference" "M**"
+		(at 0 -3.4 0)
+		(layer "F.SilkS")
+		(uuid "62da2291-91ec-4241-ba4d-b0620e672a86")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "VLV041235L-L20"
+		(at 0 3.4 0)
+		(layer "F.Fab")
+		(uuid "8ce67afd-1640-4688-b1d7-facc928473cd")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Datasheet" "../../datasheets/VLV041235L-L20.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e99f5d92-d143-4d18-8595-d120bc75ce93")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "1.8 Vrms 240 Hz Z-axis LRA vibration motor with red/blue tinned wire leads"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6c16814c-d6b6-447c-8489-da64873c997b")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -6.1 -2.1)
+		(end -6.1 -0.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "884d986b-d2ed-44a3-a447-3229ccca7bb1")
+	)
+	(fp_line
+		(start -6.1 -2.1)
+		(end -4.4 -2.1)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d2ee3f9e-76de-4114-b061-9b2dddd45605")
+	)
+	(fp_line
+		(start -6.1 2.1)
+		(end -6.1 0.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "77f2e976-1ef9-4155-b537-a3432773bd4c")
+	)
+	(fp_line
+		(start -6.1 2.1)
+		(end -4.4 2.1)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "c3071277-3585-4a66-b564-51b1318acfaf")
+	)
+	(fp_line
+		(start 6.1 -2.1)
+		(end 4.4 -2.1)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "e8db8f9a-3dbf-4deb-ade3-9273d9599139")
+	)
+	(fp_line
+		(start 6.1 -2.1)
+		(end 6.1 -0.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "618cdbaf-a5e5-460d-ad1a-b4be3340b444")
+	)
+	(fp_line
+		(start 6.1 2.1)
+		(end 4.4 2.1)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9f4bd77a-5857-40a8-972e-19604ee49427")
+	)
+	(fp_line
+		(start 6.1 2.1)
+		(end 6.1 0.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "7d45b38e-7d31-41d0-90a4-62f869b9ce0b")
+	)
+	(fp_rect
+		(start -9.25 -2.25)
+		(end 6.25 2.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "46f9995f-9056-4721-a566-1d151b853624")
+	)
+	(fp_line
+		(start -6 -0.75)
+		(end -7 -0.75)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "798f88df-5894-4020-9dd0-38795b2f6cbe")
+	)
+	(fp_line
+		(start -6 0.75)
+		(end -7 0.75)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "321d4b58-34f4-4ac8-a67a-a76869e9a347")
+	)
+	(fp_rect
+		(start -6 -2)
+		(end 6 2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "6ab6111a-b461-4f8b-8a30-91b583237528")
+	)
+	(fp_text user "RED"
+		(at -8.1 -1.65 0)
+		(layer "F.Fab")
+		(uuid "305b9601-dc4a-4498-8d40-333857f190be")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.08)
+			)
+		)
+	)
+	(fp_text user "BLUE"
+		(at -8.1 1.65 0)
+		(layer "F.Fab")
+		(uuid "c3637eb4-6b86-4ddc-a2b8-0ffc34eb0c1b")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.08)
+			)
+		)
+	)
+	(pad "1" smd roundrect
+		(at -8 -0.75)
+		(size 2 0.9)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+		(uuid "eb6fbc87-37b1-4070-bd27-8cbeaeccf692")
+	)
+	(pad "2" smd roundrect
+		(at -8 0.75)
+		(size 2 0.9)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+		(uuid "a28cb15c-2b26-4897-81b1-2924df891418")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/../../../../lib/3d-models/VLV041235L-L20.step"
+		(offset
+			(xyz -6 -1.8 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
+)

@@ -2,10 +2,11 @@
 
 """Manufacturer backend registry."""
 
-from . import jlcpcb
+from . import jlcpcb, pcbway_hdi
 
 MANUFACTURERS = {
     jlcpcb.NAME: jlcpcb,
+    pcbway_hdi.NAME: pcbway_hdi,
 }
 
 

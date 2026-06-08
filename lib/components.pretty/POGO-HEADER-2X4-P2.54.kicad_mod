@@ -1,0 +1,159 @@
+(footprint "POGO-HEADER-2X4-P2.54"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "2x4 2.54 mm pogo-pin header mating connector")
+	(tags "pogo header connector 2x4 2.54mm")
+	(property "Reference" "J**"
+		(at 0 -6.6 0)
+		(layer "F.SilkS")
+		(uuid "2a110bc9-ed7c-4aa0-89cb-d8099a570f14")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "POGO-HEADER-2X4-P2.54"
+		(at 0 6.6 0)
+		(layer "F.Fab")
+		(uuid "382aa012-4359-4904-8bb1-75b38d552438")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Datasheet" "../../datasheets/POGO-HEADER-2X4-P2.54.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2fc52547-f6d6-4141-913b-944fd923b36a")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "LCSC Part" "C5280862"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "2x4 2.54 mm pogo-pin mating header connector"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8248afe6-4225-4e42-b2d2-2445f7637d22")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_rect
+		(start -2.84 -5.38)
+		(end 2.84 5.38)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "094a212f-65b0-40fe-a330-8e4b16a0882c")
+	)
+	(fp_rect
+		(start -2.54 -5.08)
+		(end 2.54 5.08)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "a4bf3c0f-4573-4a2a-9868-caa2f23be90c")
+	)
+	(fp_text user "1"
+		(at -2.3 -5.6 0)
+		(layer "F.Fab")
+		(uuid "3f8c09d5-e25c-4d99-ba14-8503b95d23ef")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.08)
+			)
+		)
+	)
+	(pad "1" smd circle
+		(at -1.27 -3.81)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask")
+		(uuid "e7c62486-c7d1-435a-85fc-8fd4ab458cc2")
+	)
+	(pad "2" smd circle
+		(at 1.27 -3.81)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask")
+		(uuid "3aa74b07-5020-470c-b09d-2e653ecb142e")
+	)
+	(pad "3" smd circle
+		(at -1.27 -1.27)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask")
+		(uuid "867ff320-3f45-49fe-93a6-03bb20259a13")
+	)
+	(pad "4" smd circle
+		(at 1.27 -1.27)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask")
+		(uuid "9987c74d-2e4f-476e-be9d-ef9f3aa87771")
+	)
+	(pad "5" smd circle
+		(at -1.27 1.27)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask")
+		(uuid "9dc72428-4f63-4d81-9279-5ead7e5b5b1a")
+	)
+	(pad "6" smd circle
+		(at 1.27 1.27)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask")
+		(uuid "38288662-3699-426f-b53e-bab5f3429e99")
+	)
+	(pad "7" smd circle
+		(at -1.27 3.81)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask")
+		(uuid "7d5a644e-3f9f-4b31-95f7-c6e42e2c1b91")
+	)
+	(pad "8" smd circle
+		(at 1.27 3.81)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask")
+		(uuid "1ab2ac36-6067-4a8f-93e2-596794de22b2")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/../../../../lib/3d-models/POGO-HEADER-2X4-P2.54.step"
+		(offset
+			(xyz -145.5 38.4 7.9)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
+)

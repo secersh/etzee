@@ -1,0 +1,206 @@
+(footprint "LTR-329ALS-01"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "Lite-On LTR-329ALS-01 ambient light sensor, 4-DFN/ChipLED 2.0x2.0 mm")
+	(tags "LTR-329ALS-01 ALS light sensor I2C DFN-4")
+	(property "Reference" "U**"
+		(at 0 -2 0)
+		(layer "F.SilkS")
+		(uuid "b0ca4178-56d4-47a9-b7e6-041f87f88564")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "LTR-329ALS-01"
+		(at 0 2 0)
+		(layer "F.Fab")
+		(uuid "d7b74719-6b6c-4c55-8d5a-ccc21303b0c6")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Datasheet" "../../datasheets/LTR-329ALS-01.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "35c31973-6cfc-43ae-998d-1acdf5b64f77")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "I2C ambient light sensor, 4-pin ChipLED package"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "12045761-7cbc-4c5e-94e0-ff17043b5077")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -1.15 1.15)
+		(end -1.15 0.45)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d92adaec-99eb-4624-898c-7d0178c9775c")
+	)
+	(fp_line
+		(start -1.15 1.15)
+		(end -0.45 1.15)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2ca5b471-28e6-4145-8e75-589a9de34578")
+	)
+	(fp_line
+		(start -1.25 -1.25)
+		(end 1.25 -1.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "401716bd-7a70-4c76-90bc-6ecddcd3c76f")
+	)
+	(fp_line
+		(start -1.25 1.25)
+		(end -1.25 -1.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "3e6833cc-28a8-40ef-b233-f0ddea189762")
+	)
+	(fp_line
+		(start 1.25 -1.25)
+		(end 1.25 1.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "b2e62036-2728-43a5-a6ce-02bb95361470")
+	)
+	(fp_line
+		(start 1.25 1.25)
+		(end -1.25 1.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "0494ec30-6e43-41e8-b287-2a7318cb4b4b")
+	)
+	(fp_line
+		(start -1 -1)
+		(end 1 -1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "03ddf92a-edc6-41df-ac88-74a72864fe6f")
+	)
+	(fp_line
+		(start -1 1)
+		(end -1 -1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "0bcc03b5-3e20-456e-b28d-90c18c5ba243")
+	)
+	(fp_line
+		(start 1 -1)
+		(end 1 1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "ba60b12d-ea56-4d24-91b0-f850c8b2237a")
+	)
+	(fp_line
+		(start 1 1)
+		(end -1 1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "263f68ac-4e8f-4e42-aa63-a6ad5eb29405")
+	)
+	(fp_circle
+		(center -0.65 0.65)
+		(end -0.52 0.65)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "1d06bdef-6317-4b28-832d-b5e432ae421e")
+	)
+	(pad "1" smd roundrect
+		(at -0.6 0.7)
+		(size 0.7 0.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.2)
+		(uuid "2c4581f4-cac0-4f0d-9e1c-acaed1a0a428")
+	)
+	(pad "2" smd roundrect
+		(at 0.6 0.7)
+		(size 0.7 0.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.2)
+		(uuid "0d7a14a6-189e-416b-b109-f1cfa1af05d4")
+	)
+	(pad "3" smd roundrect
+		(at 0.6 -0.7)
+		(size 0.7 0.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.2)
+		(uuid "10377e0b-e481-420c-8213-85b733d34640")
+	)
+	(pad "4" smd roundrect
+		(at -0.6 -0.7)
+		(size 0.7 0.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.2)
+		(uuid "64b82b79-998d-4164-89a1-6629595f36cd")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/../../../../lib/3d-models/LTR-329ALS-01.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
+)

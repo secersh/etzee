@@ -41,6 +41,13 @@ SWITCH_FAMILIES = {
     },
 }
 
+COMMON_PCBS = {
+    "ETZ-B11-DSP": {
+        "outline": "ETZ-B11-DSP.dxf",
+        "thick": 0.4,
+    },
+}
+
 # Derived stackup table used by apply-stackup.py.
 # (family, board_type) → (total_mm, core_mm, epsilon_r)
 # Core = total - 2×35µm copper - 2×15.24µm soldermask.
@@ -55,6 +62,10 @@ PCB_STACKUP = {
     for fam, data in SWITCH_FAMILIES.items()
     for bt in ("SP", "SC")
 }
+PCB_STACKUP.update({
+    ("common", part_number): _stackup_entry(data["thick"])
+    for part_number, data in COMMON_PCBS.items()
+})
 
 FAMILY_PATTERN = "|".join(re.escape(family) for family in SWITCH_FAMILIES)
 
