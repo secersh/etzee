@@ -43,6 +43,11 @@ fab/
 __pycache__/
 *.py[cod]
 *.pyo
+.venv-lcsc/
+.easyeda_cache/
+
+# Local/staged generated library imports
+build/
 
 # ── Firmware ─────────────────────────────────────────────────────────────────
 .firmware-cache/
