@@ -53,6 +53,11 @@ BB_R   = 5.5    # mm corner radius
 
 BB_FROM_TOP  = 8.2   # mm from PCB top edge to display bounding-box top edge
 BB_FROM_SIDE = 8.2   # mm from PCB side edge to display bounding-box side edge
+BB_FROM_SIDE_BY_FAMILY = {
+    # CAD fit check: 0.119 mm left gap, 0.231 mm right gap on KS-33 SP.
+    # Shift the display center toward the side edge by (0.231 - 0.119) / 2.
+    "KS-33": BB_FROM_SIDE - 0.056,
+}
 BB_MARGIN    = 1.0   # mm inset from BB edge to first/last LED centre
 DSP_LED_EDGE_MARGIN_X = 2.3 # mm LED-centre inset from DSP PCB long edges
 DSP_LED_EDGE_MARGIN_Y = 1.5 # mm LED-centre inset from DSP PCB short edges
@@ -179,17 +184,21 @@ def _board_side(pcb_path):
     raise ValueError(f"could not infer board side from {pcb_path.name}")
 
 
-def _display_top_left(outline, side):
+def _display_top_left(outline, side, side_inset=BB_FROM_SIDE):
     import pcbnew
 
     pcb_left = pcbnew.ToMM(outline.GetLeft())
     pcb_right = pcbnew.ToMM(outline.GetRight())
     pcb_top = pcbnew.ToMM(outline.GetTop())
     if side == "left":
-        x = pcb_right - BB_FROM_SIDE - BB_W
+        x = pcb_right - side_inset - BB_W
     else:
-        x = pcb_left + BB_FROM_SIDE
+        x = pcb_left + side_inset
     return x, pcb_top + BB_FROM_TOP
+
+
+def _display_side_inset(pcb_path):
+    return BB_FROM_SIDE_BY_FAMILY.get(pcb_path.parent.name, BB_FROM_SIDE)
 
 
 def _display_context(board, pcb_path):
@@ -206,7 +215,7 @@ def _display_context(board, pcb_path):
         pcb_center_y = (pcb_top + pcb_bottom) / 2
         return side, pcb_center_x - BB_W / 2, pcb_center_y - BB_H / 2, BB_W, BB_H, BB_MARGIN
 
-    bb_tl_x, bb_tl_y = _display_top_left(outline, side)
+    bb_tl_x, bb_tl_y = _display_top_left(outline, side, _display_side_inset(pcb_path))
     return side, bb_tl_x, bb_tl_y, BB_W, BB_H, BB_MARGIN
 
 

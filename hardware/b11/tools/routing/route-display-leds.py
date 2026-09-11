@@ -76,12 +76,7 @@ def _point_mm(point):
 def _display_route_bounds(board, side, pcb_path):
     import pcbnew
 
-    if pcb_path.stem == "ETZ-B11-DSP":
-        _, bb_x, bb_y, bb_w, bb_h, _ = DISPLAY._display_context(board, pcb_path)
-    else:
-        outline = board.GetBoardEdgesBoundingBox()
-        bb_x, bb_y = DISPLAY._display_top_left(outline, side)
-        bb_w, bb_h = DISPLAY.BB_W, DISPLAY.BB_H
+    _, bb_x, bb_y, bb_w, bb_h, _ = DISPLAY._display_context(board, pcb_path)
     margin = ROUTE_BOUNDS_MARGIN_MM
     left = bb_x - margin
     right = bb_x + bb_w + margin

@@ -1,0 +1,2468 @@
+(kicad_symbol_lib
+	(version 20241209)
+	(generator "kicad_symbol_editor")
+	(generator_version "9.0")
+	(symbol "ETZ_B11_DSP"
+		(pin_names
+			(offset 1.016)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "J"
+			(at 0 -13.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "ETZ-B11-DSP"
+			(at 0 18.288 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "components:ETZ-B11-DSP"
+			(at 0 -18.288 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "ETZ_B11_DSP_1_1"
+			(rectangle
+				(start -10.16 15.24)
+				(end 10.16 -15.24)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(pin passive line
+				(at -12.7 12.7 0)
+				(length 2.54)
+				(name "LED_CS29"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 10.16 0)
+				(length 2.54)
+				(name "LED_CS28"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 7.62 0)
+				(length 2.54)
+				(name "LED_CS27"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 5.08 0)
+				(length 2.54)
+				(name "LED_CS26"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 2.54 0)
+				(length 2.54)
+				(name "LED_CS25"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 0 0)
+				(length 2.54)
+				(name "LED_CS24"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "6"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -2.54 0)
+				(length 2.54)
+				(name "LED_CS23"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "7"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -5.08 0)
+				(length 2.54)
+				(name "LED_CS22"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "8"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -7.62 0)
+				(length 2.54)
+				(name "LED_CS21"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "9"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -10.16 0)
+				(length 2.54)
+				(name "LED_CS20"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "10"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -12.7 0)
+				(length 2.54)
+				(name "LED_CS19"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "11"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+		)
+		(symbol "ETZ_B11_DSP_2_1"
+			(rectangle
+				(start -10.16 16.51)
+				(end 10.16 -16.51)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(pin passive line
+				(at -12.7 13.97 0)
+				(length 2.54)
+				(name "LED_CS18"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "12"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 11.43 0)
+				(length 2.54)
+				(name "LED_CS16"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "13"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 8.89 0)
+				(length 2.54)
+				(name "LED_CS15"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "14"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 6.35 0)
+				(length 2.54)
+				(name "LED_CS14"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "15"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 3.81 0)
+				(length 2.54)
+				(name "LED_CS13"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "16"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 1.27 0)
+				(length 2.54)
+				(name "LED_CS12"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "17"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -1.27 0)
+				(length 2.54)
+				(name "LED_CS11"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "18"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -3.81 0)
+				(length 2.54)
+				(name "LED_CS10"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "19"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -6.35 0)
+				(length 2.54)
+				(name "LED_CS9"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "20"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -8.89 0)
+				(length 2.54)
+				(name "LED_CS8"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "21"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -11.43 0)
+				(length 2.54)
+				(name "LED_CS7"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "22"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -13.97 0)
+				(length 2.54)
+				(name "LED_CS6"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "23"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+		)
+		(symbol "ETZ_B11_DSP_3_1"
+			(rectangle
+				(start -10.16 16.51)
+				(end 10.16 -16.51)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(pin passive line
+				(at -12.7 13.97 0)
+				(length 2.54)
+				(name "LED_CS5"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "24"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 11.43 0)
+				(length 2.54)
+				(name "LED_CS4"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "25"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 8.89 0)
+				(length 2.54)
+				(name "LED_CS3"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "26"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 6.35 0)
+				(length 2.54)
+				(name "LED_CS2"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "27"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 3.81 0)
+				(length 2.54)
+				(name "LED_CS1"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "28"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 1.27 0)
+				(length 2.54)
+				(name "LED_SW7"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "29"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -1.27 0)
+				(length 2.54)
+				(name "LED_SW6"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "30"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -3.81 0)
+				(length 2.54)
+				(name "LED_SW5"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "31"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -6.35 0)
+				(length 2.54)
+				(name "LED_SW4"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "32"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -8.89 0)
+				(length 2.54)
+				(name "LED_SW3"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "33"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -11.43 0)
+				(length 2.54)
+				(name "LED_SW2"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "34"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -13.97 0)
+				(length 2.54)
+				(name "LED_SW1"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "35"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+		)
+		(symbol "ETZ_B11_DSP_4_1"
+			(rectangle
+				(start -10.16 15.24)
+				(end 10.16 -15.24)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(pin passive line
+				(at -12.7 12.7 0)
+				(length 2.54)
+				(name "LED_CS17"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "36"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 10.16 0)
+				(length 2.54)
+				(name "LED_CS39"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "37"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 7.62 0)
+				(length 2.54)
+				(name "LED_CS38"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "38"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 5.08 0)
+				(length 2.54)
+				(name "LED_CS37"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "39"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 2.54 0)
+				(length 2.54)
+				(name "LED_CS36"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "40"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 0 0)
+				(length 2.54)
+				(name "LED_CS35"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "41"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -2.54 0)
+				(length 2.54)
+				(name "LED_CS34"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "42"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -5.08 0)
+				(length 2.54)
+				(name "LED_CS33"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "43"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -7.62 0)
+				(length 2.54)
+				(name "LED_CS32"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "44"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -10.16 0)
+				(length 2.54)
+				(name "LED_CS31"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "45"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -12.7 0)
+				(length 2.54)
+				(name "LED_CS30"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "46"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+		)
+		(symbol "ETZ_B11_DSP_5_1"
+			(rectangle
+				(start -10.16 6.35)
+				(end 10.16 -6.35)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(pin passive line
+				(at -12.7 3.81 0)
+				(length 2.54)
+				(name "ALS_VDD"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "A1"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 1.27 0)
+				(length 2.54)
+				(name "ALS_SCL"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "A2"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -1.27 0)
+				(length 2.54)
+				(name "ALS_SDA"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "A3"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -12.7 -3.81 0)
+				(length 2.54)
+				(name "ALS_GND"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "A4"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "IS31FL3741A"
+		(pin_names
+			(offset 1.016)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "U"
+			(at 0 -58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "IS31FL3741A"
+			(at 0 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "components:IS31FL3741A-QFN-60-7x7"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "../../datasheets/IS31FL3741A.pdf"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "IS31FL3741A_0_1"
+			(rectangle
+				(start -15.24 54.61)
+				(end 15.24 -54.61)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(pin passive line
+				(at -17.78 52.07 0)
+				(length 2.54)
+				(name "LED_CS34"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 49.53 0)
+				(length 2.54)
+				(name "LED_CS35"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 46.99 0)
+				(length 2.54)
+				(name "LED_CS36"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 44.45 0)
+				(length 2.54)
+				(name "LED_CS37"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 41.91 0)
+				(length 2.54)
+				(name "LED_CS38"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 39.37 0)
+				(length 2.54)
+				(name "LED_CS39"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "6"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 36.83 0)
+				(length 2.54)
+				(name "INTB"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "7"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 34.29 0)
+				(length 2.54)
+				(name "ADDR"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "8"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 31.75 0)
+				(length 2.54)
+				(name "SDA"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "9"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 29.21 0)
+				(length 2.54)
+				(name "SCL"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "10"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 26.67 0)
+				(length 2.54)
+				(name "SDB"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "11"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at -17.78 24.13 0)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "12"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 21.59 0)
+				(length 2.54)
+				(name "ISET"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "13"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at -17.78 19.05 0)
+				(length 2.54)
+				(name "AVCC"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "14"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at -17.78 16.51 0)
+				(length 2.54)
+				(name "PVCC"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "15"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 13.97 0)
+				(length 2.54)
+				(name "LED_CS29"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "56"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 11.43 0)
+				(length 2.54)
+				(name "LED_CS30"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "57"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 8.89 0)
+				(length 2.54)
+				(name "LED_CS31"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "58"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 6.35 0)
+				(length 2.54)
+				(name "LED_CS32"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "59"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 3.81 0)
+				(length 2.54)
+				(name "LED_CS33"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "60"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at -17.78 1.27 0)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "61"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 52.07 180)
+				(length 2.54)
+				(name "LED_SW1"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "16"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 49.53 180)
+				(length 2.54)
+				(name "LED_SW2"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "17"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 46.99 180)
+				(length 2.54)
+				(name "LED_SW3"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "18"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 44.45 180)
+				(length 2.54)
+				(name "LED_SW4"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "19"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 41.91 180)
+				(length 2.54)
+				(name "LED_SW5"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "20"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 39.37 180)
+				(length 2.54)
+				(name "LED_SW6"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "21"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 36.83 180)
+				(length 2.54)
+				(name "LED_SW7"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "22"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 34.29 180)
+				(length 2.54)
+				(name "LED_SW8"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "23"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 31.75 180)
+				(length 2.54)
+				(name "LED_SW9"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "24"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 17.78 29.21 180)
+				(length 2.54)
+				(name "PVCC"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "25"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 26.67 180)
+				(length 2.54)
+				(name "LED_CS1"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "26"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 24.13 180)
+				(length 2.54)
+				(name "LED_CS2"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "27"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 21.59 180)
+				(length 2.54)
+				(name "LED_CS3"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "28"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 19.05 180)
+				(length 2.54)
+				(name "LED_CS4"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "29"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 16.51 180)
+				(length 2.54)
+				(name "LED_CS5"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "30"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 13.97 180)
+				(length 2.54)
+				(name "LED_CS6"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "31"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 11.43 180)
+				(length 2.54)
+				(name "LED_CS7"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "32"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 8.89 180)
+				(length 2.54)
+				(name "LED_CS8"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "33"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 6.35 180)
+				(length 2.54)
+				(name "LED_CS9"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "34"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 3.81 180)
+				(length 2.54)
+				(name "LED_CS10"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "35"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 17.78 1.27 180)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "36"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -1.27 180)
+				(length 2.54)
+				(name "LED_CS11"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "37"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -3.81 180)
+				(length 2.54)
+				(name "LED_CS12"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "38"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -6.35 180)
+				(length 2.54)
+				(name "LED_CS13"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "39"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -8.89 180)
+				(length 2.54)
+				(name "LED_CS14"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "40"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -11.43 180)
+				(length 2.54)
+				(name "LED_CS15"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "41"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -13.97 180)
+				(length 2.54)
+				(name "LED_CS16"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "42"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -16.51 180)
+				(length 2.54)
+				(name "LED_CS17"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "43"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -19.05 180)
+				(length 2.54)
+				(name "LED_CS18"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "44"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -21.59 180)
+				(length 2.54)
+				(name "LED_CS19"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "45"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -24.13 180)
+				(length 2.54)
+				(name "LED_CS20"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "46"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -26.67 180)
+				(length 2.54)
+				(name "LED_CS21"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "47"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -29.21 180)
+				(length 2.54)
+				(name "LED_CS22"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "48"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -31.75 180)
+				(length 2.54)
+				(name "LED_CS23"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "49"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -34.29 180)
+				(length 2.54)
+				(name "LED_CS24"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "50"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -36.83 180)
+				(length 2.54)
+				(name "LED_CS25"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "51"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -39.37 180)
+				(length 2.54)
+				(name "LED_CS26"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "52"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -41.91 180)
+				(length 2.54)
+				(name "LED_CS27"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "53"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -44.45 180)
+				(length 2.54)
+				(name "LED_CS28"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "54"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 17.78 -46.99 180)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "55"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "KLJ_8530_3627"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "BZ"
+			(at 0 -10.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "KLJ-8530-3627"
+			(at 0 10.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "components:KLJ-8530-3627"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "../../datasheets/KLJ-8530-3627.pdf"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "KLJ_8530_3627_0_1"
+			(rectangle
+				(start -6.35 6.35)
+				(end 6.35 -6.35)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(pin passive line
+				(at -8.89 2.54 0)
+				(length 2.54)
+				(name "IN1"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin no_connect line
+				(at -8.89 -2.54 0)
+				(length 2.54)
+				(name "NC"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 8.89 2.54 180)
+				(length 2.54)
+				(name "IN2"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+			(pin no_connect line
+				(at 8.89 -2.54 180)
+				(length 2.54)
+				(name "NC"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 0.9 0.9)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+
+	(symbol "DRV2605LDGSR"
+		(pin_names (offset 1.016))
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "U" (at 0 11.43 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "DRV2605LDGSR" (at 0 -11.43 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "components:DRV2605LDGSR" (at 0 -13.97 0) (effects (font (size 1.27 1.27)) hide))
+		(property "Datasheet" "../../datasheets/DRV2605L.pdf" (at 0 -16.51 0) (effects (font (size 1.27 1.27)) hide))
+		(property "Description" "TI DRV2605L I2C haptic driver for ERM/LRA actuators" (at 0 -19.05 0) (effects (font (size 1.27 1.27)) hide))
+		(property "LCSC Part" "C527464" (at 0 -21.59 0) (effects (font (size 1.27 1.27)) hide))
+		(symbol "DRV2605LDGSR_0_1"
+			(rectangle (start -12.7 7.62) (end 12.7 -7.62) (stroke (width 0) (type default)) (fill (type background)))
+			(circle (center -11.43 6.35) (radius 0.38) (stroke (width 0) (type default)) (fill (type none)))
+			(pin passive line (at -17.78 5.08 0) (length 5.08) (name "REG" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -17.78 2.54 0) (length 5.08) (name "SCL" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -17.78 0 0) (length 5.08) (name "SDA" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -17.78 -2.54 0) (length 5.08) (name "IN/TRIG" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))
+			(pin input line (at -17.78 -5.08 0) (length 5.08) (name "EN" (effects (font (size 1.27 1.27)))) (number "5" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at 17.78 -5.08 180) (length 5.08) (name "VDD/NC" (effects (font (size 1.27 1.27)))) (number "6" (effects (font (size 1.27 1.27)))))
+			(pin output line (at 17.78 -2.54 180) (length 5.08) (name "OUT+" (effects (font (size 1.27 1.27)))) (number "7" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at 17.78 0 180) (length 5.08) (name "GND" (effects (font (size 1.27 1.27)))) (number "8" (effects (font (size 1.27 1.27)))))
+			(pin output line (at 17.78 2.54 180) (length 5.08) (name "OUT-" (effects (font (size 1.27 1.27)))) (number "9" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at 17.78 5.08 180) (length 5.08) (name "VDD" (effects (font (size 1.27 1.27)))) (number "10" (effects (font (size 1.27 1.27)))))
+		)
+		(embedded_fonts no)
+	)
+	(symbol "DRV8837DSGR"
+		(pin_names (offset 1.016))
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "U" (at 0 11.43 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "DRV8837DSGR" (at 0 -11.43 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "components:DRV8837DSGR" (at 0 -13.97 0) (effects (font (size 1.27 1.27)) hide))
+		(property "Datasheet" "../../datasheets/DRV8837DSGR.pdf" (at 0 -16.51 0) (effects (font (size 1.27 1.27)) hide))
+		(property "Description" "TI DRV8837 low-voltage H-bridge driver" (at 0 -19.05 0) (effects (font (size 1.27 1.27)) hide))
+		(property "LCSC Part" "C39159" (at 0 -21.59 0) (effects (font (size 1.27 1.27)) hide))
+		(symbol "DRV8837DSGR_0_1"
+			(rectangle (start -12.7 7.62) (end 12.7 -7.62) (stroke (width 0) (type default)) (fill (type background)))
+			(circle (center -11.43 6.35) (radius 0.38) (stroke (width 0) (type default)) (fill (type none)))
+			(pin power_in line (at -17.78 5.08 0) (length 5.08) (name "VM" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+			(pin output line (at -17.78 2.54 0) (length 5.08) (name "OUT1" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+			(pin output line (at -17.78 0 0) (length 5.08) (name "OUT2" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at -17.78 -2.54 0) (length 5.08) (name "GND" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))
+			(pin input line (at 17.78 -2.54 180) (length 5.08) (name "IN2" (effects (font (size 1.27 1.27)))) (number "5" (effects (font (size 1.27 1.27)))))
+			(pin input line (at 17.78 0 180) (length 5.08) (name "IN1" (effects (font (size 1.27 1.27)))) (number "6" (effects (font (size 1.27 1.27)))))
+			(pin input line (at 17.78 2.54 180) (length 5.08) (name "nSLEEP" (effects (font (size 1.27 1.27)))) (number "7" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at 17.78 5.08 180) (length 5.08) (name "VCC" (effects (font (size 1.27 1.27)))) (number "8" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at 0 -10.16 90) (length 2.54) (name "EP" (effects (font (size 1.27 1.27)))) (number "9" (effects (font (size 1.27 1.27)))))
+		)
+		(embedded_fonts no)
+	)
+	(symbol "POGO_PADS_2X4_P2_54"
+		(pin_names (offset 1.016))
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "J" (at 0 8.89 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "POGO-PADS-2X4-P2.54" (at 0 -8.89 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "components:POGO-PADS-2X4-P2.54" (at 0 -11.43 0) (effects (font (size 1.27 1.27)) hide))
+		(property "Datasheet" "../../datasheets/POGO-HEADER-2X4-P2.54.pdf" (at 0 -13.97 0) (effects (font (size 1.27 1.27)) hide))
+		(symbol "POGO_PADS_2X4_P2_54_0_1"
+			(rectangle (start -3.81 6.35) (end 3.81 -6.35) (stroke (width 0) (type default)) (fill (type background)))
+			(pin passive line (at -6.35 3.81 0) (length 2.54) (name "P1" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -6.35 1.27 0) (length 2.54) (name "P2" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -6.35 -1.27 0) (length 2.54) (name "P3" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -6.35 -3.81 0) (length 2.54) (name "P4" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 6.35 -3.81 180) (length 2.54) (name "P5" (effects (font (size 1.27 1.27)))) (number "5" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 6.35 -1.27 180) (length 2.54) (name "P6" (effects (font (size 1.27 1.27)))) (number "6" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 6.35 1.27 180) (length 2.54) (name "P7" (effects (font (size 1.27 1.27)))) (number "7" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 6.35 3.81 180) (length 2.54) (name "P8" (effects (font (size 1.27 1.27)))) (number "8" (effects (font (size 1.27 1.27)))))
+		)
+	)
+	(symbol "POGO_PADS_2X5_P2_54"
+		(pin_names (offset 1.016))
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "J" (at 0 10.16 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "POGO-PADS-2X5-P2.54" (at 0 -10.16 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "components:POGO-PADS-2X5-P2.54" (at 0 -12.7 0) (effects (font (size 1.27 1.27)) hide))
+		(property "Datasheet" "../../datasheets/POGO-HEADER-2X5-P2.54.pdf" (at 0 -15.24 0) (effects (font (size 1.27 1.27)) hide))
+		(symbol "POGO_PADS_2X5_P2_54_0_1"
+			(rectangle (start -7.62 7.62) (end 7.62 -7.62) (stroke (width 0) (type default)) (fill (type background)))
+			(pin passive line (at -12.7 5.08 0) (length 5.08) (name "P1" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -12.7 2.54 0) (length 5.08) (name "P2" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -12.7 0 0) (length 5.08) (name "P3" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -12.7 -2.54 0) (length 5.08) (name "P4" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -12.7 -5.08 0) (length 5.08) (name "P5" (effects (font (size 1.27 1.27)))) (number "5" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 12.7 -5.08 180) (length 5.08) (name "P6" (effects (font (size 1.27 1.27)))) (number "6" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 12.7 -2.54 180) (length 5.08) (name "P7" (effects (font (size 1.27 1.27)))) (number "7" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 12.7 0 180) (length 5.08) (name "P8" (effects (font (size 1.27 1.27)))) (number "8" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 12.7 2.54 180) (length 5.08) (name "P9" (effects (font (size 1.27 1.27)))) (number "9" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 12.7 5.08 180) (length 5.08) (name "P10" (effects (font (size 1.27 1.27)))) (number "10" (effects (font (size 1.27 1.27)))))
+		)
+		(embedded_fonts no)
+	)
+	(symbol "VLV041235L_L20"
+		(pin_names (offset 1.016))
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "M" (at 0 5.08 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "VLV041235L-L20" (at 0 -5.08 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "components:VLV041235L-L20" (at 0 -7.62 0) (effects (font (size 1.27 1.27)) hide))
+		(property "Datasheet" "../../datasheets/VLV041235L-L20.pdf" (at 0 -10.16 0) (effects (font (size 1.27 1.27)) hide))
+		(symbol "VLV041235L_L20_0_1"
+			(rectangle (start -3.81 2.54) (end 3.81 -2.54) (stroke (width 0) (type default)) (fill (type background)))
+			(pin passive line (at -6.35 1.27 0) (length 2.54) (name "+" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -6.35 -1.27 0) (length 2.54) (name "-" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+		)
+	)
+	(symbol "R_0402"
+		(pin_numbers (hide yes))
+		(pin_names (offset 0.254) (hide yes))
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "R" (at 0 0 90) (effects (font (size 1.016 1.016))))
+		(property "Value" "R_0402" (at 1.778 0 90) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "components:R_0402_1005Metric" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+		(property "Datasheet" "~" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+		(symbol "R_0402_0_1" (rectangle (start -0.762 1.778) (end 0.762 -1.778) (stroke (width 0.2032) (type default)) (fill (type none))))
+		(symbol "R_0402_1_1"
+			(pin passive line (at 0 2.54 270) (length 0.762) (name "~" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 0 -2.54 90) (length 0.762) (name "~" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+		)
+	)
+	(symbol "C_0402"
+		(pin_numbers (hide yes))
+		(pin_names (offset 0.254) (hide yes))
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "C" (at 0.635 2.54 0) (effects (font (size 1.016 1.016))))
+		(property "Value" "C_0402" (at 0.635 -2.54 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "components:C_0402_1005Metric" (at 0.9652 -3.81 0) (effects (font (size 1.27 1.27)) hide))
+		(property "Datasheet" "~" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+		(symbol "C_0402_0_1"
+			(polyline (pts (xy -2.032 -0.762) (xy 2.032 -0.762)) (stroke (width 0.508) (type default)) (fill (type none)))
+			(polyline (pts (xy -2.032 0.762) (xy 2.032 0.762)) (stroke (width 0.508) (type default)) (fill (type none)))
+		)
+		(symbol "C_0402_1_1"
+			(pin passive line (at 0 3.81 270) (length 2.794) (name "~" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 0 -3.81 90) (length 2.794) (name "~" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+		)
+	)
+)
