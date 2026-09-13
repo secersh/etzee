@@ -154,7 +154,7 @@ def generate_board(dxf_path, pcb_path, switch_family, board_code, common_part=No
     board = pcbnew.NewBoard(str(pcb_path))
     board.SetTitleBlock(pcbnew.TITLE_BLOCK())
     board.GetDesignSettings().SetBoardThickness(mm(total_thickness))
-    if common_part is not None:
+    if common_part == "ETZ-B11-DSP":
         board.GetDesignSettings().m_CopperEdgeClearance = mm(0.001)
 
     if common_part is None:

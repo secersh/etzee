@@ -42,6 +42,14 @@ SWITCH_FAMILIES = {
 }
 
 COMMON_PCBS = {
+    "ETZ-B11-LGB-L": {
+        "outline": "ETZ-B11-LGB-L.dxf",
+        "thick": 1.6,
+    },
+    "ETZ-B11-LGB-R": {
+        "outline": "ETZ-B11-LGB-R.dxf",
+        "thick": 1.6,
+    },
     "ETZ-B11-DSP": {
         "outline": "ETZ-B11-DSP.dxf",
         "thick": 0.4,

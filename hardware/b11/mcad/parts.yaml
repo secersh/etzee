@@ -8,7 +8,7 @@
 # formats: step    → STEP file (3D and PCB outline source)
 #          stl     → STL file (3D printing)
 #
-# PCB outlines are derived from STEP exports by hardware/b11/tools/fetch-outlines.py:
+# PCB outlines are derived from STEP exports by hardware/b11/tools/generation/fetch-outlines.py:
 #   common PCB outlines          → hardware/b11/mcad/pcb-outlines/common/
 #   switch-family PCB outlines   → hardware/b11/mcad/pcb-outlines/{MX,CHOC-V2,KS-33}/
 
@@ -19,7 +19,11 @@ parts:
     formats: [step, stl]
     build: common
 
-  - part_number: ETZ-B11-LGB      # Logic board PCB
+  - part_number: ETZ-B11-LGB-L    # Left logic board PCB
+    formats: [step, stl]
+    build: common
+
+  - part_number: ETZ-B11-LGB-R    # Right logic board PCB
     formats: [step, stl]
     build: common
 
