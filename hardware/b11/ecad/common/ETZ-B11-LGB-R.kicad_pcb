@@ -78,6 +78,446 @@
 		)
 	)
 	(net 0 "")
+	(footprint "CN-HY04C-01D-FEMALE"
+		(layer "F.Cu")
+		(uuid "2350cbeb-90e0-41d6-9f00-878e5d6e8da1")
+		(at 134 74.037 90)
+		(descr "Cnomax CN-HY04C-01D four-contact magnetic connector, female model")
+		(tags "CN-HY04C-01D Cnomax magnetic connector female 4-pin")
+		(property "Reference" "J1"
+			(at 0 6.35 90)
+			(layer "F.SilkS")
+			(uuid "0fdb3b60-a78c-40e9-beea-e2e7d1495954")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
+		(property "Value" "CN-HY04C-01D-FEMALE"
+			(at 0 -5.45 90)
+			(layer "F.Fab")
+			(uuid "afde84d1-68be-4d5f-b177-bc8e779feaba")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
+		(property "Datasheet" "../../datasheets/CN-HY04C-01D-product-reference.pdf"
+			(at 0 0 90)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "5ad4b5e7-1288-4e0d-83c4-f6620d574cb3")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" "Cnomax four-contact magnetic connector; contact geometry derived from supplied STEP model; verify against supplier drawing"
+			(at 0 0 90)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "28303977-6c79-4025-a80f-a3ba5be8208a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Manufacturer" "Cnomax"
+			(at 0 0 90)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "0fde49e8-162b-4a8a-b33a-373b00b93780")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Manufacturer Part" "CN-HY04C-01D"
+			(at 0 0 90)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "8f2753ed-07e8-4807-92e1-7b992c3243dd")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(attr through_hole)
+		(fp_line
+			(start -6.15 0.2)
+			(end -6.15 5.45)
+			(stroke
+				(width 0.18)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "a551975a-6043-47e0-ad0c-7e1ba2b299da")
+		)
+		(fp_line
+			(start 6.15 5.45)
+			(end 6.15 0.2)
+			(stroke
+				(width 0.18)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "80e9bdd6-2c8a-4cc2-bac7-9683fb7c17cf")
+		)
+		(fp_line
+			(start -6.15 5.45)
+			(end 6.15 5.45)
+			(stroke
+				(width 0.18)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "3cdd95c1-da58-4592-83c0-cf975f64dd07")
+		)
+		(fp_line
+			(start -6.45 0)
+			(end 6.45 0)
+			(stroke
+				(width 0.1)
+				(type dash)
+			)
+			(layer "Dwgs.User")
+			(uuid "a07465cb-0ebc-4fc4-a6cb-55d8483cee81")
+		)
+		(fp_rect
+			(start -6.45 -4.85)
+			(end 6.45 5.75)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "0078f876-cc06-4b98-a812-b903803ee3b8")
+		)
+		(fp_rect
+			(start -6.15 -4.55)
+			(end 6.15 5.45)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "bea0aa0a-a1ea-43a2-b5e1-ae2d776a4ba8")
+		)
+		(fp_text user "1"
+			(at -6.75 3.95 180)
+			(layer "F.SilkS")
+			(uuid "1acf00ec-9479-4b74-af88-540422496aeb")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
+		(fp_text user "PCB EDGE"
+			(at 0 -0.35 90)
+			(layer "Dwgs.User")
+			(uuid "1eb1bdd3-f8a7-4759-b371-bfe2b7995aeb")
+			(effects
+				(font
+					(size 0.55 0.55)
+					(thickness 0.08)
+				)
+			)
+		)
+		(pad "" np_thru_hole circle
+			(at -4.6 2.75 90)
+			(size 1.7 1.7)
+			(drill 1.7)
+			(layers "*.Cu" "*.Mask")
+			(uuid "73db23d2-4e67-4939-9e00-7798d2574851")
+		)
+		(pad "" np_thru_hole circle
+			(at 4.6 2.75 90)
+			(size 1.7 1.7)
+			(drill 1.7)
+			(layers "*.Cu" "*.Mask")
+			(uuid "1fe36c93-fd73-4478-81c7-25fa356062f7")
+		)
+		(pad "1" thru_hole rect
+			(at -3 3.95 90)
+			(size 1.1 1.7)
+			(drill 0.7)
+			(layers "*.Cu" "*.Mask")
+			(remove_unused_layers no)
+			(uuid "e6841252-00da-4856-ae14-07bb6a4e533d")
+		)
+		(pad "2" thru_hole oval
+			(at -1.5 3.95 90)
+			(size 1.1 1.7)
+			(drill 0.7)
+			(layers "*.Cu" "*.Mask")
+			(remove_unused_layers no)
+			(uuid "fdbf07fc-6d41-44fb-8b03-608d6f9103eb")
+		)
+		(pad "3" thru_hole oval
+			(at 1.5 3.95 90)
+			(size 1.1 1.7)
+			(drill 0.7)
+			(layers "*.Cu" "*.Mask")
+			(remove_unused_layers no)
+			(uuid "6ddaa9c3-787c-422a-ad8c-71a55065aade")
+		)
+		(pad "4" thru_hole oval
+			(at 3 3.95 90)
+			(size 1.1 1.7)
+			(drill 0.7)
+			(layers "*.Cu" "*.Mask")
+			(remove_unused_layers no)
+			(uuid "610a8450-b7ea-4528-bcf4-d87668bbb2f3")
+		)
+		(embedded_fonts no)
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CN-HY04C-01D-FEMALE.step"
+			(offset
+				(xyz -36.1 -4.25 4.9)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "CN-HY04C-01D-MALE"
+		(layer "F.Cu")
+		(uuid "bf2f6fab-2e1e-4cd1-8af4-790b2690b217")
+		(at 134 135.963 -90)
+		(descr "Cnomax CN-HY04C-01D four-contact magnetic connector, male model")
+		(tags "CN-HY04C-01D Cnomax magnetic connector male 4-pin")
+		(property "Reference" "J2"
+			(at 0 -6.35 270)
+			(layer "F.SilkS")
+			(uuid "4d628bf2-9509-456a-a6b2-6dfdcd03e9a1")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
+		(property "Value" "CN-HY04C-01D-MALE"
+			(at 0 4.45 270)
+			(layer "F.Fab")
+			(uuid "8b2867b9-b68f-4e70-ad43-66e3a77d2239")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
+		(property "Datasheet" "../../datasheets/CN-HY04C-01D-product-reference.pdf"
+			(at 0 0 270)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b163d82c-48fe-4782-a9a3-0e9b9a7f03fb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" "Cnomax four-contact magnetic connector; contact geometry derived from supplied STEP model; verify against supplier drawing"
+			(at 0 0 270)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f09e9b94-7ca8-4c4f-a62b-088681121a56")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Manufacturer" "Cnomax"
+			(at 0 0 270)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "ffdca5b5-17c4-42ce-8ef2-430de38bf876")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Manufacturer Part" "CN-HY04C-01D"
+			(at 0 0 270)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b757d4b4-5e8d-46e0-8717-65a436732db6")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(attr through_hole)
+		(fp_line
+			(start -6.15 -0.2)
+			(end -6.15 -5.45)
+			(stroke
+				(width 0.18)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "2a51d6b9-7931-4c17-922f-043886b503bd")
+		)
+		(fp_line
+			(start -6.15 -5.45)
+			(end 6.15 -5.45)
+			(stroke
+				(width 0.18)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "e6ac30c0-2b49-439f-b252-222a8dc0165a")
+		)
+		(fp_line
+			(start 6.15 -5.45)
+			(end 6.15 -0.2)
+			(stroke
+				(width 0.18)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "1e794c56-84ba-42e9-82e3-d6a00258befb")
+		)
+		(fp_line
+			(start -6.45 0)
+			(end 6.45 0)
+			(stroke
+				(width 0.1)
+				(type dash)
+			)
+			(layer "Dwgs.User")
+			(uuid "3f9341a2-1934-4150-9339-8a5919d98835")
+		)
+		(fp_rect
+			(start -6.45 -5.75)
+			(end 6.45 3.85)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "e7b87487-d21b-4e16-be9a-88249d59600d")
+		)
+		(fp_rect
+			(start -6.15 -5.45)
+			(end 6.15 3.55)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "7c304e5d-5233-46c1-a302-b372a39ea267")
+		)
+		(fp_text user "1"
+			(at -6.75 -3.95 0)
+			(layer "F.SilkS")
+			(uuid "b4938b00-ce7b-4ac7-b8be-dbe0ebfdd8d7")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
+		(fp_text user "PCB EDGE"
+			(at 0 0.35 270)
+			(layer "Dwgs.User")
+			(uuid "986d5e7c-95c7-4978-bc8d-ad3545110f12")
+			(effects
+				(font
+					(size 0.55 0.55)
+					(thickness 0.08)
+				)
+			)
+		)
+		(pad "" np_thru_hole circle
+			(at -4.6 -2.75 270)
+			(size 1.7 1.7)
+			(drill 1.7)
+			(layers "*.Cu" "*.Mask")
+			(uuid "cd9e8b98-5889-403e-a441-7fb33a718324")
+		)
+		(pad "" np_thru_hole circle
+			(at 4.6 -2.75 270)
+			(size 1.7 1.7)
+			(drill 1.7)
+			(layers "*.Cu" "*.Mask")
+			(uuid "a37c4e13-4c92-4e7d-9ce7-801355a01c76")
+		)
+		(pad "1" thru_hole rect
+			(at -3 -3.95 270)
+			(size 1.1 1.7)
+			(drill 0.7)
+			(layers "*.Cu" "*.Mask")
+			(remove_unused_layers no)
+			(uuid "e70d24ce-0d86-43e3-bd6b-84eafd2c1daf")
+		)
+		(pad "2" thru_hole oval
+			(at -1.5 -3.95 270)
+			(size 1.1 1.7)
+			(drill 0.7)
+			(layers "*.Cu" "*.Mask")
+			(remove_unused_layers no)
+			(uuid "0ad6d4c3-37be-44e0-93de-c1dcf0822f71")
+		)
+		(pad "3" thru_hole oval
+			(at 1.5 -3.95 270)
+			(size 1.1 1.7)
+			(drill 0.7)
+			(layers "*.Cu" "*.Mask")
+			(remove_unused_layers no)
+			(uuid "d826997e-6379-4b65-ba4d-785df73ace9b")
+		)
+		(pad "4" thru_hole oval
+			(at 3 -3.95 270)
+			(size 1.1 1.7)
+			(drill 0.7)
+			(layers "*.Cu" "*.Mask")
+			(remove_unused_layers no)
+			(uuid "43bbfd05-c87e-4b36-b47b-39f5d4aa1d51")
+		)
+		(embedded_fonts no)
+		(model "${KIPRJMOD}/../../../../lib/3d-models/CN-HY04C-01D-MALE.step"
+			(offset
+				(xyz -36.1 -21.35 4.9)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
 	(gr_arc
 		(start 134 65.6)
 		(mid 135.464466 62.064466)

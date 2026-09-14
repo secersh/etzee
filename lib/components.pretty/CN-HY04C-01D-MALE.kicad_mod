@@ -6,7 +6,7 @@
 	(descr "Cnomax CN-HY04C-01D four-contact magnetic connector, male model")
 	(tags "CN-HY04C-01D Cnomax magnetic connector male 4-pin")
 	(property "Reference" "J**"
-		(at 0 -4.7 0)
+		(at 0 -6.35 0)
 		(layer "F.SilkS")
 		(uuid "53e4ec59-2b76-4c39-abae-cf446d4b8875")
 		(effects
@@ -17,7 +17,7 @@
 		)
 	)
 	(property "Value" "CN-HY04C-01D-MALE"
-		(at 0 6.1 0)
+		(at 0 4.45 0)
 		(layer "F.Fab")
 		(uuid "310999ef-2ecd-43c1-85d6-d585819bca0f")
 		(effects
@@ -77,8 +77,8 @@
 	)
 	(attr through_hole)
 	(fp_line
-		(start -6.15 -3.8)
-		(end 6.15 -3.8)
+		(start -6.15 -5.45)
+		(end 6.15 -5.45)
 		(stroke
 			(width 0.18)
 			(type solid)
@@ -88,7 +88,7 @@
 	)
 	(fp_line
 		(start -6.15 -0.2)
-		(end -6.15 -3.8)
+		(end -6.15 -5.45)
 		(stroke
 			(width 0.18)
 			(type solid)
@@ -97,27 +97,7 @@
 		(uuid "cd8806ef-def4-4516-806e-db5086bbd907")
 	)
 	(fp_line
-		(start -3 -1.1)
-		(end -3 -0.2)
-		(stroke
-			(width 0.15)
-			(type solid)
-		)
-		(layer "F.SilkS")
-		(uuid "28f0d977-830f-4844-9919-3306b8d93996")
-	)
-	(fp_line
-		(start 3 -1.1)
-		(end 3 -0.2)
-		(stroke
-			(width 0.15)
-			(type solid)
-		)
-		(layer "F.SilkS")
-		(uuid "04aa44ee-9123-4741-a29f-0c41d6cc4ca5")
-	)
-	(fp_line
-		(start 6.15 -3.8)
+		(start 6.15 -5.45)
 		(end 6.15 -0.2)
 		(stroke
 			(width 0.18)
@@ -137,8 +117,8 @@
 		(uuid "921d7584-4c70-4ab7-80f5-8134f09c0a8d")
 	)
 	(fp_rect
-		(start -6.45 -4.1)
-		(end 6.45 1)
+		(start -6.45 -5.75)
+		(end 6.45 3.85)
 		(stroke
 			(width 0.05)
 			(type solid)
@@ -148,8 +128,8 @@
 		(uuid "045c58ee-3425-4998-9a3c-de888f41c606")
 	)
 	(fp_rect
-		(start -6.15 -3.8)
-		(end 6.15 0.5)
+		(start -6.15 -5.45)
+		(end 6.15 3.55)
 		(stroke
 			(width 0.1)
 			(type solid)
@@ -159,7 +139,7 @@
 		(uuid "b10cb943-4071-4d0b-8034-081c022a3bd6")
 	)
 	(fp_text user "1"
-		(at -6.75 -2.3 90)
+		(at -6.75 -3.95 90)
 		(layer "F.SilkS")
 		(uuid "865e77da-6e78-4dd6-b781-eaa29c629062")
 		(effects
@@ -181,21 +161,21 @@
 		)
 	)
 	(pad "" np_thru_hole circle
-		(at -4.6 -1.1)
+		(at -4.6 -2.75)
 		(size 1.7 1.7)
 		(drill 1.7)
 		(layers "*.Cu" "*.Mask")
 		(uuid "9a8ab48e-da28-4eac-8fd7-18336c5fd67a")
 	)
 	(pad "" np_thru_hole circle
-		(at 4.6 -1.1)
+		(at 4.6 -2.75)
 		(size 1.7 1.7)
 		(drill 1.7)
 		(layers "*.Cu" "*.Mask")
 		(uuid "16b1feca-ba94-471a-9a13-ca8a23edb08d")
 	)
 	(pad "1" thru_hole rect
-		(at -3 -2.3)
+		(at -3 -3.95)
 		(size 1.1 1.7)
 		(drill 0.7)
 		(layers "*.Cu" "*.Mask")
@@ -203,7 +183,7 @@
 		(uuid "d1a93d2a-ade2-4286-9924-05771d40430d")
 	)
 	(pad "2" thru_hole oval
-		(at -1.5 -2.3)
+		(at -1.5 -3.95)
 		(size 1.1 1.7)
 		(drill 0.7)
 		(layers "*.Cu" "*.Mask")
@@ -211,7 +191,7 @@
 		(uuid "f46e411b-6c0a-4ebb-a424-a41545df54ee")
 	)
 	(pad "3" thru_hole oval
-		(at 1.5 -2.3)
+		(at 1.5 -3.95)
 		(size 1.1 1.7)
 		(drill 0.7)
 		(layers "*.Cu" "*.Mask")
@@ -219,7 +199,7 @@
 		(uuid "e75dc203-497e-48e0-ba93-4bc7bff6d87a")
 	)
 	(pad "4" thru_hole oval
-		(at 3 -2.3)
+		(at 3 -3.95)
 		(size 1.1 1.7)
 		(drill 0.7)
 		(layers "*.Cu" "*.Mask")
@@ -229,7 +209,7 @@
 	(embedded_fonts no)
 	(model "${KIPRJMOD}/../../../../lib/3d-models/CN-HY04C-01D-MALE.step"
 		(offset
-			(xyz -36.1 -23 4.9)
+			(xyz -36.1 -21.35 4.9)
 		)
 		(scale
 			(xyz 1 1 1)

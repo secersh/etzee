@@ -62,6 +62,11 @@ def main():
         ])
 
     if "placement" in selected:
+        run_step("Place logic-board connectors", [
+            sys.executable,
+            str(PLACEMENT_DIR / "place-logic-connectors.py"),
+            *dry_run,
+        ])
         run_step("Place switch sockets", [
             sys.executable,
             str(PLACEMENT_DIR / "place-switch-sockets.py"),
