@@ -67,6 +67,11 @@ def main():
             str(PLACEMENT_DIR / "place-logic-connectors.py"),
             *dry_run,
         ])
+        run_step("Place carrier-to-logic FPC connectors", [
+            sys.executable,
+            str(PLACEMENT_DIR / "place-fpc-connectors.py"),
+            *dry_run,
+        ])
         run_step("Place switch sockets", [
             sys.executable,
             str(PLACEMENT_DIR / "place-switch-sockets.py"),
