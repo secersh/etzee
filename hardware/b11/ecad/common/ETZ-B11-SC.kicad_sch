@@ -1,0 +1,19 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "58d58441-6cbf-4f93-92a6-d8839898124b")
+	(paper "A2")
+	(title_block
+		(title "ETZ-B11-SC - Switch Carrier")
+		(rev "1")
+		(company "etzee")
+	)
+	(lib_symbols)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

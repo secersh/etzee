@@ -21,7 +21,7 @@ BOTTOM_ORIGIN_Y_MM = BOTTOM_EDGE_Y_MM - PIN1_EDGE_INSET_MM + PIN1_OFFSET_FROM_OR
 
 BOARD_PLACEMENTS = (
     (
-        ECAD_ROOT / "common" / "ETZ-B11-LGB-L.kicad_pcb",
+        ECAD_ROOT / "common" / "ETZ-B11-LLB.kicad_pcb",
         163.0,
         (
             ("J1", "CN-HY04C-01D-MALE", TOP_ORIGIN_Y_MM, 90.0),
@@ -29,7 +29,7 @@ BOARD_PLACEMENTS = (
         ),
     ),
     (
-        ECAD_ROOT / "common" / "ETZ-B11-LGB-R.kicad_pcb",
+        ECAD_ROOT / "common" / "ETZ-B11-RLB.kicad_pcb",
         134.0,
         (
             ("J1", "CN-HY04C-01D-FEMALE", TOP_ORIGIN_Y_MM, 90.0),

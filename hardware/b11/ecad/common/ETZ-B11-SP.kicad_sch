@@ -5,8 +5,8 @@
 	(uuid "c8bd41e3-ab3e-4d14-b7e3-2d5a0a19d666")
 	(paper "A2")
 	(title_block
-		(title "ETZ-B11-SP Common Switch Plate")
-		(rev "rev1")
+		(title "ETZ-B11-SP - Switch Plate")
+		(rev "1")
 		(company "etzee")
 	)
 	(lib_symbols

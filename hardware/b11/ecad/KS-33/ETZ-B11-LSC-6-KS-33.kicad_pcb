@@ -139,6 +139,28 @@
 	(net 8 "ROW1")
 	(net 9 "ROW2")
 	(net 10 "ROW3")
+	(net 11 "SW1")
+	(net 12 "SW2")
+	(net 13 "SW3")
+	(net 14 "SW4")
+	(net 15 "SW5")
+	(net 16 "SW6")
+	(net 17 "SW7")
+	(net 18 "SW8")
+	(net 19 "SW9")
+	(net 20 "SW10")
+	(net 21 "SW11")
+	(net 22 "SW12")
+	(net 23 "SW13")
+	(net 24 "SW14")
+	(net 25 "SW15")
+	(net 26 "SW16")
+	(net 27 "SW17")
+	(net 28 "SW18")
+	(net 29 "SW19")
+	(net 30 "SW20")
+	(net 31 "SW21")
+	(net 32 "SW22")
 	(footprint "KS-2P02B01-01-a"
 		(layer "F.Cu")
 		(uuid "08928ac2-5b2e-4a1c-b5f2-c5ddea61772e")
@@ -778,7 +800,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 7 "COL5")
+			(net 16 "SW6")
 			(uuid "b23df162-0da8-4172-a19f-5bb617678501")
 		)
 		(embedded_fonts no)
@@ -1433,7 +1455,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 4 "COL2")
+			(net 19 "SW9")
 			(uuid "bc540458-5503-4881-83c0-2559ba9dd0c3")
 		)
 		(embedded_fonts no)
@@ -2874,7 +2896,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 7 "COL5")
+			(net 22 "SW12")
 			(uuid "5edce838-d5ff-4b9b-b455-adbfb0e560f1")
 		)
 		(embedded_fonts no)
@@ -3529,7 +3551,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 5 "COL3")
+			(net 20 "SW10")
 			(uuid "26d6f5a2-086f-4ace-ace6-d903329fce5f")
 		)
 		(embedded_fonts no)
@@ -4446,7 +4468,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 5 "COL3")
+			(net 26 "SW16")
 			(uuid "513a5746-ad93-47f2-ac40-f5489589a7cd")
 		)
 		(embedded_fonts no)
@@ -5363,7 +5385,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 3 "COL1")
+			(net 12 "SW2")
 			(uuid "bcfece7f-7d45-47e5-a189-76fb504589a0")
 		)
 		(embedded_fonts no)
@@ -6018,7 +6040,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 6 "COL4")
+			(net 21 "SW11")
 			(uuid "a7efda52-8cda-416b-971c-f85e059fdd98")
 		)
 		(embedded_fonts no)
@@ -7197,7 +7219,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 7 "COL5")
+			(net 32 "SW22")
 			(uuid "305b0bcd-5d3f-45f4-b1ca-e5059466321c")
 		)
 		(embedded_fonts no)
@@ -8114,7 +8136,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 3 "COL1")
+			(net 18 "SW8")
 			(uuid "57cd862a-e987-4622-b4d4-5a6613c01f24")
 		)
 		(embedded_fonts no)
@@ -9031,7 +9053,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 2 "COL0")
+			(net 17 "SW7")
 			(uuid "86bafe09-cdad-46e0-a4bf-2af47da3cd9f")
 		)
 		(embedded_fonts no)
@@ -10210,7 +10232,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 2 "COL0")
+			(net 23 "SW13")
 			(uuid "ec7d7cc3-12ae-497e-8534-c89286f55106")
 		)
 		(embedded_fonts no)
@@ -11389,7 +11411,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 5 "COL3")
+			(net 30 "SW20")
 			(uuid "e155deb4-52f4-4413-8b2a-19614889df3c")
 		)
 		(embedded_fonts no)
@@ -12306,7 +12328,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 4 "COL2")
+			(net 13 "SW3")
 			(uuid "26bf24db-20b9-41d3-972e-d14318499aab")
 		)
 		(embedded_fonts no)
@@ -12961,7 +12983,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 4 "COL2")
+			(net 29 "SW19")
 			(uuid "dada69c1-eb7a-4e61-a7c6-bb01bb4e791c")
 		)
 		(embedded_fonts no)
@@ -13616,7 +13638,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 6 "COL4")
+			(net 27 "SW17")
 			(uuid "bb1d5c22-2636-4bfa-a3fb-65629c948277")
 		)
 		(embedded_fonts no)
@@ -14271,7 +14293,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 4 "COL2")
+			(net 25 "SW15")
 			(uuid "b4a41798-cc13-4bab-ba39-93eddba6b75a")
 		)
 		(embedded_fonts no)
@@ -14926,7 +14948,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 7 "COL5")
+			(net 28 "SW18")
 			(uuid "707dc7c6-5b57-40ae-815a-f4d05d6111c7")
 		)
 		(embedded_fonts no)
@@ -15581,7 +15603,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 5 "COL3")
+			(net 14 "SW4")
 			(uuid "7e58ecfc-056b-4e85-9fb3-3c4c913a816d")
 		)
 		(embedded_fonts no)
@@ -16760,7 +16782,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 6 "COL4")
+			(net 15 "SW5")
 			(uuid "779a6cbb-bb69-4b8f-a330-9903c9289e77")
 		)
 		(embedded_fonts no)
@@ -18201,7 +18223,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 6 "COL4")
+			(net 31 "SW21")
 			(uuid "afd64081-4f6e-416a-a66e-215d7b10a2c9")
 		)
 		(embedded_fonts no)
@@ -19380,7 +19402,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 2 "COL0")
+			(net 11 "SW1")
 			(uuid "4bf2b375-9d0a-4cad-9d8c-fbc2808d3aeb")
 		)
 		(embedded_fonts no)
@@ -20297,7 +20319,7 @@
 			(size 2.55 2.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.08)
-			(net 3 "COL1")
+			(net 24 "SW14")
 			(uuid "c07073d5-6cb6-4ca6-86e1-c823e5a5d808")
 		)
 		(embedded_fonts no)
@@ -20313,16 +20335,5146 @@
 			)
 		)
 	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "05884b62-2ba5-4420-8f7f-442633e442bd")
+		(at 125.015 110.209999 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D15"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "34974f2a-1a6d-4701-86f6-6cd51505d2f9")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "bb1c031f-c7be-47a1-b408-2a8cd258341d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "40814a47-9f8a-4f74-825a-0dcae77ca31d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "0d87d6ae-8f2d-497f-a86b-9136ad791075")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "bccbfc9f-f53b-4fe4-805c-a8249af0cefb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "3a64613e-96f3-431d-8129-383f70d2f188")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "33f59604-cf54-4c9d-8191-25a7d8fb5112")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "c8cb43a1-83a6-43d2-9480-c4d965260892")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "41147f0b-b825-4f2f-8b0f-12ea562f72a9")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "c8b1fdce-dd44-46b3-a3ab-7471e36dc082")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "78a2bc24-cee3-41d6-83be-efedc3bcda41")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "3dd281f2-b424-46b0-8332-3a59bfa1e626")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "427f76c4-578c-40b3-8870-46e66f8ed280")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "38317194-32d0-4a3a-be11-7840d3ccba7e")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "0dfd37b7-656d-4ead-9831-e8fabd903aa2")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "6bcf0933-db3a-4db4-a387-845b83414264")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "2a4897e6-490f-4637-b935-7f610d60b9b0")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "e05c8113-656a-43f7-b183-a1b9390e9b2c")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "5ba33806-c2ea-4184-855f-e7578013427d")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "0e27bc41-be0b-4f0e-82b2-7f165a539e1b")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "a259664b-5595-431e-b9d6-e3586d1e2493")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "b0bffe50-8938-4c9f-beb7-2ec578c192c2")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "02bb135f-02b1-4b72-bfa2-ce899ee1ef6c")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 4 "COL2")
+			(uuid "386160b8-73cc-44a1-821c-126577bf45b1")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 25 "SW15")
+			(uuid "136344df-6101-4cb0-9999-4e6ac976f68e")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "094bad75-0970-4334-b569-0ba3a4d7307f")
+		(at 105.815 110.209999 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D14"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "49ded99a-1bc9-4153-a8d1-25a583c986d7")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "867a5c65-0b3a-4c36-a1de-a2e1c5667ddb")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "2164030b-7c0c-4e7b-83b4-219d6faa848d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "2bf89b79-6b21-4879-8c56-caa50e5428a4")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "0fe4aa85-7a80-4d1e-9061-6986f66c0db9")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "119a0b71-1d28-4526-b8fd-c5e08cb6812f")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "7d290206-13a1-47b0-93f9-ad3ccecb868f")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "226024c0-e41b-46c5-b39e-2bbc9a095194")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "58f190b0-4a93-480c-8c8f-44a97ad2cc11")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "25f9b53f-c342-421b-b373-87120faafed9")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "4e9ba377-7f24-4bb3-b08e-ff25f4e47540")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "e6acc4b9-3489-410f-8b1c-45b76557b384")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "dee14942-5001-4638-9804-117c6ba271f8")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "96bce910-b265-4a54-8b93-6e95d323d4a4")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "8fe35d85-14af-4b7d-a6d0-c6eb99409922")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "f1b3c038-22b4-4381-a16e-fb454bbef253")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "d3aa1178-b252-4184-91e0-d1978bdc0db5")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "9b35ebd2-0b6c-433b-b352-136494b3466b")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "d5e577c6-590c-4e87-8414-e1d354f845d9")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "f06455f8-b870-41bc-a904-c4c86e922b03")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "a6c64077-3704-4295-9106-bd6a3b641cf5")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "473fc2d3-1b32-408e-b928-7b2b19a5d59e")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "3eb8f633-a799-441a-8718-cf08517f100d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 3 "COL1")
+			(uuid "d23434f8-0d23-40ea-88d5-51a1058fa5d1")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 24 "SW14")
+			(uuid "4dc17136-87b7-4a7f-a395-48ea2796b137")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "0d85cb5b-16f7-40ed-a819-02191f67e718")
+		(at 182.615 129.409999 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D22"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "0f89fdbc-3abc-4294-95bf-774a1681b3ff")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "c1e74565-2112-418d-be38-30e5f66e62b9")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "dd072b50-963e-4bd1-ae06-eb898b2cefa8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "4a72b971-dda3-4fdc-9f23-6a6e78c89d7f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "d2fc8b0f-8a7f-4317-a34e-74f1c72cd1f5")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "e7a20521-3979-483c-b315-529d8e05218f")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "80afeb94-7f0d-4da2-906e-f628ce793fdd")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "75a74b2b-0cf7-4272-9584-3d9e7a2f72a9")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "0582830d-78ca-4a13-9422-cbd712239f51")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "4997fcf1-c8ff-49a6-ba35-fca1a17d9e17")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "e1ebbeed-f229-4751-8a69-4f7f8a3091b8")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "89b5b384-b490-4642-bb20-12019affacd7")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "0019862b-bb7a-4e72-bce8-82550e825182")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "7acf6c24-b6fa-4827-afe3-b8d2837dfe4e")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "50a5f33f-0e01-4392-b7eb-bef343698e8a")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c2ef4ec3-56de-4832-91e5-2417e0ca1fe4")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "21870d68-e4d3-4f2a-a8fc-be9799f1cf4b")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "8acbeaef-cac6-4936-bf81-590550b233f4")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "3d0cf8db-7232-46c6-bc8e-ebecc32fb429")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "3e44e66b-d510-4b7e-aa92-d3d3e0c40489")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "fbf681cc-0930-4d11-86ed-2663ef7adcae")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "a4d079e1-2423-4ce3-832b-6ad8c76d2006")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "cdff8f60-7972-40d9-a847-3d5499c73d17")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 7 "COL5")
+			(uuid "7f388315-210d-4ae5-b919-91f200fc8552")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 32 "SW22")
+			(uuid "c8a6c2d4-d096-465a-b097-53838302ae6e")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "14fc4a0c-6725-430c-8610-50fd41d3485c")
+		(at 86.615 91.01 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D7"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "fb29bb76-4726-496e-b083-980b1906dc20")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "13f214e4-443a-4400-8dcc-5f4cd32a26fe")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "aae6222f-c174-4012-a619-d9367a4e7687")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "662ad9c8-711a-43c3-b9fb-1b5f664c6f79")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "94cf12c7-e289-453a-b8b7-9f81bac1f85b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "c04a3751-1922-4224-a46d-99c14287922d")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "8879c37e-2522-416f-98ba-2e8124d6ff51")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "86a69e6a-221a-4f33-8479-252ac4d00a16")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "91cb127b-9ccb-41a0-9b4d-22eb09f53999")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "b30133c5-6eee-468b-ab86-3fc7f207b02b")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "612b0b26-056a-4a27-a9c5-21ee1a8ab68f")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "db13bec0-5aab-40c2-997d-5e9575fc2ed9")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "46d29e98-fbb4-4d4c-8d71-7a375a446399")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "3182df22-e2fe-4ccb-bcad-8c3f8ba66f20")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "01e52fa7-0151-443f-882b-757931ee4dfa")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "9033919a-cbdf-4595-85e0-892931b46576")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "5afff014-52e8-4e5b-b6e6-f84abb5b6b29")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "644490bb-470c-4f6f-b8f8-855cff881373")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "f385572a-afb4-4522-99dc-e013920bef84")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "751be776-67e8-4300-89d6-d54a5ea3101b")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "73d2e6e3-c41d-4e2e-8080-e8c5138a8806")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "36deb34d-b469-4231-9d18-b11c56564ec6")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "1dcae79e-8744-4410-94d7-44eda4070da7")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 2 "COL0")
+			(uuid "86b655c7-cd9d-4806-b1fc-72e6598a7969")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 17 "SW7")
+			(uuid "ea799ea0-db33-42f6-98d1-ac8b6bccf286")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "23cc6853-1d88-42cc-a711-622cc1a44465")
+		(at 125.015 71.81 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D3"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "7e0c9d2d-e974-4fcd-a36b-7074a43fcbd6")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "3bebcba6-d798-489b-bb8c-f3e67f5075cf")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "a5ad33a7-5933-438d-960d-b0c3ef0f9fb6")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "e20453ea-1cf8-4a56-ad92-748db05d5d70")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "11268a55-0ef5-48f0-9148-9020f66de2dd")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "76cd3bd8-608b-46aa-b65c-73f48ba6417e")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "8bd27377-767e-4f01-a541-f627e8824597")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "2ae05160-ffb6-49f4-b11e-90bb9ea184d7")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "3a48724f-2d51-4cfc-a290-9aa148206d4f")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "76eca40f-895a-4615-81fa-5349b9fdb369")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "225b35e7-a71d-4535-8a11-618383aa6533")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "25459882-ff0c-4317-bd73-44deea1777af")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "8a06ea5d-0b7b-4068-bb7a-3b46adfc7444")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "dd9dc981-5530-4616-bc08-74a4c127921f")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "e2927fce-609b-48e6-9fd0-6c0528fee1c7")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "5bb2d000-953b-42dd-9218-716a08b67965")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "998779a6-e198-4ee1-bb7e-6e532aef229b")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "78e5d1fc-20bf-4844-a8f2-8ef5f66c3322")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "4cd06dec-aac3-4370-8f1d-d643e3b8c000")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "b03a15a1-7754-420c-b812-1e3594872b56")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "414a9fce-6f06-4a3b-8f57-d16e98e403a7")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "94fbb7c2-ea07-4df2-b3df-0807d36aac35")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "8f9ce9fb-befd-4736-bb74-5aeefe46989f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 4 "COL2")
+			(uuid "1bb1c43d-2d69-400f-abce-1774b48b18e5")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 13 "SW3")
+			(uuid "911af26b-cb19-43f9-b442-07a6ce20253e")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "3a2aaa37-717b-4cb8-891c-4c36613b9886")
+		(at 144.215 110.209999 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D16"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c3179749-0e31-4021-86c5-6919b83c0007")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "29b8203a-c49f-45f0-ae77-9a1142b7c204")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "55751f5f-1878-45d6-8fea-9316d095f530")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "1391e1fe-4391-4c85-bb84-a7efdb8baa23")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "f0f83f9f-a260-48b2-bb06-a34e41affbea")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "606dd550-1f9e-415f-8e27-615468df3d9d")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "a1cde705-c65b-466f-b9a5-61cb22547853")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "f8e1557c-5cb5-482c-8fee-495239b9c0c7")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "b09b7731-4b36-4b1a-a8a9-d695f1350681")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "ae5ef0d1-13a1-4aa1-bc2a-5716a7822af8")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "a038b40f-75c7-4d90-a8a4-7bc09367834f")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "88d74590-8e68-4ea8-a25d-3bde41c70c16")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "84b645f7-280a-4bd4-ab61-c6bf8854bc57")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "1f5ccc8c-abfd-49cb-929e-e95e21294f8c")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "cf27fa99-9924-446a-b01b-d761b39be3f0")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "7817b772-9e6e-46d0-b9e6-1a89dbe8baf7")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "987586e0-7081-485f-b0cd-afc4193c45df")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c0e86706-d134-4326-9ba8-0baa72d2fcc0")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c8405438-be79-47f7-ad80-86bd1ce28b23")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "e790c5da-4eac-4ec3-a06f-39d69be48518")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "2b15dae5-a3d0-4a4d-826c-b04e098ea72a")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "8a922327-b62b-43fa-855d-613dfbe9fef1")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "9bdb79be-06d6-4ff2-968a-06d078a01f8f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 5 "COL3")
+			(uuid "75cc3c78-5fd8-4919-9f82-18aca5123d3c")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 26 "SW16")
+			(uuid "defac3b9-21ad-4db8-93f3-4196b483eaeb")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "3b90f6e0-c2f1-4257-9e2a-abd720f1b6a5")
+		(at 182.615 71.81 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D6"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "1674a17b-3ebb-434a-a77b-edbf6f60120e")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "5637fa29-3757-40bd-aa0b-48d8a2267296")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "9886ae88-5ec8-4e15-a78c-731a092bab78")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "e8f7c2e5-4136-4170-8d93-67fa57c32eb5")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "91a85e04-7ee6-4b28-a025-8a33fa12153c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "c96d2b82-9aba-4139-a9fa-8bc065292be1")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "97fa81da-fa83-404e-837c-d12a8ca8945b")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "80f5d337-7989-4697-888d-c7f531f7e482")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "f927cebe-eead-4dca-93de-6d82565a071a")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "59735462-abe5-42f8-a7f1-5acfb1570757")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "c34fbf8f-8fe7-416d-9c46-4031c591736a")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "4a484e01-5408-472d-9e56-8b7707d2aa08")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "bb314cab-b43e-415d-b7c7-19552683cd7e")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "b1d61153-3637-4b80-a26e-92ab6f7e5ceb")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "6b7bfcbf-603d-42a2-8605-12d25a6f8029")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "568ee150-5a31-419c-9862-000b77ab4882")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c00235b1-744a-45ac-b21e-aa630bf2d28d")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "fbaeaedf-e12a-46b7-a4b5-3e0d38fa82ee")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "de3975c6-9fa5-4e18-9ee2-e86b85356c42")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "9910ce90-c517-43d9-9a8b-641c1f0d8735")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "829e5b10-b726-47de-86d4-0b5f0d180edb")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "563ca151-67ec-447d-8418-06466daed4eb")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "1244cd97-379b-49d8-b22f-bf5b1407b7c9")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 7 "COL5")
+			(uuid "e346af51-054b-4246-986e-01f3e9c536cd")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 16 "SW6")
+			(uuid "5347a5a0-ffd3-4bdd-821c-e0f60b60368f")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "671a739a-2a78-4a43-a2f2-3a5f5f28c448")
+		(at 125.015 129.409999 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D19"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "5bcb3f40-41ac-44fa-a9a0-cdcf2bccf4e6")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "232eed87-8f86-4a16-b387-2a60cd4cc0fe")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "9ec2eec4-e6f9-4547-bb54-a40786286b1a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "742b8dec-eb23-44c3-bf3b-c07de73cf168")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "a01f3c82-b284-4c84-bef8-5b3aaa4298d7")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "1bd45724-a240-4941-9d11-27fc932f0e80")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "57b1ebd9-9213-42b9-b092-b9eb7b11095e")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "a0342f80-95ce-485e-9c5c-bbcf8be06878")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "d90a32b1-35b5-4ac0-b67c-7b4f6e5670e1")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "81989ab2-b0a3-42ff-b4bb-8a1acf5c07d9")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "73b18764-032e-4110-bbc3-316b5e469c14")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "4f110132-3880-4195-993e-25355e0ee1df")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "25056b1c-7bbc-4767-b5b4-62c16a407bcd")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "73b7e106-2377-4bf7-9e1d-df980d971f23")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "32710aad-4a22-4006-bfde-adf547ba877f")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "9224001e-9d57-45fd-8d8b-6a7c9deafae0")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "d788a418-f877-4166-b3fd-99c827b9abd3")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "b83272ff-6498-4649-9e42-44418a11d305")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "3f3684af-01c3-497d-8257-3c258c24b8d7")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "cefa1dfb-64b7-4fed-bbee-192a70309cd1")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "88dbb64b-9a32-4406-83c4-79de5b062b42")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "91af192d-722d-458e-8c7d-06a7ee5e2480")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "3834483e-3b68-4857-a175-c2e5c4d53120")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 4 "COL2")
+			(uuid "29a94328-8adb-4bd1-bbac-b1e5f606000f")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 29 "SW19")
+			(uuid "81f182ac-e162-407e-a2b7-d8a2437acc8d")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "6a383587-5700-46e9-a44c-28ad8d121b02")
+		(at 163.414999 110.209999 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D17"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4fe0b26d-bb26-4dee-9882-dc52fc800bbf")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "948de483-c585-4783-99de-bcaba295f78b")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "442e6547-3f9e-4375-af37-e946dc413240")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "31909468-e479-4a2d-810c-0e8bd8c3a461")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "d94b66a0-c6f6-4d53-a61c-58ceeee58e5d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "05e13316-1a4a-48ba-9da4-0034710476a3")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "78157736-9f1e-47c2-bba6-88d84d17fcaf")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "7ad81e72-cd7e-400c-af18-a32a49028cfa")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "d8e39b29-2a96-41f3-b1c0-0c1d729fb76d")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "10f1edc0-62d1-46ff-939a-a5c0cf588ab4")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "e1e4c134-b229-4a00-867f-13c429eeccfe")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "879b38d9-a713-4d2e-8496-cfcd1d9b8592")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "965fbe1b-abb6-4703-b7df-417c87601971")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "7dfccfdf-db9a-4e25-a774-773c1b327e54")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "ea69430b-baaa-449e-ada6-692fa93a8a8d")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "fca8a4f4-658c-40ae-806a-70770d99d723")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "e0baca17-c8a5-4544-8891-9c2db320c25b")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "f54eca4a-5c92-4814-b5d0-a163fc4dab91")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "729c88f0-f4ba-488a-80f3-86a32bcbac60")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "558141cc-302c-425c-b6b8-cfdb69c0a282")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "74269ea2-40e8-4a88-addd-596fec196555")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c285760d-2d8f-4c0c-91e8-594fbf624302")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "bcc402d8-ec8e-4d72-8881-3ce1e42e2b93")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 6 "COL4")
+			(uuid "b7090efc-34e9-4103-a8a4-fa3f89afd4b2")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 27 "SW17")
+			(uuid "07eebed0-f565-441a-b6c5-a23671fc202a")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "7428bec3-487b-47df-a1ba-c94834411044")
+		(at 144.215 91.01 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D10"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "b489647e-7f3c-40e6-bd58-e6b3a241f6dc")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "b8ab10c7-7959-47e5-901a-efffd48a0002")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "19651c2b-0035-4315-b1d8-36314b734097")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "6142a3fb-aa66-4ab0-9794-539f8d4c5e19")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "54df0d96-f387-4f9f-9c05-709038b89a7e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "3bb83f01-5273-4075-830d-be7cd570b7c6")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "7a540d6c-ffe7-4e83-8a9f-21cdb8ccb609")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "e740572f-250d-437c-b033-993a2ce1bb69")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "d032c796-3f8d-4b7c-8ed1-513fd18c1bff")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "5f44d49b-75bc-49ec-9131-4b129ea994b5")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "7694e382-3cf0-4b65-ad7c-3df3b1c82897")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "ede36d94-fcef-45ea-8b1e-d30d986ee007")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "05789c3c-dff3-49e5-be35-38ad73e0268b")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "08055f07-b49d-4c0b-af20-91f7a28f2c5b")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "09e0127c-1607-4786-a739-0590a46d1385")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c801795c-5cdc-406a-a561-ceb5a44b2f3e")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "5cc318de-a33f-469e-be5c-d949a374aea4")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "9c027023-0574-43be-a1a4-fe9ae60344ee")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "5231509d-1471-4204-b0be-e1c767cf1351")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "7bf685d5-09c5-48a7-a8ab-470346f85318")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c2b2df2c-e8a2-4769-bf40-21afb074bb7a")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "d4b65d56-9a28-434e-8d9f-7d9c8d0ce5d3")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "1b513d88-ec4a-4cf1-af7c-f748cfa4fb07")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 5 "COL3")
+			(uuid "e56e2fbb-346f-49a2-8f0f-c66430022360")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 20 "SW10")
+			(uuid "d2abd976-ad08-4e97-a5cc-c54dde080c3c")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "76183594-44af-4d3d-99e1-bbfaee841165")
+		(at 105.815 71.81 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D2"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "86f33a61-819b-4f7b-841a-258e6cf7f70f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "c8f05192-9d51-4b74-b390-393269a07cfd")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "19c0259c-467d-4c59-954d-9e5450808e8c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "3d99e919-00b7-4712-aef9-bfbd6679ff07")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "cfa66230-cb19-4616-8f2a-178f6811264d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "649dab60-2b3e-4496-bccf-2ee3091aa02b")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "80ec7162-3e81-47e8-8a06-bab6973b5627")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "6e39f36d-cee4-402c-a21b-87b6df52421f")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "88bf91eb-7ea7-4be5-814d-08bd56f5b35a")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "195dbc6b-69f9-42ae-9d97-c0a74e3ef3ba")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "148e2e20-5f11-4d47-bd18-d9cc1aaf3435")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "aa2ef7b1-a6bb-4109-b19d-61974d71bc4a")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "4a82e8fe-b44b-409c-8c6f-772fe3ad3eb0")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "63aee511-d877-442e-8caa-15c2695bd638")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "dfcb98f1-0372-46c6-8935-17088446af4e")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "d4580bb9-7727-4ad8-af44-2ee43eef088e")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "543c96b8-48c1-421b-94c7-32f08975d742")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "ad77cacb-ea06-4eb0-9bfc-d076ac1e0f5b")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "2549730b-9e63-4e61-9444-a1f8b170049a")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "b0d750c4-de76-454a-996a-cc624930dbae")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "6b56badd-2a77-44d8-8310-d9709102edbd")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "5466f59b-498d-4c9d-a2d5-79f940ba8821")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "f6a84b97-da44-4b8b-8173-a9ab7d3fd22c")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 3 "COL1")
+			(uuid "943ffa29-9439-4244-b475-e7c5a82b8e4b")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 12 "SW2")
+			(uuid "c1b56310-1b10-4a01-b385-7203f1989a23")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "78edfe64-3a29-4440-8399-d5e7ecdd18a7")
+		(at 125.015 91.01 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D9"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "16cec8d1-0895-455c-9e15-bfcfa556462f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "57228170-629a-4737-8780-e274fe376f83")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "3cfcd8f1-afe1-4ab9-92a2-5474fb00a6eb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "6e056975-4998-429a-bffd-6d617fe6857d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "8d888d67-d01a-4b89-ad49-a4343691f068")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "5147f5f0-0d9c-4625-aad0-530d7a6b721b")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "7494d369-f44c-4e8c-86b6-c106b0dd32f1")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "44f06757-12aa-45ff-8cd2-a8edf73fdbe9")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "33403e8a-ad4c-420a-80fd-b49a6144436e")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "7297897c-2a9d-491a-88ee-0b9a5bd756ed")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "36791fe9-5722-421e-95b0-555d06aeeae6")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "706eca0b-8026-47b2-a35f-d664189cf229")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "291dae61-1622-4bcb-8ddb-312a9c0f0bb1")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "18729ea8-9c9b-4add-8f12-5d52fbe7d0fe")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "f35bb361-9c2f-4599-ab67-cc8f8eab5e97")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "62ff398c-5513-44a2-86a5-39da537d4031")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "1eb3173f-e195-4521-9f61-a9328ac9e946")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "1b65e2a1-2026-48b5-a474-d464a535424b")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "ce778e44-8878-418f-adf7-895cb27e2d70")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "078d40c4-a683-4b7f-9a64-5fe5277e2002")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c4e5d594-e92e-4595-bc7b-6ae030dc74b7")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "1432743f-c947-4f8c-8038-063ba2156ac3")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "6bbb3479-bd50-429c-abc6-d1d36a0cecd5")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 4 "COL2")
+			(uuid "a0a6ae2a-6daa-43e2-ad2c-cdfc5f4bd46b")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 19 "SW9")
+			(uuid "d7af6a9c-0788-4326-9b3e-e22b0cf22b39")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "95000507-f0bc-4a13-8673-49f8b02bf0ea")
+		(at 163.414999 71.81 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D5"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "911f93e4-ed12-406e-80c4-585022d4815b")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "202b83e3-bc01-474d-bc1d-0954a5addd8e")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "eb5482db-580e-47ac-bdf4-b8c6fabf458d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "1ad55f8f-5ad9-4ae3-ace2-bfeb4d5012ce")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "51b9e091-d3cb-44eb-9909-6bbf1f36fbe3")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "3aaa66ff-d0e7-48b4-bd1a-9470e5e25ceb")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "3362266c-e530-4172-9e31-be092f709201")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "9409b4f2-397a-4602-980f-0206507aa064")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "288812d9-4f0d-4648-a811-7291b8d3d8d9")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "16d16c76-dac6-4c9b-9e93-4351172fbdb5")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "aef978f8-171e-463b-93f5-52fe75baf78b")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "e55dd9a0-ca2d-4051-9121-36dd3f860935")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "986fb2e1-40b4-4ba2-9740-1e4bbda72d73")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "5aa004ce-baf5-4666-b9ef-59def2fe8dc6")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "b5e78ab7-f3b2-4659-9b2b-db774c9d87aa")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "dcd891f2-5f47-4265-aad0-bb7ea6755974")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "98521a7d-41fc-49f9-9d0f-16538059d934")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "9ce3fa5d-151a-45b6-ab03-e171f08f7cf6")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "901e1a0e-7b58-43ba-832c-a504776ea56d")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "e8cfa3db-1386-461e-8567-47cb7c64c33d")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c60a3f57-63e2-4670-81d4-26f9017d6544")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "acf5bbf8-13cf-4313-82cd-edc2b9014bd5")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "5970f121-c335-498c-8b94-ec9db7821477")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 6 "COL4")
+			(uuid "e69338ab-23c5-46f2-a59b-5c149f8eadd0")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 15 "SW5")
+			(uuid "1f018ac1-6ee3-49a1-a037-43e11f66434b")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "97d3bd0c-6d35-4653-9b96-292e887ee2ff")
+		(at 182.615 91.01 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D12"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "533ef259-2b83-4cf3-8c50-8ea5beaa23a8")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "6e4385c4-18b6-4be0-a552-035bfb518c06")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "433c75cc-b293-4223-8daf-b4b5dc367b09")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "dc37d64e-b87b-4792-843d-6a517bfc53df")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "cd31eddd-1c62-4f80-a07a-777311548184")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "c0c07a7e-e9d8-44a0-8117-218314f87c93")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "770e2948-b4d5-4cba-aba2-f7442a0f91ca")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "f00b9b0a-f5a4-4b1c-9b0f-a07a20a4a5ad")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "6eb2ea7f-16e2-44bd-a0b0-8a2b348fef99")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "d2202632-992c-416f-ad15-48f8f39ae561")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "1b3bae08-fe80-49ac-a159-c6ca88068b4a")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "605d8d42-ff90-4d8c-bdcc-28779162a17f")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "d6b8dde1-41f3-4940-aa8f-7003ffff556d")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "6e1305c0-ab58-4013-9392-f9c118b9bd9a")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "d50828c0-40f4-43ad-81bb-c5e16e8384ec")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c049b363-3530-41a2-9a6c-2f65db6b16a5")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "26e34776-9f91-4d14-8dc6-d0ff4404a9c7")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "f776b443-1762-4041-9623-718b203aab19")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "053648d1-a01d-4005-b4f0-b333cd362c9a")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "280c8774-ce71-4be5-b711-985826820cb5")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "8884b3a2-69ac-4b16-8dd9-c980555db928")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "9aa5d89e-b277-4590-bf52-52d3be7dc732")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "f6af7a12-74b7-4f79-bedc-66fa2f6a5a20")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 7 "COL5")
+			(uuid "8e659400-6252-47b3-978f-f38bcfe26082")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 22 "SW12")
+			(uuid "7ab56267-6010-4f1d-897f-9ac38c7f01f8")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "9fdb267b-1e84-4dec-b337-e6fe015bc73a")
+		(at 144.215 71.81 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D4"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "9f9340b9-949b-41b1-a755-b1b330aea6f0")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "40f5622a-76f7-4e13-afb7-2d1a761f9d03")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "c19f454f-3d68-43f2-a64d-131b6d6d70cf")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "a22564dc-a496-4ed1-bba1-9c11f5cb18ca")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "e0514ac9-1d86-4e80-b6ed-2e666ac712ad")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "8a48ecbf-1eae-440b-a936-9c4e3ecba8bf")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "317a6349-4077-4ab1-aef9-b732e0830225")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "047f54ed-98c6-45c3-be64-cd982ea4be29")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "feb7611e-c436-4e09-9067-d78b83999541")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "4afed37a-f433-492c-a75a-6679c9c99b18")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "f33886fe-2383-4628-a6df-b973b2d9a3d3")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "7a8a7b97-0f52-40bd-997d-75eed42bf665")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "0c67f4bf-0d5a-4fcc-a6ab-a069270b0909")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "02607e65-b1d7-45ac-b2c3-006a9a23dbbd")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "4965ec26-3581-413a-a944-4162c5777db4")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "31fbc799-1fa0-4aad-91dd-350fb191458e")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "f242f0ae-1117-46b2-b460-4f51bc30a0a7")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "ee61fcb6-0b51-4afd-a03b-89d09ecf9c87")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "eac969ad-7e8e-4726-b449-19a779b434bb")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "d40dce09-dc3b-41cc-86bf-c7fd79a7f512")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "fd0596e7-cf29-40bd-b029-a80efe8a912b")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "2bdd6fa2-9100-4fd1-bbae-9d84e356dbfd")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "7f6bce61-2485-48c4-8302-a57afb3d03c1")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 5 "COL3")
+			(uuid "4e1e47aa-dc76-4258-9292-e30aaddb65a6")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 14 "SW4")
+			(uuid "c2c21c66-1c45-4d06-94eb-2cc8ed185e2c")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "a3d57451-43cf-4cea-bf64-1f9cc29376c3")
+		(at 182.615 110.209999 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D18"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "ebd6873b-5ef0-4d5d-afb1-0bbcadd6158b")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "1d24d3c6-377d-4b7a-96f6-c285aad6730e")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "33dfdd3b-c13d-42d6-8287-ab9a150070bb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "4d39b0f2-e23a-4d9b-973f-fa34fcead497")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "406aa15f-8000-4539-98b2-4c5c2db1ef4c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "2d7aa519-1c2e-4d14-b567-8b14684652aa")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "501b7bfc-e7c7-4be6-8ff2-2a74f267991b")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "e5752cfb-65cb-467a-aef4-e6b3d14c13bc")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "6aecb968-f2a6-4d9c-a7c1-bedebacde154")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "7345a5bb-af64-47db-9e88-337c47c08460")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "d4593385-67b0-4eb3-bca2-810dcbb25ff0")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "5c775e4a-c068-4a4a-8562-19ad06611258")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c7b84d19-5878-4c5c-a070-231cca9d868d")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "ad06ddd8-cb13-4267-999d-efbcca325bd3")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "a4b81cb5-25d3-4bff-8284-902dc046094c")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "9acf2349-64e7-4fd1-a482-1a2a0effd4a7")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "1ca73cf2-ae0f-405b-99a1-547dd1a4f1b1")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "f1d2078c-2293-4f8f-a23c-d7deea8c82bf")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "885de637-d296-4459-9043-99b1d6cc4b36")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "9293bfaa-a43c-481b-afc8-b4c5a22f9948")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "2cd3244a-511d-42da-a3d8-0926c02ec9c5")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "248ddaa2-01cc-4c9a-a7ae-a415333c6f92")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "530c45c5-53c8-4485-b7a6-c62e83d55355")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 7 "COL5")
+			(uuid "79f1aa4a-f566-404b-845d-d586711b2607")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 28 "SW18")
+			(uuid "cf7e4c82-ab0a-4c5c-afdb-4718750d6267")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "b147b3ad-70eb-4ead-a0a4-63f201c2d7d6")
+		(at 163.414999 129.409999 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D21"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "ce85ea84-6696-49d9-8ed2-1d0064f7857a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "61d59ca2-27a5-45bd-9522-7486dfb4e3d0")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "7475dbda-d871-404a-8ce0-99eb7ec9c1c8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "255e30ff-6a3e-4e52-b4ef-e1a865b3a9e9")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "774b0520-9df5-44c8-a117-a4ca7c92d9d1")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "b114ef63-1ee7-4e8c-828c-86684215ea8c")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "a3ade318-ca94-4492-aaff-8ebaf277f5aa")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "787061ce-2641-4922-b4b7-906e00c800c4")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "443a2fa7-cdc5-47d5-afaa-09e211d5f758")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "1b6caaf2-695a-4137-a820-05e72f759d77")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "09459a8c-5040-4fcd-b237-287f34d37b09")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "f92b1cfc-6c40-44d1-a092-4829ec56c18f")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "5e2d5f4e-f527-411a-832a-221d2793edd1")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "3b345c88-84c7-41a7-a6e1-2e91eb524d8f")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "e6d0e7cf-e003-4398-a779-d8b4aa7beff5")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "134482be-b4d0-48b4-b769-0544f3493d13")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "59892843-143c-4493-8161-2bde6624a7e7")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "2a46a6f2-0a71-4692-bc3a-2fb2682eb7ce")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "91ffc590-f5ff-47d8-8683-225ef67d87de")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "e6411ac6-2389-44c1-9875-2adcfd7fa9d0")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "318f1235-d6f3-476f-a9c2-8f148841fd25")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "a1e3f44c-b3d5-451d-b9d6-413ca72380c9")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "8bef5acf-bc88-4f80-a079-537071017fc2")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 6 "COL4")
+			(uuid "b880fabe-070f-4132-8d11-d89868f0f24d")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 31 "SW21")
+			(uuid "362836e7-5fb8-4609-a28f-1f5f25f29f25")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "b9140cb2-de83-4746-906c-c00cae4c0552")
+		(at 163.414999 91.01 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D11"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "602d0602-ddd0-4702-930b-f6d250303e34")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "95c75dcf-0d61-4d23-b83a-e755be32f378")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "fb49b798-0804-4718-ba11-ef3fee6b5603")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "77ad74dc-100e-405b-8181-fb25ec9a06af")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "d20f7d68-33d9-413a-a6d7-f6f7e1aeff7b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "8bf74873-0d6d-48d5-8bfd-f417e253e2ee")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "5d099595-a318-4863-8836-89e20f365110")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "c40a8f0c-c148-4e8b-8481-e0c18ae1ce54")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "a9a62190-7149-418c-aa66-3deed568677c")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "42ccd616-0808-4d98-ad02-d86e316541e3")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "14adcc23-8483-4cfc-93f6-ac72a16b9429")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "e66b40b8-69af-42d3-9a86-e7928a5a05f3")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "8e3cf6fb-1d8d-4fa9-89bb-78d55d0e35d4")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "1620ea47-0a40-4c34-8d2a-99e6a5245da0")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "2844a991-ecf5-4192-940a-66f651f8b8a9")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "f902218c-ab42-464f-af6c-f58496900ef2")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "dbc2ff43-825b-4303-96c3-2b987f4e1665")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "8861223b-8c88-408f-b4fb-3d6ccc5a4b2e")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "490c4b9f-663e-43c1-8d7c-63c17f56ae7f")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "989aeea9-672b-4d6a-9126-3581882487b7")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "9258d4c3-b04e-46ed-aa07-fd8f8683ee20")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "7aeb3136-14ac-46d6-92ce-9b75cd8c3d5f")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "0637ca6b-94f8-4523-bfb6-f8819c2a0cba")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 6 "COL4")
+			(uuid "e026a667-acf8-4519-8f60-a3e0c1d14a89")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 21 "SW11")
+			(uuid "0af81315-527d-4884-b30a-833b3f2568c3")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
 	(footprint "503480-2000"
 		(layer "B.Cu")
-		(uuid "bd70f7a4-d224-448e-a592-c0043cd0ec6b")
-		(at 212.6 86.55 -90)
+		(uuid "d812c695-fd53-4b95-b91b-36515f8b9c6d")
+		(at 213.1 84.6 -90)
 		(descr "Molex 503480-2000 Easy-On FBH1 20-position 0.50 mm pitch right-angle dual-contact FFC/FPC connector, LCSC C234192")
 		(tags "Molex 503480-2000 C234192 FFC FPC 20 0.50mm back flip")
 		(property "Reference" "J1"
 			(at 0 4.7 90)
 			(layer "B.SilkS")
-			(uuid "a209de96-375a-42c2-96af-f0487c8f241d")
+			(uuid "1265dd3b-e23c-4c4d-bb8f-6e84f81e608c")
 			(effects
 				(font
 					(size 0.8 0.8)
@@ -20334,7 +25486,7 @@
 		(property "Value" "503480-2000"
 			(at 0 -2.05 90)
 			(layer "B.Fab")
-			(uuid "b78b4fb4-a19e-41cc-8475-821a3b95b069")
+			(uuid "e4579a1e-5b70-48ea-ae1b-154171a39361")
 			(effects
 				(font
 					(size 0.8 0.8)
@@ -20347,7 +25499,7 @@
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "f5113f90-bfbd-42af-83ea-a9243ffd60b7")
+			(uuid "37554e64-e3e7-43e0-abb7-55c22a56fac0")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20360,7 +25512,7 @@
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "d1411359-db17-4ee2-8598-ff0fca327585")
+			(uuid "e3c7410b-e192-49f8-86ce-65a7949ab3d2")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20373,7 +25525,7 @@
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "214e469b-0bc0-4415-853b-60c1f4fe50d6")
+			(uuid "7c456a26-64ac-43ad-8cd2-a674a1f573ec")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20386,7 +25538,7 @@
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "d1faad84-c6b2-4bd9-b6e5-63de5869310d")
+			(uuid "75481d8d-8d9c-4c12-a587-cd330c0a9dfa")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20399,7 +25551,7 @@
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "e6878c8d-734c-41f3-958e-d86a84103154")
+			(uuid "ddc7e5d7-6f3d-4f23-8c35-b4b3bc5bc5f2")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20417,7 +25569,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "16626ed2-ef89-4843-8948-2f4bd8571758")
+			(uuid "eda33654-92da-439f-a86e-b00c8faf6654")
 		)
 		(fp_line
 			(start 5.2 3.1)
@@ -20427,7 +25579,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "4691a074-73a8-47c4-8dfa-a2cfcea7f3c6")
+			(uuid "991a540e-8661-4fba-9fbe-c948898d3c76")
 		)
 		(fp_line
 			(start 5.85 3.1)
@@ -20437,7 +25589,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "4d96f474-0237-4b7f-9675-6402e0b5ac5d")
+			(uuid "cf188b64-38cc-46d9-9f46-b336d8c48291")
 		)
 		(fp_line
 			(start -5.85 1.1)
@@ -20447,7 +25599,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "43f849a4-3df6-4360-b0d4-974f31c82b4c")
+			(uuid "edb2e798-08cf-4fda-9910-09454a4cf2cb")
 		)
 		(fp_line
 			(start -5.85 -0.9)
@@ -20457,7 +25609,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "84bdcc5f-8b6f-4d39-abf3-e670c004bb31")
+			(uuid "88b26b92-c9ab-4eaf-b238-a6972375dadc")
 		)
 		(fp_line
 			(start -5.85 -0.9)
@@ -20467,7 +25619,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "4bd9f8b6-a1ea-48df-b9a0-75e06070cf6b")
+			(uuid "071ead0a-3652-4f88-bb93-d9de2e3e9834")
 		)
 		(fp_line
 			(start 5.85 -0.9)
@@ -20477,7 +25629,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "55515569-7a21-417e-829c-5589b4609684")
+			(uuid "4683242f-1840-46f1-8e1c-cc75cafa8dd4")
 		)
 		(fp_poly
 			(pts
@@ -20489,7 +25641,7 @@
 			)
 			(fill yes)
 			(layer "B.SilkS")
-			(uuid "3c2f24b7-a092-42e4-9151-153e3039e6ea")
+			(uuid "1c3921d4-a76d-42a8-b221-e4769860c998")
 		)
 		(fp_rect
 			(start -6.1 3.35)
@@ -20500,7 +25652,7 @@
 			)
 			(fill no)
 			(layer "B.CrtYd")
-			(uuid "7b21e5bd-a880-4d02-abdc-d53f7c267e9a")
+			(uuid "ad885669-db63-40e9-9177-066ef39534bc")
 		)
 		(fp_rect
 			(start -5.85 3.1)
@@ -20511,7 +25663,7 @@
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "9bbde6f6-9a1d-494c-9aa6-2672d10445ac")
+			(uuid "3d823f9f-a92c-4fb9-8306-aa2d501ee41b")
 		)
 		(fp_poly
 			(pts
@@ -20523,12 +25675,12 @@
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "18270d24-e5f7-4a0c-9422-670c36548dbc")
+			(uuid "047352de-84b6-4c80-a5cd-cf97bd4566d4")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0.15 0.85 90)
+			(at 0 0.85 90)
 			(layer "B.Fab")
-			(uuid "c6ba9b4e-9e08-4b9d-a1aa-950b11a7bd5e")
+			(uuid "024039f2-b7bd-4234-b24d-6cf69f7827c5")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -20540,7 +25692,7 @@
 		(fp_text user "FPC"
 			(at 0 -0.3 90)
 			(layer "B.Fab")
-			(uuid "f1932fd8-12a6-47b4-b885-3b2c87b382db")
+			(uuid "22c0db33-f98a-411d-8f4a-6719104a520d")
 			(effects
 				(font
 					(size 0.5 0.5)
@@ -20553,133 +25705,133 @@
 			(at -4.75 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "9bd5ff4e-8446-4a92-ade8-7997d8c0df32")
+			(uuid "425f186b-f6c9-4fc4-94cf-0948d1c6252e")
 		)
 		(pad "2" smd rect
 			(at -4.25 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "eff23923-3c98-4b91-8beb-a0829e0ba97c")
+			(uuid "60853ca4-cb6e-466b-9d37-8fcef39fcf3a")
 		)
 		(pad "3" smd rect
 			(at -3.75 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "feedabd2-0309-4125-a7dd-1398804ab9da")
+			(uuid "d899bf92-7a06-4998-9165-3e840c791b02")
 		)
 		(pad "4" smd rect
 			(at -3.25 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "efb3b0c7-4935-46cc-a4bb-237df19f0962")
+			(uuid "e2f5180b-d4a3-4242-a112-0776dd13120d")
 		)
 		(pad "5" smd rect
 			(at -2.75 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "b55dc2b3-548a-4f1c-b49a-ae3115ff47ef")
+			(uuid "11d7aa51-7538-42b0-8fc2-b9e0843cd7e9")
 		)
 		(pad "6" smd rect
 			(at -2.25 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "45ed8639-8ee0-442d-96b6-92aa3a25a9b3")
+			(uuid "65f98e1a-a7bd-496f-8528-27a8418aee62")
 		)
 		(pad "7" smd rect
 			(at -1.75 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "7b673853-e002-42af-b979-eaead0352536")
+			(uuid "db623c3b-3b8b-4c7f-a13e-64fde1e9bc22")
 		)
 		(pad "8" smd rect
 			(at -1.25 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "9c80d3e9-4de7-43a6-87eb-b5f5cccaafe0")
+			(uuid "e354490d-6236-49cc-81ea-6051212f3ba2")
 		)
 		(pad "9" smd rect
 			(at -0.75 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "398bba4a-d837-43f4-be94-305a4eaadb02")
+			(uuid "f469f9b8-183e-49af-a4e6-53586a5c4b61")
 		)
 		(pad "10" smd rect
 			(at -0.25 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "4fffbd07-d983-4c3e-9d32-49626d71b71c")
+			(uuid "f870a8b8-8d22-41d5-99c9-feeb5830f81a")
 		)
 		(pad "11" smd rect
 			(at 0.25 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "1afdf76c-b07f-4fdb-8cb2-798e018f6f9a")
+			(uuid "a5ecc5cf-131d-4e5f-9dc9-28d38f25be58")
 		)
 		(pad "12" smd rect
 			(at 0.75 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "36c8f831-63cb-4db4-941e-73c62d0c0c51")
+			(uuid "40159634-dda6-46ea-a450-2980e7546e1c")
 		)
 		(pad "13" smd rect
 			(at 1.25 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "c7bef181-1b74-4e3f-912e-d147278abb4c")
+			(uuid "8399e3bc-7acc-42ed-a4d4-34c84a3f10a5")
 		)
 		(pad "14" smd rect
 			(at 1.75 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "082d6264-9459-4f3b-a3d5-e406f2c0e186")
+			(uuid "2005bcc1-0f8d-4b0d-aad3-048bb2a3129f")
 		)
 		(pad "15" smd rect
 			(at 2.25 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "f1413e59-7556-4d14-910d-ef2e49785266")
+			(uuid "42b41419-184e-47f6-9588-b7205d3eeded")
 		)
 		(pad "16" smd rect
 			(at 2.75 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "dd0d3136-155d-4911-8822-df0ee8d22b54")
+			(uuid "88d2d7a1-d621-4e81-9b53-8e0bf00d1cce")
 		)
 		(pad "17" smd rect
 			(at 3.25 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "65f58d53-17ac-4e18-a10f-8a79592a920d")
+			(uuid "a2f15403-a30e-4664-a043-394cfa2caf00")
 		)
 		(pad "18" smd rect
 			(at 3.75 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "01b6b14f-0712-49ba-9665-57bd7a038bff")
+			(uuid "accfa438-2bce-45f0-b789-17c0f1ec6b0d")
 		)
 		(pad "19" smd rect
 			(at 4.25 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "54095343-4768-4fc3-add1-a1ddd7304603")
+			(uuid "af4cbb24-dc16-4604-89f2-c4fe3c494ec4")
 		)
 		(pad "20" smd rect
 			(at 4.75 2.65 270)
 			(size 0.3 0.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "b8f91ba8-c1e7-4eac-9193-d056278a8ba3")
+			(uuid "d4f5ce44-0381-4f55-9ddf-804a53ed5061")
 		)
 		(pad "MP1" smd rect
 			(at -5.54 0 270)
 			(size 0.3 1)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "1f90f046-1444-4420-a89f-cd0c0f1daab8")
+			(uuid "37b5b1d3-5df5-4e61-9191-6f14b31c07ea")
 		)
 		(pad "MP2" smd rect
 			(at 5.54 0 270)
 			(size 0.3 1)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(uuid "6bd12779-4572-4884-b6c3-9c5dc9cda44a")
+			(uuid "3e30725e-9f7d-4516-aa3b-f6f77e3172e1")
 		)
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/../../../../lib/3d-models/503480-2000.step"
@@ -20691,6 +25843,1146 @@
 			)
 			(rotate
 				(xyz -90 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "e028aabf-20f0-4b24-b0e1-b2e2fb77c4db")
+		(at 105.815 91.01 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D8"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "e645fb07-7d7f-4159-8ff8-dff061cdd5c8")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "5d82702b-5990-489c-b77d-fafdc153ee42")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "e3a765f8-2829-4567-a145-8e40747c56a5")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "43c4f1e6-7ef1-48d7-825e-0720577c1e5d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "b7924a23-3ae1-4f97-bbf4-9219d4b871c2")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "91a6cf8a-62e0-4bab-be6a-cf2948ded216")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "a995ab68-fdfe-483c-a07e-a1b2d86ff023")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "b1761512-4aed-4a86-9245-6d51f9bc20d8")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "29e51284-5b41-49e2-9eb7-1554096c077e")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "df82eac0-2d61-4ee2-a4af-1942cacc624f")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "0e19eac9-6024-48b9-9eae-82d50348219e")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "912b2087-efba-444c-8e29-9b375dd579b9")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c17d8c8e-3781-4baf-9868-60726f121426")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "dce02ffc-854c-4f88-8e89-4b97119c96f3")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "73f313f6-c84f-457a-bee4-70f62da15381")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "07c4d404-6793-4b4b-a81b-a034aec862f9")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "7d314d58-cc56-4bf6-9be1-b33160f2399f")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "ccc001ff-f168-44d3-8b6a-c51f427d4102")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "f4a214d1-a128-4d28-b48a-42095abcb9bb")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "5135498c-0426-44ca-b31a-25b79ae6d53b")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "e95e6106-9abb-45b2-8de0-9ac9382733d7")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "26090196-6311-476a-b556-f29681c292bd")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "587169a1-2d90-47d7-befe-58b757ac658b")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 3 "COL1")
+			(uuid "f56072b3-c28b-41ad-ba11-cfa65f4d66ca")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 18 "SW8")
+			(uuid "5778322f-e92c-4157-8496-811f1445d575")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "e1a9040c-6193-4bbe-9111-a8668eae1cd2")
+		(at 144.215 129.409999 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D20"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "45fc4bcc-b5ab-4a64-97f6-538824f8d481")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "5c33ba74-2ea1-45bc-a823-cf92d711c28d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "5aa420d1-aa72-49cd-b4f0-bd3d10af0af1")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "9a88facb-2971-4498-8e32-c9d2580f3dbb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "e316a021-9c1b-4021-b5b3-d5527a7e5bb6")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "9ddbb699-5541-4f54-a2d8-51a919fbae0c")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "7163a864-79c6-4b3d-9138-2d25cb02272f")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "c61ebf7c-a607-42bc-a56f-a7c6654bd348")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "05b980a5-4177-4f45-a5a4-2a01f6db0175")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "0a6db22a-8916-4c4d-80ab-8ae31b181159")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "29ebf822-ca1f-403f-8e59-562e7cccf819")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "e791a217-9406-436d-bc7d-3bc17e0017a8")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "bdb35517-cfa8-47d1-8a76-4720fc4eccd9")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "994fd6d6-f8d1-45f4-b0ae-54c66940cfc1")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "4676cd31-66de-426e-ad0a-342d57b1e00f")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "0f1e0dad-9cdc-4e43-b94a-d5b32362eb25")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "790f0420-0fbe-4ed5-a999-4468bb065ef6")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "61bea980-ffdd-4827-b7f7-e7d7d7202776")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "76c68823-65e9-4e78-8c8c-78512dbcf95a")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "c69307c6-7626-454b-96bd-219dadfae300")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "002b25b0-397f-44fd-8cd6-5af3f5d21711")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "d2c4bce5-3fce-4708-b9b8-9ca058ccc2d6")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "4293acc6-b462-4ee6-8803-1989b4679fdc")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 5 "COL3")
+			(uuid "0401a17e-b2c8-4938-9c97-c7f3c5e0496e")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 30 "SW20")
+			(uuid "a2e03027-1d8c-473c-a8eb-b6ddfcb064e4")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "ee04cc74-4929-4d26-b0d2-226d3c7370c4")
+		(at 86.615 71.81 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D1"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "f7677555-d7e0-4877-9cca-6da9bb8e9bb9")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "711b6409-9901-4aa9-aa15-5c217a6cce44")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "9a49028c-b88c-4d74-8960-a715d2ec846b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "003a707f-5428-46cc-b835-7f92d97d47c4")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "769b51a7-9124-4db2-a85e-af3b30ac969b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "0ab82a8c-3f6e-4ff8-be57-8a342cc00433")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "6b9865b4-47e2-4a52-b7d3-d138efde593c")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "8852d0fb-0ebb-4cbb-86e9-33997e4c3b7f")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "3a4385c6-c240-4dfe-98eb-e59bbf6e731d")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "a802ea68-dea3-4515-9bc2-5fcd5b349cfe")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "d5441301-8ae1-4837-aa05-bdbc33b076bd")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "1fb98be7-dae7-405f-a108-e9f9c9b2e78c")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "de8639fd-b951-499a-9201-a0d7162397f5")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "04c416ff-c45f-4790-ab9c-3758000eca3b")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "637de30d-a281-4c7b-8037-9b69bf036440")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "a9eb6d1d-bc40-43c9-8402-2150f10e6267")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "e7daaa24-bd6e-4cee-9fb0-69482d54427c")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "dd97dfaf-a6ec-4a16-bf8f-07388785454c")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "a59cc26a-cbd5-4d9a-a7cf-775d50d0a44d")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "45646c8f-76e9-48f9-a15e-da1299b8723a")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "0d179868-e835-4237-a54f-1ee83f80a200")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "d3c67d56-82ee-468c-a63c-db6b9019aecb")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "a8c150fa-a7e4-4738-b063-1ce7aaf51c20")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 2 "COL0")
+			(uuid "67bcd0a0-0a97-44b4-acc4-5d9645f85c54")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 11 "SW1")
+			(uuid "ac757ed1-0c1c-415f-a065-97060e4d1d23")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "1N4148WS"
+		(layer "B.Cu")
+		(uuid "f39659dc-43c5-4b51-9b00-a03d35d51317")
+		(at 86.615 110.209999 90)
+		(descr "1N4148WS high-speed switching diode, SOD-323, LCSC C108805")
+		(tags "diode switching SOD-323 1N4148WS")
+		(property "Reference" "D13"
+			(at 0 1.85 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "67e6bdac-affc-4a0f-a811-db388f88bbe2")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1N4148WS"
+			(at 0.1 -1.9 270)
+			(layer "B.Fab")
+			(uuid "22b1883b-dda3-4556-8ce7-654bb8c75109")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" "../../datasheets/1N4148WS.pdf"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "c20c6581-a222-4609-ab31-24d3d07aa3f5")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "100 V, 300 mA high-speed switching diode in SOD-323 package"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "dcfbb1ae-45c0-438d-b674-2d839a711b7f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part" "C108805"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "5a331e56-f78e-4372-9c18-3f5ac67792f4")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(attr smd)
+		(fp_line
+			(start -1.61 -0.85)
+			(end 1.05 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "e1f7461a-3516-4157-b5c6-e1545b605f22")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end -1.61 -0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "99758bec-6816-4621-98ff-a0d8ae25b315")
+		)
+		(fp_line
+			(start -1.61 0.85)
+			(end 1.05 0.85)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "771f6833-1c27-4f69-9005-2e84df240615")
+		)
+		(fp_line
+			(start -1.6 -0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "555efcdf-076f-4f23-8156-2a6c92e7e614")
+		)
+		(fp_line
+			(start 1.6 0.95)
+			(end 1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "63d3377b-c5ad-450b-8e8b-f1b64473e855")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end -1.6 -0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "70c7ce5d-07b1-4b85-938f-5b1a0e299553")
+		)
+		(fp_line
+			(start -1.6 0.95)
+			(end 1.6 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "8d95b8a2-878b-49c5-b63c-7af28053877d")
+		)
+		(fp_line
+			(start 0.9 -0.7)
+			(end -0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "f48414a5-bbe7-4981-84e6-f5a4e6197924")
+		)
+		(fp_line
+			(start -0.9 -0.7)
+			(end -0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "30a23475-cba2-4c98-a78c-3a612d5031cc")
+		)
+		(fp_line
+			(start 0.2 -0.35)
+			(end -0.3 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "41ae4a46-53af-457c-9d97-c5ac88f14ed6")
+		)
+		(fp_line
+			(start 0.2 0)
+			(end 0.45 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "fd98ed4e-f126-4e53-95f4-f8d7f3539545")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end -0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "2598bdf1-28c2-4856-8ceb-473dfac19efe")
+		)
+		(fp_line
+			(start -0.3 0)
+			(end 0.2 0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "a2fb3578-6ac0-48ca-91df-8c06f1eab75f")
+		)
+		(fp_line
+			(start 0.2 0.35)
+			(end 0.2 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "9c261a78-2cb6-4395-9c88-a1a243a68d6f")
+		)
+		(fp_line
+			(start -0.3 0.35)
+			(end -0.3 -0.35)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "eac67260-f759-4595-8c42-53a6f401a745")
+		)
+		(fp_line
+			(start 0.9 0.7)
+			(end 0.9 -0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "0e3211bb-7d33-448b-bee1-b3d75b2069d1")
+		)
+		(fp_line
+			(start -0.9 0.7)
+			(end 0.9 0.7)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.Fab")
+			(uuid "05379cc8-ff19-4dd0-aef1-97aad6743a11")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 1.85 270)
+			(layer "B.Fab")
+			(uuid "122e9fd1-48e4-4e1b-a697-e4bc45354c38")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 2 "COL0")
+			(uuid "eece0573-bfad-4654-8d59-e363f38abe4b")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0 90)
+			(size 0.6 0.45)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net 23 "SW13")
+			(uuid "5f53452a-2ff5-409b-9ff9-bfee38cd7eb3")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-323.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
 			)
 		)
 	)

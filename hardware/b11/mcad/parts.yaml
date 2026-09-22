@@ -19,11 +19,11 @@ parts:
     formats: [step, stl]
     build: common
 
-  - part_number: ETZ-B11-LGB-L    # Left logic board PCB
+  - part_number: ETZ-B11-LLB      # Left logic board PCB
     formats: [step, stl]
     build: common
 
-  - part_number: ETZ-B11-LGB-R    # Right logic board PCB
+  - part_number: ETZ-B11-RLB      # Right logic board PCB
     formats: [step, stl]
     build: common
 

@@ -1,0 +1,19 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "d50af705-408d-42c2-a2cf-33f9db13ccf1")
+	(paper "A2")
+	(title_block
+		(title "ETZ-B11-LB - Logic Board")
+		(rev "1")
+		(company "etzee")
+	)
+	(lib_symbols)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

@@ -13,11 +13,12 @@ from config import ECAD_ROOT, LIB_ROOT
 COMPONENTS_LIB = LIB_ROOT / "components.pretty"
 FOOTPRINT_NAME = "503480-2000"
 
-# The two PCBs overlap in the assembly. Keep the connectors on a common X axis
-# near their lower edges while the final cable path is being established.
+# Connector centers are dimensioned from the board top edges in MCAD. The
+# rotations keep the long connector axes parallel to the adjacent board edges
+# and put the signal pads toward the board interiors.
 PLACEMENTS = (
-    (ECAD_ROOT / "KS-33" / "ETZ-B11-LSC-6-KS-33.kicad_pcb", "J1", 151.5, 143.8, 0.0, True),
-    (ECAD_ROOT / "common" / "ETZ-B11-LGB-L.kicad_pcb", "J3", 151.5, 148.2, 0.0, False),
+    (ECAD_ROOT / "KS-33" / "ETZ-B11-LSC-6-KS-33.kicad_pcb", "J1", 213.1, 84.6, 270.0, True),
+    (ECAD_ROOT / "common" / "ETZ-B11-LLB.kicad_pcb", "J3", 139.15, 87.5, 90.0, True),
 )
 
 
@@ -45,9 +46,9 @@ def _place_single(index, dry_run=False):
 
     board.Add(library_fp)
     library_fp.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(x_mm), pcbnew.FromMM(y_mm)))
-    library_fp.SetOrientationDegrees(rotation)
     if on_back:
         library_fp.Flip(library_fp.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
+    library_fp.SetOrientationDegrees(rotation)
     library_fp.SetReference(ref)
     library_fp.SetValue(FOOTPRINT_NAME)
     if schematic_path is not None:
