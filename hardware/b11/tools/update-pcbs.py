@@ -82,6 +82,26 @@ def main():
             str(PLACEMENT_DIR / "place-switch-leds.py"),
             *dry_run,
         ])
+        run_step("Place switch matrix diodes", [
+            sys.executable,
+            str(PLACEMENT_DIR / "place-switch-diodes.py"),
+            *dry_run,
+        ])
+        run_step("Place carrier backlight power stage", [
+            sys.executable,
+            str(PLACEMENT_DIR / "place-carrier-backlight.py"),
+            *dry_run,
+        ])
+        run_step("Apply carrier case-contact keepouts", [
+            sys.executable,
+            str(PLACEMENT_DIR / "apply-carrier-case-keepouts.py"),
+            *dry_run,
+        ])
+        run_step("Synchronize carrier schematic nets", [
+            sys.executable,
+            str(PLACEMENT_DIR / "sync-carrier-nets.py"),
+            *dry_run,
+        ])
         run_step("Place display LEDs", [
             sys.executable,
             str(PLACEMENT_DIR / "place-display-leds.py"),

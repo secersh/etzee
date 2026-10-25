@@ -39,57 +39,77 @@ BOARD_PLACEMENTS = (
 )
 
 
-def place(dry_run=False):
+def _place_single(index, dry_run=False):
     import pcbnew
     from common import init_swig
 
+    board_path, edge_x_mm, placements = BOARD_PLACEMENTS[index]
     plugin = init_swig()
-    for board_path, edge_x_mm, placements in BOARD_PLACEMENTS:
-        footprints = [
-            plugin.FootprintLoad(str(COMPONENTS_LIB.resolve()), footprint_name)
-            for _, footprint_name, _, _ in placements
-        ]
-        if any(fp is None for fp in footprints):
-            print("error: failed to load a CN-HY04C-01D footprint", file=sys.stderr)
-            sys.exit(1)
+    footprints = [
+        plugin.FootprintLoad(str(COMPONENTS_LIB.resolve()), footprint_name)
+        for _, footprint_name, _, _ in placements
+    ]
+    if any(fp is None for fp in footprints):
+        print("error: failed to load a CN-HY04C-01D footprint", file=sys.stderr)
+        sys.exit(1)
 
-        board = pcbnew.LoadBoard(str(board_path))
-        existing = {fp.GetReference(): fp for fp in board.GetFootprints()}
-        placed = 0
-        updated = 0
+    board = pcbnew.LoadBoard(str(board_path))
+    existing = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    placed = 0
+    updated = 0
 
-        for (ref, footprint_name, y_mm, rotation), library_fp in zip(placements, footprints):
-            fp = existing.get(ref)
-            if fp is None:
-                fp = library_fp
-                board.Add(fp)
-                placed += 1
-            else:
-                pad_nets = {pad.GetNumber(): pad.GetNet() for pad in fp.Pads() if pad.GetNumber()}
-                schematic_path = fp.GetPath()
-                board.Remove(fp)
-                fp = library_fp
-                board.Add(fp)
-                fp.SetPath(schematic_path)
-                for pad in fp.Pads():
-                    net = pad_nets.get(pad.GetNumber())
-                    if net is not None:
-                        pad.SetNet(net)
-                updated += 1
-
-            fp.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(edge_x_mm), pcbnew.FromMM(y_mm)))
-            fp.SetOrientationDegrees(rotation)
-            fp.SetReference(ref)
-            fp.SetValue(footprint_name)
-
-        if not dry_run:
-            board.Save(str(board_path))
-
-        if dry_run:
-            print(f"  {board_path.name}  ({placed} would place, {updated} would update)")
+    for (ref, footprint_name, y_mm, rotation), library_fp in zip(placements, footprints):
+        fp = existing.get(ref)
+        if fp is None:
+            fp = library_fp
+            board.Add(fp)
+            placed += 1
         else:
-            print(f"  {board_path.name}  ({placed} placed, {updated} updated)")
+            pad_nets = {pad.GetNumber(): pad.GetNet() for pad in fp.Pads() if pad.GetNumber()}
+            schematic_path = fp.GetPath()
+            board.Remove(fp)
+            fp = library_fp
+            board.Add(fp)
+            fp.SetPath(schematic_path)
+            for pad in fp.Pads():
+                net = pad_nets.get(pad.GetNumber())
+                if net is not None:
+                    pad.SetNet(net)
+            updated += 1
+
+        fp.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(edge_x_mm), pcbnew.FromMM(y_mm)))
+        fp.SetOrientationDegrees(rotation)
+        fp.SetReference(ref)
+        fp.SetValue(footprint_name)
+
+    if not dry_run:
+        board.Save(str(board_path))
+
+    if dry_run:
+        print(f"  {board_path.name}  ({placed} would place, {updated} would update)")
+    else:
+        print(f"  {board_path.name}  ({placed} placed, {updated} updated)")
+
+
+def place(dry_run=False):
+    import subprocess
+
+    for index in range(len(BOARD_PLACEMENTS)):
+        result = subprocess.run(
+            [sys.executable, __file__, "--single", str(index)]
+            + (["--dry-run"] if dry_run else []),
+            capture_output=True,
+            text=True,
+        )
+        sys.stdout.write(result.stdout)
+        if result.returncode != 0:
+            sys.stderr.write(result.stderr)
+            sys.exit(result.returncode)
 
 
 if __name__ == "__main__":
-    place(dry_run="--dry-run" in sys.argv)
+    dry_run = "--dry-run" in sys.argv
+    if "--single" in sys.argv:
+        _place_single(int(sys.argv[sys.argv.index("--single") + 1]), dry_run=dry_run)
+    else:
+        place(dry_run=dry_run)

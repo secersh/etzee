@@ -36,7 +36,7 @@ DESIGN_RULES = """\
 # ── Board edge ───────────────────────────────────────────────────────────────
 (rule "JLCPCB Copper to Board Edge"
    (constraint edge_clearance (min 0.3mm))
-   (condition "A.Reference != 'J1'")
+   (condition "!(A.memberOfFootprint('J1') || B.memberOfFootprint('J1'))")
 )
 
 # ── Silkscreen ───────────────────────────────────────────────────────────────

@@ -29,10 +29,17 @@
 # ── Board edge ───────────────────────────────────────────────────────────────
 (rule "JLCPCB Copper to Board Edge"
    (constraint edge_clearance (min 0.3mm))
+   (condition "!(A.memberOfFootprint('J1') || B.memberOfFootprint('J1'))")
 )
 
 # ── Silkscreen ───────────────────────────────────────────────────────────────
 (rule "JLCPCB Min Silkscreen Width"
    (constraint track_width (min 0.153mm))
    (condition "A.Type == 'Text' || A.Type == 'GraphicShape'")
+)
+
+# Mechanical hole positions are fixed by the KS-33 switch specification.
+(rule "KS-33 Internal Mechanical Hole Spacing"
+   (constraint hole_to_hole (min 0.48mm))
+   (condition "A.memberOfFootprint('SW*') && B.memberOfFootprint('SW*')")
 )

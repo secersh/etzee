@@ -36,6 +36,7 @@ fp-info-cache
 *.drl
 *.dxf
 !hardware/b11/mcad/pcb-outlines/**/*.dxf
+!hardware/b11/mcad/pcb-keepouts/**/*.dxf
 gerbers/
 fab/
 

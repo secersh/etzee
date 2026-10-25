@@ -22,6 +22,21 @@ TARGET = ECAD_ROOT / "KS-33" / "ETZ-B11-LSC-6-KS-33.kicad_pcb"
 DIODE_OFFSET_X_MM = -3.035
 DIODE_ROTATION_DEG = 90.0
 
+# Case-contact keepouts constrain these parts on the left six-column carrier.
+# Values are final translations from the regular diode lane in millimetres.
+DIODE_ADJUSTMENTS_MM = {
+    "D2": (-1.5, -0.5),
+    "D3": (-1.5, 0.0),
+    "D4": (-1.5, 0.0),
+    "D8": (-1.5, 0.0),
+    "D9": (-1.5, -11.0),
+    "D10": (2.5, 3.0),
+    "D14": (-1.5, -0.5),
+    "D15": (2.5, 3.0),
+    "D16": (-1.5, 0.0),
+    "D20": (-1.5, 0.0),
+}
+
 
 def _reference_number(reference):
     match = re.fullmatch(r"SW(\d+)", reference)
@@ -40,6 +55,10 @@ def _find_or_add_net(board, name):
 
 def _pad_by_number(footprint, number):
     return next((pad for pad in footprint.Pads() if pad.GetNumber() == number), None)
+
+
+def _is_column_net(name):
+    return name.lstrip("/").startswith("COL")
 
 
 def _sync_models(footprint, library_footprint):
@@ -80,14 +99,14 @@ def place(pcb_path, dry_run=False):
             raise RuntimeError(f"{switch.GetReference()} has no pad 2")
 
         diode = by_ref.get(diode_ref)
-        if switch_pad_2.GetNetname().startswith("COL"):
+        if _is_column_net(switch_pad_2.GetNetname()):
             column_net_name = switch_pad_2.GetNetname()
         elif diode is not None:
             diode_pad_1 = _pad_by_number(diode, "1")
             column_net_name = diode_pad_1.GetNetname() if diode_pad_1 is not None else ""
         else:
             column_net_name = ""
-        if not column_net_name.startswith("COL"):
+        if not _is_column_net(column_net_name):
             raise RuntimeError(f"cannot determine column net for {switch.GetReference()}")
 
         column_net = _find_or_add_net(board, column_net_name)
@@ -122,6 +141,12 @@ def place(pcb_path, dry_run=False):
         if diode_pad_2 is None:
             raise RuntimeError(f"{diode_ref} has no pad 2")
         diode.SetPosition(diode.GetPosition() + desired_pad_2 - diode_pad_2.GetPosition())
+
+        adjust_x, adjust_y = DIODE_ADJUSTMENTS_MM.get(diode_ref, (0.0, 0.0))
+        diode.SetPosition(
+            diode.GetPosition()
+            + pcbnew.VECTOR2I(pcbnew.FromMM(adjust_x), pcbnew.FromMM(adjust_y))
+        )
 
         diode_pad_1 = _pad_by_number(diode, "1")
         diode_pad_2 = _pad_by_number(diode, "2")

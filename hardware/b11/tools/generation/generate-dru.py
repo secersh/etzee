@@ -12,8 +12,20 @@ REPO_ROOT = Path(__file__).parents[4]
 sys.path.insert(0, str(REPO_ROOT))
 sys.path.insert(0, str(TOOLS_DIR))
 
-from config import ECAD_ROOT, SWITCH_FAMILIES
+from config import DEFAULT_PCB_MANUFACTURER, ECAD_ROOT, PCB_MANUFACTURERS, SWITCH_FAMILIES
 from hardware.tools import manufacturers
+
+
+BOARD_RULES = {
+    "ETZ-B11-LSC-6-KS-33": """
+
+# Mechanical hole positions are fixed by the KS-33 switch specification.
+(rule "KS-33 Internal Mechanical Hole Spacing"
+   (constraint hole_to_hole (min 0.48mm))
+   (condition "A.memberOfFootprint('SW*') && B.memberOfFootprint('SW*')")
+)
+""",
+}
 
 
 def targets():
@@ -49,9 +61,19 @@ def main():
 
     for pcb_path in pcb_paths:
         dru_path = pcb_path.with_suffix(".kicad_dru")
-        changed = not dru_path.exists() or dru_path.read_text() != manufacturer.DESIGN_RULES
+        assigned_manufacturer = PCB_MANUFACTURERS.get(
+            pcb_path.stem, DEFAULT_PCB_MANUFACTURER
+        )
+        if assigned_manufacturer != args.manufacturer:
+            print(f"  {'skip':<11} {dru_path.name}  (uses {assigned_manufacturer})")
+            continue
+
+        design_rules = (
+            manufacturer.DESIGN_RULES.rstrip() + BOARD_RULES.get(pcb_path.stem, "")
+        ).rstrip() + "\n"
+        changed = not dru_path.exists() or dru_path.read_text() != design_rules
         if changed and not args.dry_run:
-            dru_path.write_text(manufacturer.DESIGN_RULES)
+            dru_path.write_text(design_rules)
 
         if args.dry_run:
             status = "would write" if changed else "same"

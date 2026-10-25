@@ -21,7 +21,15 @@ except ImportError:
     sys.exit(1)
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from config import COMMON_PCBS, ECAD_ROOT, GRID_ORIGINS, MCAD_ROOT, PCB_STACKUP, SWITCH_FAMILIES
+from config import (
+    COMMON_PCBS,
+    ECAD_ROOT,
+    GRID_ORIGINS,
+    MCAD_ROOT,
+    PCB_PROPERTIES,
+    PCB_STACKUP,
+    SWITCH_FAMILIES,
+)
 
 EDGE_WIDTH_MM = 0.05
 A4_W_MM = 297.0
@@ -154,6 +162,7 @@ def generate_board(dxf_path, pcb_path, switch_family, board_code, common_part=No
     board = pcbnew.NewBoard(str(pcb_path))
     board.SetTitleBlock(pcbnew.TITLE_BLOCK())
     board.GetDesignSettings().SetBoardThickness(mm(total_thickness))
+    board.SetProperties(PCB_PROPERTIES.get(pcb_path.stem, {}))
     if common_part == "ETZ-B11-DSP":
         board.GetDesignSettings().m_CopperEdgeClearance = mm(0.001)
 

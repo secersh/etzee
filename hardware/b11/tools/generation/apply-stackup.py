@@ -13,7 +13,15 @@ REPO_ROOT = Path(__file__).parents[4]
 sys.path.insert(0, str(REPO_ROOT))
 sys.path.insert(0, str(TOOLS_DIR))
 
-from config import COMMON_PCBS, ECAD_ROOT, PCB_STACKUP, SWITCH_FAMILIES, FAMILY_PATTERN
+from config import (
+    COMMON_PCBS,
+    DEFAULT_PCB_MANUFACTURER,
+    ECAD_ROOT,
+    FAMILY_PATTERN,
+    PCB_MANUFACTURERS,
+    PCB_STACKUP,
+    SWITCH_FAMILIES,
+)
 from hardware.tools import manufacturers
 from hardware.tools.common.stackup import apply_stackup_text
 
@@ -62,6 +70,16 @@ def main():
     print(f"{mode} {manufacturer.NAME} stackup on {len(pcb_paths)} boards...\n")
 
     for pcb_path in pcb_paths:
+        assigned_manufacturer = PCB_MANUFACTURERS.get(
+            pcb_path.stem, DEFAULT_PCB_MANUFACTURER
+        )
+        if assigned_manufacturer != args.manufacturer:
+            print(
+                f"  {'skip':<12} {pcb_path.name}  "
+                f"(uses {assigned_manufacturer})"
+            )
+            continue
+
         total_thickness = thickness_for(pcb_path)
         if total_thickness is None:
             print(f"  skip         {pcb_path.name}  (cannot parse filename)")

@@ -56,6 +56,18 @@ COMMON_PCBS = {
     },
 }
 
+# Persistent metadata restored when a generated PCB is rebuilt from its outline.
+PCB_PROPERTIES = {
+    "ETZ-B11-LSC-6-KS-33": {
+        "MAX_B_CU_COMPONENT_HEIGHT": "4.8mm",
+    },
+}
+
+DEFAULT_PCB_MANUFACTURER = "jlcpcb"
+PCB_MANUFACTURERS = {
+    "ETZ-B11-DSP": "pcbway_hdi",
+}
+
 # Derived stackup table used by apply-stackup.py.
 # (family, board_type) → (total_mm, core_mm, epsilon_r)
 # Core = total - 2×35µm copper - 2×15.24µm soldermask.
