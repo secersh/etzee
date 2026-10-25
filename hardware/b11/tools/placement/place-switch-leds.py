@@ -7,7 +7,8 @@ Place per-key 6028 reverse-mount LED footprints on all B11 carrier PCBs.
 Targets: hardware/b11/ecad/{MX,CHOC-V2,KS-33}/ETZ-B11-*SC-*.kicad_pcb
 Each LED is placed LED_OFFSET_Y mm south of its corresponding switch center.
 
-Non-destructive: refs already present on the board are skipped.
+Existing footprints keep their positions and are rotated to the side-specific
+orientation that puts each two-LED branch's series pads toward each other.
 Each board is processed in a subprocess for a clean pcbnew SWIG context.
 
 Run with KiCad's Python interpreter.
@@ -29,7 +30,7 @@ LED_OFFSET_Y = 5.0   # mm south of switch center
 def _place_single(pcb_path_str, dry_run=False):
     """Called in a fresh subprocess — pcbnew SWIG context is clean."""
     import pcbnew
-    from common import init_swig, board_meta, existing_refs, layout, grid_origin_mm
+    from common import init_swig, board_meta, layout, grid_origin_mm
 
     pcb_path = Path(pcb_path_str)
     stem     = pcb_path.stem
@@ -50,17 +51,23 @@ def _place_single(pcb_path_str, dry_run=False):
                   for _ in positions]
 
     board   = pcbnew.LoadBoard(str(pcb_path))
-    present = existing_refs(board)
+    existing = {fp.GetReference(): fp for fp in board.GetFootprints()}
     go_x, go_y = grid_origin_mm(board)
+    rotation = 180.0 if side == "L" else 0.0
 
     def mm(v):
         return pcbnew.FromMM(v)
 
     placed = 0
+    updated = 0
 
     for i, (row, col) in enumerate(positions):
         ref = f"LED{i + 1}"
-        if ref in present:
+        existing_fp = existing.get(ref)
+        if existing_fp is not None:
+            if existing_fp.GetOrientation().AsDegrees() != rotation:
+                existing_fp.SetOrientationDegrees(rotation)
+                updated += 1
             continue
 
         fp = footprints[i]
@@ -68,7 +75,7 @@ def _place_single(pcb_path_str, dry_run=False):
         y  = go_y + row * SWITCH_PITCH_MM + LED_OFFSET_Y
 
         fp.SetPosition(pcbnew.VECTOR2I(mm(x), mm(y)))
-        fp.SetOrientationDegrees(0)
+        fp.SetOrientationDegrees(rotation)
         fp.SetReference(ref)
         fp.SetValue(footprint_name)
         board.Add(fp)
@@ -76,9 +83,12 @@ def _place_single(pcb_path_str, dry_run=False):
 
     if not dry_run:
         board.Save(str(pcb_path))
-    skipped = len(positions) - placed
-    status = "would place" if dry_run else "placed"
-    print(f"  {pcb_path.name}  ({placed} {status}, {skipped} skipped, {side}-side, {n_cols}-col)")
+    unchanged = len(positions) - placed - updated
+    action = "would place/update" if dry_run else "placed/updated"
+    print(
+        f"  {pcb_path.name}  ({placed}/{updated} {action}, {unchanged} unchanged, "
+        f"{side}-side, {n_cols}-col, {rotation:g} deg)"
+    )
 
 
 def main(dry_run=False):

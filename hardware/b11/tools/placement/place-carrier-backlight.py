@@ -30,16 +30,13 @@ PLACEMENTS = (
 
 BALLAST_FOOTPRINT = "R_0402_1005Metric"
 BALLAST_VALUE = "220R 1%"
-BALLAST_OFFSET_Y_MM = 4.0
-BALLAST_ADJUSTMENTS_MM = {
-    "R2": (-11.0, 3.0),
-    "R5": (-11.0, -1.5),
-    "R8": (0.0, 2.5),
-}
+BALLAST_OFFSET_X_MM = 4.3
+BALLAST_OFFSET_Y_MM = 0.5
+BALLAST_ROTATION_DEG = -90.0
 
 
 def _ballast_placements(board):
-    """Place each resistor below the even LED that ends its series branch."""
+    """Place each resistor beside the even LED that ends its series branch."""
     by_ref = {fp.GetReference(): fp for fp in board.GetFootprints()}
     placements = []
     for branch in range(1, 12):
@@ -49,16 +46,15 @@ def _ballast_placements(board):
         if led is None:
             raise RuntimeError(f"cannot place R{branch + 1}: {led_ref} is missing")
         position = led.GetPosition()
-        adjust_x, adjust_y = BALLAST_ADJUSTMENTS_MM.get(resistor_ref, (0.0, 0.0))
         placements.append(
             (
                 resistor_ref,
                 BALLAST_VALUE,
                 LIB_ROOT / "components.pretty",
                 BALLAST_FOOTPRINT,
-                position.x / 1_000_000 + adjust_x,
-                position.y / 1_000_000 + BALLAST_OFFSET_Y_MM + adjust_y,
-                90.0,
+                position.x / 1_000_000 + BALLAST_OFFSET_X_MM,
+                position.y / 1_000_000 + BALLAST_OFFSET_Y_MM,
+                BALLAST_ROTATION_DEG,
             )
         )
     return placements

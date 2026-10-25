@@ -16,25 +16,18 @@ COMPONENTS_LIB = LIB_ROOT / "components.pretty"
 FOOTPRINT_NAME = "1N4148WS"
 TARGET = ECAD_ROOT / "KS-33" / "ETZ-B11-LSC-6-KS-33.kicad_pcb"
 
-# The KS-33 socket's column-side pad sits close to the left edge of the
-# footprint. This offset centers a vertical SOD-323 in the adjacent component
-# lane while leaving the socket courtyards clear.
-DIODE_OFFSET_X_MM = -3.035
-DIODE_ROTATION_DEG = 90.0
+# Uniform upper-left placement relative to each KS-33 switch center. This keeps
+# all SOD-323 courtyards outside the switch and case-contact keepouts, including
+# the rounded board edge beside D1.
+DIODE_OFFSET_X_MM = -7.7
+DIODE_OFFSET_Y_MM = -6.9
+DIODE_ROTATION_DEG = -90.0
+PLACEMENT_GRID_MM = 0.25
+ROUTING_LANE_ADJUST_Y_MM = -0.25
 
-# Case-contact keepouts constrain these parts on the left six-column carrier.
-# Values are final translations from the regular diode lane in millimetres.
+# D1 follows the same lane but moves inward at the rounded board corner.
 DIODE_ADJUSTMENTS_MM = {
-    "D2": (-1.5, -0.5),
-    "D3": (-1.5, 0.0),
-    "D4": (-1.5, 0.0),
-    "D8": (-1.5, 0.0),
-    "D9": (-1.5, -11.0),
-    "D10": (2.5, 3.0),
-    "D14": (-1.5, -0.5),
-    "D15": (2.5, 3.0),
-    "D16": (-1.5, 0.0),
-    "D20": (-1.5, 0.0),
+    "D1": (-0.05, 1.15),
 }
 
 
@@ -61,6 +54,12 @@ def _is_column_net(name):
     return name.lstrip("/").startswith("COL")
 
 
+def _snap_coordinate(value, origin, step):
+    delta = value - origin
+    steps = (abs(delta) + step // 2) // step
+    return origin + (steps * step if delta >= 0 else -steps * step)
+
+
 def _sync_models(footprint, library_footprint):
     models = footprint.Models()
     models.clear()
@@ -79,6 +78,8 @@ def place(pcb_path, dry_run=False):
         raise RuntimeError(f"failed to load {FOOTPRINT_NAME}")
 
     board = pcbnew.LoadBoard(str(pcb_path))
+    grid_origin = board.GetDesignSettings().GetGridOrigin()
+    placement_grid = pcbnew.FromMM(PLACEMENT_GRID_MM)
     by_ref = {fp.GetReference(): fp for fp in board.GetFootprints()}
     switches = sorted(
         (fp for fp in board.GetFootprints() if _reference_number(fp.GetReference()) is not None),
@@ -128,24 +129,21 @@ def place(pcb_path, dry_run=False):
         _sync_models(diode, library_fp)
         diode.Reference().SetVisible(False)
 
-        diode.SetPosition(switch_pad_2.GetPosition())
+        switch_position = switch.GetPosition()
+        diode.SetPosition(switch_position)
         if diode.GetLayer() != pcbnew.B_Cu:
             diode.Flip(diode.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
         diode.SetOrientationDegrees(DIODE_ROTATION_DEG)
-
-        desired_pad_2 = pcbnew.VECTOR2I(
-            switch_pad_2.GetPosition().x + pcbnew.FromMM(DIODE_OFFSET_X_MM),
-            switch_pad_2.GetPosition().y,
-        )
-        diode_pad_2 = _pad_by_number(diode, "2")
-        if diode_pad_2 is None:
-            raise RuntimeError(f"{diode_ref} has no pad 2")
-        diode.SetPosition(diode.GetPosition() + desired_pad_2 - diode_pad_2.GetPosition())
-
         adjust_x, adjust_y = DIODE_ADJUSTMENTS_MM.get(diode_ref, (0.0, 0.0))
+        if number != 1:
+            adjust_y += ROUTING_LANE_ADJUST_Y_MM
+        desired_x = switch_position.x + pcbnew.FromMM(DIODE_OFFSET_X_MM + adjust_x)
+        desired_y = switch_position.y + pcbnew.FromMM(DIODE_OFFSET_Y_MM + adjust_y)
         diode.SetPosition(
-            diode.GetPosition()
-            + pcbnew.VECTOR2I(pcbnew.FromMM(adjust_x), pcbnew.FromMM(adjust_y))
+            pcbnew.VECTOR2I(
+                _snap_coordinate(desired_x, grid_origin.x, placement_grid),
+                _snap_coordinate(desired_y, grid_origin.y, placement_grid),
+            )
         )
 
         diode_pad_1 = _pad_by_number(diode, "1")
