@@ -5091,7 +5091,7 @@
 )
 		(uuid "58d81659-9e14-5a78-8b20-1eff5273b034")
 	)
-	(label "GND"
+	(label "VBAT"
 		(at 215.9 35.56 0)
 		(effects
 			(font
@@ -5102,7 +5102,7 @@
 )
 		(uuid "667b64af-e467-550d-bd9a-425b643f670a")
 	)
-	(label "VBAT"
+	(label "GND"
 		(at 215.9 40.64 0)
 		(effects
 			(font

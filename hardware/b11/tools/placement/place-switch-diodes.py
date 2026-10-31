@@ -25,9 +25,13 @@ DIODE_ROTATION_DEG = -90.0
 PLACEMENT_GRID_MM = 0.25
 ROUTING_LANE_ADJUST_Y_MM = -0.25
 
-# D1 follows the same lane but moves inward at the rounded board corner.
+# D1 sits below SW1 pad 2, clear of the rounded board corner. It is rotated so
+# its SW-side pad faces the switch and its column-side pad faces the escape via.
 DIODE_ADJUSTMENTS_MM = {
-    "D1": (-0.05, 1.15),
+    "D1": (-0.05, 8.40),
+}
+DIODE_ROTATIONS_DEG = {
+    "D1": 90.0,
 }
 
 
@@ -133,7 +137,7 @@ def place(pcb_path, dry_run=False):
         diode.SetPosition(switch_position)
         if diode.GetLayer() != pcbnew.B_Cu:
             diode.Flip(diode.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
-        diode.SetOrientationDegrees(DIODE_ROTATION_DEG)
+        diode.SetOrientationDegrees(DIODE_ROTATIONS_DEG.get(diode_ref, DIODE_ROTATION_DEG))
         adjust_x, adjust_y = DIODE_ADJUSTMENTS_MM.get(diode_ref, (0.0, 0.0))
         if number != 1:
             adjust_y += ROUTING_LANE_ADJUST_Y_MM

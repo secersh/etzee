@@ -3,6 +3,7 @@
 
 """Place the switch-carrier backlight power stage and branch resistors."""
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -17,21 +18,21 @@ KICAD_FOOTPRINTS = Path(
     "/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints"
 )
 
-# J2 sits directly below the power stage and feeds toward the board interior.
+# Current validated component positions on the left six-column carrier.
 PLACEMENTS = (
-    ("C1", "4.7uF 10V", KICAD_FOOTPRINTS / "Capacitor_SMD.pretty", "C_0603_1608Metric", 207.2, 81.0, 90.0),
-    ("L1", "SWPA4018S100MT", KICAD_FOOTPRINTS / "Inductor_SMD.pretty", "L_Sunlord_SWPA4018S", 200.8, 82.8, 0.0),
-    ("U1", "TPS61169", KICAD_FOOTPRINTS / "Package_TO_SOT_SMD.pretty", "SOT-353_SC-70-5", 204.8, 82.8, 0.0),
-    ("R1", "3.74R 1%", LIB_ROOT / "components.pretty", "R_0402_1005Metric", 207.2, 84.2, 90.0),
-    ("D23", "B5819W", KICAD_FOOTPRINTS / "Diode_SMD.pretty", "D_SOD-123", 204.6, 88.0, 90.0),
-    ("C2", "1uF 50V", KICAD_FOOTPRINTS / "Capacitor_SMD.pretty", "C_0805_2012Metric", 207.2, 88.8, 90.0),
-    ("J2", "BM03B-ACHSS-GAN-ETF", LIB_ROOT / "components.pretty", "BM03B-ACHSS-GAN-ETF", 207.2, 95.0, 0.0),
+    ("C1", "4.7uF 10V", KICAD_FOOTPRINTS / "Capacitor_SMD.pretty", "C_0603_1608Metric", 207.825, 120.55, 180.0),
+    ("L1", "SWPA4018S100MT", KICAD_FOOTPRINTS / "Inductor_SMD.pretty", "L_Sunlord_SWPA4018S", 207.075, 117.05, 180.0),
+    ("U1", "TPS61169", KICAD_FOOTPRINTS / "Package_TO_SOT_SMD.pretty", "SOT-353_SC-70-5", 207.075, 113.05, 0.0),
+    ("R1", "3.74R 1%", LIB_ROOT / "components.pretty", "R_0402_1005Metric", 204.825, 112.55, -90.0),
+    ("D23", "B5819W", KICAD_FOOTPRINTS / "Diode_SMD.pretty", "D_SOD-123", 203.575, 117.05, 90.0),
+    ("C2", "1uF 50V", KICAD_FOOTPRINTS / "Capacitor_SMD.pretty", "C_0805_2012Metric", 204.325, 120.55, 0.0),
+    ("J2", "BM03B-ACHSS-GAN-ETF", LIB_ROOT / "components.pretty", "BM03B-ACHSS-GAN-ETF", 207.35, 106.55, 90.0),
 )
 
 BALLAST_FOOTPRINT = "R_0402_1005Metric"
 BALLAST_VALUE = "220R 1%"
 BALLAST_OFFSET_X_MM = 4.3
-BALLAST_OFFSET_Y_MM = 0.5
+BALLAST_OFFSET_Y_MM = 1.8
 BALLAST_ROTATION_DEG = -90.0
 
 
@@ -60,14 +61,16 @@ def _ballast_placements(board):
     return placements
 
 
-def place(dry_run=False):
+def place(board_path=BOARD_PATH, dry_run=False, ballast_only=False):
     import pcbnew
 
     plugin = init_swig()
-    board = pcbnew.LoadBoard(str(BOARD_PATH))
+    board_path = Path(board_path)
+    board = pcbnew.LoadBoard(str(board_path))
     existing = {fp.GetReference(): fp for fp in board.GetFootprints()}
 
-    placements = (*PLACEMENTS, *_ballast_placements(board))
+    fixed_placements = () if ballast_only else PLACEMENTS
+    placements = (*fixed_placements, *_ballast_placements(board))
     for ref, value, library, footprint_name, x_mm, y_mm, rotation in placements:
         previous = existing.get(ref)
         pad_nets = {}
@@ -110,8 +113,13 @@ def place(dry_run=False):
         )
 
     if not dry_run:
-        board.Save(str(BOARD_PATH))
+        board.Save(str(board_path))
 
 
 if __name__ == "__main__":
-    place(dry_run="--dry-run" in sys.argv)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--single", type=Path, default=BOARD_PATH, help="carrier PCB to update")
+    parser.add_argument("--ballast-only", action="store_true", help="update only R2-R12")
+    parser.add_argument("--dry-run", action="store_true")
+    args = parser.parse_args()
+    place(args.single, dry_run=args.dry_run, ballast_only=args.ballast_only)
